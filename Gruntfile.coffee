@@ -6,7 +6,6 @@ module.exports = (grunt) ->
     localConfig = require("./server/config/local.env")
   catch e
     localConfig = {}
-
   # Load grunt tasks automatically, when needed
   require("jit-grunt") grunt,
     express: "grunt-express-server"
@@ -16,39 +15,30 @@ module.exports = (grunt) ->
     protractor: "grunt-protractor-runner"
     injector: "grunt-asset-injector"
     buildcontrol: "grunt-build-control"
-
-
   # Time how long tasks take. Can help when optimizing build times
   require("time-grunt") grunt
-
   # Define the configuration for all the tasks
   grunt.initConfig
-
     # Project settings
     pkg: grunt.file.readJSON("package.json")
     yeoman:
-
       # configurable paths
       client: require("./bower.json").appPath or "client"
       dist: "dist"
-
     express:
       options:
         port: process.env.PORT or 9000
-
       dev:
         options:
           script: "server/app.js"
           debug: true
-
       prod:
         options:
           script: "dist/server/app.js"
-
     open:
       server:
         url: "http://localhost:<%= express.options.port %>"
-
+        app: "Chromium"
     watch:
       injectJS:
         files: [
@@ -58,18 +48,15 @@ module.exports = (grunt) ->
           "!<%= yeoman.client %>/app/app.js"
         ]
         tasks: ["injector:scripts"]
-
       injectCss:
         files: ["<%= yeoman.client %>/{app,components}/**/*.css"]
         tasks: ["injector:css"]
-
       mochaTest:
         files: ["server/**/*.spec.js"]
         tasks: [
           "env:test"
           "mochaTest"
         ]
-
       jsTest:
         files: [
           "<%= yeoman.client %>/{app,components}/**/*.spec.js"
@@ -79,25 +66,21 @@ module.exports = (grunt) ->
           "newer:jshint:all"
           "karma"
         ]
-
       injectSass:
         files: ["<%= yeoman.client %>/{app,components}/**/*.{scss,sass}"]
         tasks: ["injector:sass"]
-
       sass:
         files: ["<%= yeoman.client %>/{app,components}/**/*.{scss,sass}"]
         tasks: [
           "sass"
           "autoprefixer"
         ]
-
       jade:
         files: [
           "<%= yeoman.client %>/{app,components}/*"
           "<%= yeoman.client %>/{app,components}/**/*.jade"
         ]
         tasks: ["jade"]
-
       coffee:
         files: [
           "<%= yeoman.client %>/{app,components}/**/*.{coffee,litcoffee,coffee.md}"
@@ -107,14 +90,11 @@ module.exports = (grunt) ->
           "newer:coffee"
           "injector:scripts"
         ]
-
       coffeeTest:
         files: ["<%= yeoman.client %>/{app,components}/**/*.spec.{coffee,litcoffee,coffee.md}"]
         tasks: ["karma"]
-
       gruntfile:
         files: ["Gruntfile.js"]
-
       livereload:
         files: [
           "{.tmp,<%= yeoman.client %>}/{app,components}/**/*.css"
@@ -126,7 +106,6 @@ module.exports = (grunt) ->
         ]
         options:
           livereload: true
-
       express:
         files: ["server/**/*.{js,json}"]
         tasks: [
@@ -136,8 +115,6 @@ module.exports = (grunt) ->
         options:
           livereload: true
           nospawn: true #Without this option specified express won't be reloaded
-
-
     # Make sure code styles are up to par and there are no obvious mistakes
     jshint:
       options:
@@ -160,8 +137,6 @@ module.exports = (grunt) ->
           "<%= yeoman.client %>/{app,components}/**/*.spec.js"
           "<%= yeoman.client %>/{app,components}/**/*.mock.js"
         ]
-
-
     # Empties folders to start fresh
     clean:
       dist:
@@ -177,8 +152,6 @@ module.exports = (grunt) ->
         ]
 
       server: ".tmp"
-
-
     # Add vendor prefixed styles
     autoprefixer:
       options:
@@ -191,15 +164,11 @@ module.exports = (grunt) ->
           src: "{,*/}*.css"
           dest: ".tmp/"
         ]
-
-
     # Debugging with node inspector
     "node-inspector":
       custom:
         options:
           "web-host": "localhost"
-
-
     # Use nodemon to run server in debug mode with an initial breakpoint
     nodemon:
       debug:
@@ -208,13 +177,10 @@ module.exports = (grunt) ->
           nodeArgs: ["--debug-brk"]
           env:
             PORT: process.env.PORT or 9000
-
           callback: (nodemon) ->
             nodemon.on "log", (event) ->
               console.log event.colour
               return
-
-
             # opens browser on initial server start
             nodemon.on "config:update", ->
               setTimeout (->
@@ -222,10 +188,7 @@ module.exports = (grunt) ->
                 return
               ), 500
               return
-
             return
-
-
     # Automatically inject Bower components into the app
     wiredep:
       target:
@@ -239,8 +202,6 @@ module.exports = (grunt) ->
           /bootstrap.css/
           /font-awesome.css/
         ]
-
-
     # Renames files for browser caching purposes
     rev:
       dist:
@@ -251,8 +212,6 @@ module.exports = (grunt) ->
             "<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}"
             "<%= yeoman.dist %>/public/assets/fonts/*"
           ]
-
-
     # Reads HTML for usemin blocks to enable smart builds that automatically
     # concat, minify and revision files. Creates configurations in memory so
     # additional tasks can operate on them
@@ -260,8 +219,6 @@ module.exports = (grunt) ->
       html: ["<%= yeoman.client %>/index.html"]
       options:
         dest: "<%= yeoman.dist %>/public"
-
-
     # Performs rewrites based on rev and the useminPrepare configuration
     usemin:
       html: ["<%= yeoman.dist %>/public/{,*/}*.html"]
@@ -279,8 +236,6 @@ module.exports = (grunt) ->
             /(assets\/images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/g
             "Update the JS to reference our revved images"
           ]]
-
-
     # The following *-min tasks produce minified files in the dist folder
     imagemin:
       dist:
@@ -290,7 +245,6 @@ module.exports = (grunt) ->
           src: "{,*/}*.{png,jpg,jpeg,gif}"
           dest: "<%= yeoman.dist %>/public/assets/images"
         ]
-
     svgmin:
       dist:
         files: [
@@ -299,8 +253,6 @@ module.exports = (grunt) ->
           src: "{,*/}*.svg"
           dest: "<%= yeoman.dist %>/public/assets/images"
         ]
-
-
     # Allow the use of non-minsafe AngularJS files. Automatically makes it
     # minsafe compatible so Uglify does not destroy the ng references
     ngAnnotate:
@@ -311,8 +263,6 @@ module.exports = (grunt) ->
           src: "*/**.js"
           dest: ".tmp/concat"
         ]
-
-
     # Package all the html partials into a single javascript payload
     ngtemplates:
       options:
@@ -339,14 +289,10 @@ module.exports = (grunt) ->
         cwd: ".tmp"
         src: ["{app,components}/**/*.html"]
         dest: ".tmp/tmp-templates.js"
-
-
     # Replace Google CDN references
     cdnify:
       dist:
         html: ["<%= yeoman.dist %>/public/*.html"]
-
-
     # Copies remaining files to places other tasks can use
     copy:
       dist:
@@ -386,7 +332,6 @@ module.exports = (grunt) ->
         cwd: "<%= yeoman.client %>"
         dest: ".tmp/"
         src: ["{app,components}/**/*.css"]
-
     buildcontrol:
       options:
         dir: "dist"
@@ -404,8 +349,6 @@ module.exports = (grunt) ->
         options:
           remote: "openshift"
           branch: "master"
-
-
     # Run some tasks in parallel to speed up the build process
     concurrent:
       server: [
@@ -433,20 +376,16 @@ module.exports = (grunt) ->
         "imagemin"
         "svgmin"
       ]
-
-
     # Test settings
     karma:
       unit:
         configFile: "karma.conf.js"
         singleRun: true
-
     mochaTest:
       options:
         reporter: "spec"
 
       src: ["server/**/*.spec.js"]
-
     protractor:
       options:
         configFile: "protractor.conf.js"
@@ -455,17 +394,12 @@ module.exports = (grunt) ->
         options:
           args:
             browser: "chrome"
-
     env:
       test:
         NODE_ENV: "test"
-
       prod:
         NODE_ENV: "production"
-
       all: localConfig
-
-
     # Compiles Jade to html
     jade:
       compile:
@@ -480,8 +414,6 @@ module.exports = (grunt) ->
           dest: ".tmp"
           ext: ".html"
         ]
-
-
     # Compiles CoffeeScript to JavaScript
     coffee:
       options:
@@ -499,8 +431,6 @@ module.exports = (grunt) ->
           dest: ".tmp"
           ext: ".js"
         ]
-
-
     # Compiles Sass to CSS
     sass:
       server:
@@ -514,7 +444,6 @@ module.exports = (grunt) ->
 
         files:
           ".tmp/app/app.css": "<%= yeoman.client %>/app/app.scss"
-
     injector:
       options: {}
 
@@ -569,8 +498,6 @@ module.exports = (grunt) ->
 
         files:
           "<%= yeoman.client %>/index.html": ["<%= yeoman.client %>/{app,components}/**/*.css"]
-
-
   # Used for delaying livereload until after server has restarted
   grunt.registerTask "wait", ->
     grunt.log.ok "Waiting for server reload..."
@@ -581,11 +508,9 @@ module.exports = (grunt) ->
       return
     ), 1500
     return
-
   grunt.registerTask "express-keepalive", "Keep grunt running", ->
     @async()
     return
-
   grunt.registerTask "serve", "serve project", (target) ->
     if target is "dist"
       return grunt.task.run([
@@ -622,12 +547,10 @@ module.exports = (grunt) ->
       "watch"
     ]
     return
-
   grunt.registerTask "server", ->
     grunt.log.warn "The `server` task has been deprecated. Use `grunt serve` to start a server."
     grunt.task.run ["serve"]
     return
-
   grunt.registerTask "test", (target) ->
     if target is "server"
       grunt.task.run [
@@ -664,7 +587,6 @@ module.exports = (grunt) ->
         "test:client"
       ]
     return
-
   grunt.registerTask "build", [
     "clean:dist"
     "injector:sass"
