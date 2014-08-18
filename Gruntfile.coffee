@@ -467,7 +467,7 @@ module.exports = (grunt) ->
           transform: (filePath) ->
             filePath = filePath.replace("/client/app/", "")
             filePath = filePath.replace("/client/components/", "")
-            "@import '" + filePath + "';"
+            "@import " + filePath # + "';"
           starttag: "// injector"
           endtag: "// endinjector"
         files:
