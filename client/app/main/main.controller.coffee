@@ -6,4 +6,4 @@ angular.module 'brasFeApp'
 
   $http.get('/api/things').success (awesomeThings) ->
     $scope.awesomeThings = awesomeThings
-    
+

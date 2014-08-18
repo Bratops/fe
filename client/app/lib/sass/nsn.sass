@@ -1,0 +1,48 @@
+$c-sky: #5CD7E7
+$c-swim: #1A8FAC
+$c-water: #176C81
+$c-dirt: #B18320
+$c-soil: #815717
+
+@mixin fontface($family,$src,$weight: normal,$style: normal)
+  @font-face
+    font-family: $family
+    // IE9 compat
+    src: url('#{$src}.otf'), url('#{$src}.eot')
+    // IE8 // standard // safari, android, ios,// legacy iOS
+    src: url('#{$src}.eot?#iefix') format('embedded-opentype'), url('#{$src}.woff') format('woff'), url('#{$src}.ttf') format('truetype'), url('#{$src}.svg##{$family}') format('svg')
+    font-style: $style
+    font-weight: $weight
+
+@mixin transition($args...)
+  -webkit-transition: $args
+  -moz-transition: $args
+  -ms-transition: $args
+  -o-transition: $args
+  transition: $args
+
+@mixin opacity($opacity)
+  opacity: $opacity
+  $opacity-ie: $opacity * 100
+  //IE8
+  filter: alpha(opacity=$opacity-ie)
+
+// @extend %clearfix
+%clearfix
+  *zoom: 1
+  &:before, &:after
+    content: " "
+    display: table
+  &:after
+    clear: both
+
+//@extend %visuallyhidden
+%visuallyhidden
+  margin: -1px
+  padding: 0
+  width: 1px
+  height: 1px
+  overflow: hidden
+  clip: rect(0 0 0 0)
+  clip: rect(0, 0, 0, 0)
+  position: absolute
