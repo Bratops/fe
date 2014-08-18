@@ -3,6 +3,8 @@ $fa-font-path: "/bower_components/font-awesome/fonts"
 @import font-awesome/scss/font-awesome
 //@import skeleton-sass/skeleton_template
 @import skeleton-sass/skeleton/core/_config
+@import skeleton-sass/skeleton/themes/sphenoid/marrow/public
+@import appbase
 
 /**
  * App-wide Styles
@@ -20,5 +22,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts"
 
 // Component styles are injected through grunt
 // injector
+@import appbase.sass
+@import lib/sass/nsn.sass
 @import main/main.sass
 // endinjector
