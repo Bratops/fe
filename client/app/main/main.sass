@@ -1,12 +1,10 @@
-=debug
-  background: red
-
 =head_fs($base)
-  @include font-size($base)
+  +ext(f-hobo)
+  +font-size($base)
   +tablet-only
-    @include font-size($base*.76)
+    +font-size($base*.76)
   +mobile-only
-    @include font-size($base*.5)
+    +font-size($base*.5)
 
 %header_bg
   background-color: lighten($c-sky, 30%)

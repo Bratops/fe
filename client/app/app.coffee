@@ -1,15 +1,64 @@
-'use strict'
+"use strict"
 
-angular.module 'brasFeApp', [
-  'ngCookies',
-  'ngResource',
-  'ngSanitize',
-  'ui.router',
-  'ui.bootstrap'
+angular.module "brasFeApp", [
+  "ngCookies",
+  "ngResource",
+  "ngSanitize",
+  "ui.router",
+  "ui.bootstrap",
+  "restangular",
 ]
 
 .config ($stateProvider, $urlRouterProvider, $locationProvider) ->
   $urlRouterProvider
-  .otherwise '/'
+  .otherwise "/"
 
   $locationProvider.html5Mode true
+
+.config (RestangularProvider) ->
+  RestangularProvider.setBaseUrl "http://bebras01.csie.ntnu.edu.tw/"
+  #RestangularProvider.setExtraFields ["name"]
+  #RestangularProvider.setResponseExtractor (response, operation) ->
+  #  response.data
+  #RestangularProvider.addElementTransformer "accounts", false, (element) ->
+  #  element.accountName = "Changed"
+  #  element
+  RestangularProvider.setDefaultHttpFields
+    cache: true,
+    withCredentials: true #allow cookies, sessions
+  #RestangularProvider.setMethodOverriders [
+  #  "put"
+  #  "patch"
+  #]
+
+  # In this case we are mapping the id of each element to the _id field.
+  # We also change the Restangular route.
+  # The default value for parentResource remains the same.
+  RestangularProvider.setRestangularFields
+    id: "_id"
+    route: "restangularRoute"
+    selfLink: "self.href"
+  #RestangularProvider.setRequestSuffix ".json"
+  # Use Request interceptor
+  #RestangularProvider.setRequestInterceptor (element, operation, route, url) ->
+  #  delete element.name
+  #  element
+
+
+  # ..or use the full request interceptor, setRequestInterceptor's more powerful brother!
+  #RestangularProvider.setFullRequestInterceptor (element, operation, route, url, headers, params, httpConfig) ->
+  #  delete element.name
+
+  #  element: element
+  #  params: _.extend(params,
+  #    single: true
+  #  )
+  #  headers: headers
+  #  httpConfig: httpConfig
+
+  #set default header "token"
+  RestangularProvider.setDefaultHeaders
+    "Content-Type": "application/json",
+    "X-Requested-With": "XMLHttpRequest",
+    "Accept": "application/bebras.tw; ver=1"
+  return
