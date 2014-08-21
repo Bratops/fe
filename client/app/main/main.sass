@@ -20,6 +20,33 @@
   height: 100%
   float: left
 
+%header_nav
+  @extend %f-read
+  ul
+    text-align: center
+    list-style-type: none
+    margin-top: 40px
+    @include font-size(32)
+  ul li
+    display: inline
+    margin: 0 30px
+
+%header
+  height: 100%
+  h1, h2
+    color: $c-soil
+    text-align: center
+    font-weight: bold
+  .power
+    +ext(visuallyhidden)
+  h1
+    padding-top: 40px
+    +head_fs(100px)
+  h2
+    +head_fs(40px)
+  #nav
+    +ext(header_nav)
+
 %article
   padding: 60px 15% 40px
   p
@@ -33,42 +60,7 @@
     @include columns(1, 30)
     padding: 20px 5% 20px
 
-.header
-  @extend %landing_fill
-  @extend %header_bg
-  h1, h2
-    color: $c-soil
-    text-align: center
-    font-weight: bold
-  .power
-    @extend %visuallyhidden
-  h1
-    padding-top: 40px
-    +head_fs(100px)
-  h2
-    +head_fs(40px)
-
-.header #nav
-  @extend %f-read
-  ul
-    text-align: center
-    list-style-type: none
-    margin-top: 40px
-    @include font-size(32)
-  ul li
-    display: inline
-    margin: 0 30px
-
-.banner
-  display: block
-  width: 100%
-  height: 100%
-
-.body
-  display: inline-block
-  background-color: lighten($c-sky, 25%)
-
-.intro
+%intro
   +ext(f-read)
   margin: 0
   height: 100%
@@ -86,10 +78,25 @@
     &:nth-child(1)
       margin-top: 0
 
-.footer
+%body
+  display: inline-block
+  background-color: lighten($c-sky, 25%)
+  .intro
+    +ext(intro)
+
+%footer
   @include font-size(14)
   padding: 1rem
   text-align: center
   height: 20px
   background-color: $c-water
 
+.landing
+  +ext(header_bg)
+  +ext(landing_fill)
+  .header
+    +ext(header)
+  .body
+    +ext(body)
+  .footer
+    +ext(footer)
