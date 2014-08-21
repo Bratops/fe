@@ -1,0 +1,28 @@
+%task_widget
+  margin: 0 auto
+  width: 90%
+  //border: 1px solid lighten($c-soil, 50%)
+  //@include border-radius(7px)
+
+%task_heading
+  +ext(task_widget)
+  padding-top: 1em
+  margin-bottom: 1em
+  height: 3rem
+  .header
+    float: left
+    +font-size(20)
+  .title
+    float: right
+    +font-size(20)
+
+.task
+  background-color: lighten($c-sky, 30%)
+  height: 100%
+  .heading
+    +ext(f-hobo)
+    +ext(task_heading)
+  .view
+    +ext(f-read)
+    +ext(task_widget)
+
