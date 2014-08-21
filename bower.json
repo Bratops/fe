@@ -13,7 +13,9 @@
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1",
     "angular-ui-router": "~0.2.10",
-    "skeleton-sass": "~2.0.2"
+    "skeleton-sass": "~2.0.2",
+    "restangular": "~1.4.0",
+    "sass-css3-mixins": "*"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

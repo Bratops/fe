@@ -2,8 +2,9 @@
 
 angular.module 'brasFeApp'
 .controller 'MainCtrl', ($scope, $http) ->
-  $scope.awesomeThings = []
+  ""
+  #$scope.awesomeThings = []
 
-  $http.get('/api/things').success (awesomeThings) ->
-    $scope.awesomeThings = awesomeThings
+  #$http.get('/api/things').success (awesomeThings) ->
+    #$scope.awesomeThings = awesomeThings
 
