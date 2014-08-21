@@ -3,11 +3,12 @@
     .header
       select(ng-model="task_token", ng-options="task.name for task in task_list")
         option(value='') -- 選擇題目 --
-    .title
-      | 2014 國際Bebras測驗
+    .title 2014
+      a(ui-sref="main") 國際Bebras測驗
   .view
-    .date 題目年份：{{ cur_task.year }}
-    .body 題文：
-      span(ng-bind-html="cur_task.body")
-    .quest 問題：
-      span(ng-bind-html="cur_task.quest")
+    .contents
+      .date 題目年份：{{ cur_task.year }}
+      .body 題文：
+        span(ng-bind-html="cur_task.body")
+      .quest 問題：
+        span(ng-bind-html="cur_task.quest")
