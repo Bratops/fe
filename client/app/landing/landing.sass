@@ -20,7 +20,7 @@
 
 $nav_grad_from: #fff
 $nav_grad_to: #c2c7ce
-%header_nav
+%nav
   @extend %f-read
   ul
     text-align: center
@@ -30,14 +30,8 @@ $nav_grad_to: #c2c7ce
   ul li
     display: inline-block
     margin: 0 20px
-    padding: 10px
-    height: 60px
-    line-height: 60px
-    width: 4.5em
     font-weight: bold
     +cloud-btn(lighten($c-soil, 10%), $c-sky, $nav_grad_from, $nav_grad_to)
-
-/* This button was generated using CSSButtonGenerator.com
 
 %header
   height: 100%
@@ -52,8 +46,6 @@ $nav_grad_to: #c2c7ce
     +head_fs(100px)
   h2
     +head_fs(40px)
-  #nav
-    +ext(header_nav)
 
 %article
   padding: 60px 15% 40px
@@ -104,7 +96,18 @@ $nav_grad_to: #c2c7ce
   +ext(landing_fill)
   .header
     +ext(header)
+  .control
+    #nav
+      +ext(nav)
+  .control.dim
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0
+    background: rgba(50, 50, 50, .8)
   .body
     +ext(body)
+  .body.dim
+    display: none
   .footer
     +ext(footer)

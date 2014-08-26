@@ -1,0 +1,23 @@
+form#reg
+  label(for="school") 學校
+  input#school(type="text" placeholder="選擇學校")
+
+  label(for="name") 名字
+  input#name(type="text" placeholder="名字")
+
+  label(for="email") 電郵
+  input#email(type="email" placeholder="@")
+
+  label(for="phone") 電話
+  input#phone(type="phone" placeholder="#")
+
+  label(for="role") 身份
+  input#role(type="text" placeholder="#")
+
+  .btn
+    a(ui-sref="landing.login") 註冊
+  ul
+    li
+      a(ui-sref="landing.login") 登入
+    li
+      a(ui-sref="landing") 返回

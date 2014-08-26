@@ -7,15 +7,16 @@
       | Department of Computer Science and Information Engineering
     h1.f-hobo Bebras
     h2.f-hobo 國際Bebras測驗
-    #nav
-      ul
-        li
-          a(du-smooth-scroll duration="1000" href="#body") 測驗介紹
-        li
-          a(ui-sref="tasks") 開始測驗
-        li 登入
-
-  .body#body
+    .control(ui-view="control" ng-class="{dim: dim_bg()}")
+      #nav
+        ul
+          li
+            a(du-smooth-scroll duration="1000" href="#body") 測驗介紹
+          li
+            a(ui-sref="tasks") 開始測驗
+          li
+            a(ui-sref="landing.login") 登入
+  .body#body(ng-class="{dim: dim_bg()}")
     .intro#intro
       h1.f-hobo 關於Bebras
       article.article
