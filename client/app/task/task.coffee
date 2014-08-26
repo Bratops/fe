@@ -3,7 +3,7 @@
 angular.module 'brasFeApp'
 .config ($stateProvider) ->
   $stateProvider
-  .state 'task',
-    url: '/task'
+  .state 'tasks',
+    url: '/tasks'
     templateUrl: 'app/task/task.html'
     controller: 'TaskCtrl'
