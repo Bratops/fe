@@ -24,7 +24,7 @@ module.exports = (grunt) ->
     yeoman:
       # configurable paths
       client: require("./bower.json").appPath or "client"
-      dist: "dist"
+      dist: "dist/core"
     express:
       options:
         port: process.env.PORT or 9000
@@ -304,7 +304,7 @@ module.exports = (grunt) ->
             src: [
               "*.{ico,png,txt}"
               ".htaccess"
-              "bower_components/**/*"
+              "blib/**/*"
               "assets/images/{,*/}*.{webp}"
               "assets/fonts/**/*"
               "index.html"
@@ -322,6 +322,14 @@ module.exports = (grunt) ->
             src: [
               "package.json"
               "server/**/*"
+            ]
+          }
+          {
+            expand: true
+            dest: "<%= yeoman.dist %>"
+            src: [
+              "bower.json"
+              ".bowerrc"
             ]
           }
         ]
@@ -435,7 +443,7 @@ module.exports = (grunt) ->
       server:
         options:
           loadPath: [
-            "<%= yeoman.client %>/bower_components"
+            "<%= yeoman.client %>/blib"
             "<%= yeoman.client %>/app"
             "<%= yeoman.client %>/components"
           ]

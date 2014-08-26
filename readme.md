@@ -13,5 +13,4 @@
 - test
 
 # ref
-- restangular
-
+- [Comprehensive walk](http://www.thinkster.io/angularjs/GUIDJbpIie/angularjs-tutorial-learn-to-build-modern-web-apps)
