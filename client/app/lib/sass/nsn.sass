@@ -53,3 +53,22 @@ $c-soil: #815717
   clip: rect(0, 0, 0, 0)
   position: absolute
 
+=box-shadow-i($inset, $x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4))
+  @if ($inset != "")
+    -webkit-box-shadow: $inset $x $y $blur $color
+    -moz-box-shadow:    $inset $x $y $blur $color
+    box-shadow:         $inset $x $y $blur $color
+  @else
+    -webkit-box-shadow: $x $y $blur $color
+    -moz-box-shadow:    $x $y $blur $color
+    box-shadow:         $x $y $blur $color
+
+=bg-gradient($deg: 90deg, $startColor: #3C3C3C, $endColor: #999999)
+  background-color: $startColor
+  background-image: -webkit-gradient(linear, left top, left bottom, from($startColor), to($endColor))
+  background-image: -webkit-linear-gradient($deg, $startColor, $endColor)
+  background-image:    -moz-linear-gradient($deg, $startColor, $endColor)
+  background-image:     -ms-linear-gradient($deg, $startColor, $endColor)
+  background-image:      -o-linear-gradient($deg, $startColor, $endColor)
+  background-image:         linear-gradient($deg, $startColor, $endColor)
+  filter:            progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$startColor}', endColorStr='#{$endColor}')
