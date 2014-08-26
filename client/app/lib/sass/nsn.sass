@@ -4,7 +4,7 @@ $c-water: #176C81
 $c-dirt: #B18320
 $c-soil: #815717
 
-@mixin fontface($family,$src,$weight: normal,$style: normal)
+=fontface($family,$src,$weight: normal,$style: normal)
   @font-face
     font-family: $family
     // IE9 compat
@@ -14,18 +14,24 @@ $c-soil: #815717
     font-style: $style
     font-weight: $weight
 
-@mixin transition($args...)
+=transition($args...)
   -webkit-transition: $args
   -moz-transition: $args
   -ms-transition: $args
   -o-transition: $args
   transition: $args
 
-@mixin opacity($opacity)
+=opacity($opacity)
   opacity: $opacity
   $opacity-ie: $opacity * 100
   //IE8
   filter: alpha(opacity=$opacity-ie)
+
+=ext($name, $silent: true)
+  @if $silent == true
+    @extend %#{$name} !optional
+  @else
+    @extend .#{$name} !optional
 
 // @extend %clearfix
 %clearfix
@@ -46,3 +52,4 @@ $c-soil: #815717
   clip: rect(0 0 0 0)
   clip: rect(0, 0, 0, 0)
   position: absolute
+
