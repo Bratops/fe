@@ -7,6 +7,7 @@ angular.module "brasFeApp", [
   "ui.router",
   "ui.bootstrap",
   "restangular",
+  "duScroll",
 ]
 
 .config ($stateProvider, $urlRouterProvider, $locationProvider) ->

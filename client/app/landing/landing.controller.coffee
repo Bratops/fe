@@ -7,8 +7,4 @@ angular.module 'brasFeApp'
 
   #$http.get('/api/things').success (awesomeThings) ->
     #$scope.awesomeThings = awesomeThings
-  $scope.scrollTo = (id)->
-    old = $location.hash()
-    $location.hash(id)
-    $anchorScroll()
-    $location.hash(old)
+
