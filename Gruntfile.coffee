@@ -265,7 +265,6 @@ module.exports = (grunt) ->
     # Package all the html partials into a single javascript payload
     ngtemplates:
       options:
-
         # This should be the name of your apps angular module
         module: "brasFeApp"
         htmlmin:
@@ -276,14 +275,11 @@ module.exports = (grunt) ->
           removeRedundantAttributes: true
           removeScriptTypeAttributes: true
           removeStyleLinkTypeAttributes: true
-
         usemin: "app/app.js"
-
       main:
         cwd: "<%= yeoman.client %>"
         src: ["{app,components}/**/*.html"]
         dest: ".tmp/templates.js"
-
       tmp:
         cwd: ".tmp"
         src: ["{app,components}/**/*.html"]
@@ -479,6 +475,7 @@ module.exports = (grunt) ->
           endtag: "// endinjector"
         files:
           "<%= yeoman.client %>/app/app.sass": [
+            "<%= yeoman.client %>/app/lib/**/*.{scss,sass}"
             "<%= yeoman.client %>/{app,components}/**/*.{scss,sass}"
             "!<%= yeoman.client %>/app/app.{scss,sass}"
           ]

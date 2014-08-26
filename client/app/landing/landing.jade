@@ -9,13 +9,14 @@
     h2.f-hobo 國際Bebras測驗
     #nav
       ul
-        li 測驗介紹
+        li
+          a(ng-click="scrollTo('body')", href="#") 測驗介紹
         li
           a(ui-sref="tasks") 開始測驗
         li 登入
 
-  .body
-    .intro
+  .body#body
+    .intro#intro
       h1.f-hobo 關於Bebras
       article.article
         h2 測驗介紹
