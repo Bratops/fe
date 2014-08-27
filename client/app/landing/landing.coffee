@@ -12,10 +12,10 @@ angular.module "brasFeApp"
     views:
       control:
         templateUrl: "components/form/session/login.html"
-    controller: "LandingCtrl"
+        controller: "SessionCtrl"
   .state "landing.register",
     url: "register"
     views:
       control:
         templateUrl: "components/form/session/register.html"
-    controller: "LandingCtrl"
+        controller: "SessionCtrl"

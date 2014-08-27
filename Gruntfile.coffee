@@ -476,7 +476,8 @@ module.exports = (grunt) ->
         files:
           "<%= yeoman.client %>/app/app.sass": [
             "<%= yeoman.client %>/app/lib/**/*.{scss,sass}"
-            "<%= yeoman.client %>/{app,components}/**/*.{scss,sass}"
+            "<%= yeoman.client %>/components/**/*.{scss,sass}"
+            "<%= yeoman.client %>/app/**/*.{scss,sass}"
             "!<%= yeoman.client %>/app/app.{scss,sass}"
           ]
       # Inject component css into index.html

@@ -1,6 +1,5 @@
 form#login
-  label(for="school") 學校
-  input#school(type="text" placeholder="選擇學校")
+  include school_typeahead.jade
 
   label(for="email") 電郵 或 學號
   input#email(type="email" placeholder="@")
