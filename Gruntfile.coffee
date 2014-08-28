@@ -391,8 +391,7 @@ module.exports = (grunt) ->
       src: ["server/**/*.spec.js"]
     protractor:
       options:
-        configFile: "protractor.conf.js"
-
+        configFile: "protractor.conf.coffee"
       chrome:
         options:
           args:
