@@ -1,22 +1,25 @@
-form#reg
-  include school_typeahead.jade
+include mixin/school_typeahead.jade
+include mixin/name.jade
+include mixin/email.jade
+include mixin/phone.jade
 
-  label(for="name") 名字
-  input#name(type="text" placeholder="名字")
+- var fn = "regform"
+form#reg(name=fn novalidate)
+  +school_ta(fn)
+  +name_input(fn)
+  +email(fn)
+  +phone_input(fn)
 
-  label(for="email") 電郵
-  input#email(type="email" placeholder="@")
+  input#role(type="checkbox" ng-model="form.as_teacher")
+  label(for="role") 註冊為教師
 
-  label(for="phone") 電話
-  input#phone(type="phone" placeholder="#")
-
-  label(for="role") 身份
-  input#role(type="text" placeholder="#")
-
-  .btn
-    a(ui-sref="landing.login") 註冊
+  //{{ school | json }}
+  //{{ form | json }}
+  //{{ registerable(regform) | json }}
+  button.btn(type="submit" ng-disabled="!registerable(regform)"
+    ng-click="register(regform)") 註冊
   ul
     li
-      a(ui-sref="landing.login") 登入
+      a(ui-sref="session.login") 登入
     li
       a(ui-sref="landing") 返回

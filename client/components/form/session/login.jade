@@ -1,19 +1,20 @@
-form#login
-  include school_typeahead.jade
+include mixin/school_typeahead.jade
+include mixin/email.jade
+include mixin/password.jade
 
-  label(for="email") 電郵 或 學號
-  input#email(type="email" placeholder="@")
+- var fn = "loginform"
+form#login(name=fn)
+  +school_ta(fn)
+  +email(fn)
+  +password(fn, false)
 
-  label(for="password") 密碼
-  input.password(type="password" placeholder="#")
-
-  .btn
-    a(ui-sref="login") 登入
+  button.btn(type="submit" ng-disabled="!loginable(loginform)"
+    ng-click="login()") 登入
   ul
     li
-      a(ui-sref="landing") 重設密碼
+      a(ng-click="aquire_reset_token()") 重設密碼
       //a(ui-sref="landing") 以FB登入
     li
-      a(ui-sref="landing") 返回
+      a(ui-sref="session.register") 註冊
     li
-      a(ui-sref="landing.register") 註冊
+      a(ui-sref="landing") 返回

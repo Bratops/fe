@@ -1,9 +1,0 @@
-label(for="school") 學校 &nbsp;
-  i.fa.fa-spin.fa-circle-o-notch(ng-show="loadingSclist")
-input#school(type="text"
-  placeholder="選擇學校"
-  typeahead="sc as sc.name for sc in get_school_list($viewValue)"
-  typeahead-persistent="0"
-  typeahead-loading="loadingSclist"
-  typeahead-wait-ms="10"
-  ng-model="moeid")

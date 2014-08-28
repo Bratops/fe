@@ -7,3 +7,5 @@ angular.module 'brasFeApp'
   ret =
     sclist: (query)->
       rest.all("publist/school").getList({query: query})
+    register: ()->
+      console.log 'ok'

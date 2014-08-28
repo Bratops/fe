@@ -1,9 +1,40 @@
 'use strict'
 
 angular.module 'brasFeApp'
-.controller 'SessionCtrl', ($scope, session) ->
-  $scope.moeid = null
+.controller 'SessionCtrl', ($scope, $state, $stateParams, session) ->
+  $scope.form =
+    submitted: false
 
   $scope.get_school_list = (query)->
     session.sclist(query).then (resp) ->
       resp
+
+  $scope.reset = ()->
+    session.reset_pw()
+
+  $scope.registerable = (form)->
+    !$scope.form.submitted and
+    (form.$valid and !$scope.moeid_not_set())
+
+  $scope.register = (form)->
+    $scope.form.submitted = true
+    session.register()
+
+  $scope.login = ()->
+    session.login()
+
+  $scope.$on "$viewContentLoaded", (event)->
+    rpt = "reset_password_token"
+    if $state.current.name is "session.reset"
+      if !(rpt of $stateParams) or !$stateParams[rpt] or $stateParams[rpt] is "true"
+        $state.go("landing")
+
+  $scope.$watch "school", (nv, ov)->
+    if nv and (typeof nv is "object") and "moeid" of nv
+      $scope.form.moeid = nv.moeid
+
+  $scope.set_moeid = (i, m, l)->
+    #$scope.form.moeid = i.moeid
+
+  $scope.moeid_not_set = ()->
+    !("moeid" of $scope.form) or !$scope.form.moeid

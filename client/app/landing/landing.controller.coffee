@@ -8,8 +8,13 @@ angular.module 'brasFeApp'
   #$http.get('/api/things').success (awesomeThings) ->
     #$scope.awesomeThings = awesomeThings
 
-  $scope.at_state = (st)->
-    $state.current.name == "landing.#{st}"
+  at_state = (st)->
+    $state.current.name == "session.#{st}"
 
   $scope.dim_bg = ()->
-    $scope.at_state("login") || $scope.at_state("register")
+    at_state("login") ||
+    at_state("register") ||
+    at_state("reset")
+
+  $scope.landing = ()->
+    console.log "here"
