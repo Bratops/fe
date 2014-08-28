@@ -1,5 +1,5 @@
 'use strict'
 
 angular.module 'brasFeApp'
-.controller 'DashboardCtrl', ($scope, session) ->
+.controller 'DashboardCtrl', ($scope, sessionServ) ->
   $scope.message = 'Hello'

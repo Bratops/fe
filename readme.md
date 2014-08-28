@@ -24,6 +24,7 @@
 - [forms-angular](http://www.forms-angular.org/#!/index)
 - [auth-reddit](https://redditjs.com/r/angularjs/comments/29ikne/how_do_i_handle_token_authentication_with/)
 - [role-auth](http://arthur.gonigberg.com/2013/06/29/angularjs-role-based-auth/)
+- [injector](http://www.webdeveasy.com/interceptors-in-angularjs-and-useful-examples/)
 
 # opt
 - [tut](http://www.binpress.com/tutorial/speeding-up-angular-js-with-simple-optimizations/135)
@@ -32,3 +33,4 @@
 
 # debug
 - [controller](https://www.codementor.io/angularjs-tutorial/tutorial-neat-hack-show-controllers-angular-apps-clearer-way?utm_source=reddit-tutorial&amp;utm_medium=tutorial&amp;utm_term=neat-hack-angularjs-maciej&amp;utm_content=tutorial&amp;utm_campaign=reddit-tutorial)
+- [3vir](http://threevirtues.com/)

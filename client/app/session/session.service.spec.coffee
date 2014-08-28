@@ -1,14 +1,14 @@
 'use strict'
 
-describe 'Service: session', ->
+describe 'Service: sessionServ', ->
 
   # load the service's module
   beforeEach module 'brasFeApp'
 
   # instantiate service
-  session = undefined
-  beforeEach inject (_session_) ->
-    session = _session_
+  sessionServ = undefined
+  beforeEach inject (_sessionServ_) ->
+    sessionServ = _sessionServ_
 
   it 'should do something', ->
-    expect(!!session).toBe true
+    expect(!!sessionServ).toBe true

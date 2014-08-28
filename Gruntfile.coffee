@@ -382,7 +382,7 @@ module.exports = (grunt) ->
     # Test settings
     karma:
       unit:
-        configFile: "karma.conf.js"
+        configFile: "karma.conf.coffee"
         singleRun: true
     mochaTest:
       options:
