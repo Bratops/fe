@@ -16,7 +16,8 @@
     "skeleton-sass": "~2.0.2",
     "restangular": "~1.4.0",
     "sass-css3-mixins": "*",
-    "angular-scroll": "~0.6.1"
+    "angular-scroll": "~0.6.1",
+    "angular-growl-v2": "~0.7.0"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

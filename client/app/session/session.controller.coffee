@@ -1,16 +1,16 @@
 'use strict'
 
 angular.module 'brasFeApp'
-.controller 'SessionCtrl', ($scope, $state, $stateParams, session) ->
+.controller 'SessionCtrl', ($scope, $state, $stateParams, sessionServ) ->
   $scope.form =
     submitted: false
 
   $scope.get_school_list = (query)->
-    session.sclist(query).then (resp) ->
+    sessionServ.sclist(query).then (resp) ->
       resp
 
   $scope.reset = ()->
-    session.reset_pw()
+    sessionServ.reset_pw()
 
   $scope.registerable = (form)->
     !$scope.form.submitted and
@@ -18,14 +18,18 @@ angular.module 'brasFeApp'
 
   $scope.register = (form)->
     $scope.form.submitted = true
-    session.register()
+    sessionServ.register($scope.form)
 
   $scope.login = ()->
-    session.login()
+    sessionServ.login()
+
+  $scope.$watch "sessionServ.redirect", (nv, ov)->
+    console.log "watching session redirect"
+    console.log nv
 
   $scope.$on "$viewContentLoaded", (event)->
     rpt = "reset_password_token"
-    if $state.current.name is "session.reset"
+    if $state.current.name is "sessionServ.reset"
       if !(rpt of $stateParams) or !$stateParams[rpt] or $stateParams[rpt] is "true"
         $state.go("landing")
 

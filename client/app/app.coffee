@@ -8,6 +8,7 @@ angular.module "brasFeApp", [
   "ui.bootstrap",
   "restangular",
   "duScroll",
+  "angular-growl",
 ]
 
 .config ($stateProvider, $urlRouterProvider, $locationProvider) ->
@@ -16,8 +17,12 @@ angular.module "brasFeApp", [
 
   $locationProvider.html5Mode true
 
+.config ($httpProvider) ->
+  #$httpProvider.interceptors.push "sessionInjector"
+  $httpProvider.interceptors.push "errorHandler"
+
 .config (RestangularProvider) ->
-  RestangularProvider.setBaseUrl "http://bebras01.csie.ntnu.edu.tw/"
+  RestangularProvider.setBaseUrl "http://brasbe.dev/" #"http://bebras01.csie.ntnu.edu.tw/"
   #RestangularProvider.setExtraFields ["name"]
   #RestangularProvider.setResponseExtractor (response, operation) ->
   #  response.data
@@ -31,7 +36,6 @@ angular.module "brasFeApp", [
   #  "put"
   #  "patch"
   #]
-
   # In this case we are mapping the id of each element to the _id field.
   # We also change the Restangular route.
   # The default value for parentResource remains the same.
@@ -44,19 +48,15 @@ angular.module "brasFeApp", [
   #RestangularProvider.setRequestInterceptor (element, operation, route, url) ->
   #  delete element.name
   #  element
-
-
   # ..or use the full request interceptor, setRequestInterceptor's more powerful brother!
   #RestangularProvider.setFullRequestInterceptor (element, operation, route, url, headers, params, httpConfig) ->
   #  delete element.name
-
   #  element: element
   #  params: _.extend(params,
   #    single: true
   #  )
   #  headers: headers
   #  httpConfig: httpConfig
-
   #set default header "token"
   RestangularProvider.setDefaultHeaders
     "Content-Type": "application/json",

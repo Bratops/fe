@@ -13,6 +13,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
+      <link rel="stylesheet" href="blib/angular-growl-v2/build/angular-growl.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -26,6 +27,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <div growl></div>
     <!-- Add your site or application content here -->
     <div ui-view=""></div>
 
@@ -57,13 +59,16 @@
       <script src="blib/angular-ui-router/release/angular-ui-router.js"></script>
       <script src="blib/restangular/dist/restangular.js"></script>
       <script src="blib/angular-scroll/angular-scroll.min.js"></script>
+      <script src="blib/angular-growl-v2/build/angular-growl.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,client}) app/app.js -->
       <script src="app/app.js"></script>
       <!-- injector:js -->
+      <script src="app/com/error_handler/error_handler.js"></script>
       <script src="app/com/landing_size/landing_size.js"></script>
+      <script src="app/dashboard/dashboard.js"></script>
       <script src="app/landing/landing.js"></script>
       <script src="app/session/session.js"></script>
       <script src="app/task/task.js"></script>

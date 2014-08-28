@@ -1,0 +1,54 @@
+$gwbase: 30%
+%growl_width
+  min-width: $gwbase
+  max-width: $gwbase
+  +tablet-only
+    min-width: $gwbase*1.4
+    max-width: $gwbase*1.4
+  +mobile-only
+    min-width: $gwbase*1.9
+    max-width: $gwbase*1.9
+
+%growl_container
+  +ext(f-read)
+  top: 5%
+  .alert
+    +border-radius(5px)
+    background: #eee
+  &.growl-fixed
+    +ext(growl_width)
+  .growl-item
+    padding: 5px 20px 5px 5px
+    &:first-child
+      margin: 0
+    button.close
+      +border-radius(10px)
+      width: 20px
+      height: 20px
+      background: #eee
+      color: #888
+      font-weight: bold
+      border: none
+      float: right
+      margin-right: -15px
+      cursor: pointer
+    .growl-title
+      font-weight: bold
+      +font-size(12)
+    .growl-message
+      margin-top: 5px
+      min-height: 20px
+      +font-size(10)
+
+=alert-color($bc)
+  background: $bc
+  button.close
+    color: $bc
+    background: darken($bc, 40%)
+
+.growl-container
+  +ext(growl_container)
+  .alert-error
+    +alert-color(rgba(243, 194, 182, 0.76))
+  .alert-warning
+    +alert-color(rgba(243, 194, 182, 0.76))
