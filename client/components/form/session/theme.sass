@@ -53,7 +53,7 @@
   cursor: pointer
   margin: .2em auto
   width: 90%
-  padding: .5em
+  padding: .3em
   &:disabled, &:disabled:hover
     cursor: not-allowed
     +text-shadow(2px, 2px, 2px, #777)
@@ -69,6 +69,8 @@
   font-weight: bold
   +ext(center_block)
   +ext(center_child)
+  &:focus
+    outline: none
   &.error
     border-color: lighten(#f11, 20%)
   &[type=email]
@@ -116,6 +118,7 @@
     +ext(center_submit_button)
   input
     +ext(center_input_collection)
+    +border-radius(10px)
   p.error
     color: red
     +ext(center_box)
@@ -151,14 +154,18 @@
   +box-shadow-i("", 2px, 2px, 40px, darken($ct, 15%))
   background: $ct
   border-color: lighten($ct, 5%)
+  input:focus
+    border-color: darken($ct, 40%)
   &:before
     color: $ct
     background: darken($ct, 50%)
   button.btn
     color: darken($ct, 60%)
     +bg-gradient(180deg, darken($ct, 35%), darken($ct, 50%))
+    +transition(all .5s linear)
     &:hover
       color: darken($ct, 5%)
+      +transition(all .5s linear)
       +bg-gradient(0deg, darken($ct, 35%), darken($ct, 50%))
   ul li a:hover
     background: darken($ct, 15%)

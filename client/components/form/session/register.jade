@@ -18,7 +18,7 @@ form#reg(name=fn novalidate)
   //{{ school | json }}
   //{{ form | json }}
   //{{ registerable(regform) | json }}
-  button.btn(type="submit" ngdisabled="!registerable(regform)"
+  button.btn(type="submit" ng-disabled="!registerable(regform)"
     ng-click="register(regform)") 註冊
   ul
     li

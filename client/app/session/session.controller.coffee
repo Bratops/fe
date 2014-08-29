@@ -24,9 +24,8 @@ angular.module 'brasFeApp'
     (form.$valid and !$scope.password_matched(form))
 
   $scope.registerable = (form)->
-    k = !$scope.form.submitted and
+    !$scope.form.submitted and
     (form.$valid and !$scope.moeid_not_set())
-    console.log k, 'aa'
 
   $scope.reset = ()->
     $scope.form.submitted = true
