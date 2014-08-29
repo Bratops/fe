@@ -17,7 +17,7 @@ angular.module "brasFeApp"
     warm_up: ()->
       return if ret.init
       ret.init = true
-      user = $cookieStore.get("tiny_beaver")
+      user = $cookieStore.get("tiny_beaver") || guest
       ret.set_user(user)
       try
         if ret.is_user

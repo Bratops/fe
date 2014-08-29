@@ -3,7 +3,7 @@
 angular.module 'brasFeApp'
 .factory "sestangular", (Restangular) ->
   get_val = (user, key)->
-    if (key of user) 
+    if (key in user)
       return user[key]
     else
       ""
