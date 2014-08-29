@@ -18,16 +18,20 @@
   height: 100%
   float: left
 
-%header_nav
+$nav_grad_from: #fff
+$nav_grad_to: #c2c7ce
+%nav
   @extend %f-read
   ul
     text-align: center
     list-style-type: none
     margin-top: 40px
-    @include font-size(32)
+    @include font-size(24)
   ul li
-    display: inline
-    margin: 0 30px
+    display: inline-block
+    margin: 0 20px
+    font-weight: bold
+    +cloud-btn(lighten($c-soil, 10%), $c-sky, $nav_grad_from, $nav_grad_to)
 
 %header
   height: 100%
@@ -42,8 +46,6 @@
     +head_fs(100px)
   h2
     +head_fs(40px)
-  #nav
-    +ext(header_nav)
 
 %article
   padding: 60px 15% 40px
@@ -94,7 +96,18 @@
   +ext(landing_fill)
   .header
     +ext(header)
+  .control
+    #nav
+      +ext(nav)
+  .control.dim
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0
+    background: rgba(50, 50, 50, .8)
   .body
     +ext(body)
+  .body.dim
+    display: none
   .footer
     +ext(footer)

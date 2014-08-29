@@ -1,0 +1,25 @@
+include mixin/school_typeahead.jade
+include mixin/name.jade
+include mixin/email.jade
+include mixin/phone.jade
+
+- var fn = "regform"
+form#reg(name=fn novalidate)
+  +school_ta(fn, true)
+  +name_input(fn)
+  +email(fn)
+  +phone_input(fn)
+
+  input#role(type="checkbox" ng-model="form.as_teacher")
+  label(for="role") 註冊為教師
+
+  //{{ school | json }}
+  //{{ form | json }}
+  //{{ registerable(regform) | json }}
+  button.btn(type="submit" ngdisabled="!registerable(regform)"
+    ng-click="register(regform)") 註冊
+  ul
+    li
+      a(ui-sref="session.login") 登入
+    li
+      a(ui-sref="landing") 返回

@@ -4,7 +4,7 @@
       select(ng-model="task_token", ng-options="task.name for task in task_list")
         option(value='') -- 選擇題目 --
     .title 2014
-      a(ui-sref="main") 國際Bebras測驗
+      a(ui-sref="landing") 國際Bebras測驗
   .view
     .contents
       .date 題目年份：{{ cur_task.year }}

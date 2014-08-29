@@ -1,0 +1,10 @@
+mixin phone_input(form)
+  label(for="phone") 電話
+  input#phone(type="phone" placeholder="#" name="phone"
+    ng-model="form.phone" ng-pattern="/^[0-9]+$/"
+    ng-class="{error: #{form}.phone.$invalid && !#{form}.phone.$pristine}"
+    ng-minlength="5" ng-maxlength="20")
+  p.error
+    span(ng-show="#{form}.phone.$invalid && !#{form}.phone.$pristine") 電話格式錯誤
+    span(ng-show="#{form}.phone.$error.minlength") (太短)
+    span(ng-show="#{form}.phone.$error.maxlength") (太長)

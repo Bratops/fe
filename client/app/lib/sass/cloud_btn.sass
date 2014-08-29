@@ -1,0 +1,22 @@
+=cloud-btn($fc: #320, $hc: #33e, $grad_from: #cde, $grad_to: #eee)
+  border: 2px solid darken($grad_from, 27%)
+  color: lighten($fc, 10%)
+  +box-shadow-i("", 8px, 6px, 19px, #bbdaf7)
+  +border-radius-separate(34px, 0, 0, 34px)
+  +bg-gradient(188deg, $grad_from, $grad_to)
+  +transition(all, .4s)
+  line-height: 1.5em
+  a
+    +text-shadow(5px 3px 6px darken($grad_from, 20%))
+    padding: 10px 20px
+    text-decoration: none
+    text-align: center
+    color: lighten($fc, 10%)
+  &:hover
+    +transition(all, .8s)
+    +bg-gradient(188deg, lighten($hc, 40%), lighten($hc, 15%))
+    +box-shadow-i("", 8px, 6px, 19px, darken(#bbdaff, 10%))
+    border: 2px solid darken($hc, 7%)
+    a
+      color: lighten($fc, 10%)
+

@@ -24,7 +24,7 @@ module.exports = (grunt) ->
     yeoman:
       # configurable paths
       client: require("./bower.json").appPath or "client"
-      dist: "dist"
+      dist: "dist/core"
     express:
       options:
         port: process.env.PORT or 9000
@@ -265,7 +265,6 @@ module.exports = (grunt) ->
     # Package all the html partials into a single javascript payload
     ngtemplates:
       options:
-
         # This should be the name of your apps angular module
         module: "brasFeApp"
         htmlmin:
@@ -276,14 +275,11 @@ module.exports = (grunt) ->
           removeRedundantAttributes: true
           removeScriptTypeAttributes: true
           removeStyleLinkTypeAttributes: true
-
         usemin: "app/app.js"
-
       main:
         cwd: "<%= yeoman.client %>"
         src: ["{app,components}/**/*.html"]
         dest: ".tmp/templates.js"
-
       tmp:
         cwd: ".tmp"
         src: ["{app,components}/**/*.html"]
@@ -304,7 +300,7 @@ module.exports = (grunt) ->
             src: [
               "*.{ico,png,txt}"
               ".htaccess"
-              "bower_components/**/*"
+              "blib/**/*"
               "assets/images/{,*/}*.{webp}"
               "assets/fonts/**/*"
               "index.html"
@@ -322,6 +318,14 @@ module.exports = (grunt) ->
             src: [
               "package.json"
               "server/**/*"
+            ]
+          }
+          {
+            expand: true
+            dest: "<%= yeoman.dist %>"
+            src: [
+              "bower.json"
+              ".bowerrc"
             ]
           }
         ]
@@ -378,7 +382,7 @@ module.exports = (grunt) ->
     # Test settings
     karma:
       unit:
-        configFile: "karma.conf.js"
+        configFile: "karma.conf.coffee"
         singleRun: true
     mochaTest:
       options:
@@ -387,8 +391,7 @@ module.exports = (grunt) ->
       src: ["server/**/*.spec.js"]
     protractor:
       options:
-        configFile: "protractor.conf.js"
-
+        configFile: "protractor.conf.coffee"
       chrome:
         options:
           args:
@@ -435,7 +438,7 @@ module.exports = (grunt) ->
       server:
         options:
           loadPath: [
-            "<%= yeoman.client %>/bower_components"
+            "<%= yeoman.client %>/blib"
             "<%= yeoman.client %>/app"
             "<%= yeoman.client %>/components"
           ]
@@ -471,7 +474,9 @@ module.exports = (grunt) ->
           endtag: "// endinjector"
         files:
           "<%= yeoman.client %>/app/app.sass": [
-            "<%= yeoman.client %>/{app,components}/**/*.{scss,sass}"
+            "<%= yeoman.client %>/app/lib/**/*.{scss,sass}"
+            "<%= yeoman.client %>/components/**/*.{scss,sass}"
+            "<%= yeoman.client %>/app/**/*.{scss,sass}"
             "!<%= yeoman.client %>/app/app.{scss,sass}"
           ]
       # Inject component css into index.html

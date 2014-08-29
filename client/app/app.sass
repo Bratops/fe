@@ -1,7 +1,7 @@
-$fa-font-path: "/bower_components/font-awesome/fonts"
+$fa-font-path: "/blib/font-awesome/fonts"
 
-@import font-awesome/scss/font-awesome
 //@import skeleton-sass/skeleton_template
+@import font-awesome/scss/font-awesome
 @import skeleton-sass/skeleton/core/_config
 @import skeleton-sass/skeleton/themes/sphenoid/marrow/public
 @import sass-css3-mixins/css3-mixins.sass
@@ -22,9 +22,14 @@ $fa-font-path: "/bower_components/font-awesome/fonts"
 
 // Component styles are injected through grunt
 // injector
+@import lib/sass/_base/nsn.sass
+@import lib/sass/_base/rwd.sass
+@import lib/sass/cloud_btn.sass
+@import lib/sass/drop_down.sass
+@import lib/sass/growl.sass
+@import form/session/theme.sass
 @import appbase.sass
-@import lib/sass/nsn.sass
-@import lib/sass/rwd.sass
-@import main/main.sass
+@import landing/landing.sass
 @import task/task.sass
 // endinjector
+

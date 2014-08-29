@@ -1,0 +1,15 @@
+mixin school_ta(form, req)
+  label(for="school") 學校 &nbsp;
+    i.fa.fa-spin.fa-circle-o-notch(ng-show="loadingSclist")
+  input#school(type="text" name="moeid"
+    typeahead="sc as sc.name for sc in get_school_list($viewValue)"
+    typeahead-persistent="0"
+    typeahead-loading="loadingSclist"
+    typeahead-on-select="set_moeid($item, $model, $label)"
+    typeahead-wait-ms="10"
+    placeholder="選擇學校"
+    ng-required=req
+    ng-class="{error: moeid_not_set() && !#{form}.moeid.$pristine}"
+    ng-model="school")
+  p.error(ng-show="moeid_not_set() && !#{form}.moeid.$pristine")
+    span 必填欄位(請從清單中選擇學校)

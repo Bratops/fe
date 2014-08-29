@@ -1,0 +1,21 @@
+include mixin/school_typeahead.jade
+include mixin/login_alias.jade
+include mixin/password.jade
+
+- var fn = "loginform"
+form#login(name=fn)
+  +school_ta(fn, false)
+  +login_alias(fn)
+  +password(fn, false)
+
+  //{{ form | json }}
+  button.btn(type="submit" ng-disabled="!loginable(loginform)"
+    ng-click="login(#{fn})") 登入
+  ul
+    li
+      a(ng-click="aquire_new_pw()") 重設密碼
+      //a(ui-sref="landing") 以FB登入
+    li
+      a(ui-sref="session.register") 註冊
+    li
+      a(ui-sref="landing") 返回

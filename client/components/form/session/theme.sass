@@ -1,0 +1,173 @@
+%no_user_select
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+=center_absolute($left: 10%, $top: 10%)
+  position: absolute
+  left: $left
+  width: 100%-$left*2
+  top: $top
+  margin: auto
+
+%clear_button
+  border: none
+  background: none
+  width: 100%
+
+%rwd_form
+  +tablet-only
+    +center_absolute(20%)
+  +mobile-only
+    +center_absolute(10%)
+
+%center_block
+  display: block
+  text-align: center
+
+%center_child
+  padding: 2px 5%
+  margin: 5px auto
+
+%check_box
+  display: none
+  + label
+    margin-top: 1em
+    vertical-align: middle
+    cursor: pointer
+    -webkit-touch-callout: none
+    +ext(no_user_select)
+    &:before
+      +border-radius(5px)
+      display: inline-block
+      background: #eee
+      color: #eee
+      min-width: 20px
+      min-height: 20px
+      margin-right: .5em
+      content: "✓"
+  &:checked + label
+    &:before
+      color: #555
+
+%inline_center_list
+  +ext(center_block)
+  +ext(center_child)
+  bottom: 0
+  li
+    margin: 2px 10px
+    display: inline-block
+    list-style-type: none
+
+%center_submit_button
+  +ext(center_block)
+  +ext(center_child)
+  +border-radius(5px)
+  cursor: pointer
+  margin-top: .8em
+  width: 90%
+  margin: default
+  padding: 10px
+  &:disabled, &:disabled:hover
+    cursor: not-allowed
+    +text-shadow(2px, 2px, 2px, #777)
+    color: #888
+    background: #aaa
+
+%center_input_collection
+  width: 80%
+  font-weight: bold
+  +ext(center_block)
+  +ext(center_child)
+  &.error
+    border-color: lighten(#f11, 20%)
+  + p.error
+    color: red
+    +ext(center_block)
+    +ext(center_child)
+  &[type=email]
+    line-height: 1.6em
+  &[type=checkbox]
+    +ext(check_box)
+
+%anchor_base
+  cursor: pointer
+  text-decoration: none
+  +transition(all, .6s)
+  &:hover
+    +transition(all, .6s)
+
+%heading_cap
+  +ext(center_block)
+  +ext(center_child)
+  padding: 10px 5px
+  margin-top: 0
+  +border-radius-separate(10px, 10px, 0, 0)
+
+$form-fs: 20
+%login_form
+  +ext(f-read)
+  +center_absolute(30%)
+  +border-radius-separate(10px, 10px, 3px, 3px)
+  a
+    +ext(anchor_base)
+  ul
+    +ext(inline_center_list)
+  button.btn
+    +ext(clear_button)
+    +ext(center_submit_button)
+    +font-size($form-fs)
+  input
+    +font-size($form-fs)
+    +ext(center_input_collection)
+    &[type=email]
+      +font-size($form-fs*.7)
+  &:before
+    +font-size($form-fs*1.2)
+    +ext(heading_cap)
+  label, a
+    color: #777
+    font-weight: bold
+  label, &:before
+    +ext(center_block)
+    +ext(center_child)
+  ul.dropdown-menu
+    +ext(dropdown_base)
+    +font-size($form-fs*1.2)
+    &:before
+      +ext(clearfix)
+
+=session_form($title: "Login", $ct: rgba(188, 194, 194, 0.9))
+  +ext(login_form)
+  +box-shadow-i("", 2px, 2px, 40px, darken($ct, 15%))
+  &:before
+    content: $title
+    color: $ct
+    background: darken($ct, 50%)
+  background: $ct
+  button.btn
+    color: darken($ct, 60%)
+    +bg-gradient(180deg, darken($ct, 35%), darken($ct, 50%))
+    &:hover
+      color: darken($ct, 5%)
+      +bg-gradient(0deg, darken($ct, 35%), darken($ct, 50%))
+  ul li a:hover
+    background: darken($ct, 15%)
+  ul.dropdown-menu
+    li a strong
+      color: darken($ct, 45%)
+    li.active a
+      background: opacify(darken($ct, 15%), .1)
+      color: darken($ct, 55%)
+
+.header
+  #login, #reg
+    +ext(rwd_form)
+#login
+  +session_form("登入", rgba(198, 232, 245, 0.9))
+#reg
+  +session_form("註冊", rgba(247, 230, 202, 0.9))
+#reset
+  +session_form("重設密碼", rgba(233, 210, 238, 0.9))
