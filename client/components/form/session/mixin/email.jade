@@ -1,8 +1,9 @@
 mixin email(form)
-  label(for="email") 電郵
+  - var tn = (mix ? "電郵或學號" : "電郵")
+  label(for="email") #{tn}
   input#email(type="email" name="email" placeholder="@"
     ng-required="true" ng-model="form.email"
-    ng-class="{error: regform.email.$invalid && !#{form}.email.$pristine}"
+    ng-class="{error: #{form}.email.$invalid && !#{form}.email.$pristine}"
     ng-minlength=8 ng-maxlength=32)
   p.error(ng-show="#{form}.email.$invalid && !#{form}.email.$pristine")
     | Email 格式錯誤

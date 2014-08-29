@@ -1,31 +1,55 @@
 'use strict'
 
 angular.module 'brasFeApp'
-.controller 'SessionCtrl', ($scope, $state, $stateParams, sessionServ) ->
+.controller 'SessionCtrl', ($scope, $state, $stateParams, $timeout, sessionServ) ->
+  sessionServ.check_local()
+
   $scope.form =
     submitted: false
+
+  $scope.redirect = sessionServ.redirect
 
   $scope.get_school_list = (query)->
     sessionServ.sclist(query).then (resp) ->
       resp
 
-  $scope.reset = ()->
-    sessionServ.reset_pw()
+  $scope.password_matched = (form)->
+    form.password == form.password_confirm
+
+  $scope.loginable = (form)->
+    !$scope.form.submitted and (form.$valid)
+
+  $scope.resetable = (form)->
+    !$scope.form.submitted and
+    (form.$valid and !$scope.password_matched(form))
 
   $scope.registerable = (form)->
     !$scope.form.submitted and
     (form.$valid and !$scope.moeid_not_set())
+
+  $scope.reset = ()->
+    $scope.form.submitted = true
+    oc = _.clone $scope.form
+    obj = _.extend(oc, $stateParams)
+    sessionServ.reset_pw(obj)
 
   $scope.register = (form)->
     $scope.form.submitted = true
     sessionServ.register($scope.form)
 
   $scope.login = ()->
-    sessionServ.login()
+    $scope.form.submitted = true
+    sessionServ.login($scope.form)
 
-  $scope.$watch "sessionServ.redirect", (nv, ov)->
-    console.log "watching session redirect"
-    console.log nv
+  $scope.aquire_new_pw = ()->
+    sessionServ.request_link($scope.form)
+
+  $scope.$on "redirect", (event, data)->
+    $state.go(data)
+
+  $scope.$on "httpError", (event)->
+    console.log event
+    $scope.form.submitted = false
 
   $scope.$on "$viewContentLoaded", (event)->
     rpt = "reset_password_token"
@@ -42,3 +66,19 @@ angular.module 'brasFeApp'
 
   $scope.moeid_not_set = ()->
     !("moeid" of $scope.form) or !$scope.form.moeid
+
+  $scope.onTimeout = ()->
+    $scope.form.password = ""
+    $scope.form.password_confirmation = ""
+    $scope.timer = $timeout($scope.onTimeout, 90000)
+
+  $scope.timer = $timeout($scope.onTimeout, 90000)
+
+  $scope.stop = ->
+    $timeout.cancel($scope.timer)
+
+  $scope.$on "$stateChangeStart",
+  (event, toState, toParams, fromState, fromParams)->
+    $scope.stop()
+    $scope.form.submitted = false
+

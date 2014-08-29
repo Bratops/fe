@@ -5,7 +5,7 @@ include mixin/phone.jade
 
 - var fn = "regform"
 form#reg(name=fn novalidate)
-  +school_ta(fn)
+  +school_ta(fn, true)
   +name_input(fn)
   +email(fn)
   +phone_input(fn)

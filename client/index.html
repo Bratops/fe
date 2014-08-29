@@ -27,7 +27,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div growl></div>
+    <div growl limit-messages="7"></div>
     <!-- Add your site or application content here -->
     <div ui-view=""></div>
 
@@ -60,6 +60,9 @@
       <script src="blib/restangular/dist/restangular.js"></script>
       <script src="blib/angular-scroll/angular-scroll.min.js"></script>
       <script src="blib/angular-growl-v2/build/angular-growl.js"></script>
+      <script src="blib/angular-animate/angular-animate.js"></script>
+      <script src="blib/underscore/underscore.js"></script>
+      <script src="blib/angular-timer/dist/angular-timer.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 
@@ -68,6 +71,8 @@
       <!-- injector:js -->
       <script src="app/com/error_handler/error_handler.js"></script>
       <script src="app/com/landing_size/landing_size.js"></script>
+      <script src="app/com/session_injector/session_injector.js"></script>
+      <script src="app/com/sestangular/sestangular.js"></script>
       <script src="app/dashboard/dashboard.js"></script>
       <script src="app/landing/landing.js"></script>
       <script src="app/session/session.js"></script>

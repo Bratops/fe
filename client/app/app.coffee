@@ -3,26 +3,33 @@
 angular.module "brasFeApp", [
   "ngCookies",
   "ngResource",
+  "ngAnimate",
   "ngSanitize",
   "ui.router",
   "ui.bootstrap",
   "restangular",
   "duScroll",
   "angular-growl",
+  "timer",
 ]
+
+.config (growlProvider) ->
+  growlProvider.globalTimeToLive 10*1000
+  growlProvider.onlyUniqueMessages false
+  growlProvider.globalReversedOrder true
+  growlProvider.globalDisableCountDown true
 
 .config ($stateProvider, $urlRouterProvider, $locationProvider) ->
   $urlRouterProvider
   .otherwise "/"
-
   $locationProvider.html5Mode true
 
 .config ($httpProvider) ->
-  #$httpProvider.interceptors.push "sessionInjector"
   $httpProvider.interceptors.push "errorHandler"
+  #$httpProvider.interceptors.push "sessionInjector"
 
 .config (RestangularProvider) ->
-  RestangularProvider.setBaseUrl "http://brasbe.dev/" #"http://bebras01.csie.ntnu.edu.tw/"
+  RestangularProvider.setBaseUrl "http://bebras01.csie.ntnu.edu.tw/"
   #RestangularProvider.setExtraFields ["name"]
   #RestangularProvider.setResponseExtractor (response, operation) ->
   #  response.data

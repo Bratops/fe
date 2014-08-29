@@ -1,4 +1,4 @@
-mixin school_ta(form)
+mixin school_ta(form, req)
   label(for="school") 學校 &nbsp;
     i.fa.fa-spin.fa-circle-o-notch(ng-show="loadingSclist")
   input#school(type="text" name="moeid"
@@ -8,7 +8,7 @@ mixin school_ta(form)
     typeahead-on-select="set_moeid($item, $model, $label)"
     typeahead-wait-ms="10"
     placeholder="選擇學校"
-    ng-required="true"
+    ng-required=req
     ng-class="{error: moeid_not_set() && !#{form}.moeid.$pristine}"
     ng-model="school")
   p.error(ng-show="moeid_not_set() && !#{form}.moeid.$pristine")

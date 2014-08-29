@@ -1,0 +1,8 @@
+mixin login_alias(form)
+  label(for="login_alias") 賬號
+  input#login_alias(type="text" name="login_alias" placeholder="學號或Email"
+    ng-required="true" ng-model="form.login_alias"
+    ng-class="{error: #{form}.login_alias.$invalid && !#{form}.login_alias.$pristine}"
+    ng-minlength=5 ng-maxlength=32)
+  p.error(ng-show="#{form}.login_alias.$invalid && !#{form}.login_alias.$pristine")
+    | 賬號格式錯誤
