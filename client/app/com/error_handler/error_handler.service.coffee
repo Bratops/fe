@@ -7,9 +7,10 @@ angular.module "brasFeApp"
     msg = data.msg
     notifier msg.body, title: msg.title
 
-  response: (response) ->
-    $log.debug "success with status #{response.status}"
-    response || $q.when response
+  response: (resp) ->
+    $log.debug "#{resp.config.method}[#{resp.status}] (#{resp.config.url})"
+    #console.log resp
+    resp || $q.when resp
 
   responseError: (rejection) ->
     $log.debug "error with status #{rejection.status} and data: #{rejection.data['message']}"

@@ -6,9 +6,11 @@ include mixin/phone.jade
 - var fn = "regform"
 form#reg(name=fn novalidate)
   +school_ta(fn, true)
-  +name_input(fn)
   +email(fn)
-  +phone_input(fn)
+  .half
+    +name_input(fn)
+  .half
+    +phone_input(fn)
 
   input#role(type="checkbox" ng-model="form.as_teacher")
   label(for="role") 註冊為教師

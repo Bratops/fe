@@ -2,6 +2,6 @@
 
 angular.module 'brasFeApp'
 .controller 'DashboardCtrl', ($scope, sessionServ) ->
-  sessionServ.check_local()
+  sessionServ.warm_up()
 
   $scope.message = 'Hello'

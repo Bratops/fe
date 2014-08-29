@@ -4,7 +4,7 @@ mixin name_input(form)
     ng-required="true" ng-model="form.name"
     ng-class="{error: #{form}.uname.$invalid && !#{form}.uname.$pristine}"
     ng-minlength="2" ng-maxlength="8")
-  p.error
-    span(ng-show="#{form}.uname.$invalid && !#{form}.uname.$pristine") 必填欄位
+  p.error(ng-show="#{form}.uname.$invalid && !#{form}.uname.$pristine")
+    span 必填欄位
     span(ng-show="#{form}.uname.$error.minlength") (太短)
     span(ng-show="#{form}.uname.$error.maxlength") (太長)

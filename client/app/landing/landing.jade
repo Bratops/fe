@@ -5,13 +5,17 @@
       | Powered By
       | National Taiwan Normal University
       | Department of Computer Science and Information Engineering
-    h1.f-hobo Bebras
-    h2.f-hobo 國際Bebras測驗
+    h1 Bebras
+    h2
+      - var h2 = "國際Bebras測驗"
+      - each ht in h2
+        span #{ht}
+    //{{ user | json }} a
     .control(ui-view="control" ng-class="{dim: dim_bg()}")
       include nav.jade
   .body#body(ng-class="{dim: dim_bg()}")
     .intro#intro
-      h1.f-hobo 關於Bebras
+      h1 關於Bebras
       article.article
         h2 測驗介紹
         p

@@ -72,3 +72,14 @@ $c-soil: #815717
   background-image:      -o-linear-gradient($deg, $startColor, $endColor)
   background-image:         linear-gradient($deg, $startColor, $endColor)
   filter:            progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$startColor}', endColorStr='#{$endColor}')
+
+=headings($from: 1, $to: 6)
+  @for $i from $from through $to
+    h#{$i}
+      @content
+
+=headings_fs($from: 1, $to: 6, $fs: 4em, $fsb: 0.2)
+  @for $i from $from through $to
+    h#{$i}
+      font-size: $fs - $fsb*$i*$i*$fs
+      @content

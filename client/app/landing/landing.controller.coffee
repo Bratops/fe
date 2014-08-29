@@ -4,8 +4,9 @@ angular.module 'brasFeApp'
 .controller 'LandingCtrl', ($scope, $state, sessionServ) ->
   #$http.get('/api/things').success (awesomeThings) ->
     #$scope.awesomeThings = awesomeThings
-
-  sessionServ.check_local()
+  $scope.data =
+    user: sessionServ.user
+  sessionServ.warm_up()
 
   at_state = (st)->
     $state.current.name == "session.#{st}"
@@ -16,11 +17,11 @@ angular.module 'brasFeApp'
     at_state("reset")
 
   $scope.loggedin = ()->
-    sessionServ.loggedin()
+    sessionServ.is_user
 
   $scope.logout = ()->
     sessionServ.logout()
 
   $scope.$on "$stateChangeStart",
   (event, toState, toParams, fromState, fromParams)->
-    console.log "ere"
+    #console.log "ere"

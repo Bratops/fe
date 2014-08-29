@@ -2,7 +2,7 @@
 
 angular.module 'brasFeApp'
 .controller 'SessionCtrl', ($scope, $state, $stateParams, $timeout, sessionServ) ->
-  sessionServ.check_local()
+  #sessionServ.warm_up()
 
   $scope.form =
     submitted: false
@@ -24,8 +24,9 @@ angular.module 'brasFeApp'
     (form.$valid and !$scope.password_matched(form))
 
   $scope.registerable = (form)->
-    !$scope.form.submitted and
+    k = !$scope.form.submitted and
     (form.$valid and !$scope.moeid_not_set())
+    console.log k, 'aa'
 
   $scope.reset = ()->
     $scope.form.submitted = true
@@ -48,7 +49,6 @@ angular.module 'brasFeApp'
     $state.go(data)
 
   $scope.$on "httpError", (event)->
-    console.log event
     $scope.form.submitted = false
 
   $scope.$on "$viewContentLoaded", (event)->
