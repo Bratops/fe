@@ -1,13 +1,23 @@
-=head_fs($base)
-  +ext(f-hobo)
-  +font-size($base)
-  +tablet-only
-    +font-size($base*.76)
-  +mobile-only
-    +font-size($base*.5)
+=landing_font($fs: 10em)
+  +headings_fs(1, 6, $fs, .2)
+  .control #nav
+    +font-size($fs*1.4)
+  .intro
+    +headings_fs(1, 6, $fs*.3, .1)
+  .footer
+    +font-size($fs*1.3)
 
-%header_bg
-  background-color: lighten($c-sky, 30%)
+%landing_typo
+  +headings
+    +ext(f-hobo)
+    color: $c-soil
+    font-weight: bold
+    text-align: center
+    width: 420px
+    margin: auto
+
+%landing_bg
+  background-color: lighten($c-dirt, 65%)
   background-image: url("/assets/images/2014tw_bebras.png")
   background-repeat: no-repeat
   background-clip: content-box
@@ -21,12 +31,11 @@
 $nav_grad_from: #fff
 $nav_grad_to: #c2c7ce
 %nav
-  @extend %f-read
+  +ext(f-read)
   ul
     text-align: center
     list-style-type: none
     margin-top: 40px
-    @include font-size(24)
   ul li
     display: inline-block
     margin: 0 20px
@@ -35,17 +44,11 @@ $nav_grad_to: #c2c7ce
 
 %header
   height: 100%
-  h1, h2
-    color: $c-soil
-    text-align: center
-    font-weight: bold
+  +ext(landing_typo)
   .power
     +ext(visuallyhidden)
   h1
     padding-top: 40px
-    +head_fs(100px)
-  h2
-    +head_fs(40px)
 
 %article
   padding: 60px 15% 40px
@@ -53,12 +56,7 @@ $nav_grad_to: #c2c7ce
     line-height: 1.3em
     text-align: justify
     //text-indent: 2em
-  @include columns(2, 30)
-  +tablet-only
-    padding: 40px 10% 40px
-  +tablet-portrait-and-below
-    @include columns(1, 30)
-    padding: 20px 5% 20px
+  +columns(2, 30)
 
 %intro
   +ext(f-read)
@@ -72,39 +70,89 @@ $nav_grad_to: #c2c7ce
   h1
     display: block
     text-align: center
-    @include font-size(24)
   h2
-    @include font-size(18)
     &:nth-child(1)
       margin-top: 0
 
 %body
   display: inline-block
-  background-color: lighten($c-sky, 25%)
+  background-color: lighten($c-soil, 65%)
+  h1
+    +ext(f-hobo)
   .intro
     +ext(intro)
 
 %footer
-  @include font-size(14)
   padding: 1rem
   text-align: center
   height: 20px
-  background-color: $c-water
+  background-color: lighten($c-soil, 5%)
 
-.landing
-  +ext(header_bg)
+%landing_base
+  +ext(landing_bg)
   +ext(landing_fill)
+  +landing_font(10em)
+  h2
+    margin: auto
+    span
+      display: inline-block
+      width: 10%
   .header
     +ext(header)
+
+%dimmer
+  top: 0
+  width: 100%
+  height: 100%
+  position: absolute
+  background: rgba(50, 50, 50, .8)
+
+%control_base
   .control
     #nav
       +ext(nav)
-  .control.dim
-    width: 100%
-    height: 100%
-    position: absolute
-    top: 0
-    background: rgba(50, 50, 50, .8)
+    &.dim
+      +ext(dimmer)
+
+%landing_rwd
+  +tablet-portrait-only
+    .intro .article
+      padding: 20px 5% 20px
+  +tablet-landscape-only
+    .intro .article
+      padding: 40px 10% 40px
+  +mobile-landscape-only
+    +landing_font(4em)
+    +headings
+      width: 170px !important
+    h1
+      padding-top: 20px !important
+    .body .intro .article
+      padding: 30px
+      +columns(1, 10)
+    background-size: 130% 35%
+    background-position: 55% 100%
+  +mobile-portrait-only
+    .body .intro .article
+      padding: 30px
+      +columns(1, 10)
+    +landing_font(5em)
+    +headings
+      width: 210px !important
+    .control #nav
+      ul
+        width: 40%
+        margin: auto
+        li
+          margin-top: 5%
+          display: block
+    background-size: 200% 30%
+    background-position: 55% 100%
+
+.landing
+  +ext(landing_base)
+  +ext(control_base)
+  +ext(landing_rwd)
   .body
     +ext(body)
   .body.dim

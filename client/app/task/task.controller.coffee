@@ -2,7 +2,7 @@
 
 angular.module 'brasFeApp'
 .controller 'TaskCtrl', ($scope, sessionServ, sestangular) ->
-  sessionServ.check_local()
+  sessionServ.warm_up()
   ses = sessionServ
 
   $scope.$on "$viewContentLoaded", (event, viewConfig) ->

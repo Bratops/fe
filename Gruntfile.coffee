@@ -325,7 +325,7 @@ module.exports = (grunt) ->
             dest: "<%= yeoman.dist %>"
             src: [
               "bower.json"
-              ".bowerrc"
+              #".bowerrc"
             ]
           }
         ]

@@ -14,32 +14,33 @@ angular.module "brasFeApp"
     redirect: ""
     rest: sestangular.rest(guest).all ""
     init: false
-    check_local: ()->
-      if ret.init
-        ret.update_token(user)
-        return
+    warm_up: ()->
+      return if ret.init
       ret.init = true
+      user = $cookieStore.get("tiny_beaver") || guest
+      ret.set_user(user)
       try
-        user = $cookieStore.get("tiny_beaver")
-        ret.update_token(user)
-        ret.rest.one("").get().then (resp)->
-          notify data
+        if ret.is_user
+          ret.rest.one("").get().then (resp)->
+            notify data
       catch e
         console.log e
-      console.log user
-    loggedin: ()->
-      (!!ret.user and !!ret.user.login_alias and !!ret.user.auth_token)
+      #console.log user
+    is_user: false
     logout: ()->
       ret.rest.all("session").remove().then (resp)->
         notify resp
         $cookieStore.put("tiny_beaver", guest)
-        ret.update_token(guest)
+        ret.set_user(guest)
     sclist: (query)->
       ret.rest.all("group/publist/school").getList({query: query})
-    update_token: (user)->
+    set_user: (user)->
       ret.user = user
-      if ret.loggedin()
-        ret.rest = sestangular.rest(user)
+      ret.rest = sestangular.rest(user)
+      if (!!ret.user and !!ret.user.login_alias and !!ret.user.auth_token)
+        ret.is_user = true
+      else
+        ret.is_user = false
     request_link: (user)->
       if !user or !("login_alias" of user) or !(user.login_alias)
         notify { status: "error", msg: { title: "錯誤", body: "請先輸入賬號" }}
@@ -63,12 +64,12 @@ angular.module "brasFeApp"
       fn(data)
     _success: (data)->
       $cookieStore.put("tiny_beaver", data.user)
-      ret.update_token(data.user)
+      ret.set_user(data.user)
       if data.redirect
         $rootScope.$broadcast "redirect", data.redirect
     _error: (obj)->
       $rootScope.$broadcast "sessionError"
-      ret.update_token({login_alias: "", auth_token: ""})
+      ret.set_user(guest)
     user:
       login_alias: ""
       auth_token: ""

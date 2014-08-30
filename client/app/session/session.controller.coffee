@@ -2,7 +2,7 @@
 
 angular.module 'brasFeApp'
 .controller 'SessionCtrl', ($scope, $state, $stateParams, $timeout, sessionServ) ->
-  sessionServ.check_local()
+  #sessionServ.warm_up()
 
   $scope.form =
     submitted: false
@@ -48,7 +48,6 @@ angular.module 'brasFeApp'
     $state.go(data)
 
   $scope.$on "httpError", (event)->
-    console.log event
     $scope.form.submitted = false
 
   $scope.$on "$viewContentLoaded", (event)->

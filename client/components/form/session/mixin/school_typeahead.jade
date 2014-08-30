@@ -1,6 +1,7 @@
 mixin school_ta(form, req)
-  label(for="school") 學校 &nbsp;
-    i.fa.fa-spin.fa-circle-o-notch(ng-show="loadingSclist")
+  label(for="school")
+    | 學校
+    i.fa.fa-spin.fa-dot-circle-o(ng-show="loadingSclist")
   input#school(type="text" name="moeid"
     typeahead="sc as sc.name for sc in get_school_list($viewValue)"
     typeahead-persistent="0"

@@ -17,24 +17,10 @@
   background: none
   width: 100%
 
-%rwd_form
-  +tablet-only
-    +center_absolute(20%)
-  +mobile-only
-    +center_absolute(10%)
-
-%center_block
-  display: block
-  text-align: center
-
-%center_child
-  padding: 2px 5%
-  margin: 5px auto
-
 %check_box
   display: none
   + label
-    margin-top: 1em
+    margin-top: .1em
     vertical-align: middle
     cursor: pointer
     -webkit-touch-callout: none
@@ -62,31 +48,31 @@
     list-style-type: none
 
 %center_submit_button
-  +ext(center_block)
-  +ext(center_child)
   +border-radius(5px)
+  display: block
   cursor: pointer
-  margin-top: .8em
+  margin: .2em auto
   width: 90%
-  margin: default
-  padding: 10px
+  padding: .3em
   &:disabled, &:disabled:hover
     cursor: not-allowed
     +text-shadow(2px, 2px, 2px, #777)
     color: #888
     background: #aaa
 
+%plain_bold
+  color: #777
+  font-weight: bold
+
 %center_input_collection
   width: 80%
   font-weight: bold
   +ext(center_block)
   +ext(center_child)
+  &:focus
+    outline: none
   &.error
     border-color: lighten(#f11, 20%)
-  + p.error
-    color: red
-    +ext(center_block)
-    +ext(center_child)
   &[type=email]
     line-height: 1.6em
   &[type=checkbox]
@@ -101,57 +87,85 @@
 
 %heading_cap
   +ext(center_block)
-  +ext(center_child)
   padding: 10px 5px
   margin-top: 0
   +border-radius-separate(10px, 10px, 0, 0)
 
-$form-fs: 20
+%center_block
+  display: block
+  text-align: center
+
+%center_child
+  padding: 2px 5%
+  margin: 5px auto
+
+%center_box
+  +ext(center_block)
+  +ext(center_child)
+
 %login_form
   +ext(f-read)
   +center_absolute(30%)
-  +border-radius-separate(10px, 10px, 3px, 3px)
+  +border-radius-separate(10px, 10px, 5px, 5px)
+  border: 1px solid #eee
   a
+    +ext(plain_bold)
     +ext(anchor_base)
   ul
     +ext(inline_center_list)
   button.btn
     +ext(clear_button)
     +ext(center_submit_button)
-    +font-size($form-fs)
   input
-    +font-size($form-fs)
     +ext(center_input_collection)
-    &[type=email]
-      +font-size($form-fs*.7)
+    +border-radius(10px)
+  p.error
+    color: red
+    +ext(center_box)
   &:before
-    +font-size($form-fs*1.2)
     +ext(heading_cap)
-  label, a
-    color: #777
-    font-weight: bold
-  label, &:before
-    +ext(center_block)
-    +ext(center_child)
+  label
+    +ext(plain_bold)
+    +ext(center_box)
   ul.dropdown-menu
     +ext(dropdown_base)
-    +font-size($form-fs*1.2)
     &:before
       +ext(clearfix)
+  label i
+    position: relative
+    width: 0
+    right: 1%
+    float: right
+    +transition(.5s linear all)
 
-=session_form($title: "Login", $ct: rgba(188, 194, 194, 0.9))
-  +ext(login_form)
-  +box-shadow-i("", 2px, 2px, 40px, darken($ct, 15%))
+=form_fonts($form-fs: 20)
+  input
+    +font-size($form-fs)
+    &[type=email]
+      +font-size($form-fs*.7)
+  button.btn
+    +font-size($form-fs)
   &:before
-    content: $title
+    +font-size($form-fs*1.2)
+  ul.dropdown-menu
+    +font-size($form-fs*1.2)
+
+=form_color($ct: rgba(188, 194, 194, 0.9))
+  +box-shadow-i("", 2px, 2px, 40px, darken($ct, 15%))
+  background: $ct
+  border-color: lighten($ct, 5%)
+  input:focus
+    border-color: darken($ct, 40%)
+  &:before
     color: $ct
     background: darken($ct, 50%)
-  background: $ct
   button.btn
     color: darken($ct, 60%)
     +bg-gradient(180deg, darken($ct, 35%), darken($ct, 50%))
+    +transition(all .5s linear)
     &:hover
       color: darken($ct, 5%)
+      +transition(all .5s linear)
       +bg-gradient(0deg, darken($ct, 35%), darken($ct, 50%))
   ul li a:hover
     background: darken($ct, 15%)
@@ -162,8 +176,35 @@ $form-fs: 20
       background: opacify(darken($ct, 15%), .1)
       color: darken($ct, 55%)
 
+=session_form($title: "Login", $ct: rgba(188, 194, 194, 0.9))
+  +ext(login_form)
+  +form_color($ct)
+  +form_fonts(20)
+  &:before
+    content: $title
+
+=rwd_mock($fs: 16, $mar: 10%, $top: 22%)
+  +form_fonts($fs)
+  +center_absolute($mar)
+  top: $top !important
+  .half
+    width: 50%
+    display: inline-block
+
+%rwd_form
+  +tablet-portrait-only
+    +rwd_mock(16, 10%, 22%)
+  +tablet-landscape-only
+    +rwd_mock(16, 20%, 22%)
+  +mobile-landscape-only
+    +rwd_mock(10, 10%, 2%)
+  +mobile-portrait-only
+    top: 1% !important
+    +form_fonts(10)
+    +center_absolute(5%)
+
 .header
-  #login, #reg
+  #reset, #login, #reg
     +ext(rwd_form)
 #login
   +session_form("登入", rgba(198, 232, 245, 0.9))
