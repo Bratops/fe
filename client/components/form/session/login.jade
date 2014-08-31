@@ -3,18 +3,19 @@ include mixin/login_alias.jade
 include mixin/password.jade
 
 - var fn = "loginform"
-form#login(name=fn)
+form#login(name=fn novalidate)
   +school_ta(fn, false)
   +login_alias(fn)
   +password(fn, false)
 
-  //{{ form | json }}
+  //- {{ form | json }}
   button.btn(type="submit" ng-disabled="!loginable(loginform)"
     ng-click="login(#{fn})") 登入
+  button.btn.half.facebook(ng-click="auth('facebook')" ng-disabled="form.submitted") Facebook
+  button.btn.half.gplus(ng-click="auth('google')" ng-disabled="form.submitted") Google
   ul
     li
       a(ng-click="aquire_new_pw()") 重設密碼
-      //a(ui-sref="landing") 以FB登入
     li
       a(ui-sref="session.register") 註冊
     li

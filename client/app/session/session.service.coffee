@@ -9,11 +9,17 @@ angular.module "brasFeApp"
     notifier msg.body, title: msg.title
 
   guest = {login_alias: "", auth_token: ""}
+  host = "bebras01.csie.ntnu.edu.tw"
 
   ret =
-    redirect: ""
-    rest: sestangular.rest(guest).all ""
     init: false
+    is_user: false
+    user:
+      login_alias: ""
+      auth_token: ""
+    redirect: ""
+    host: host
+    rest: sestangular.rest(guest, host).all ""
     warm_up: ()->
       return if ret.init
       ret.init = true
@@ -26,7 +32,12 @@ angular.module "brasFeApp"
       catch e
         console.log e
       #console.log user
-    is_user: false
+    auth: (data)->
+      tar = "users/auth/#{data.provider}/callback"
+      ob = _.clone data
+      delete ob.provider
+      ret.rest.all(tar).get("", ob).then (resp)->
+        ret._session_base(resp)
     logout: ()->
       ret.rest.all("session").remove().then (resp)->
         notify resp
@@ -36,7 +47,7 @@ angular.module "brasFeApp"
       ret.rest.all("group/publist/school").getList({query: query})
     set_user: (user)->
       ret.user = user
-      ret.rest = sestangular.rest(user)
+      ret.rest = sestangular.rest(user, host)
       if (!!ret.user and !!ret.user.login_alias and !!ret.user.auth_token)
         ret.is_user = true
       else
@@ -70,9 +81,6 @@ angular.module "brasFeApp"
     _error: (obj)->
       $rootScope.$broadcast "sessionError"
       ret.set_user(guest)
-    user:
-      login_alias: ""
-      auth_token: ""
     isGuest: ()->
       !ret.user.login_alias and !ret.user.auth_token
   ret

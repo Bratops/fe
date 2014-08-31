@@ -1,16 +1,13 @@
-'use strict'
+"use strict"
 
-angular.module 'brasFeApp'
+angular.module "brasFeApp"
 .factory "sestangular", (Restangular) ->
-  get_val = (user, key)->
-    if (key in user)
-      return user[key]
-    else
-      ""
+  base_url = (host)->
+    "http://#{host}/"
 
-  rest: (user)->
+  rest: (user, host)->
     Restangular.withConfig (RestangularProvider) ->
-      RestangularProvider.setBaseUrl "http://bebras01.csie.ntnu.edu.tw/"
+      RestangularProvider.setBaseUrl base_url(host)
       RestangularProvider.setDefaultHttpFields
         cache: true,
         withCredentials: true #allow cookies, sessions
@@ -20,7 +17,7 @@ angular.module 'brasFeApp'
         selfLink: "self.href"
       RestangularProvider.setDefaultHeaders
         "Content-Type": "application/json",
+        "X-AUTH-LOGIN": user.login_alias || "",
+        "X-AUTH-TOKEN": user.auth_token || "",
         "X-Requested-With": "XMLHttpRequest",
-        "X-AUTH-LOGIN": get_val(user, "login_alias"),
-        "X-AUTH-TOKEN": get_val(user, "auth_token"),
         "Accept": "application/bebras.tw; ver=1"

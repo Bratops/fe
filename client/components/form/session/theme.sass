@@ -53,12 +53,21 @@
   cursor: pointer
   margin: .2em auto
   width: 90%
-  padding: .3em
+  padding: .3em 0
+  text-align: center
+  &.half
+    &.facebook
+      margin-left: 5%
+    width: 44%
+    margin: 2% 1%
+    display: inline-block
+  a
+    display: inline
   &:disabled, &:disabled:hover
     cursor: not-allowed
     +text-shadow(2px, 2px, 2px, #777)
-    color: #888
-    background: #aaa
+    color: #888 !important
+    background: #aaa !important
 
 %plain_bold
   color: #777
@@ -113,7 +122,7 @@
     +ext(anchor_base)
   ul
     +ext(inline_center_list)
-  button.btn
+  .btn
     +ext(clear_button)
     +ext(center_submit_button)
   input
@@ -143,7 +152,7 @@
     +font-size($form-fs)
     &[type=email]
       +font-size($form-fs*.7)
-  button.btn
+  .btn
     +font-size($form-fs)
   &:before
     +font-size($form-fs*1.2)
@@ -159,14 +168,26 @@
   &:before
     color: $ct
     background: darken($ct, 50%)
-  button.btn
-    color: darken($ct, 60%)
+  .btn
+    color: darken($ct, 7%)
+    a
+      color: darken($ct, 7%)
     +bg-gradient(180deg, darken($ct, 35%), darken($ct, 50%))
     +transition(all .5s linear)
     &:hover
-      color: darken($ct, 5%)
+      color: lighten($ct, 5%)
+      a
+        color: lighten($ct, 5%)
       +transition(all .5s linear)
       +bg-gradient(0deg, darken($ct, 35%), darken($ct, 50%))
+    &.facebook
+      background: rgb(71, 99, 161)
+      &:hover
+        background: lighten(rgb(71, 99, 161), 10%)
+    &.gplus
+      background: rgb(217, 59, 43)
+      &:hover
+        background: lighten(rgb(217, 59, 43), 10%)
   ul li a:hover
     background: darken($ct, 15%)
   ul.dropdown-menu

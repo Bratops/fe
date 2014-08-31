@@ -1,4 +1,4 @@
-//div(ng-include='"components/navbar/navbar.html"')
+//- div(ng-include='"components/navbar/navbar.html"')
 .landing
   .header
     .power
@@ -10,7 +10,7 @@
       - var h2 = "國際Bebras測驗"
       - each ht in h2
         span #{ht}
-    //{{ user | json }} a
+    //- {{ user | json }} a
     .control(ui-view="control" ng-class="{dim: dim_bg()}")
       include nav.jade
   .body#body(ng-class="{dim: dim_bg()}")
