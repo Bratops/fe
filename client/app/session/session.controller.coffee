@@ -84,4 +84,4 @@ angular.module 'brasFeApp'
   $scope.auth = (provider)->
     $scope.form.submitted = true
     base = "http://#{sessionServ.host}"
-    window.location.href = "#{base}/auth/#{provider}"
+    window.location.href = "#{base}/users/auth/#{provider}"

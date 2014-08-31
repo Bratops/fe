@@ -9,7 +9,7 @@ angular.module "brasFeApp"
     notifier msg.body, title: msg.title
 
   guest = {login_alias: "", auth_token: ""}
-  host = "brasbe.dev"  #"bebras01.csie.ntnu.edu.tw"
+  host = "bebras01.csie.ntnu.edu.tw"
 
   ret =
     init: false
@@ -33,8 +33,10 @@ angular.module "brasFeApp"
         console.log e
       #console.log user
     auth: (data)->
-      tar = "auth/#{data.provider}/callback"
-      ret.rest.all(tar).get("", data).then (resp)->
+      tar = "users/auth/#{data.provider}/callback"
+      ob = _.clone data
+      delete ob.provider
+      ret.rest.all(tar).get("", ob).then (resp)->
         ret._session_base(resp)
     logout: ()->
       ret.rest.all("session").remove().then (resp)->
