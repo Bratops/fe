@@ -3,6 +3,9 @@
 angular.module "brasFeApp"
 .factory "errorHandler", ($q, $log, $rootScope, growl)->
   notify = (data)->
+    if !data
+      console.log "unscoped server error"
+      return
     notifier = growl[data.status]
     msg = data.msg
     notifier msg.body, title: msg.title

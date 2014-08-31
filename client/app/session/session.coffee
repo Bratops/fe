@@ -26,3 +26,9 @@ angular.module "brasFeApp"
       control:
         templateUrl: "components/form/session/pw_reset.html"
         controller: "SessionCtrl"
+  .state "session.auth",
+    url: "auth?provider&code&state"
+    views:
+      control:
+        template: "<h2>Loading...</h2>"
+        controller: "SessionCtrl"

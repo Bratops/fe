@@ -34,3 +34,6 @@
 # debug
 - [controller](https://www.codementor.io/angularjs-tutorial/tutorial-neat-hack-show-controllers-angular-apps-clearer-way?utm_source=reddit-tutorial&amp;utm_medium=tutorial&amp;utm_term=neat-hack-angularjs-maciej&amp;utm_content=tutorial&amp;utm_campaign=reddit-tutorial)
 - [3vir](http://threevirtues.com/)
+
+# html5
+- [local storage](http://diveintohtml5.info/storage.html)
