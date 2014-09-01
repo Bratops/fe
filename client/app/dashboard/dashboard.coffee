@@ -5,5 +5,5 @@ angular.module 'brasFeApp'
   $stateProvider
   .state "dashboard",
     url: "/dashboard"
-    templateUrl: "app/dashboard/home.html"
+    templateUrl: "app/dashboard/view/user.html"
     controller: "DashboardCtrl"

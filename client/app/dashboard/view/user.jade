@@ -1,0 +1,23 @@
+.db
+  .hide
+    dashboard
+  .wrap
+    header#header
+      #title
+        h1
+          a(ui-sref="landing") Bebras
+        h2
+          a(ui-sref="landing") 國際資訊競賽
+      #nav
+    .drow
+      .wg
+        - var wgs = "list of widgets".split(" ")
+        ul
+          - for wg in wgs
+            li
+              span #{wg}
+      .pan
+        .data
+          - var aa = Array(60)
+          - each a in aa
+            p aaaaa:a
