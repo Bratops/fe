@@ -11,8 +11,11 @@ form#login(name=fn novalidate)
   //- {{ form | json }}
   button.btn(type="submit" ng-disabled="!loginable(loginform)"
     ng-click="login(#{fn})") 登入
-  button.btn.half.facebook(ng-click="auth('facebook')" ng-disabled="form.submitted") Facebook
-  button.btn.half.gplus(ng-click="auth('google')" ng-disabled="form.submitted") Google
+  ul.login
+    li
+      button.btn.facebook(ng-click="auth('facebook')" ng-disabled="form.submitted") Facebook
+    li
+      button.btn.gplus(ng-click="auth('google')" ng-disabled="form.submitted") Google
   ul
     li
       a(ng-click="aquire_new_pw()") 重設密碼
