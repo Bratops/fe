@@ -9,12 +9,16 @@
   ul li
     border-color: $bc
     +widget_hover(darken($bc, 30%))
+    a
+      color: darken(mix($bc, $c-sky, 30%), 30%)
+      &:hover
+        color: darken(mix($bc, $c-sky, 30%), 5%)
 
 =widget_font($ft: 2em)
   li
     height: $ft*1.2
     line-height: $ft*1.2
-    span
+    a
       font-size: $ft
 
 %widget_base
@@ -29,7 +33,8 @@
     li
       padding: 5px
       border-bottom: 3px solid
-    li span
+    li a
       text-align: right
+      text-decoration: none
       display: block
       vertical-align: middle

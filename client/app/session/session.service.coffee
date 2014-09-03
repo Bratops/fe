@@ -21,7 +21,12 @@ angular.module "brasFeApp"
       auth_token: ""
     redirect: ""
     host: host
-    rest: sestangular.rest(guest, host).all ""
+    rest: sestangular.rest(guest, {host: host}).all ""
+    fest: ()->
+      opt =
+        host: host
+        cache: false
+      sestangular.rest(ret.user, opt).all ""
     validate: ()->
       if ret.is_user
         ret.rest.one("").get().then (resp)->
@@ -61,7 +66,7 @@ angular.module "brasFeApp"
       ret.rest.all("group/publist/school").getList({query: query})
     set_user: (user)->
       ret.user = user
-      ret.rest = sestangular.rest(user, host)
+      ret.rest = sestangular.rest(user, {host: host})
       if (!!ret.user and !!ret.user.login_alias and !!ret.user.auth_token)
         ret.is_user = true
       else
@@ -98,6 +103,7 @@ angular.module "brasFeApp"
     isGuest: ()->
       !ret.user.login_alias and !ret.user.auth_token
     switch_role: (id)->
+      growl.warning "請稍後。。。", title: "轉換中"
       ret.rest.all("session/role").get("", {role_id: id}).then (resp)->
         ret._session_base(resp)
   ret

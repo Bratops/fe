@@ -5,11 +5,11 @@ angular.module "brasFeApp"
   base_url = (host)->
     "http://#{host}/"
 
-  rest: (user, host)->
+  rest: (user, opt)->
     Restangular.withConfig (RestangularProvider) ->
-      RestangularProvider.setBaseUrl base_url(host)
+      RestangularProvider.setBaseUrl base_url(opt.host)
       RestangularProvider.setDefaultHttpFields
-        cache: true,
+        cache: opt.cache,
         withCredentials: true #allow cookies, sessions
       RestangularProvider.setRestangularFields
         id: "_id"
