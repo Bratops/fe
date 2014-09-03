@@ -9,7 +9,7 @@ angular.module "brasFeApp"
     notifier msg.body, title: msg.title
 
   guest = {login_alias: "", auth_token: ""}
-  host = "localhost:3000" #"brasbe.dev"  #"bebras01.csie.ntnu.edu.tw"
+  host = "brasbe.dev"  #"bebras01.csie.ntnu.edu.tw"
 
   fb_auth = ()->
 
@@ -26,6 +26,7 @@ angular.module "brasFeApp"
       if ret.is_user
         ret.rest.one("").get().then (resp)->
           notify data
+    update_user: ()->
     warm_up: ()->
       return if ret.init
       ret.init = true
@@ -96,5 +97,8 @@ angular.module "brasFeApp"
       ret.set_user(guest)
     isGuest: ()->
       !ret.user.login_alias and !ret.user.auth_token
+    switch_role: (id)->
+      ret.rest.all("session/role").get("", {role_id: id}).then (resp)->
+        ret._session_base(resp)
   ret
 

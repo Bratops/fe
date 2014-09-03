@@ -9,26 +9,62 @@
   +box-shadow(0, 4px, 3px, #777)
   #title
     a
-      color: $c-soil
+      color: darken($c-soil, 5%)
       +text-shadow(1px, 1px, 3px, lighten($c-soil, 15%))
+      +transition(.4s linear all)
       &:hover
-        color: lighten($c-soil, 3%)
+        +transition(.8s linear all)
+        color: lighten($c-soil, 5%)
         +text-shadow(1px, 1px, 3px, lighten($c-soil, 25%))
+
+=head_height($hg)
+  height: $hg
+  #title, #nav, .user
+    height: $hg
+    max-height: $hg
+  .user
+    right: $hg*.75 + 5px
+  .avatar img
+    width: $hg*.75
+
+=head_cell_base($wd)
+  position: absolute
+  width: $wd
+
+%head_title
+  +head_cell_base(20%)
+  +ext(f-hobo)
+  left: 0
+  border-bottom: 1px solid lightgrey
+  h1
+    margin: 4px 0 0
+  a
+    text-decoration: none
+  .avatar
+    float: left
+
+%head_nav
+  +head_cell_base(80%)
+  right: 0
+  li
+    display: inline-block
+    &.user
+      position: absolute
+      .name
+        margin: 8px 0 6px
+        float: right
+    &.avatar
+      float: right
+      margin-top: 3px
 
 %head_base
   display: table-row
-  height: 60px
   padding: 5px 5px 10px 5px
   margin-bottom: 3px
+  +head_height(55px)
   #title
-    display: table-cell
-    +ext(f-hobo)
-    width: 20%
-    padding: 4px 0
-    border-bottom: 1px solid lightgrey
-    h1, h2
-      margin-left: 4px
-    a
-      text-decoration: none
+    +ext(head_title)
   #nav
-    display: table-cell
+    +ext(head_nav)
+  .avatar
+    padding: 3px

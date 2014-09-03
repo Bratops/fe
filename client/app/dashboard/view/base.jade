@@ -1,0 +1,13 @@
+.db
+  .hide
+    dashboard
+  .wrap
+    include header.jade
+    .drow
+      .wg(ui-view="menu")
+        include menu.jade
+      .pan(ui-view="panel")
+        .data
+          - var aa = Array(60)
+          - each a in aa
+            p aaaaa:a
