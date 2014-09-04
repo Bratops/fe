@@ -30,5 +30,11 @@ angular.module "brasFeApp"
     url: "oauth/{provider}?code&state"
     views:
       control:
-        template: "<h2>Loading...</h2>"
+        template: "<h2></h2><h2>Loading...</h2>"
+        controller: "SessionCtrl"
+  .state "session.gauth",
+    url: "gauth?key&login&role&role_id"
+    views:
+      control:
+        template: "<h2></h2><h2>Loading...</h2>"
         controller: "SessionCtrl"

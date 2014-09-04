@@ -55,12 +55,6 @@
   width: 90%
   padding: .3em 0
   text-align: center
-  &.half
-    &.facebook
-      margin-left: 5%
-    width: 44%
-    margin: 2% 1%
-    display: inline-block
   a
     display: inline
   &:disabled, &:disabled:hover
@@ -136,6 +130,15 @@
   label
     +ext(plain_bold)
     +ext(center_box)
+  ul.login
+    padding: 0 5%
+    display: block
+    position: relative
+    li
+      width: 50%
+      margin: 2px 0
+      button
+        width: 98%
   ul.dropdown-menu
     +ext(dropdown_base)
     &:before

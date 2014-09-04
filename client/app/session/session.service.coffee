@@ -8,8 +8,17 @@ angular.module "brasFeApp"
     msg = data.msg
     notifier msg.body, title: msg.title
 
-  guest = {login_alias: "", auth_token: ""}
-  host = "bebras01.csie.ntnu.edu.tw"
+  guest =
+    login_alias: ""
+    auth_token: ""
+    roles: []
+    role:
+      name: "user"
+      id: 1
+
+  host = "brasbe.dev" #"bebras01.csie.ntnu.edu.tw" #"localhost:3000"
+
+  fb_auth = ()->
 
   ret =
     init: false
@@ -19,24 +28,44 @@ angular.module "brasFeApp"
       auth_token: ""
     redirect: ""
     host: host
-    rest: sestangular.rest(guest, host).all ""
+    rest: sestangular.rest(guest, {host: host}).all ""
+    fest: ()->
+      opt =
+        host: host
+        cache: false
+      sestangular.rest(ret.user, opt).all ""
+    validate: ()->
+      if ret.is_user
+        ret.rest.one("").get().then (resp)->
+          notify data
     warm_up: ()->
       return if ret.init
       ret.init = true
       user = $cookieStore.get("tiny_beaver") || guest
       ret.set_user(user)
-      try
-        if ret.is_user
-          ret.rest.one("").get().then (resp)->
-            notify data
-      catch e
-        console.log e
+      #try
+      #  ret.validate()
+      #catch e
+      #  console.log e
       #console.log user
+    gauth: (data)->
+      ret._success(
+        status: "success"
+        msg:
+          title: "Google"
+          body: "已登入"
+        user:
+          login_alias: data.login
+          auth_token: data.key
+          roles: []
+          role:
+            name: data.role
+            id: data.role_id
+        redirect: "dashboard"
+      )
     auth: (data)->
       tar = "users/auth/#{data.provider}/callback"
-      ob = _.clone data
-      delete ob.provider
-      ret.rest.all(tar).get("", ob).then (resp)->
+      ret.rest.all(tar).get("", data).then (resp)->
         ret._session_base(resp)
     logout: ()->
       ret.rest.all("session").remove().then (resp)->
@@ -47,7 +76,7 @@ angular.module "brasFeApp"
       ret.rest.all("group/publist/school").getList({query: query})
     set_user: (user)->
       ret.user = user
-      ret.rest = sestangular.rest(user, host)
+      ret.rest = sestangular.rest(user, {host: host})
       if (!!ret.user and !!ret.user.login_alias and !!ret.user.auth_token)
         ret.is_user = true
       else
@@ -83,5 +112,9 @@ angular.module "brasFeApp"
       ret.set_user(guest)
     isGuest: ()->
       !ret.user.login_alias and !ret.user.auth_token
+    switch_role: (id)->
+      growl.warning "請稍後。。。", title: "轉換中"
+      ret.rest.all("session/role").get("", {role_id: id}).then (resp)->
+        ret._session_base(resp)
   ret
 

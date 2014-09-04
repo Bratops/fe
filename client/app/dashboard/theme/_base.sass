@@ -1,0 +1,39 @@
+%scroll_shadow
+  background: linear-gradient(transparent 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), transparent 70%) 0 100%, radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)), radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%
+  background: linear-gradient(transparent 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), transparent 70%) 0 100%, radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%
+  background-repeat: no-repeat
+  background-color: transparent
+  background-size: 100% 20px, 100% 20px, 100% 7px, 100% 7px
+  /* Opera doesn't support this in the shorthand
+  background-attachment: local, local, scroll, scroll
+
+=db_size($w: auto, $h: auth)
+  width: $w
+  height: $h
+
+=background($t1: yellow, $t2: limegreen, $t3: skyblue, $t4: coral)
+  $tt: transparent
+  $a1: transparentize($t1, .8)
+  $a2: transparentize($t2, .8)
+  $a3: transparentize($t3, .8)
+  $a4: transparentize($t4, .8)
+  height: 100%
+  background: linear-gradient(0, $t1, $a2), linear-gradient(90deg, $t2, $a3), linear-gradient(180deg, $t3, $a4), linear-gradient(270deg, $t4, $a1)
+  background-blend-mode: screen
+
+$spring: #ee9076
+$winter: #3bbee8
+$fall: #da6727
+$summar: #bda
+.db
+  +ext(f-read)
+  //+background($spring, $winter, $fall, $summar)
+  .wrap
+    background: transparentize(#eee, .8)
+    display: table
+    position: absolute
+    +db_size(100%, 100%)
+    //top: 2%
+    //left: 2.5%
+    //+border-radius-separate(5px, 5px, 3px, 3px)
+    //border: #aaa solid 1px

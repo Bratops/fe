@@ -24,13 +24,18 @@ angular.module 'brasFeApp'
     $scope.form.submitted = false
 
   $scope.$on "redirect", (event, data)->
-    $state.go(data)
+    if data is "dashboard"
+      rn = if sessionServ.user.role then sessionServ.user.role.name else "user"
+      $state.go(data + "." + rn)
 
   $scope.$on "httpError", (event)->
     $scope.form.submitted = false
 
   $scope.$on "$stateChangeSuccess", (event, toState, toParams, fromState, fromParams)->
-    sessionServ.auth($stateParams) if toState.name is "session.auth"
+    if toState.name is "session.auth"
+      sessionServ.auth($stateParams)
+    else if toState.name is "session.gauth"
+      sessionServ.gauth($stateParams)
 
   $scope.$on "$viewContentLoaded", (event)->
     rpt = "reset_password_token"
@@ -84,4 +89,5 @@ angular.module 'brasFeApp'
   $scope.auth = (provider)->
     $scope.form.submitted = true
     base = "http://#{sessionServ.host}"
+    console.log "#{base}/users/auth/#{provider}"
     window.location.href = "#{base}/users/auth/#{provider}"
