@@ -1,5 +1,5 @@
 ul.menu
   li(ng-repeat="item in data.menu")
-    a(ui-sref="{{ item.link }}" href="")
+    a(ui-sref="dashboard.{{user.role.name}}.{{ item.link }}" href="")
       span(title="{{item.desc}}") {{ item.name }}
       i(class="fa fa-fw fa-{{item.icon}}")

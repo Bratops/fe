@@ -33,7 +33,7 @@ angular.module "brasFeApp"
         template: "<h2></h2><h2>Loading...</h2>"
         controller: "SessionCtrl"
   .state "session.gauth",
-    url: "gauth?key&login"
+    url: "gauth?key&login&role&role_id"
     views:
       control:
         template: "<h2></h2><h2>Loading...</h2>"

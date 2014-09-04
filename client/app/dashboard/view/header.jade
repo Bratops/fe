@@ -12,7 +12,7 @@ header#header
       .name
         a(href="#") {{ user.name || '小海狸' }}
       ul.switches
-        li.roles
+        li.roles(ng-show="user.roles.length > 0")
           select(ng-model="role" name="roles"
                  ng-options="role.name for role in user.roles")
         li

@@ -67,21 +67,24 @@ $btn_size: 13px
 
 =alert-color($bc)
   background: $bc
+  border: 1px solid darken($bc, 40%)
   button.close
-    color: darken($bc, 35%)
+    color: transparent
     background: darken($bc, 35%)
     &:hover
-      color: darken($bc, 22%)
       background: darken($bc, 22%)
   button.close.ng-binding
-    color: $bc
+    color: transparent
     &:hover
-      color: $bc
       background: none
 
 .growl-container
   +ext(growl_container)
+  .alert-info
+    +alert-color(rgba(195, 242, 253, 0.73))
+  .alert-success
+    +alert-color(rgba(220, 248, 205, 0.73))
   .alert-error
     +alert-color(rgba(243, 194, 182, 0.76))
   .alert-warning
-    +alert-color(rgba(243, 194, 182, 0.76))
+    +alert-color(rgba(252, 224, 167, 0.76))

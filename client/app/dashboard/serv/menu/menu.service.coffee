@@ -15,5 +15,5 @@ angular.module 'brasFeApp'
     load_menu: ()->
       rest = sessionServ.rest
       rest.all("dashboard/menu").get("").then (resp)->
-        $log.debug resp.menu
+        #$log.debug resp.menu
         ret.data.menu = resp.menu

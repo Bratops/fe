@@ -25,7 +25,8 @@ angular.module 'brasFeApp'
 
   $scope.$on "redirect", (event, data)->
     if data is "dashboard"
-      $state.go(data + "." + sessionServ.user.role.name)
+      rn = if sessionServ.user.role then sessionServ.user.role.name else "user"
+      $state.go(data + "." + rn)
 
   $scope.$on "httpError", (event)->
     $scope.form.submitted = false
