@@ -1,0 +1,49 @@
+.info
+  .tip 1.選擇欲編輯之菜單&nbsp;
+    select(ng-model="edit_role" name="roles" ng-options="role.name as role.name for role in user.roles")
+  ul.options
+    li
+      a(ng-click="add_child()" href="#") Add
+    li
+      a(ng-click="save_menu()" href="#") Save
+    li
+      a(ng-click="cancel_menu_edit()" href="#") Cancel
+
+.half.edit_form
+  .tip 2.點選左方選項編輯
+  form(name="menu_item")
+    .field
+      label 名稱
+      input(type="text" ng-model="data.menu.selected.name")
+    .field
+      label
+        | 圖示 (參考
+        a(href="http://fortawesome.github.io/Font-Awesome/icons/")
+          命名
+        | )
+      input(type="text" ng-model="data.menu.selected.icon")
+    .field
+      label 鏈結
+      input(type="text" ng-model="data.menu.selected.link")
+    .field
+      label 功能描述
+      textarea(ng-model="data.menu.selected.desc")
+  //- pre {{ data.menu.selected | json }}
+
+script(type="text/ng-template" id="menu_item")
+  i.fa.fa-fw.fa-arrows(ui-tree-handle=""
+    ng-class="{dragging: this.is_dragging }")
+  a(ng-click="show_menu_item(this)")
+    i(class="fa fa-fw fa-{{node.icon}}")
+    span {{node.name}}
+  ol(ui-tree-nodes="" ng-model='node.nodes')
+    li(ng-repeat='node in node.nodes'
+      ui-tree-node='' ng-include="'menu_item'")
+
+.half.menu_tree(ui-tree="data.menuTree")
+  ol#tree-root(ui-tree-nodes=""
+    data-max-depth="5"
+    ng-model="data.menu.serv.raw")
+    li(ng-repeat="node in data.menu.serv.raw"
+      ng-class="{'node-selected': menu_item_selected(node)}"
+      ng-include="'menu_item'" ui-tree-node='')

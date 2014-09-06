@@ -108,13 +108,19 @@ angular.module "brasFeApp"
       if data.redirect
         $rootScope.$broadcast "redirect", data.redirect
     _error: (obj)->
-      $rootScope.$broadcast "sessionError"
       ret.set_user(guest)
+      $rootScope.$broadcast "sessionError"
     isGuest: ()->
       !ret.user.login_alias and !ret.user.auth_token
     switch_role: (id)->
       growl.warning "請稍後。。。", title: "轉換中"
       ret.rest.all("session/role").get("", {role_id: id}).then (resp)->
         ret._session_base(resp)
+    auth_user: ($state)->
+      role = ret.user.role
+      role_state = "dashboard.#{role.name}"
+      unless $state.includes("#{role_state}.**")
+        console.log "go stat #{role_state}"
+        $state.go(role_state)
   ret
 

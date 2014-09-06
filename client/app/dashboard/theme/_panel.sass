@@ -1,3 +1,15 @@
+%panel_base_more
+  .base
+    height: 0
+    display: none
+  .more
+    display: inline-block
+    +db_size(100%, 100%)
+    .heading
+      height: 5%
+    .userGrid
+      height: 80%
+
 //bg(white) background color
 //sInt(.2) intensity
 //sc(black) shadow color
@@ -14,7 +26,8 @@
 
 %panel_base
   display: block
-  height: 100%
   overflow-y: auto
-  padding: 5px 1px 1px 3px
+  background: #f9f9f9
+  height: 100%
   +scrolling_shadows(transparent, .1, black, 60px, 7px)
+  +ext(panel_base_more)

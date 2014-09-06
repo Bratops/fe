@@ -11,6 +11,8 @@ angular.module "brasFeApp", [
   "duScroll",
   "angular-growl",
   "timer",
+  "ngGrid",
+  "ui.tree",
 ]
 
 .config (growlProvider) ->

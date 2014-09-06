@@ -6,6 +6,7 @@ angular.module "brasFeApp"
     "http://#{host}/"
 
   rest: (user, opt)->
+    opt.cache = opt.cache || true
     Restangular.withConfig (RestangularProvider) ->
       RestangularProvider.setBaseUrl base_url(opt.host)
       RestangularProvider.setDefaultHttpFields
