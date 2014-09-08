@@ -9,7 +9,7 @@ dash_router =
         templateUrl: "app/dashboard/view/menu.html"
         controller: "DashMenuCtrl"
       panel:
-        templateUrl: "app/dashboard/view/#{role}.html"
+        templateUrl: "app/dashboard/view/#{role}/base.html"
         controller: "Dash#{role[0].toUpperCase() + role.slice(1)}Ctrl"
   extend: (role, action)->
     base = dash_router.base(role)
@@ -20,7 +20,7 @@ dash_router =
         controller: "Dash#{role[0].toUpperCase() + role.slice(1)}Ctrl"
     base
   magic: (role, action)->
-    if action?
+    unless action?
       dash_router.base(role)
     else
       dash_router.extend(role, action)
