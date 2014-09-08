@@ -1,10 +1,19 @@
 @import lib/sass/_base/nsn
-@include global-reset()
++global-reset()
+
+%local_reset
+  a
+    text-decoration: none
+  input, select, textarea
+    outline: none
+    border: none
+    margin: 0
 
 html, body,
   height: 100%
   min-height: 100%
   min-width: 320px
+  +ext(local_reset)
 
 body > .ng-scope
   height: 100%

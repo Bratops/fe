@@ -13,8 +13,7 @@ header#header
         a(href="#") {{ user.name || '小海狸' }}
       ul.switches
         li.roles(ng-show="user.roles.length > 0")
-          select(ng-model="role" name="roles"
-                 ng-options="role.name for role in user.roles")
+          select(ng-model="role" ng-options="role.name for role in user.roles")
         li
           a.logout(href="#" ng-click="logout()") 登出
     li.avatar
