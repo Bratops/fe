@@ -35,5 +35,6 @@ angular.module "brasFeApp"
       rest = sessionServ.fest()
       urole = sessionServ.user.role.name
       rest.all("#{urole}").one("menu").post("", data).then (resp)->
+        ret.get_menu_list(role)
         notify resp
         #ret.data.raw = resp.menu

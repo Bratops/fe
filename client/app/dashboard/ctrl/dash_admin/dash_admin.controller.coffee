@@ -43,6 +43,9 @@ angular.module 'brasFeApp'
     if nv
       menu.get_menu_list nv
 
+  $scope.$on "cfpLoadingBar:loading", (evt, data)->
+    console.log 'here lodaing', data
+
   $scope.not_in_base = ()->
     return false unless $scope.user?
     !$state.is("dashboard.#{$scope.user.role.name}")
