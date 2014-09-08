@@ -39,13 +39,14 @@ angular.module 'brasFeApp'
   $scope.$on "users_loaded", ()->
     $scope.data.users = dashUser.users
 
-  $scope.$watch "edit_role", (nv, ov)->
+  $scope.$watch "data.edit_role", (nv, ov)->
     if nv
       menu.get_menu_list nv
 
   $scope.not_in_base = ()->
     return false unless $scope.user?
     !$state.is("dashboard.#{$scope.user.role.name}")
+
 # menus
   $scope.show_menu_item = (item_scope)->
     item = item_scope.$modelValue
@@ -54,3 +55,22 @@ angular.module 'brasFeApp'
   $scope.menu_item_selected = (item)->
     $scope.data.menu.selected == item
 
+  $scope.menu_cancel_edit = ()->
+    $scope.data.menu.selected = {}
+    $scope.data.menu.serv.raw = {}
+    $state.go(state_base)
+
+  $scope.menu_save = ()->
+    menu.update_raw($scope.data.edit_role)
+
+  $scope.menu_mark_as_remove = (scope)->
+    item = scope.$modelValue
+    item.destroy = !!!item.destroy
+
+  $scope.menu_add = ()->
+    rl = $scope.data.menu.serv.raw.length
+    $scope.data.menu.serv.raw.push
+      id: -1
+      name: "New item"
+      pos: rl
+      nodes: []

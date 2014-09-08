@@ -26,7 +26,7 @@ angular.module 'brasFeApp'
       $state.go(data + "." + sessionServ.user.role.name)
 
   $scope.$watch "role", (nv, ov)->
-    if ov and (nv.id isnt ov.id)
+    if ov.id isnt nv.id
       sessionServ.switch_role(nv.id)
 
   $scope.logout = ()->

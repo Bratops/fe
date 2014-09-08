@@ -114,8 +114,9 @@ angular.module "brasFeApp"
       !ret.user.login_alias and !ret.user.auth_token
     switch_role: (id)->
       growl.warning "請稍後。。。", title: "轉換中"
-      ret.rest.all("session/role").get("", {role_id: id}).then (resp)->
+      ret.fest().all("session/role").get("", {role_id: id}).then (resp)->
         ret._session_base(resp)
+        $rootScope.$broadcast "role_switched"
     auth_user: ($state)->
       role = ret.user.role
       role_state = "dashboard.#{role.name}"
