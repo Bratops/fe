@@ -1,2 +1,99 @@
 .group
   background: yellow
+
+%new_group_animation
+  &.ng-hide-remove-active, &.ng-hide-add,
+  &.ng-hide-add-active, &.ng-hide-remove
+    +transition(all 1s ease-in-out)
+    overflow: hidden
+  &.ng-hide-remove
+    opacity: 0
+    height: 0
+  &.ng-hide-remove-active
+    opacity: 1
+    height: 130px
+  &.ng-hide-add
+    opacity: 1
+    height: 130px
+  &.ng-hide-add-active
+    height: 0
+    opacity: 0
+
+%group_field_base
+  $gfw: 30%
+  $mar: 3px
+  margin: $mar 0
+  display: inline-block
+  position: relative
+  width: 50%
+  &.desc
+    font-weight: bold
+    padding: 3px
+    display: block
+  label
+    margin: 0 2px
+    max-width: $gfw
+    display: inline-block
+  > input
+    width: 95 - $gfw
+    position: absolute
+    right: 10px
+    top: -1 * $mar
+    +border-radius(2px)
+    border: 1px solid grey
+
+=group_input_theme($cr: #ccc, $fs: 1.8rem)
+  font-size: $fs*.8
+  color: $cr
+  border-color: lighten($cr, 30)
+  &:focus
+    +box-shadow(inset, 0, 0, 5px, lighten($cr, 10))
+
+=group_field_var($cr: #ccc, $fs: 1.8rem)
+  label
+    font-size: $fs
+  input
+    +group_input_theme($cr, $fs)
+
+%group_btn_base
+  +border-radius(3px)
+  border: none
+  margin: 3px 3px
+  cursor: pointer
+  border: 1px solid grey
+
+=group_btn_var($cr: #efd, $fs: 1.5rem)
+  font-size: $fs
+  background: $cr
+  color: darken($cr, 30)
+  border-color: darken($cr, 40)
+  +transition(all .2s ease-in-out)
+  &:hover
+    +transition(all .3s ease-in-out)
+    background: darken($cr, 10)
+    color: adjust-hue(darken($cr, 30), 20)
+
+.ops
+  li
+    width: auto
+  li .btn
+    display: inline-block
+    padding: 5px
+    +ext(group_btn_base)
+    +group_btn_var(#cde, 1.2rem)
+
+.new_group
+  border: 1px solid #ded
+  margin: 4px
+  padding: 4px
+  overflow: show
+  background: #eaeeee
+  +border-radius(4px)
+  +box-shadow("", 1px, 1px, 3px, rgba(0,0,0,0.15))
+  +ext(new_group_animation)
+  .field
+    +ext(group_field_base)
+    +group_field_var(darken(#cde, 30), 1.7rem)
+  .controls .btn
+    +ext(group_btn_base)
+    +group_btn_var(#cde, 1.2rem)

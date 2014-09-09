@@ -15,6 +15,7 @@ angular.module "brasFeApp", [
   "ngGrid",
   "ui.tree",
   "angular-loading-bar",
+  "xeditable",
 ]
 
 .config (localStorageServiceProvider)->

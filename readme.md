@@ -39,3 +39,4 @@
 
 # html5
 - [local storage](http://diveintohtml5.info/storage.html)
+- [ng animation](http://www.yearofmoo.com/2013/08/remastered-animation-in-angularjs-1-2.html)

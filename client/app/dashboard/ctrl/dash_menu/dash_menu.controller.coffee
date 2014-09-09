@@ -12,6 +12,7 @@ angular.module 'brasFeApp'
     menu.reload()
 
   $scope.menu_click = (item)->
+    $scope.clicked = item
     menu.data.clicked = item
     state = "dashboard.#{menu.role()}.#{item.link}"
     $state.go(state)

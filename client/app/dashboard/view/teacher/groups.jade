@@ -1,1 +1,47 @@
-h2 yay
+.tip
+.ops
+  ul
+    li
+      .btn(ng-click="group_new()") 新增班級
+
+.new_group(ng-show=" data.groups.new ")
+  form(novalidate name="new_group")
+    .field
+      label(for="group_grade") 年級
+      input#group_grade(type=number)
+    .field
+      label(for="group_name") 班級名稱
+      input#group_name(type=text)
+    .field.desc 預計測驗時程
+    .field
+      label(for="group_exdate") 日期
+      span.date
+        .mark
+          input#group_exdate(type="text"
+            ng-model="data.groups.new_group.exdate"
+            is-open="data.groups.exdate_opt.open"
+            current-text="今天"
+            clear-text="清除"
+            close-text="關"
+            min-date="data.groups.exdate_opt.minDate"
+            date-disabled="cal_disable(date, mode)"
+            year-range="0"
+            format-day-title="'MM yyyy'"
+            format-month-title="'MM yyyy'"
+            format-month="MMM"
+            datepicker-mode="day"
+            datepicker-popup="yyyy/MM/dd"
+            datepicker-options="data.groups.exdate_opt"
+            show-button-bar="false"
+            disabled=""
+            ng-required="true" )
+          button.btn.date(type="button", ng-click="open_calendar($event)")
+            i.fa.fa-fw.fa-calendar
+    .field
+      label(for="group_extime") 時間
+      input#group_extime(type=time)
+    .controls
+      button.btn(ng-click="group_add()") 新增
+      button.btn(ng-click="group_new_cancel()") 取消
+
+ol.groups
