@@ -28,12 +28,13 @@ dash_router =
   dash_teacher: (action)->
     dash_router.magic "teacher", action
   dash_manager: (action)->
-    dash_router.magic "teacher", action
+    dash_router.magic "manager", action
   dash_student: (action)->
-    dash_router.magic "teacher", action
+    dash_router.magic "student", action
   dash_user: (action)->
-    dash_router.magic "teacher", action
+    dash_router.magic "user", action
   admin: "dashboard.admin"
+  manager: "dashboard.manager"
   teacher: "dashboard.teacher"
 
 dr = dash_router
@@ -50,7 +51,8 @@ angular.module 'brasFeApp'
   .state "#{dr.admin}.users", dr.dash_admin("users")
   .state "#{dr.admin}.tasks", dr.dash_admin("tasks")
   .state "#{dr.admin}.menu", dr.dash_admin("menu")
-  .state "dashboard.manager", dr.base("manager")
+  .state dr.manager, dr.base("manager")
+  .state "#{dr.manager}.bulletin", dr.dash_manager("bulletin")
   .state dr.teacher, dr.dash_teacher()
   .state "#{dr.teacher}.groups", dr.dash_teacher("groups")
   .state "dashboard.student", dr.base("student")

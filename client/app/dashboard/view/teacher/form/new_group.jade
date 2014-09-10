@@ -1,3 +1,5 @@
+include ../../com/date.jade
+
 .new_group(ng-show=" data.groups.new || data.groups.edit ")
   - var fn = "new_group"
   form(novalidate name="#{fn}")
@@ -33,25 +35,8 @@
       label(for="group_exdate") 日期
       span.date
         .mark
-          input#group_exdate(type="text"
-            ng-model="data.groups.form_group.exdate"
-            is-open="data.groups.exdate_opt.open"
-            current-text="今天"
-            clear-text="清除"
-            close-text="關"
-            min-date="data.groups.exdate_opt.minDate"
-            date-disabled="cal_disable(date, mode)"
-            year-range="0"
-            format-day-title="'MM yyyy'"
-            format-month-title="'MM yyyy'"
-            format-month="MMM"
-            datepicker-mode="day"
-            datepicker-popup="yyyy/MM/dd"
-            datepicker-options="data.groups.exdate_opt"
-            show-button-bar="false"
-            disabled=""
-            ng-required="true" )
-          button.btn.date(type="button", ng-click="open_calendar($event)")
+          +date_picker("group_exdate", "data.groups", "exdate_opt", "form_group.exdate")
+          button.btn.date(type="button" ng-click="open_calendar($event)")
             i.fa.fa-fw.fa-calendar
     .field
       label(for="group_extime") 時段

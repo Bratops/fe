@@ -31,6 +31,7 @@
   border: 1px solid #aaa
   border-top: none
   outline: none
+  display: inline-table //firefox
   tr
     text-align: center
   th
@@ -89,6 +90,9 @@
     +border-radius-separate(5px, 0, 5px, 0)
   .mark
     position: relative
+    ul.dropdown-menu
+      +ext(drop_date)
+      //+ext(date_ani_base)
   .mark > button.btn
     +border-radius-separate(0, 5px, 0, 5px)
     position: absolute
@@ -101,7 +105,7 @@
 
 =date_picker_var($cr: #cde, $fs: 1.7rem)
   input
-    +group_input_theme(darken($cr, 30), $fs)
+    +form_input_theme(darken($cr, 30), $fs)
   .mark > button.btn
     border: 1px solid darken($cr, 30)
     font-size: $fs * .8
@@ -110,10 +114,3 @@
       color: darken($cr, 30)
       background: lighten($cr, 20)
 
-.new_group .field
-  .date
-    +ext(date_picker_base)
-    +date_picker_var(#cde, 1.7rem)
-    ul.dropdown-menu
-      +ext(drop_date)
-      +ext(new_group_ani_base)

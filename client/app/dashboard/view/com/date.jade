@@ -1,0 +1,19 @@
+//- need implement cal_disable() in js file
+mixin date_picker(id, data_ref, date_opt, data_name)
+  input(type="text"
+    id="#{id}"
+    date-disabled="#{id}_cal_disable(date, mode)"
+    year-range="1"
+    format-day-title="'MM yyyy'"
+    format-month-title="'MM yyyy'"
+    format-month="MMM"
+    datepicker-mode="day"
+    datepicker-popup="yyyy/MM/dd"
+    ng-model="#{data_ref}.#{data_name}"
+    datepicker-options="#{data_ref}.#{date_opt}"
+    is-open="#{data_ref}.#{date_opt}.open"
+    min-date="#{data_ref}.#{date_opt}.minDate"
+    show-button-bar="false"
+    disabled=""
+    ng-required="true" )
+

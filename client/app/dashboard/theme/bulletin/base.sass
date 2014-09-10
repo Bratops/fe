@@ -1,0 +1,38 @@
+.manager
+  background: lightpink
+
+%manager_form_ext
+  .field
+    width: 50%
+  .field.top
+    z-index: 100
+  .field .date
+    +ext(date_picker_base)
+    +date_picker_var(#cde, 1.7rem)
+    top: -4px
+  .field.full
+    width: 100%
+    label
+      width: 50px
+    input
+      width: 85%
+      top: 0
+  .field.text
+    label
+      display: block
+      margin-bottom: 5px
+    textarea
+      display: block
+      margin: 0 auto
+      min-width: 96%
+      max-width: 96%
+
+.msg_form
+  display: block
+  width: 90%
+  margin: 0 auto 10px
+  padding: 10px 5px
+  background: lighten(#cde, 7)
+  +ext(form_base)
+  +form_var(#cde, 1rem)
+  +ext(manager_form_ext)

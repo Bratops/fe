@@ -44,7 +44,7 @@ angular.module 'brasFeApp'
     e.stopPropagation()
     $scope.data.groups.exdate_opt.open = !$scope.data.groups.exdate_opt.open
 
-  $scope.cal_disable = (date, mode)->
+  $scope.group_exdate_cal_disable = (date, mode)->
     dv = date.getDay()
     ((mode is "day") and ( dv is 0 || dv is 6 ))
 
