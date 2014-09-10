@@ -21,12 +21,8 @@ angular.module "brasFeApp"
     notify data
     $rootScope.$broadcast "httpError", rejection.status
     switch rejection.status
-      when 401
-        ""
       when 400
         growl.error "如果您仍需這個功能，請來信:<mailto:little_beaver@gmail.com>", title: "參數錯誤"
-      when 403
-        growl.error "此頁面禁止存取", title: "禁止進入"
       when 404
         growl.error "找不到您要的功能", title: "找不到海狸"
       when 405
@@ -40,7 +36,7 @@ angular.module "brasFeApp"
       else
         if rejection.status >= 500
           growl.error "正在記錄錯誤，並且尋找海狸工程師來修理", title: "海狸忙碌中..."
-        else
+        else if rejection.status < 400
           growl.error "Error: #{rejection}", title: "未知的錯誤", ttl: 1000*1000
     # do something on error
     $q.reject rejection

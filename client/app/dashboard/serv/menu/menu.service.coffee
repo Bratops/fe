@@ -17,8 +17,11 @@ angular.module "brasFeApp"
       ret.init = true
       ret.load_menu()
     data:
+      clicked: {}
       menu: {} # load_menu
       raw: {} # get_menu_list
+    role: ()->
+      sessionServ.user.role.name
     load_menu: ()->
       rest = sessionServ.rest
       rest.all("dashboard/menu?t=#{_.now()}").get("").then (resp)->
@@ -38,3 +41,4 @@ angular.module "brasFeApp"
         ret.get_menu_list(role)
         notify resp
         #ret.data.raw = resp.menu
+

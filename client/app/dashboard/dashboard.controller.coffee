@@ -1,8 +1,11 @@
 'use strict'
 
 angular.module 'brasFeApp'
-.controller 'DashboardCtrl', ($scope, $state, sessionServ, growl) ->
+.controller 'DashboardCtrl', ($scope, $state, menu, sessionServ, growl) ->
   sessionServ.warm_up()
+
+  $scope.data =
+    menu: menu.data
 
   $scope.$on "$stateChangeStart", (event, toState, toParams, fromState, fromParams)->
     #console.log $state.current.name
@@ -29,10 +32,11 @@ angular.module 'brasFeApp'
     if ov.id isnt nv.id
       sessionServ.switch_role(nv.id)
 
-  $scope.logout = ()->
-    sessionServ.logout()
-
   $scope.$on '$stateNotFound', (event, unfoundState, fromState, fromParams)->
     console.log unfoundState.name
     growl.error "未實作的功能", title: "Oops"
     event.preventDefault()
+
+  $scope.logout = ()->
+    sessionServ.logout()
+

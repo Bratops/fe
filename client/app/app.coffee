@@ -2,6 +2,7 @@
 
 angular.module "brasFeApp", [
   "ngCookies",
+  "LocalStorageModule",
   "ngResource",
   "ngAnimate",
   "ngSanitize",
@@ -14,7 +15,11 @@ angular.module "brasFeApp", [
   "ngGrid",
   "ui.tree",
   "angular-loading-bar",
+  "xeditable",
 ]
+
+.config (localStorageServiceProvider)->
+  localStorageServiceProvider.setPrefix("user")
 
 .config (cfpLoadingBarProvider)->
   cfpLoadingBarProvider.includeSpinner = false

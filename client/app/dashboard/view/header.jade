@@ -7,10 +7,12 @@ header#header
     h2
       a(ui-sref="landing") 國際資訊競賽
   ul#nav
-    li
+    li.state
+      h1 {{ data.menu.clicked.name }}
+      h2 {{ data.menu.clicked.desc }}
     li.user
       .name
-        a(href="#") {{ user.name || '小海狸' }}
+        a(href="#") {{ user.name || "小海狸" }}
       ul.switches
         li.roles(ng-show="user.roles.length > 0")
           select(ng-model="role" ng-options="role.name for role in user.roles")
