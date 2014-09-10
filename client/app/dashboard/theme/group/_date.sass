@@ -86,9 +86,11 @@
     width: 90%
     float: left
     border: 1px solid
+    +border-radius-separate(5px, 0, 5px, 0)
   .mark
     position: relative
   .mark > button.btn
+    +border-radius-separate(0, 5px, 0, 5px)
     position: absolute
     right: 0
     top: 0
@@ -104,10 +106,14 @@
     border: 1px solid darken($cr, 30)
     font-size: $fs * .8
     background: lighten($cr, 20)
+    &:hover
+      color: darken($cr, 30)
+      background: lighten($cr, 20)
 
 .new_group .field
   .date
     +ext(date_picker_base)
-    +date_picker_var(#cdd, 1.7rem)
+    +date_picker_var(#cde, 1.7rem)
     ul.dropdown-menu
       +ext(drop_date)
+      +ext(new_group_ani_base)

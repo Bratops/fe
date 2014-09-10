@@ -1,0 +1,68 @@
+.new_group(ng-show=" data.groups.new || data.groups.edit ")
+  - var fn = "new_group"
+  form(novalidate name="#{fn}")
+    .field
+      label(for="group_grade") 年級
+      input#group_grade(ng-model="data.groups.form_group.grade"
+        ng-class="{'error': form_invalid(#{fn}.group_grade)}"
+        ng-required="true"
+        type="number" name="group_grade" min="1" max="12")
+      .error
+        span(ng-show="#{fn}.group_grade.$error.required") 不可空白
+        span(ng-show="#{fn}.group_grade.$error.min") 值需大於1
+        span(ng-show="#{fn}.group_grade.$error.max") 值需小於12
+    .field
+      label(for="group_klass") 班級類別
+      select#group_klass(ng-model="data.groups.form_group.klass"
+        ng-options="k as k.name for k in data.groups.klasses"
+        ng-required="true")
+    .field
+      label(for="group_name") 班級名稱
+      input#group_name(ng-model="data.groups.form_group.name"
+        name="group_name"
+        ng-class="{'error': form_invalid(#{fn}.group_name)}"
+        type="text" ng-required="true" ng-maxlength="10")
+      .error
+        span(ng-show="#{fn}.group_name.$error.required && !#{fn}.group_name.$pristine") 不可空白
+        span(ng-show="#{fn}.group_name.$error.maxlength && !#{fn}.group_name.$pristine") 不可超過10個字
+    .field
+      label(for="group_extime") 其他註記
+      input#group_note(ng-model="data.groups.form_group.note" type="text" ng-maxlength="255")
+    .field.desc 預計測驗時程
+    .field
+      label(for="group_exdate") 日期
+      span.date
+        .mark
+          input#group_exdate(type="text"
+            ng-model="data.groups.form_group.exdate"
+            is-open="data.groups.exdate_opt.open"
+            current-text="今天"
+            clear-text="清除"
+            close-text="關"
+            min-date="data.groups.exdate_opt.minDate"
+            date-disabled="cal_disable(date, mode)"
+            year-range="0"
+            format-day-title="'MM yyyy'"
+            format-month-title="'MM yyyy'"
+            format-month="MMM"
+            datepicker-mode="day"
+            datepicker-popup="yyyy/MM/dd"
+            datepicker-options="data.groups.exdate_opt"
+            show-button-bar="false"
+            disabled=""
+            ng-required="true" )
+          button.btn.date(type="button", ng-click="open_calendar($event)")
+            i.fa.fa-fw.fa-calendar
+    .field
+      label(for="group_extime") 時段
+      select#group_klass(ng-model="data.groups.form_group.extime"
+        ng-options="k as k.name for k in data.groups.time_sec"
+        ng-required="true")
+    .controls
+      button.btn(ng-click="group_add(#{fn})"
+        ng-show=" data.groups.new "
+        ng-disabled="cant_add_group(#{fn})") 新增
+      button.btn(ng-click="group_update(#{fn})"
+        ng-show=" data.groups.edit "
+        ng-disabled="cant_update_group(#{fn})") 更新
+      button.btn(ng-click="group_new_cancel()") 取消

@@ -17,7 +17,6 @@ dash_router =
     base.views =
       box:
         templateUrl: "app/dashboard/view/#{role}/#{action}.html"
-        controller: "Dash#{role[0].toUpperCase() + role.slice(1)}Ctrl"
     base
   magic: (role, action)->
     unless action?

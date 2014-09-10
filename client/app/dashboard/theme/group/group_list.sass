@@ -1,0 +1,73 @@
+%group_list_base
+  width: 90%
+  height: 90px
+  margin: 5px 4.5%
+  +border-radius(5px)
+  position: relative
+  padding: 5px 0 5px 5px
+  +transition(.3s all linear)
+
+=group_list_var($cr: #fec)
+  border: 1px solid lighten($cr, 30)
+  &:hover
+    +transition(.3s all linear)
+    background: lighten($cr, 65)
+
+%group_field_base
+  .name
+    font-weight: bold
+    margin: 3px 0
+  .gcode
+    color: green
+    position: absolute
+    left: 5px
+    bottom: 5px
+    width: 300px
+
+=group_field_var($fs: 1.3rem)
+  .name
+    font-size: $fs
+  .gcode
+    font-size: $fs * 1.2
+
+%group_list_btn_base
+  margin: 2px
+  padding: 2px 0
+  border: 1px solid #999
+  +border-radius(3px)
+  color: #999
+  background: #ccc
+  +transition(.2s all ease-in-out)
+  &:hover
+    +transition(.2s all ease-in-out)
+    cursor: pointer
+
+=group_ctrl_var($cr: #fec, $fs: 1.4rem)
+  .delete, .edit
+    font-size: $fs
+    &:hover
+      border-color: darken(#fec, 30)
+      background: #fec
+
+%group_controls
+  .controls
+    position: absolute
+    right: 0
+    top: 5px
+    height: 80px
+    width: 35px
+    .delete, .edit
+      +ext(group_list_btn_base)
+    .delete:hover
+      color: red
+    .edit:hover
+      color: lighten($c-swim, 15)
+    +group_ctrl_var($c-soil, 1.4rem)
+
+#groups
+  .group
+    +ext(group_list_base)
+    +group_list_var($c-soil)
+    +ext(group_field_base)
+    +group_field_var(1.3rem)
+    +ext(group_controls)
