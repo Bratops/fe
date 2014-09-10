@@ -1,12 +1,13 @@
 'use strict'
 
 angular.module 'brasFeApp'
-.controller 'LandingCtrl', ($scope, $state, sessionServ) ->
-  #$http.get('/api/things').success (awesomeThings) ->
-    #$scope.awesomeThings = awesomeThings
+.controller 'LandingCtrl', ($scope, $state, sessionServ, bulletin) ->
+  sessionServ.warm_up()
+  bulletin.load_pub()
+
   $scope.data =
     user: sessionServ.user
-  sessionServ.warm_up()
+    msgc: bulletin.data
 
   at_state = (st)->
     $state.current.name == "session.#{st}"
