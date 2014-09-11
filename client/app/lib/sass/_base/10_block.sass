@@ -1,0 +1,24 @@
+%slim_border
+  border-width: 1px
+  border-style: solid
+
+%round_it
+  +border-radius(5px)
+
+%_block
+  display: block
+
+%inline_block
+  display: inline-block
+
+%abs_inline_block
+  +ext(inline_block)
+  position: absolute
+
+%rel_inline_block
+  +ext(inline_block)
+  position: relative
+
+%border_block
+  +ext(_block)
+  +ext(slim_border)

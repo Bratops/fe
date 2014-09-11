@@ -44,6 +44,7 @@
 %head_nav
   +head_cell_base(80%)
   right: 0
+  border-bottom: 1px solid #c5c2c3
   li
     display: inline-block
   li.state
@@ -76,13 +77,33 @@
     float: right
     margin-top: 3px
 
+%head_rwd
+  +tablet-landscape-only
+    a
+      width: 60%
+    a span
+      font-size: .9rem
+  +tablet-portrait-and-below
+    .full
+      display: none
+  +tablet-portrait-only
+    a
+      width: 50%
+  +mobile-portrait-and-below
+    a
+      width: 40%
+
 %head_base
   display: table-row
   padding: 5px 5px 10px 5px
   margin-bottom: 3px
   +head_height(55px)
   #title
+    a
+      width: 70%
+      display: inline-block
     +ext(head_title)
+    +ext(head_rwd)
   #nav
     +ext(head_nav)
   .avatar

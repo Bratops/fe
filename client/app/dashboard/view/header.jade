@@ -2,10 +2,13 @@ header#header
   #title
     .beaver.avatar
       img(src="/assets/images/beaver128.png")
-    h1
-      a(ui-sref="landing") Bebras
+    h1.full
+      a(ui-sref="landing")
+        span Bebras&nbsp;
+        span Contest
     h2
-      a(ui-sref="landing") 國際資訊競賽
+      a(ui-sref="landing")
+        span 國際運算思維能力測驗
   ul#nav
     li.state
       h1 {{ data.menu.clicked.name }}

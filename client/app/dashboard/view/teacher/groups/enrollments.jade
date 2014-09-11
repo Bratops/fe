@@ -1,0 +1,8 @@
+.ops
+  ul
+    li
+      a.btn(ng-click="import_users()") 匯入學生資料
+
+ul.students
+  li(ng-repeat="st in data.students")
+    | {{ st.name }}

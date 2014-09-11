@@ -1,21 +1,12 @@
-.tip
-.ops
-  ul
-    li
-      .btn(ng-click="group_new()") 新增班級
-    li
-      .btn(ng-click="reload_groups()") 更新班級列表
+.details(ui-view="details")
+  .ops
+    ul
+      li
+        .btn(ng-click="group_new()") 1.新增班級
+      li
+        .btn(ng-click="reload_groups()") 更新班級列表
+    .tip 請注意，學生經首頁註冊並加入班級後，始完成報名
 
-include form/new_group.jade
+  include form/new_group.jade
+  include groups/group_list.jade
 
-ul#groups
-  li(ng-repeat="gp in data.groups.list")
-    .group
-      .grade {{ gp.grade }} 年級
-      .name {{ gp.name }} 班 ({{ klass_str(gp.klass) }})
-      .gcode 班級代碼: {{ gp.gcode }}
-      .exdate 預計施測時間: {{ gp.exdate }} {{ extime_str(gp.extime) }}
-      .controls
-        .fa.fa-fw.fa-times-circle.delete(
-          ng-click="del_group(gp)")
-        .fa.fa-fw.fa-pencil.edit(ng-click="edit_group(gp)")

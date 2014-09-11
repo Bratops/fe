@@ -18,6 +18,15 @@ dash_router =
       box:
         templateUrl: "app/dashboard/view/#{role}/#{action}.html"
     base
+  groups: (sub_action)->
+    role = "teacher"
+    base = dash_router.extend(role, "groups")
+    base.url = "/:id/#{sub_action}"
+    base.views =
+      details:
+        templateUrl: "app/dashboard/view/#{role}/groups/#{sub_action}.html"
+        controller: "TeacherEnrollmentsCtrl"
+    base
   magic: (role, action)->
     unless action?
       dash_router.base(role)
@@ -55,5 +64,6 @@ angular.module 'brasFeApp'
   .state "#{dr.manager}.bulletin", dr.dash_manager("bulletin")
   .state dr.teacher, dr.dash_teacher()
   .state "#{dr.teacher}.groups", dr.dash_teacher("groups")
+  .state "#{dr.teacher}.groups.enrollments", dr.groups("enrollments")
   .state "dashboard.student", dr.base("student")
   .state "dashboard.user", dr.base("user")

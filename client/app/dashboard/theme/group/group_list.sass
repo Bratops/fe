@@ -1,11 +1,18 @@
 %group_list_base
   width: 90%
-  height: 90px
   margin: 5px 4.5%
   +border-radius(5px)
   position: relative
   padding: 5px 0 5px 5px
   +transition(.3s all linear)
+  .info, .btns
+    +ext(inline_block)
+    width: 48%
+    vertical-align: top
+  .info
+    margin: 5px 0 5px
+  .btns
+    margin: 5px 1% 5px 0
 
 =group_list_var($cr: #fec)
   border: 1px solid lighten($cr, 30)
@@ -14,20 +21,17 @@
     background: lighten($cr, 65)
 
 %group_field_base
-  .name
+  .info .name
     font-weight: bold
     margin: 3px 0
-  .gcode
+  .info .gcode
     color: green
-    position: absolute
-    left: 5px
-    bottom: 5px
     width: 300px
 
 =group_field_var($fs: 1.3rem)
-  .name
+  .info .name
     font-size: $fs
-  .gcode
+  .info .gcode
     font-size: $fs * 1.2
 
 %group_list_btn_base
@@ -64,10 +68,59 @@
       color: lighten($c-swim, 15)
     +group_ctrl_var($c-soil, 1.4rem)
 
+%group_btns
+  .btns
+    width: 47%
+    padding-right: 1%
+    text-align: right
+  .btns .btn
+    +ext(rel_inline_block)
+    +ext(round_it)
+    +ext(slim_border)
+    padding: 1%
+    &:hover
+      cursor: pointer
+    i
+      z-index: 10
+      width: auto
+    span
+      +ext(abs_inline_block)
+      +ext(font_bold)
+      z-index: 30
+      left: 5%
+      top: 5%
+
+=group_btns_var($cr: #cde, $fs: 1rem)
+  .btns .btn
+    background: lighten($cr, 10)
+    border-color: $cr
+    &:hover
+      background: lighten($cr, 8)
+    span
+      font-size: $fs
+      color: darken($cr, 30)
+    i
+      color: $cr
+      font-size: $fs * 5
+      &:hover
+        color: darken($cr, 3)
+
+%group_rwd
+  +tablet-portrait-and-below
+    .info, .btns
+      width: 99%
+    .btns
+      margin: 5px 0 5px
+      padding: 0
+      text-align: left
+
 #groups
   .group
     +ext(group_list_base)
     +group_list_var($c-soil)
     +ext(group_field_base)
     +group_field_var(1.3rem)
+    +ext(group_rwd)
     +ext(group_controls)
+    +ext(group_btns)
+    +group_btns_var(#fb9, 1rem)
