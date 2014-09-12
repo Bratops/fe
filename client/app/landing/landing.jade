@@ -13,6 +13,10 @@
     //- {{ user | json }} a
     .control(ui-view="control" ng-class="{dim: dim_bg()}")
       include nav.jade
+    ul.msgs
+      li(ng-repeat="msg in data.msgc.msgs")
+        .title {{msg.title}}
+        {{ msg.body }}
   .body#body(ng-class="{dim: dim_bg()}")
     .intro#intro
       h1 關於Bebras

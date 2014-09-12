@@ -9,15 +9,31 @@ angular.module "brasFeApp", [
   "ui.router",
   "ui.bootstrap",
   "restangular",
-  "duScroll",
+  "duScroll",    # click then scroll
   "angular-growl",
   "timer",
   "ngGrid",
   "ui.tree",
   "angular-loading-bar",
   "xeditable",
+  "flow",   # file upload
+  "checklist-model",
 ]
 
+.config (flowFactoryProvider) ->
+    flowFactoryProvider.defaults =
+      target: ""
+      permanentErrors: [
+        404
+        500
+        501
+      ]
+    flowFactoryProvider.on "catchAll", (event) ->
+      # You can also set default events:
+      ""
+
+# Can be used with different implementations of Flow.js
+# flowFactoryProvider.factory = fustyFlowFactory;
 .config (localStorageServiceProvider)->
   localStorageServiceProvider.setPrefix("user")
 

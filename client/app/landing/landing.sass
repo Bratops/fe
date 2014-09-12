@@ -97,8 +97,6 @@ $nav_grad_to: #c2c7ce
     span
       display: inline-block
       width: 10%
-  .header
-    +ext(header)
 
 %dimmer
   top: 0
@@ -151,7 +149,10 @@ $nav_grad_to: #c2c7ce
 
 .landing
   +ext(landing_base)
-  +ext(control_base)
+  .header
+    +ext(header)
+    +ext(control_base)
+    +ext(msgs_base)
   +ext(landing_rwd)
   .body
     +ext(body)

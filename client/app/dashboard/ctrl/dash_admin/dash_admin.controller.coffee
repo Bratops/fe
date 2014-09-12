@@ -28,7 +28,7 @@ angular.module 'brasFeApp'
 
 # events
   $scope.$on "$stateChangeStart", (event, toState, toParams, fromState, fromParams)->
-    console.log $state.current.name
+    #console.log $state.current.name
 
   $scope.$on "$stateChangeSuccess", (event, toState, toParams, fromState, fromParams)->
     if toState.name is "#{state_base}.users"
@@ -44,7 +44,7 @@ angular.module 'brasFeApp'
       menu.get_menu_list nv
 
   $scope.$on "cfpLoadingBar:loading", (evt, data)->
-    console.log 'here lodaing', data
+    #console.log 'here lodaing', data
 
   $scope.not_in_base = ()->
     return false unless $scope.user?

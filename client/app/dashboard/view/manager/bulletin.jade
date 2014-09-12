@@ -1,0 +1,13 @@
+ul.ops
+  li
+    .btn(ng-click="new_msg()") 新公告
+
+.scroll
+  include msg_form.jade
+  ul.msgs
+    li(ng-repeat="msg in data.msgs")
+      .msg
+        .title
+          .delete.fa.fa-fw.fa-times(ng-click="del_msg(msg)")
+          span(ng-click="edit_msg(msg)") {{ msg.title }}
+        .body {{ msg.body }}

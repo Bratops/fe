@@ -16,7 +16,7 @@ angular.module "brasFeApp"
       name: "user"
       id: 1
 
-  host = "brasbe.dev" #"bebras01.csie.ntnu.edu.tw:88" #"localhost:3000"
+  host =  "bebras01.csie.ntnu.edu.tw:88" #
 
   fb_auth = ()->
 
@@ -48,21 +48,14 @@ angular.module "brasFeApp"
       #catch e
       #  console.log e
       #console.log user
+    update_session: (user)->
+      rest = sestangular.rest(user, {host: host})
+      rest.one("session").get("").then (resp)->
+        ret._session_base(resp)
     gauth: (data)->
-      ret._success(
-        status: "success"
-        msg:
-          title: "Google"
-          body: "已登入"
-        user:
-          login_alias: data.login
-          auth_token: data.key
-          roles: []
-          role:
-            name: data.role
-            id: data.role_id
-        redirect: "dashboard"
-      )
+      ret.update_session
+        login_alias: data.login
+        auth_token: data.key
     auth: (data)->
       tar = "users/auth/#{data.provider}/callback"
       ret.rest.all(tar).get("", data).then (resp)->

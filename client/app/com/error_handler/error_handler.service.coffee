@@ -11,7 +11,7 @@ angular.module "brasFeApp"
     notifier msg.body, title: msg.title
 
   response: (resp) ->
-    $log.debug "#{resp.config.method}[#{resp.status}] (#{resp.config.url})"
+    #$log.debug "#{resp.config.method}[#{resp.status}] (#{resp.config.url})"
     #console.log resp
     resp || $q.when resp
 
