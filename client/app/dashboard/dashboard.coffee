@@ -1,5 +1,8 @@
 "use strict"
 
+capital = (name)->
+  name[0].toUpperCase() + name.slice(1)
+
 dash_router =
   base: (role)->
     url: ""
@@ -10,7 +13,7 @@ dash_router =
         controller: "DashMenuCtrl"
       panel:
         templateUrl: "app/dashboard/view/#{role}/base.html"
-        controller: "Dash#{role[0].toUpperCase() + role.slice(1)}Ctrl"
+        controller: "Dash#{capital(role)}Ctrl"
   extend: (role, action)->
     base = dash_router.base(role)
     base.url = "/#{action}"
@@ -31,7 +34,10 @@ dash_router =
     unless action?
       dash_router.base(role)
     else
-      dash_router.extend(role, action)
+      st = dash_router.extend(role, action)
+      if role is "manager"
+        st.views.box.controller = "DaMa#{capital(action)}Ctrl"
+      st
   dash_admin: (action)->
     dash_router.magic "admin", action
   dash_teacher: (action)->

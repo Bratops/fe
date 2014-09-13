@@ -1,8 +1,8 @@
-ul.ops
+ul.ops.bulletin
   li
     .btn(ng-click="new_msg()") 新公告
 
-.scroll
+.scroll.bulletin
   include msg_form.jade
   ul.msgs
     li(ng-repeat="msg in data.msgs")

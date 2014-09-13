@@ -1,0 +1,48 @@
+%pager_item_base
+  text-align: center
+  float: left
+  +ext(slim_border)
+  border-right: none
+  margin: 2px auto
+  padding: 2px
+  &:first-child
+    +border-radius-separate(5px, 0, 5px, 0)
+  &:last-child
+    border-right: 1px solid
+    +border-radius-separate(0, 5px, 0, 5px)
+  a
+    +ext(rel_block)
+  &.disabled
+    background: #ccc
+    a
+      color: #999
+      cursor: not-allowed
+
+%pager_base
+  ul
+    display: inline-block
+  ul li
+    +ext(pager_item_base)
+  .per
+    margin: 3px 10px
+    vertical-align: top
+    +ext(rel_inline_block)
+    select
+      background: lightblue
+
+=pager_var($cr, $fs: 1rem)
+  li
+    background: $cr
+    border-color: darken($cr, 15)
+    &:hover, &.active
+      background: darken($cr, 10)
+  ul li:last-child
+    border-color: darken($cr, 10)
+  li a
+    width: $fs*1.2
+    font-size: $fs * .9
+    color: darken($cr, 30)
+    &:hover
+      color: darken($cr, 25)
+  .per, .per select
+    font-size: $fs * .9
