@@ -1,18 +1,22 @@
 %msgs_base
   .msgs
     +ext(f-read)
-    background: rgba(200, 230, 230, .6)
-    width: 50%
-    margin: 30px auto
-    padding: 20px
+    +ext(halfwidth)
     +border-radius(10px)
-    max-height: 180px
-    height: 180px
-    overflow: auto
+    +ext(autoflow)
+    background: rgba(200, 230, 230, .6)
+    margin: 30px auto
+    padding: 10px 20px
+    max-height: 40%
+    height: 40%
     li
       border-bottom: 2px dashed lighten($c-soil, 30)
       margin-bottom: 3px
+      padding: 4px 1px
     li .title
       font-weight: bold
       font-size: 1.2rem
+      margin-bottom: 3px
+    li p
+      line-height: 1.2rem
 

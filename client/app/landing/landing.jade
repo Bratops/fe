@@ -16,7 +16,7 @@
     ul.msgs
       li(ng-repeat="msg in data.msgc.msgs")
         .title {{msg.title}}
-        {{ msg.body }}
+        p {{ msg.body }}
   .body#body(ng-class="{dim: dim_bg()}")
     .intro#intro
       h1 關於Bebras

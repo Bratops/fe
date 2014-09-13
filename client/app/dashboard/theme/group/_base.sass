@@ -4,7 +4,6 @@
     +transition(all .3s ease-in-out)
     overflow: hidden
     display: block !important
-    width: auto
   &.ng-hide-remove
     opacity: 0
   &.ng-hide-remove-active, &.ng-hide-add
@@ -13,7 +12,7 @@
     opacity: 0
 
 .ops
-  margin: 2%
+  margin: 2% 2% 0
   li
     width: auto
     display: inline-block
@@ -29,6 +28,10 @@
   +ext(form_base)
   +form_var(#cde, 1.2rem)
   +ext(new_group_ani_base)
+  position: absolute
+  top: 8%
+  width: 95%
+  z-index: 200
   .field
     width: 50%
   .field .date
@@ -36,18 +39,9 @@
     +date_picker_var(#cde, 1.7rem)
 
 .view
-  .ops
-    height: 10%
-    .tip
-      padding: 5px
-  .new_group
-    position: absolute
-    top: 12%
-    width: 95%
-    z-index: 200
   #groups
     position: absolute
     bottom: 0
     width: 100%
-    height: 86%
+    height: 90%
     overflow: auto
