@@ -48,6 +48,7 @@ dash_router =
 
 dr = dash_router
 
+# order is important
 angular.module 'brasFeApp'
 .config ($stateProvider) ->
   $stateProvider
@@ -56,14 +57,15 @@ angular.module 'brasFeApp'
     abstract: true
     templateUrl: "app/dashboard/view/base.html"
     controller: "DashboardCtrl"
+  .state "dashboard.student", dr.base("student")
+  .state "dashboard.user", dr.base("user")
+  .state dr.teacher, dr.dash_teacher()
+  .state "#{dr.teacher}.groups", dr.dash_teacher("groups")
+  .state "#{dr.teacher}.groups.enrollments", dr.groups("enrollments")
+  .state dr.manager, dr.base("manager")
+  .state "#{dr.manager}.bulletin", dr.dash_manager("bulletin")
+  .state "#{dr.manager}.users", dr.dash_manager("users")
   .state dr.admin, dr.dash_admin()
   .state "#{dr.admin}.users", dr.dash_admin("users")
   .state "#{dr.admin}.tasks", dr.dash_admin("tasks")
   .state "#{dr.admin}.menu", dr.dash_admin("menu")
-  .state dr.manager, dr.base("manager")
-  .state "#{dr.manager}.bulletin", dr.dash_manager("bulletin")
-  .state dr.teacher, dr.dash_teacher()
-  .state "#{dr.teacher}.groups", dr.dash_teacher("groups")
-  .state "#{dr.teacher}.groups.enrollments", dr.groups("enrollments")
-  .state "dashboard.student", dr.base("student")
-  .state "dashboard.user", dr.base("user")

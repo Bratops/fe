@@ -15,11 +15,11 @@ header#header
       h2 {{ data.menu.clicked.desc }}
     li.user
       .name
-        a(href="#") {{ user.name || "小海狸" }}
+        a(href="#") {{ user.name || "新海貍" }}
       ul.switches
         li
           a.logout(href="#" ng-click="logout()") 登出
         li.roles(ng-show=" user.roles.length > 1")
-          select(ng-model="role" ng-options="role.name for role in user.roles")
+          select(ng-model="data.role" ng-options="role.name for role in user.roles")
     li.avatar
       img(src="/assets/images/user_nil.png")

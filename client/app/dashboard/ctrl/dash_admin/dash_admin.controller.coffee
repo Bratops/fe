@@ -1,7 +1,8 @@
 'use strict'
 
 angular.module 'brasFeApp'
-.controller 'DashAdminCtrl', ($scope, $state, dashUser, menu) ->
+.controller 'DashAdminCtrl', ($scope, $state, dashUser, menu, sessionServ) ->
+  session = sessionServ
   state_base = "dashboard.admin"
 
   reorder_menu_pos = (evt)->
@@ -28,9 +29,13 @@ angular.module 'brasFeApp'
 
 # events
   $scope.$on "$stateChangeStart", (event, toState, toParams, fromState, fromParams)->
+    bs = session.base_state()
+    unless toState.name.indexOf(bs) is 0
+      event.preventDefault()
     #console.log $state.current.name
 
   $scope.$on "$stateChangeSuccess", (event, toState, toParams, fromState, fromParams)->
+    return unless session.is_valid_state($state)
     if toState.name is "#{state_base}.users"
       dashUser.load_users()
     else if toState.name is "#{state_base}.tasks"

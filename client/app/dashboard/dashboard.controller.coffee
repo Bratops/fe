@@ -2,14 +2,17 @@
 
 angular.module 'brasFeApp'
 .controller 'DashboardCtrl', ($scope, $state, menu, sessionServ, growl) ->
-  sessionServ.warm_up()
+  session = sessionServ
+  session.warm_up()
 
   $scope.data =
     menu: menu.data
+    role: {}
 
   $scope.$on "$stateChangeStart", (event, toState, toParams, fromState, fromParams)->
-    #console.log $state.current.name
-    #event.preventDefault()
+    bs = session.base_state()
+    unless toState.name.indexOf(bs) is 0
+      event.preventDefault()
     #growl.warning "沒有權限", "警告"
 
   current_role = (role)->
@@ -18,19 +21,19 @@ angular.module 'brasFeApp'
     if ri < 0 then roles[0] else roles[ri]
 
   $scope.$on "$stateChangeSuccess", (event, toState, toParams, fromState, fromParams)->
-    sessionServ.auth_user($state)
-    if $state.includes("dashboard.**")
-      user = sessionServ.user
+    session.auth_user(toState, $state)
+    if session.is_valid_state($state)
+      user = session.user
       $scope.user = user
-      $scope.role = current_role(user.role)
+      $scope.data.role = current_role(user.role)
 
   $scope.$on "redirect", (event, data)->
     if data is "dashboard"
-      $state.go(data + "." + sessionServ.user.role.name)
+      $state.go(data + "." + session.user.role.name)
 
-  $scope.$watch "role", (nv, ov)->
+  $scope.$watch "data.role", (nv, ov)->
     if ov.id isnt nv.id
-      sessionServ.switch_role(nv.id)
+      session.switch_role(nv.id)
 
   $scope.$on '$stateNotFound', (event, unfoundState, fromState, fromParams)->
     console.log unfoundState.name
@@ -38,5 +41,5 @@ angular.module 'brasFeApp'
     event.preventDefault()
 
   $scope.logout = ()->
-    sessionServ.logout()
+    session.logout()
 

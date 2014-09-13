@@ -15,5 +15,5 @@ angular.module 'brasFeApp'
     $scope.clicked = item
     menu.data.clicked = item
     state = "dashboard.#{menu.role()}.#{item.link}"
-    $state.go(state)
+    $state.transitionTo(state)
 
