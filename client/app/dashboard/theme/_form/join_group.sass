@@ -1,0 +1,36 @@
+%join_group_btns
+
+%join_group_field
+  .field
+    +ext(form_field_radius)
+    margin: 2% 5%
+    label
+      min-width: 20%
+      +ext(inline_block)
+    input
+      +position(relative)
+      bottom: 3px
+      width: 60%
+
+%join_group_base
+  +ext(abs_block)
+  +ext(text_center)
+  +border-radius(5px)
+  +ext(join_group_field)
+  +ext(form_btn_base)
+  width: 80%
+  margin: 5% 10% 0
+  .btns, .btn
+    +ext(inline_block)
+
+=join_group_var($cr: #ccc, $fs: 2rem)
+  background: $cr
+  font-size: $fs
+  +form_btn_var($cr, $fs)
+  .field
+    +form_input_theme(darken($cr, 30), $fs * .9)
+
+form.join_group
+  +ext(join_group_base)
+  +join_group_var(#cde, 2rem)
+  +box-shadow("", 0, 2px, 8px, rgba(80,123,123,0.35))

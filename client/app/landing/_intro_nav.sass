@@ -37,6 +37,9 @@
   li.active, li:hover
     +transition(.5s ease-in-out background)
     background: transparentize(lightblue, .6)
+  li.head
+    &.active, &:hover
+      background: transparent
 
 %landing_nav
   ul#nav
@@ -50,3 +53,10 @@
       margin: 0 3px
       padding: 8% 3px
       color: lighten($c-soil, 5)
+    li.head
+      a
+        top: 5px
+        +position(relative)
+        display: inline
+      img
+        width: 32px

@@ -1,7 +1,7 @@
 "use strict"
 
 angular.module "brasFeApp"
-.controller "TeacherEnrollmentsCtrl", ($scope, $stateParams, studentEnrollments) ->
+.controller "DaTeEnrollmentsCtrl", ($scope, $stateParams, studentEnrollments) ->
   state_base = "dashboard.teacher"
   se = studentEnrollments
   $scope.data = se.data

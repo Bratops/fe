@@ -1,0 +1,24 @@
+ul.ops
+  li
+    .btn(ng-click="join_grp()") 加入班級
+
+- var fn = "join_group"
+form.join_group(ng-show=" join_form_visible() "
+  name="#{fn}" novalidate)
+  .field
+    label(for="school") 學校
+    input#school(type="text")
+  .field
+    label(for="suid") 學號
+    input#suid(type="text")
+  .field
+    label(for="group_code") 班級代碼
+    input#group_code(type="text")
+  .btns
+    button.btn(ng-click="join()") 加入
+    button.btn(ng-click="cancel()") 取消
+
+ul.groups
+  for a in [1,2,3,1,32,12,3123,1,23,12,3,1]
+    li
+      span grp

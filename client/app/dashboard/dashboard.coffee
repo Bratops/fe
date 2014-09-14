@@ -26,30 +26,26 @@ dash_router =
   groups: (sub_action)->
     role = "teacher"
     base = dash_router.extend(role, "groups")
+    base.parent = "dashboard.#{role}.groups"
     base.url = "/:id/#{sub_action}"
     base.views =
       details:
         templateUrl: "app/dashboard/view/#{role}/groups/#{sub_action}.html"
-        controller: "TeacherEnrollmentsCtrl"
+        controller: "DaTeEnrollmentsCtrl"
     base
   magic: (role, action)->
     unless action?
       dash_router.base(role)
     else
       st = dash_router.extend(role, action)
-      if role is "manager"
-        st.views.box.controller = "DaMa#{capital(action)}Ctrl"
+      roles = ["manager", "teacher", "user"]
+      if _.include(roles, role)
+        ctrl = "Da#{capital(role.substr(0,2))}#{capital(action)}Ctrl"
+        console.log ctrl
+        st.views.box.controller = ctrl
       st
-  dash_admin: (action)->
-    dash_router.magic "admin", action
-  dash_teacher: (action)->
-    dash_router.magic "teacher", action
-  dash_manager: (action)->
-    dash_router.magic "manager", action
-  dash_student: (action)->
-    dash_router.magic "student", action
-  dash_user: (action)->
-    dash_router.magic "user", action
+  m: (r, a)->
+    dash_router.magic(r, a)
   admin:   "dashboard.admin"
   manager: "dashboard.manager"
   teacher: "dashboard.teacher"
@@ -71,15 +67,16 @@ angular.module 'brasFeApp'
 .config ($stateProvider) ->
   $stateProvider
   .state "dashboard", dr.dbmain
-  .state dr.student, dr.base("student")
-  .state dr.user, dr.base("user")
-  .state dr.teacher, dr.dash_teacher()
-  .state "#{dr.teacher}.groups", dr.dash_teacher("groups")
+  .state dr.student,  dr.m("student")
+  .state dr.user, dr.m("user")
+  .state "#{dr.user}.groups", dr.m("user", "groups")
+  .state dr.teacher, dr.m("teacher")
+  .state "#{dr.teacher}.groups", dr.m("teacher", "groups")
   .state "#{dr.teacher}.groups.enrollments", dr.groups("enrollments")
-  .state dr.manager, dr.base("manager")
-  .state "#{dr.manager}.bulletin", dr.dash_manager("bulletin")
-  .state "#{dr.manager}.users", dr.dash_manager("users")
-  .state dr.admin, dr.dash_admin()
-  .state "#{dr.admin}.users", dr.dash_admin("users")
-  .state "#{dr.admin}.tasks", dr.dash_admin("tasks")
-  .state "#{dr.admin}.menu", dr.dash_admin("menu")
+  .state dr.manager, dr.m("manager")
+  .state "#{dr.manager}.bulletin", dr.m("manager", "bulletin")
+  .state "#{dr.manager}.users", dr.m("manager", "users")
+  .state dr.admin, dr.m("admin")
+  .state "#{dr.admin}.users", dr.m("admin", "users")
+  .state "#{dr.admin}.tasks", dr.m("admin", "tasks")
+  .state "#{dr.admin}.menu",  dr.m("admin", "menu")

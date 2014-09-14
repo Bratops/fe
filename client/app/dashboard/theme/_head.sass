@@ -82,21 +82,26 @@
     +float(right)
     margin-top: 3px
 
+=head_title($wd: 70%)
+  h1, h2
+    a
+      width: $wd
+
 %head_rwd
   +tablet-landscape-only
-    a
-      width: 60%
+    +head_title(60%)
     a span
       font-size: .9rem
+  +tablet-portrait-only
+    +head_title(50%)
   +tablet-portrait-and-below
     .full
       display: none
-  +tablet-portrait-only
-    a
-      width: 50%
+  +mobile-landscape-only
+    +head_title(35%)
   +mobile-portrait-and-below
-    a
-      width: 40%
+    h1, h2
+      display: none
 
 %head_base
   display: table-row
@@ -104,11 +109,11 @@
   margin-bottom: 3px
   +head_height(55px)
   #title
-    a
-      width: 70%
-      display: inline-block
     +ext(head_title)
     +ext(head_rwd)
+  #title a
+    width: 70%
+    display: inline-block
   #nav
     +ext(head_nav)
   .avatar

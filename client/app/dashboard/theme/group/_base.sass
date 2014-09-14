@@ -14,11 +14,11 @@
 .ops
   li
     width: auto
-    display: inline-block
+    +ext(inline_block)
+    +ext(form_btn_base)
+    +form_btn_var(#cde, 1.2rem)
     .btn
       padding: 5px
-      +ext(form_btn_base)
-      +form_btn_var(#cde, 1.2rem)
 
 .new_group
   background: lighten(#cde, 10)
