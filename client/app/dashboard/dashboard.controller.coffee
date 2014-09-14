@@ -1,7 +1,7 @@
-'use strict'
+"use strict"
 
-angular.module 'brasFeApp'
-.controller 'DashboardCtrl', ($scope, $state, menu, sessionServ, growl) ->
+angular.module "brasFeApp"
+.controller "DashboardCtrl", ($scope, $state, menu, sessionServ, growl) ->
   session = sessionServ
   session.warm_up()
 
@@ -10,9 +10,7 @@ angular.module 'brasFeApp'
     role: {}
 
   $scope.$on "$stateChangeStart", (event, toState, toParams, fromState, fromParams)->
-    bs = session.base_state()
-    unless toState.name.indexOf(bs) is 0
-      event.preventDefault()
+    session.auth_state(event, toState)
     #growl.warning "沒有權限", "警告"
 
   current_role = (role)->
@@ -42,4 +40,3 @@ angular.module 'brasFeApp'
 
   $scope.logout = ()->
     session.logout()
-

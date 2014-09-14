@@ -41,40 +41,45 @@
   .avatar
     float: left
 
-%head_nav
-  +head_cell_base(80%)
-  right: 0
-  border-bottom: 1px solid #c5c2c3
-  li
-    display: inline-block
+%head_state_base
   li.state
     color: darken($c-sky, 35)
     h1
       padding: 5px
       font-size: 1.5rem
-      font-weight: bold
+      +ext(font_bold)
     h2
       padding-left: 5px
+    .tube:hover, .info:hover
+      color: darken($c-sky, 10)
+      cursor: pointer
+
+%head_nav
+  +head_cell_base(80%)
+  right: 0
+  border-bottom: 1px solid #c5c2c3
+  li
+    +ext(inline_block)
+  +ext(head_state_base)
   li.user
-    position: absolute
+    +position(absolute)
     .name
       margin: 8px 0 6px
-      float: right
+      +float(right)
     .switches
-      display: inline-block
-      position: relative
-      width: 100%
+      +ext(rel_inline_block)
+      +ext(full_width)
       height: 20px
     .switches li
-      float: right
+      +float(right)
       margin-left: 10px
       select
-        position: absolute
+        +position(absolute)
         font-size: 1rem
         bottom: 2px
         left: 0
   li.avatar
-    float: right
+    +float(right)
     margin-top: 3px
 
 %head_rwd

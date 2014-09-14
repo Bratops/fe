@@ -1,0 +1,18 @@
+ul#nav
+  li(du-scrollspy="intro")
+    a(du-smooth-scroll duration="1000" href="#intro") 測驗介紹
+  li(du-scrollspy="subject")
+    a(du-smooth-scroll duration="1000" href="#subject") 測驗目標
+  li(du-scrollspy="target")
+    a(du-smooth-scroll duration="1000" href="#target") 測驗對象
+  li(du-scrollspy="contest")
+    a(du-smooth-scroll duration="1000" href="#contest") 測驗方式
+  li
+    a(ui-sref="dashboard.user") 測驗平台
+  li
+    a(ng-show="!loggedin()" ui-sref="session.login")
+      | 登入
+      i.fa.fa-flash
+    a(ng-show="loggedin()" ng-click="logout()" href="#")
+      | 登出
+      i.fa.fa-coffee

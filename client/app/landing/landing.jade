@@ -2,47 +2,23 @@
 .landing
   .header
     .power
-      | Powered By
-      | National Taiwan Normal University
-      | Department of Computer Science and Information Engineering
-    h1 Bebras
-    h2
-      - var h2 = "國際運算思維能力測驗"
-      - each ht in h2
-        span #{ht}
+      .hide(ng-show="")
+        | Powered By
+        | National Taiwan Normal University
+        | Department of Computer Science and Information Engineering
+      h1 Bebras
+      h2
+        - var h2 = "國際運算思維能力測驗"
+        - each ht in h2
+          span #{ht}
     //- {{ user | json }} a
     .control(ui-view="control" ng-class="{dim: dim_bg()}")
-      include nav.jade
+      include view/nav.jade
     ul.msgs
       li(ng-repeat="msg in data.msgc.msgs")
         .title {{msg.title}}
         p {{ msg.body }}
   .body#body(ng-class="{dim: dim_bg()}")
-    .intro#intro
-      h1 關於Bebras
-      article.article
-        h2 測驗介紹
-        p
-          | Bebras測驗是一個針對8至18歲（三年級至十二年級）學生的國際資訊潛能測驗，每年於11月中的國際Bebras週（World-Wide Bebras Week）舉行。此測驗的目的旨在激起學生對於資訊學科之興趣，同時了解學生是否俱備學習資訊科學之性向。本測驗利用淺顯易懂的方式呈現題目（tasks），各題皆以情境式的任務呈現，讓學習者利用自己既有的知識進行解題。
-          | Bebras測驗於2004年首次舉行；至2012年止，共有21國的學生參與此測驗，總計超過500,000名學生。臺灣於2012年始加入Bebras測驗。首年加入，參與學生數便為亞洲之冠，且廣受師生好評。
-          | 每年年中舉辦的Bebras 研討會，廣邀世界各地的資訊科學學者，研議新題目，並分享該國實施Bebras的成果。研討會結束後，便將編修完成的題目納入Bebras題庫中國際Bebras委員會期望透過此測驗的推廣，增進學校資訊學科之教授及學習品質。
-
-        h2  測驗目標
-        p
-          | 激發學生對資訊科學之學習興趣
-          | Bebras測驗的目的除了瞭解學生是否俱備學習資訊科學之性向，更希望對學生介紹資訊科學或資訊教育的基本概念，激發他們的學習興趣。利用情境式的題型，讓學生瞭解生活中隨處可見資訊科學概念之運用；而解謎推理的題目述敘方式，更可以提升學生思考動機，並增進學生深層思考的能力。
-          | 提升學生利用資訊方法解決問題之能力
-          | Bebras測驗題目包含家庭生活、團體合作、工作情境等。測驗內容多樣化，希望透過題目讓學生了解資訊科學概念在生活中隨處可見，而生活中的許多問題都能透過資訊科學之概念解決。
-          | 降低學生對資訊科學之恐懼
-          | Bebras測驗透過巧思，將題目以生活化的方式呈現，讓抽象的資訊科學題目具體化，以日常生活中會碰到的問題呈現，使未曾受過資訊科學教育的學生亦能利用邏輯、推理、運算等能力解題。另一方面，Bebras題目呈現有趣且生動，不論學生是否曾受過資訊科學的訓練，都可以降低其對資訊科學的懼怕感。
-        h2  測驗對象
-        p Bebras測驗每年於11月施測一次，受測學生並無特定資格限制，凡是三年級至十二年級之在學學生（年紀約8至18歲），皆能參與。受測學生依年齡分為五組，分別為：Little Beaver、Benjamin、Cadet、Junior及Senior組。每組考題又分難、中、易三種等級。
-        h2 測驗方式
-        p
-          | 測驗以班級為參加單位，利用測驗當週中的一堂課，在學校內即可完成施測。測驗中，學生必須解一連串的題目（task），每一題約耗時三分鐘，每次測驗15題，故測驗時間約45分鐘。
-          | 測驗規定學生只能用電腦作答，學生不可利用紙筆解題；因此測驗時須在電腦教室完成，且每一位學生皆備有一台作答電腦。目前全球共有六個不同進行Bebras測驗的系統；臺灣目前使用線上測驗方式，不需額外安裝任何軟體，只要有網路連線即可透過瀏覽器進行測驗。
-          | 本測驗的題目設定讓學生可於三分鐘左右完成，題庫中之題型包含單一選擇題、開放作答題、或互動題。互動題即測驗題目中包含的物件可供學生以電腦操作，以利思考；待學生找出答案後，再選擇正確的選項。
-          | 每一個年齡組的題目皆包含難、中及易三個難度。每一難度的給分不同，且題目答錯皆會倒扣。因有倒扣計分，避免負分的情形，每次測驗的起始分數為所有倒扣分數的總和，例如：臺灣今年正式測驗的起始分數為60分，滿分為300分，最低分為0分。每次測驗將遴選適合該年齡組的題目，難、中、易各佔總測驗的三分之一。
-
+    include view/intro.jade
     footer.footer
       | 2014 &copy; Bebras Taiwan

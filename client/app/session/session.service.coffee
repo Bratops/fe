@@ -119,5 +119,10 @@ angular.module "brasFeApp"
       bs = ret.base_state()
       unless toState.name.indexOf(bs) is 0
         $state.go(bs)
+    auth_state: (e, state)->
+      bs = ret.base_state()
+      if state.name.indexOf("dashboard") >= 0
+        unless state.name.indexOf(bs) is 0
+          e.preventDefault()
   ret
 

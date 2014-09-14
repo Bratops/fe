@@ -7,6 +7,7 @@ dash_router =
   base: (role)->
     url: ""
     templateUrl: "app/dashboard/view/base.html"
+    parent: "dashboard"
     views:
       menu:
         templateUrl: "app/dashboard/view/menu.html"
@@ -16,6 +17,7 @@ dash_router =
         controller: "Dash#{capital(role)}Ctrl"
   extend: (role, action)->
     base = dash_router.base(role)
+    base.parent = "dashboard.#{role}"
     base.url = "/#{action}"
     base.views =
       box:
@@ -48,9 +50,19 @@ dash_router =
     dash_router.magic "student", action
   dash_user: (action)->
     dash_router.magic "user", action
-  admin: "dashboard.admin"
+  admin:   "dashboard.admin"
   manager: "dashboard.manager"
   teacher: "dashboard.teacher"
+  student: "dashboard.student"
+  user:    "dashboard.user"
+  dbmain:
+    url: "dashboard"
+    parent: "root"
+    abstract: true
+    views:
+      main:
+        templateUrl: "app/dashboard/view/base.html"
+        controller: "DashboardCtrl"
 
 dr = dash_router
 
@@ -58,13 +70,9 @@ dr = dash_router
 angular.module 'brasFeApp'
 .config ($stateProvider) ->
   $stateProvider
-  .state "dashboard",
-    url: "/dashboard"
-    abstract: true
-    templateUrl: "app/dashboard/view/base.html"
-    controller: "DashboardCtrl"
-  .state "dashboard.student", dr.base("student")
-  .state "dashboard.user", dr.base("user")
+  .state "dashboard", dr.dbmain
+  .state dr.student, dr.base("student")
+  .state dr.user, dr.base("user")
   .state dr.teacher, dr.dash_teacher()
   .state "#{dr.teacher}.groups", dr.dash_teacher("groups")
   .state "#{dr.teacher}.groups.enrollments", dr.groups("enrollments")

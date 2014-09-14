@@ -1,13 +1,12 @@
-.info
+ul.menu.ops
   .tip 1.選擇欲編輯之菜單&nbsp;
     select(ng-model="data.edit_role" name="roles" ng-options="role.name as role.name for role in user.roles")
-  ul.options
-    li
-      a(ng-click="menu_add()" href="") Add
-    li
-      a(ng-click="menu_save()" href="") Save
-    li
-      a(ng-click="menu_cancel_edit()" href="") Cancel
+  li
+    .btn(ng-click="menu_add()" href="") Add
+  li
+    .btn(ng-click="menu_save()" href="") Save
+  li
+    .btn(ng-click="menu_cancel_edit()" href="") Cancel
 
 .half.edit_form
   .tip 2.點選左方選項編輯
@@ -25,6 +24,9 @@
     .field
       label 鏈結
       input(type="text" ng-model="data.menu.selected.link")
+    .field
+      label Youtube
+      input(type="text" ng-model="data.menu.selected.tube")
     .field
       label 功能描述
       textarea(ng-model="data.menu.selected.desc")

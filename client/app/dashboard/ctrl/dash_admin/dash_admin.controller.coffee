@@ -29,10 +29,7 @@ angular.module 'brasFeApp'
 
 # events
   $scope.$on "$stateChangeStart", (event, toState, toParams, fromState, fromParams)->
-    bs = session.base_state()
-    unless toState.name.indexOf(bs) is 0
-      event.preventDefault()
-    #console.log $state.current.name
+    session.auth_state(event, toState)
 
   $scope.$on "$stateChangeSuccess", (event, toState, toParams, fromState, fromParams)->
     return unless session.is_valid_state($state)
