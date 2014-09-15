@@ -5,11 +5,8 @@ angular.module "brasFeApp"
   mu = managerUsers
   $scope.data = mu.data
 
-  $scope.teachers = ()->
-    mu.load_users("teacher")
-
-  $scope.students = ()->
-    mu.load_users("student")
+  $scope.load_user = (kind)->
+    mu.load_users(kind)
 
   $scope.user_style = (user)->
     $scope.data.mod
@@ -21,3 +18,9 @@ angular.module "brasFeApp"
   $scope.$watch "data.pager.per_page", (nv, ov)->
     if nv != ov and mu.data.mod isnt ""
       mu.load_users()
+
+  $scope.is_teacher_applicant = (u)->
+    u.role.name == "teacher_applicant"
+
+  $scope.mark_teacher = (user)->
+    mu.mark_teacher(user)

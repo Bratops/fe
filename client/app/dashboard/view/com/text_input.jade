@@ -1,0 +1,10 @@
+mixin text_input(fn, field, name, model)
+  label(for="#{field}") #{name}
+  input#suid(type="text"
+    name="#{field}"
+    placeholder="請輸入#{name}"
+    required="true"
+    ng-model="data.#{model}.#{field}"
+    ng-class="{error: field_not_set('#{field}', #{fn})}")
+  p.error(ng-show="field_not_set('#{field}', #{fn})")
+    span 必填欄位

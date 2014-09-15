@@ -1,16 +1,28 @@
-%join_group_btns
+%join_form_label
+  label
+    min-width: 20%
+    +ext(inline_block)
+
+%join_form_input
+  input
+    +position(relative)
+    bottom: 3px
+    width: 60%
+
+%form_loading
+  .loading
+    +ext(rel_inline_block)
+    +float(right)
 
 %join_group_field
   .field
     +ext(form_field_radius)
     margin: 2% 5%
-    label
-      min-width: 20%
-      +ext(inline_block)
-    input
-      +position(relative)
-      bottom: 3px
-      width: 60%
+    +ext(typeahead_dropdown)
+    +ext(form_loading)
+    +ext(form_error)
+    +ext(join_form_label)
+    +ext(join_form_input)
 
 %join_group_base
   +ext(abs_block)
@@ -19,9 +31,13 @@
   +ext(join_group_field)
   +ext(form_btn_base)
   width: 80%
-  margin: 5% 10% 0
+  margin: 1% 10% 0
   .btns, .btn
     +ext(inline_block)
+
+=form_loading_var($cr: #cde)
+  .loading
+    color: darken($cr, 30)
 
 =join_group_var($cr: #ccc, $fs: 2rem)
   background: $cr
@@ -29,6 +45,10 @@
   +form_btn_var($cr, $fs)
   .field
     +form_input_theme(darken($cr, 30), $fs * .9)
+    +typeahead_dropdown_var(#cde, 1.5rem)
+    +form_loading_var($cr)
+  .btns
+    margin-bottom: 2%
 
 form.join_group
   +ext(join_group_base)

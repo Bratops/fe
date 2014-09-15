@@ -26,22 +26,25 @@
     width: 96 - $gfw
   +ext(form_field_radius)
 
+%form_error
+  input, textarea
+    &.error, &.error:focus
+      border-color: red
+  p.error
+    font-size: 60%
+    color: red
+
 =form_input_theme($cr: #ccc, $fs: 1.8rem)
   input, select, textarea
     font-size: $fs*.8
     color: $cr
     border-color: lighten($cr, 25)
-    &.error
-      border-color: red
     &:focus
       border-color: lighten($cr, 10)
       +box-shadow(inset, 0, 0, 5px, lighten($cr, 10))
 
 =form_field_var($cr: #ccc, $fs: 1.8rem)
   +form_input_theme($cr, $fs)
-  .error
-    color: red
-    padding: 3px
   label
     font-size: $fs
 

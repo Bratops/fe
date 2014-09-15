@@ -40,3 +40,7 @@
 # html5
 - [local storage](http://diveintohtml5.info/storage.html)
 - [ng animation](http://www.yearofmoo.com/2013/08/remastered-animation-in-angularjs-1-2.html)
+
+# class way
+- [logger](http://www.spectrumcoding.com/tutorials/angularjs/2014/01/08/class-based-angular.html)
+- [service](http://benhollis.net/blog/2014/01/17/cleanly-declaring-angularjs-services-with-coffeescript/)

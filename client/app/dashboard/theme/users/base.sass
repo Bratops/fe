@@ -8,7 +8,10 @@
         +ext(rel_inline_block)
         margin: 3px 5px 0 0
     .school
-      font-weight: bold
+      +ext(font_bold)
+    .field, .check
+      +ext(inline_block)
+      vertical-align: middle
   li:nth-child(even) .user
     background: #eec
 
@@ -20,16 +23,21 @@
   .user
     .school
       font-size: $fs
+  .check
+    font-size: $fs * 1.4
+    &:hover
+      +ext(cur_pointer)
+      color: $cr
 
 %user_scroll_base
   position: relative
   .list, .detail
-    overflow: auto
     vertical-align: top
     width: 49%
-    margin: 0
-    height: 100%
     +ext(rel_inline_block)
+    +ext(no_margin)
+    +ext(full_height)
+    +ext(autoflow)
   .list
     +ext(user_base)
     +user_var($c-water, 1rem)

@@ -41,7 +41,6 @@ dash_router =
       roles = ["manager", "teacher", "user"]
       if _.include(roles, role)
         ctrl = "Da#{capital(role.substr(0,2))}#{capital(action)}Ctrl"
-        console.log ctrl
         st.views.box.controller = ctrl
       st
   m: (r, a)->

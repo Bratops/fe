@@ -1,9 +1,11 @@
 .bar
   ul.users.ops
     li
-      .btn(ng-click="teachers()") 教師們
+      .btn(ng-click="load_user('teacher_applicant')") 新教師
     li
-      .btn(ng-click="students()") 學生們
+      .btn(ng-click="load_user('teacher')") 教師們
+    li
+      .btn(ng-click="load_user('student')") 學生們
 
   .users.pager
     pagination(boundary-links="true" max_page="data.pager.max_page"
@@ -21,6 +23,9 @@
     .nodata(ng-show="data.users.length == 0") 沒有資料
     li(ng-repeat="u in data.users")
       .user(ng-class="user_style(u)")
+        .check(ng-show="is_teacher_applicant(u)"
+          ng-click="mark_teacher(u)")
+          i.fa.fa-fw.fa-check-circle
         .field
           .school {{ u.school }}
           .name {{ u.name }}

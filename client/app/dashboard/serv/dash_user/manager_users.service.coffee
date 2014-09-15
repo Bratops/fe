@@ -1,7 +1,7 @@
 "use strict"
 
 angular.module "brasFeApp"
-.service "managerUsers", (sessionServ)->
+.service "managerUsers", (sessionServ, notify)->
   ret =
     init: false
     data:
@@ -24,3 +24,12 @@ angular.module "brasFeApp"
         ret.data.users = resp.users
         ret.data.pager.total = resp.total
         ret.data.mod = kind
+    mark_teacher: (user)->
+      role = sessionServ.user.role.name
+      rest = sessionServ.fest().all("#{role}/users")
+      rest.one("approve_teacher").post("", {id: user.id}).then (resp)->
+        notify.g resp.msg
+        if resp.msg.status is "success"
+          ret.data.users = _.reject(ret.data.users, (u)->
+            u.id == user.id
+          )

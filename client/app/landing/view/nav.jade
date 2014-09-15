@@ -11,7 +11,7 @@ ul#nav
   li(du-scrollspy="contest")
     a(du-smooth-scroll duration="1000" href="#contest") 測驗方式
   li
-    a(ui-sref="dashboard.user") 測驗平台
+    a(ng-show="loggedin()" ui-sref="dashboard.user") 測驗平台
   li
     a(ng-show="!loggedin()" ui-sref="session.login")
       | 登入
