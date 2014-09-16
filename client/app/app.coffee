@@ -1,6 +1,7 @@
 "use strict"
 
 angular.module "brasFeApp", [
+  "classy",
   "ngCookies",
   "LocalStorageModule",
   "ngResource",

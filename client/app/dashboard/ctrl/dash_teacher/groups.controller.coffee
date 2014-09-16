@@ -1,7 +1,6 @@
-'use strict'
-
-angular.module 'brasFeApp'
-.controller 'DaTeGroupsCtrl', ($scope, dashTeacher) ->
+"use strict"
+angular.module "brasFeApp"
+.controller "teacher.GroupsCtrl", ($scope, dashTeacher) ->
   state_base = "dashboard.teacher"
   $scope.data = dashTeacher.data
 

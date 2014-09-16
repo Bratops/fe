@@ -1,0 +1,33 @@
+%btn_active_style
+  &.active
+    background: #f9f9f9
+    +ext(slim_border)
+    border-bottom: none
+    border-color: transparent
+  &.active:hover
+    +ext(no_box_shadow)
+
+%tasks_new_btn
+  $tc: #acd
+  $bc: #ffe
+  .btn
+    +ext(text_center)
+    +bg-gradient(5deg, $tc, $bc)
+    font-size: 1.5rem
+    padding: 8px
+    +ext(hover_pointer)
+    +transition(.3s all linear)
+    border-top: 1px solid transparent
+    +ext(btn_active_style)
+    &:hover
+      color: darken($bc, 75)
+      +box-shadow(inset, 0, -2px, 4px, darken($tc, 30))
+      +transition(.3s all linear)
+
+.tasks ul
+  +ext(inline_list)
+  +ext(full_width)
+  +ext(tasks_new_btn)
+  li
+    width: 20%
+    vertical-align: middle

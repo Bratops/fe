@@ -1,0 +1,22 @@
+$ht: 10%
+
+%flat_ops_btn
+  font-size: 1.5rem
+  padding: 6px
+  +ext(no_margin)
+  +border-radius(0)
+
+%tasks_ops
+  .ops
+    background: lightgreen
+    height: $ht
+    +ext(no_padding)
+    .btn
+      +ext(flat_ops_btn)
+
+.tasks
+  height: 100%
+  +ext(tasks_ops)
+  .scroll
+    background: lightpink
+    height: 100 - $ht
