@@ -37,7 +37,7 @@ ul.ops.flow(flow-init="{singleFile: true}"
               a(href="" buttons="no" editable-text="sv.#{key}" onaftersave="make_dirty(sv)")
                 | {{ sv.#{key} || "no name" }}
             else
-              span(ng-class="{done: sv.status.value == 'added'}")
+              span.status(ng-class="sv.status.value")
                 | {{ sv.#{key} }}
         td
           input(type="checkbox"

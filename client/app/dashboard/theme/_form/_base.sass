@@ -1,0 +1,85 @@
+%form_field_radius
+  > input, > select, > textarea
+    border: 1px solid grey
+    +border-radius(5px)
+
+%form_field_base
+  $gfw: 30%
+  $mar: 3px
+  margin: $mar 0
+  +ext(rel_inline_block)
+  vertical-align: top
+  &.desc
+    display: block
+    padding: 3px
+    font-weight: bold
+  label
+    +ext(inline_block)
+    margin: 0 2px
+    max-width: $gfw
+  > input, > select
+    position: absolute
+    width: 95 - $gfw
+    right: 10px
+    top: -1 * $mar
+  > select
+    width: 96 - $gfw
+  +ext(form_field_radius)
+
+%form_error
+  input, textarea
+    &.error, &.error:focus
+      border-color: red
+  p.error
+    font-size: 60%
+    color: red
+
+=form_input_theme($cr: #ccc, $fs: 1.8rem)
+  input, select, textarea
+    font-size: $fs*.8
+    color: $cr
+    border-color: lighten($cr, 25)
+    &:focus
+      border-color: lighten($cr, 10)
+      +box-shadow(inset, 0, 0, 5px, lighten($cr, 10))
+
+=form_field_var($cr: #ccc, $fs: 1.8rem)
+  +form_input_theme($cr, $fs)
+  label
+    font-size: $fs
+
+%form_btn_base
+  .btn
+    +ext(border_block)
+    +ext(round_it)
+    +ext(cur_pointer)
+    margin: 3px 3px
+
+=form_btn_var($cr: #efd, $fs: 1.5rem)
+  .btn
+    font-size: $fs
+    background: $cr
+    color: darken($cr, 30)
+    border-color: darken($cr, 40)
+    +transition(all .2s ease-in-out)
+    &:hover
+      +transition(all .3s ease-in-out)
+      background: darken($cr, 10)
+      color: adjust-hue(darken($cr, 30), 20)
+    &[disabled]
+      cursor: not-allowed
+      background: #ddd
+      color: #889
+
+%form_base
+  +border-radius(4px)
+  +box-shadow("", 1px, 2px, 5px, rgba(0,0,0,0.15))
+  +ext(form_btn_base)
+  .field
+    +ext(form_field_base)
+    display: inline-block
+
+=form_var($cr: #cde, $fs: 1.2rem)
+  .field
+    +form_field_var(darken($cr, 30), $fs * 1.5)
+  +form_btn_var($cr, $fs)

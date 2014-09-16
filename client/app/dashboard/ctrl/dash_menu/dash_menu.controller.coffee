@@ -3,6 +3,8 @@
 angular.module 'brasFeApp'
 .controller 'DashMenuCtrl', ($scope, $state, menu) ->
 
+  $scope.data = menu.data
+
   $scope.$on "$stateChangeSuccess", (event, toState, toParams, fromState, fromParams)->
     if $state.includes("dashboard.**")
       menu.load()
@@ -15,5 +17,5 @@ angular.module 'brasFeApp'
     $scope.clicked = item
     menu.data.clicked = item
     state = "dashboard.#{menu.role()}.#{item.link}"
-    $state.go(state)
+    $state.transitionTo(state)
 

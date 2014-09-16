@@ -1,21 +1,39 @@
-%dropdown_base
-  list-style-type: initial
-  position: absolute
-  padding: 0
-  margin: 0
-  width: 90%
+%_dropdown_item
   li
+    +ext(no_margin_block)
+    +ext(full_width)
     height: 1.1em
-    margin: 0
-    display: block
-    width: 100%
     a
+      +ext(full_width)
+      +ext(_block)
       background: #eee
-      display: block
       padding: 3px
-      width: 100%
     a strong
       font-weight: bold
   li.active
     a
       color: #33e
+
+%_dropdown_base
+  +position(absolute)
+  +ext(no_gap)
+  list-style-type: initial
+  z-index: 200
+
+=typeahead_dropdown_fs($fs)
+  ul.dropdown-menu
+    font-size: $fs*1.2
+
+=typeahead_dropdown_var($ct, $fs: 10rem)
+  ul.dropdown-menu
+    font-size: $fs*1.2
+    li a strong
+      color: darken($ct, 45%)
+    li.active a
+      background: opacify(darken($ct, 15%), .1)
+      color: darken($ct, 55%)
+
+%typeahead_dropdown
+  ul.dropdown-menu
+    +ext(_dropdown_base)
+    +ext(_dropdown_item)

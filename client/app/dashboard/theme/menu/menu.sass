@@ -23,24 +23,6 @@ body  // ui-tree append draggable items at the end of body
     +ext(f-read)
     color: lighten(red, 10)
 
-=options_color($bc: #bbb)
-  $rbc: darken($bc, 10%)
-  li
-    +bg-gradient(0deg, $bc, $rbc)
-    border: 2px solid darken($bc, 20)
-    a
-      color: darken(mix($bc, $c-sky, 30), 40)
-  li:hover
-    +bg-gradient(0deg, $rbc, $bc)
-    a
-      color: darken(mix($bc, $c-sky, 30), 30)
-
-=options_font($fs)
-  .info select
-    font-size: $fs
-  li a
-    font-size: $fs
-
 %tip_block
   .tip
     margin: 4px
@@ -48,7 +30,7 @@ body  // ui-tree append draggable items at the end of body
 
 =menu_editor($h: 10%, $p: 2%)
   +ext(tip_block)
-  .info
+  .menu.ops
     height: $h
     select
       border: 1px solid #899
@@ -61,19 +43,11 @@ body  // ui-tree append draggable items at the end of body
     vertical-align: top
 
 %menu_options
-  ul.options
-    margin: 5px 0 8px
-    padding-left: 3px
-    width: 50%
-    +options_color(lighten($c-sky, 60))
-    +options_font(1.7rem)
+  .menu.ops
     li
-      display: inline-block
-      +border-radius(3px)
       margin: 3px
-      width: 30%
-      a
-        margin: 5px
+      .btn
+        +ext(text_center)
         display: block
 
 %menu_tree_base
@@ -112,7 +86,7 @@ body  // ui-tree append draggable items at the end of body
         min-height: 12rem
 
 .pan .admin
-  +menu_editor(14%, 1%)
+  +menu_editor(8%, 1%)
   +ext(menu_options)
   +ext(menu_tree_base)
   +ext(menu_form)

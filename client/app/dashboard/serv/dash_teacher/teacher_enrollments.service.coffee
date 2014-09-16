@@ -1,11 +1,7 @@
 "use strict"
 
 angular.module "brasFeApp"
-.service "studentEnrollments", ($rootScope, $q, sessionServ, growl)->
-  notify = (msg)->
-    notifier = growl[msg.status]
-    notifier(msg.body, title: msg.title, ttl: 3000)
-
+.service "studentEnrollments", ($rootScope, $q, sessionServ, notify)->
   convert_gender = (tag)->
     if tag is "男"
       return 1
@@ -125,7 +121,7 @@ angular.module "brasFeApp"
       return if ret.data.users.length is 0
       rest = sessionServ.fest().one("teacher/ugroups", ret.data.gid)
       rest.one("enrollments").post("", {ids: ret.data.del_users}).then (resp)->
-        notify resp.msg
+        notify.g resp.msg
         ret.data.users = _.filter(ret.data.users, (u)->
           fk = _.findIndex resp.keep, (k)->
             u.id == k

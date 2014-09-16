@@ -3,17 +3,17 @@
   .control #nav
     +font-size($fs*1.4)
   .intro
-    +headings_fs(1, 6, $fs*.3, .1)
+    +headings_fs(1, 6, $fs*.4, .1)
   .footer
     +font-size($fs*1.3)
 
 %landing_typo
   +headings
+    width: 340px
     +ext(f-hobo)
+    +ext(font_bold)
+    +ext(text_center)
     color: $c-soil
-    font-weight: bold
-    text-align: center
-    width: 420px
     margin: auto
 
 %landing_bg
@@ -24,91 +24,57 @@
   background-position: center 100%
 
 %landing_fill
-  width: 100%
-  height: 100%
-  float: left
+  +ext(full_browser)
+  +float(left)
 
-$nav_grad_from: #fff
-$nav_grad_to: #c2c7ce
-%nav
-  +ext(f-read)
-  ul
-    text-align: center
-    list-style-type: none
-    margin-top: 40px
+=landing_nav_var($cr: #cde, $cc: #eda)
   ul li
-    display: inline-block
-    margin: 0 20px
-    font-weight: bold
-    +cloud-btn(lighten($c-soil, 10%), $c-sky, $nav_grad_from, $nav_grad_to)
+    +cloud-btn(lighten($c-soil, 10%), $c-sky, $cr, $cc)
 
 %header
-  height: 100%
+  +ext(full_height)
   +ext(landing_typo)
   .power
-    +ext(visuallyhidden)
+    width: auto
   h1
-    padding-top: 40px
+    padding-top: 5rem
 
-%article
-  padding: 60px 15% 40px
-  p
-    line-height: 1.3em
-    text-align: justify
-    //text-indent: 2em
-  +columns(2, 30)
-
-%intro
-  +ext(f-read)
-  margin: 0
-  height: 100%
-  .article
-    +ext(article)
-  h1, h2
-    font-weight: bold
-    margin: 1em 5px .4em 0
-  h1
-    display: block
-    text-align: center
-  h2
-    &:nth-child(1)
-      margin-top: 0
-
-%body
-  display: inline-block
-  background-color: lighten($c-soil, 65%)
+%landing_body
+  background: lighten($c-soil, 68%)
+  +ext(inline_block)
+  &.dim
+    display: none
   h1
     +ext(f-hobo)
   .intro
     +ext(intro)
 
 %footer
+  +ext(text_center)
+  +ext(f-read)
   padding: 1rem
-  text-align: center
   height: 20px
   background-color: lighten($c-soil, 5%)
 
 %landing_base
   +ext(landing_bg)
   +ext(landing_fill)
-  +landing_font(10em)
+  +landing_font(8em)
   h2
     margin: auto
     span
-      display: inline-block
+      +ext(inline_block)
       width: 10%
 
 %dimmer
+  +position(absolute)
+  +ext(full_browser)
   top: 0
-  width: 100%
-  height: 100%
-  position: absolute
   background: rgba(50, 50, 50, .8)
 
 %control_base
   .control
-    #nav
-      +ext(nav)
+    +ext(landing_nav)
     &.dim
       +ext(dimmer)
 
@@ -120,7 +86,7 @@ $nav_grad_to: #c2c7ce
     .intro .article
       padding: 40px 10% 40px
   +mobile-landscape-only
-    +landing_font(4em)
+    +landing_font(5rem)
     +headings
       width: 170px !important
     h1
@@ -134,7 +100,7 @@ $nav_grad_to: #c2c7ce
     .body .intro .article
       padding: 30px
       +columns(1, 10)
-    +landing_font(5em)
+    +landing_font(4rem)
     +headings
       width: 210px !important
     .control #nav
@@ -147,16 +113,17 @@ $nav_grad_to: #c2c7ce
     background-size: 200% 30%
     background-position: 55% 100%
 
+.root
+  display: inline
+
 .landing
   +ext(landing_base)
+  +ext(landing_rwd)
   .header
     +ext(header)
     +ext(control_base)
     +ext(msgs_base)
-  +ext(landing_rwd)
   .body
-    +ext(body)
-  .body.dim
-    display: none
+    +ext(landing_body)
   .footer
     +ext(footer)

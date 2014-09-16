@@ -138,10 +138,7 @@
       margin: 2px 0
       button
         width: 98%
-  ul.dropdown-menu
-    +ext(dropdown_base)
-    &:before
-      +ext(clearfix)
+  +ext(typeahead_dropdown)
   label i
     position: relative
     width: 0
@@ -149,17 +146,16 @@
     float: right
     +transition(.5s linear all)
 
-=form_fonts($form-fs: 20)
+=form_fonts($fs: 10rem)
+  +typeahead_dropdown_fs($fs)
   input
-    +font-size($form-fs)
+    font-size: $fs
     &[type=email]
-      +font-size($form-fs*.7)
+      font-size: $fs*.7
   .btn
-    +font-size($form-fs)
+    font-size: $fs
   &:before
-    +font-size($form-fs*1.2)
-  ul.dropdown-menu
-    +font-size($form-fs*1.2)
+    font-size: $fs*1.2
 
 =form_color($ct: rgba(188, 194, 194, 0.9))
   +box-shadow-i("", 2px, 2px, 40px, darken($ct, 15%))
@@ -192,17 +188,12 @@
         background: lighten(rgb(217, 59, 43), 10%)
   ul li a:hover
     background: darken($ct, 15%)
-  ul.dropdown-menu
-    li a strong
-      color: darken($ct, 45%)
-    li.active a
-      background: opacify(darken($ct, 15%), .1)
-      color: darken($ct, 55%)
+  +typeahead_dropdown_var($ct)
 
 =session_form($title: "Login", $ct: rgba(188, 194, 194, 0.9))
   +ext(login_form)
   +form_color($ct)
-  +form_fonts(20)
+  +form_fonts(2.2rem)
   &:before
     content: $title
 
@@ -215,15 +206,16 @@
     display: inline-block
 
 %rwd_form
+  $fs: 2rem
   +tablet-portrait-only
-    +rwd_mock(16, 10%, 22%)
+    +rwd_mock($fs, 10%, 22%)
   +tablet-landscape-only
-    +rwd_mock(16, 20%, 22%)
+    +rwd_mock($fs*.8, 20%, 22%)
   +mobile-landscape-only
-    +rwd_mock(10, 10%, 2%)
+    +rwd_mock($fs*.65, 10%, 2%)
   +mobile-portrait-only
     top: 1% !important
-    +form_fonts(10)
+    +form_fonts($fs*.5)
     +center_absolute(5%)
 
 .header

@@ -6,6 +6,7 @@ angular.module 'brasFeApp'
   $scope.form =
     submitted: false
   #$scope.redirect = sessionServ.redirect
+
 # core
   $scope.onTimeout = ()->
     $scope.form.password = ""

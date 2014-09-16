@@ -1,3 +1,9 @@
+=float($dir: right)
+  float: $dir
+
+=position($pos: initial)
+  position: $pos
+
 %slim_border
   border-width: 1px
   border-style: solid
@@ -12,13 +18,30 @@
   display: inline-block
 
 %abs_inline_block
+  +position(absolute)
   +ext(inline_block)
-  position: absolute
+
+%abs_block
+  +position(absolute)
+  +ext(_block)
+
+%rel_block
+  +position(relative)
+  +ext(_block)
 
 %rel_inline_block
+  +position(relative)
   +ext(inline_block)
-  position: relative
 
 %border_block
   +ext(_block)
   +ext(slim_border)
+
+%inline_list
+  list-style-type: none
+  li
+    +ext(inline_block)
+
+%no_margin_block
+  +ext(no_margin)
+  +ext(_block)

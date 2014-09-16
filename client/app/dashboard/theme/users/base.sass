@@ -1,0 +1,47 @@
+%user_base
+  .user
+    //margin: 3px 5%
+    padding: 1%
+    .field
+      margin: 2px 0
+      .name, .phone
+        +ext(rel_inline_block)
+        margin: 3px 5px 0 0
+    .school
+      +ext(font_bold)
+    .field, .check
+      +ext(inline_block)
+      vertical-align: middle
+  li:nth-child(even) .user
+    background: #eec
+
+=user_var($cr: #cde, $fs: 1rem)
+  .user.teacher
+    border-color: lighten($cr, 20)
+    &:hover, .active
+      background: lighten($cr, 60)
+  .user
+    .school
+      font-size: $fs
+  .check
+    font-size: $fs * 1.4
+    &:hover
+      +ext(cur_pointer)
+      color: $cr
+
+%user_scroll_base
+  position: relative
+  .list, .detail
+    vertical-align: top
+    width: 49%
+    +ext(rel_inline_block)
+    +ext(no_margin)
+    +ext(full_height)
+    +ext(autoflow)
+  .list
+    +ext(user_base)
+    +user_var($c-water, 1rem)
+  .list .nodata
+    padding: 20px
+  .list li:last-child
+    margin-bottom: 5px

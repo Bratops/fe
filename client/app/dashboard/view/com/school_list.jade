@@ -1,0 +1,19 @@
+mixin school_list(form, req)
+  - field = "moeid"
+  label(for="school")
+    | 學校
+    i.fa.fa-fw.fa-spin.fa-compass.loading(ng-show="loadingSclist")
+
+  input#school(type="text" name="#{field}"
+    typeahead="sc as sc.name for sc in get_school_list($viewValue)"
+    typeahead-persistent="0"
+    typeahead-loading="loadingSclist"
+    typeahead-on-select="set_moeid($item, $model, $label)"
+    typeahead-wait-ms="10"
+    placeholder="選擇學校"
+    ng-required="#{req}"
+    ng-class="{error: field_not_set('#{field}', #{form})}"
+    ng-model="school")
+
+  p.error(ng-show="field_not_set('#{field}', #{form})")
+    span 必填欄位(請從清單中選擇學校)

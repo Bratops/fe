@@ -1,0 +1,24 @@
+- var fn = "join_group"
+
+ul.ops
+  li
+    .btn(ng-click="join_grp(#{fn})") 加入班級
+
+include ../com/school_list.jade
+include ../com/text_input.jade
+form.join_group(ng-show=" join_form_visible() "
+  name="#{fn}" novalidate)
+  .field
+    +school_list(fn, true)
+  .field
+    +text_input(fn, "suid", "學號", "join.form")
+  .field
+    +text_input(fn, "gcode", "班級代碼", "join.form")
+  .btns
+    button.btn(sabled="#{fn}.$invalid" ng-click="join(#{fn})") 加入
+    button.btn(ng-click="cancel(#{fn})") 取消
+
+ul.groups
+  for a in [1,2,3,1,32,12,3123,1,23,12,3,1]
+    li
+      span grp

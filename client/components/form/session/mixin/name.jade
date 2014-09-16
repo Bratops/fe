@@ -1,5 +1,5 @@
 mixin name_input(form)
-  label(for="name") 名字
+  label(for="name") 名字(本測驗需以真實姓名報名)
   input#name(type="text" name="uname" placeholder="OOO"
     ng-required="true" ng-model="form.name"
     ng-class="{error: #{form}.uname.$invalid && !#{form}.uname.$pristine}"

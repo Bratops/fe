@@ -16,7 +16,7 @@ angular.module "brasFeApp"
       name: "user"
       id: 1
 
-  host =  "bebras01.csie.ntnu.edu.tw:88" #
+  host =  "brasbe.dev" #"localhost:3000" #"bebras01.csie.ntnu.edu.tw:88" #
 
   fb_auth = ()->
 
@@ -110,11 +110,19 @@ angular.module "brasFeApp"
       ret.fest().all("session/role").get("", {role_id: id}).then (resp)->
         ret._session_base(resp)
         $rootScope.$broadcast "role_switched"
-    auth_user: ($state)->
+    base_state: () ->
       role = ret.user.role
-      role_state = "dashboard.#{role.name}"
-      unless $state.includes("#{role_state}.**")
-        console.log "go stat #{role_state}"
-        $state.go(role_state)
+      "dashboard.#{role.name}"
+    is_valid_state: ($state)->
+      $state.includes("#{ret.base_state()}.**")
+    auth_user: (toState, $state)->
+      bs = ret.base_state()
+      unless toState.name.indexOf(bs) is 0
+        $state.go(bs)
+    auth_state: (e, state)->
+      bs = ret.base_state()
+      if state.name.indexOf("dashboard") >= 0
+        unless state.name.indexOf(bs) is 0
+          e.preventDefault()
   ret
 

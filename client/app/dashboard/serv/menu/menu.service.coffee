@@ -9,6 +9,15 @@ angular.module "brasFeApp"
 
   ret =
     init: false
+    data:
+      clicked: {}
+      menu: {} # load_menu
+      raw: {} # get_menu_list
+      tube:
+        player: null
+        visible: false
+        vars:
+          autoplay: 0
     reload: ()->
       ret.init = false
       ret.load()
@@ -16,10 +25,6 @@ angular.module "brasFeApp"
       return if ret.init
       ret.init = true
       ret.load_menu()
-    data:
-      clicked: {}
-      menu: {} # load_menu
-      raw: {} # get_menu_list
     role: ()->
       sessionServ.user.role.name
     load_menu: ()->

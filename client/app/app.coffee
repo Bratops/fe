@@ -17,6 +17,7 @@ angular.module "brasFeApp", [
   "angular-loading-bar",
   "xeditable",
   "flow",   # file upload
+  "youtube-embed",
   "checklist-model",
 ]
 

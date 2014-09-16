@@ -89,3 +89,32 @@ $c-soil: #815717
 
 %cur_pointer
   cursor: pointer
+
+%autoflow
+  overflow: auto
+
+%half_width
+  width: 50%
+
+%full_width
+  width: 100%
+
+%full_height
+  height: 100%
+
+%full_browser
+  +ext(full_width)
+  +ext(full_height)
+
+%text_center
+  text-align: center
+
+%no_margin
+  margin: 0
+
+%no_padding
+  padding: 0
+
+%no_gap
+  +ext(no_padding)
+  +ext(no_margin)

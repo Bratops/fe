@@ -1,18 +1,24 @@
 %msgs_base
+  $cr: lighten($c-dirt, 40)
   .msgs
     +ext(f-read)
-    background: rgba(200, 230, 230, .6)
-    width: 50%
-    margin: 30px auto
-    padding: 20px
     +border-radius(10px)
-    max-height: 180px
-    height: 180px
-    overflow: auto
+    +ext(autoflow)
+    +box-shadow("", 0, 0, 5px, $cr)
+    background: transparentize($cr, .4)
+    margin: 30px auto
+    padding: 10px 1%
+    width: 70%
+    max-height: 60%
+    height: 60%
     li
       border-bottom: 2px dashed lighten($c-soil, 30)
       margin-bottom: 3px
+      padding: 4px 1px
     li .title
       font-weight: bold
       font-size: 1.2rem
+      margin-bottom: 3px
+    li p
+      line-height: 1.2rem
 

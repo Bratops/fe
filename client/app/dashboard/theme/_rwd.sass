@@ -1,0 +1,19 @@
+%debug_item_base
+  z-index: 300
+  position: absolute
+
+=debug_item($cs)
+  .pan:before
+    z-index: 300
+    position: absolute
+    content: $cs
+
+%rwd_debug
+  +tablet-landscape-only
+    +debug_item("tablet-landscape")
+  +tablet-portrait-only
+    +debug_item("tablet-portrait")
+  +mobile-portrait-and-below
+    +debug_item("mobile-landscape")
+  +mobile-landscape-only
+    +debug_item("mobile-landscape")

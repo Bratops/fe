@@ -4,10 +4,11 @@ angular.module "brasFeApp"
 .config ($stateProvider) ->
   $stateProvider
   .state "session",
-    abstract: true
-    url: "/"
-    templateUrl: "app/landing/landing.html"
-    controller: "LandingCtrl"
+    url: ""
+    parent: "root"
+    views:
+      main:
+        templateUrl: "app/landing/landing.html"
   .state "session.login",
     url: "login"
     views:

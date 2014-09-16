@@ -1,0 +1,8 @@
+.tube(ng-show="data.menu.tube.visible" ng-click="toggle_menu_video()")
+  .embed#tubebed
+    youtube-video#tube(
+      player="data.menu.tube.player"
+      video-id="data.menu.clicked.tube || 'eeJO3HVDSD4'"
+      player-vars="data.menu.tube.vars")
+
+.root(ui-view="main")

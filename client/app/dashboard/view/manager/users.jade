@@ -1,0 +1,36 @@
+.bar
+  ul.users.ops
+    li
+      .btn(ng-click="load_user('teacher_applicant')") 新教師
+    li
+      .btn(ng-click="load_user('teacher')") 教師們
+    li
+      .btn(ng-click="load_user('student')") 學生們
+
+  .users.pager
+    pagination(boundary-links="true" max_page="data.pager.max_page"
+      total-items="data.pager.total" ng-model="data.pager.page"
+      items-per-page="data.pager.per_page" max-size="5"
+      previous-text="‹" next-text="›" first-text="«" last-text="»")
+    .per
+      select(ng-model="data.pager.per_page")
+        - var pp = [50, 30, 10]
+        for p in pp
+          option #{p}
+
+.users.scroll
+  ul.list
+    .nodata(ng-show="data.users.length == 0") 沒有資料
+    li(ng-repeat="u in data.users")
+      .user(ng-class="user_style(u)")
+        .check(ng-show="is_teacher_applicant(u)"
+          ng-click="mark_teacher(u)")
+          i.fa.fa-fw.fa-check-circle
+        .field
+          .school {{ u.school }}
+          .name {{ u.name }}
+          .phone {{u.phone}}
+        .controls
+          .groups
+  .detail
+    | more

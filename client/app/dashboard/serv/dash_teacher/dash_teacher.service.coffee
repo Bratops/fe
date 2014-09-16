@@ -3,7 +3,7 @@
 angular.module 'brasFeApp'
 .service 'dashTeacher', (sessionServ, growl)->
   klasses = [
-      name: "普通班"
+      name: "普通班未分組"
       value: 1
     ,
       name: "自然組"
@@ -12,30 +12,33 @@ angular.module 'brasFeApp'
       name: "社會組"
       value: 3
     ,
-      name: "資優班"
+      name: "人文社會資優班"
       value: 4
     ,
-      name: "資科相關"
+      name: "數理資優班"
       value: 5
     ,
-      name: "技職相關"
+      name: "資訊相關科別"
       value: 6
     ,
-      name: "特殊班"
+      name: "其他技職科別"
       value: 7
+    ,
+      name: "特殊班"
+      value: 8
     ,
       name: "其他(請註記)"
       value: 0
   ]
 
   time_sec = [
-      name: "上午(0830~1230)"
+      name: "上午(0730~1230)"
       value: 0
     ,
-      name: "下午(1230~1730)"
+      name: "下午(1300~1800)"
       value: 1
     ,
-      name: "晚上(1730~2100)"
+      name: "晚上(1800~2200)"
       value: 2
   ]
 
@@ -45,7 +48,7 @@ angular.module 'brasFeApp'
 
   _new_group = ()->
     klass: klasses[0]
-    exdate: new Date()
+    exdate: "2014/11/10"
     extime: time_sec[0]
     grade: 10
     note: ""
@@ -123,8 +126,8 @@ angular.module 'brasFeApp'
         list: []
         form_group: _new_group()
         exdate_opt:
-          minDate: new Date()
-          maxDate: "'2014/11/20'"
+          minDate: "'2014/11/10'"  #new Date()
+          maxDate: "'2014/11/21'"
           open: false
           startingDay: 1
         klasses: klasses
