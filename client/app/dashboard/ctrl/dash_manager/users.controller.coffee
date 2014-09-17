@@ -1,7 +1,7 @@
 "use strict"
 
 angular.module "brasFeApp"
-.controller "DaMaUsersCtrl", ($scope, managerUsers) ->
+.controller "manager.UsersCtrl", ($scope, managerUsers) ->
   mu = managerUsers
   $scope.data = mu.data
 

@@ -24,9 +24,6 @@ angular.module 'brasFeApp'
       name: "其他技職科別"
       value: 7
     ,
-      name: "特殊班"
-      value: 8
-    ,
       name: "其他(請註記)"
       value: 0
   ]
@@ -47,7 +44,7 @@ angular.module 'brasFeApp'
     notifier(msg.body, title: msg.title, ttl: 3000)
 
   _new_group = ()->
-    klass: klasses[0]
+    klass: ""
     exdate: "2014/11/10"
     extime: time_sec[0]
     grade: 10

@@ -1,7 +1,6 @@
 "use strict"
-
 angular.module "brasFeApp"
-.controller "DaMaBulletinCtrl", ($scope, bulletin) ->
+.controller "manager.BulletinCtrl", ($scope, bulletin) ->
   state_base = "dashboard.manager.bulletin"
   $scope.data = bulletin.data
 

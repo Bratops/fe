@@ -90,6 +90,10 @@ $c-soil: #815717
 %cur_pointer
   cursor: pointer
 
+%hover_pointer
+  &:hover
+    +ext(cur_pointer)
+
 %autoflow
   overflow: auto
 
@@ -118,3 +122,6 @@ $c-soil: #815717
 %no_gap
   +ext(no_padding)
   +ext(no_margin)
+
+%no_box_shadow
+  box-shadow: none
