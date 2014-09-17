@@ -31,7 +31,7 @@ dash_router =
         controller: "DashMenuCtrl"
       panel:
         templateUrl: "app/dashboard/view/#{role}/base.html"
-        controller: "Dash#{capital(role)}Ctrl"
+        controller: "#{role}.baseCtrl"
   extend: (role, action)->
     url: "/#{action}"
     parent: "dashboard.#{role}"
