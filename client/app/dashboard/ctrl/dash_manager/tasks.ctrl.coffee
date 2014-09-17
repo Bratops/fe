@@ -1,12 +1,7 @@
 "use strict"
-app = angular.module("brasFeApp")
-class ManagerTasksCtrl extends AppBase
-  @register app, "controller", "manager.TasksCtrl"
-  @inject "$scope", "managerTask as mt"
-
-  initialize: ->
-    @reset()
-
-  reset: ->
-    console.log "init task ctrl"
+angular.module("brasFeApp").classy.controller
+  name: "manager.TasksCtrl"
+  inject:
+    $scope: "$"
+    managerTask: "mt"
 

@@ -27,15 +27,18 @@
   +ext(form_base)
   +form_var(#cde, 1.2rem)
   +ext(new_group_ani_base)
-  position: absolute
+  +position(absolute)
   top: 8%
   width: 95%
   z-index: 200
   .field
-    width: 50%
+    +ext(half_width)
+    +ext(form_error)
   .field .date
     +ext(date_picker_base)
     +date_picker_var(#cde, 1.7rem)
+  .field p.error
+    font-size: 1rem
 
 .view
   #groups

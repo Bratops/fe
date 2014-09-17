@@ -8,28 +8,35 @@ include ../../com/date.jade
       input#group_grade(ng-model="data.groups.form_group.grade"
         ng-class="{'error': form_invalid(#{fn}.group_grade)}"
         ng-required="true"
-        type="number" name="group_grade" min="1" max="12")
-      .error
+        type="number" name="group_grade" min="1" max="16")
+      p.error
         span(ng-show="#{fn}.group_grade.$error.required") 不可空白
         span(ng-show="#{fn}.group_grade.$error.min") 值需大於1
         span(ng-show="#{fn}.group_grade.$error.max") 值需小於12
     .field
       label(for="group_klass") 班級類別
       select#group_klass(ng-model="data.groups.form_group.klass"
+        name="klass"
+        ng-class="{'error': form_invalid(#{fn}.klass)}"
         ng-options="k as k.name for k in data.groups.klasses"
         ng-required="true")
+        option(value="") -- 請選擇班級 --
+      p.error
+        span(ng-show="#{fn}.klass.$error.required && !#{fn}.klass.$pristine") 班級屬性為必選
     .field
       label(for="group_name") 班級名稱
       input#group_name(ng-model="data.groups.form_group.name"
         name="group_name"
         ng-class="{'error': form_invalid(#{fn}.group_name)}"
         type="text" ng-required="true" ng-maxlength="10")
-      .error
+      p.error
         span(ng-show="#{fn}.group_name.$error.required && !#{fn}.group_name.$pristine") 不可空白
         span(ng-show="#{fn}.group_name.$error.maxlength && !#{fn}.group_name.$pristine") 不可超過10個字
     .field
       label(for="group_extime") 其他註記
-      input#group_note(ng-model="data.groups.form_group.note" type="text" ng-maxlength="255")
+      input#group_note(ng-model="data.groups.form_group.note"
+        placeholder="選填"
+        type="text" ng-maxlength="255")
     .field.desc 預計測驗時程
     .field
       label(for="group_exdate") 日期
