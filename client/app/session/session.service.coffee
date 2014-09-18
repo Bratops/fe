@@ -13,7 +13,7 @@ angular.module "brasFeApp"
     auth_token: ""
     roles: []
     role:
-      name: "user"
+      name: "guest"
       id: 1
 
   host =  "brasbe.dev" #"localhost:3000" #"bebras01.csie.ntnu.edu.tw:88" #
@@ -115,14 +115,16 @@ angular.module "brasFeApp"
       "dashboard.#{role.name}"
     is_valid_state: ($state)->
       $state.includes("#{ret.base_state()}.**")
-    auth_user: (toState, $state)->
-      bs = ret.base_state()
-      unless toState.name.indexOf(bs) is 0
-        $state.go(bs)
-    auth_state: (e, state)->
-      bs = ret.base_state()
-      if state.name.indexOf("dashboard") >= 0
-        unless state.name.indexOf(bs) is 0
-          e.preventDefault()
+    auth_user: (tos, $state)->
+      role = ret.user.role.name
+      orole = tos.replace(/dashboard.(\w+).*/i, "$1")
+      if orole? and orole isnt role
+        console.log tos
+        $state.go(tos.replace(orole, role))
+    auth_state: (e, tos)->
+      role = ret.user.role.name
+      orole = tos.replace(/dashboard.(\w+).*/i, "$1")
+      if orole isnt "landing" and orole isnt role
+        e.preventDefault()
   ret
 

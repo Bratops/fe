@@ -1,42 +1,52 @@
 "use strict"
+angular.module("brasFeApp").classy.controller
+  name: "DashboardCtrl"
+  inject:
+    $scope: "$"
+    $state: "st"
+    menu: "menu"
+    growl: "gw"
+    sessionServ: "se"
 
-angular.module "brasFeApp"
-.controller "DashboardCtrl", ($scope, $state, menu, sessionServ, growl) ->
-  session = sessionServ
-  session.warm_up()
+  init: ->
+    @se.warm_up()
+    @$.data =
+      menu: @menu.data
+      role: {}
 
-  $scope.data =
-    menu: menu.data
-    role: {}
+    @$.$on "$stateChangeStart", @_on_sc_start
+    @$.$on "$stateChangeSuccess", @_on_sc_ok
+    @$.$on "redirect", @_on_redirect
+    @$.$on "$stateNotFound", @_on_no_state
+    @$.$on "role_switched", @_role_switched
 
-  $scope.$on "$stateChangeStart", (event, toState, toParams, fromState, fromParams)->
-    session.auth_state(event, toState)
-    #growl.warning "沒有權限", "警告"
-
-  current_role = (role)->
-    roles = $scope.user.roles
+  _current_role: (role)->
+    roles = @se.user.roles
     ri = _.findIndex(roles, (r)-> r.id == role.id)
     if ri < 0 then roles[0] else roles[ri]
 
-  $scope.$on "$stateChangeSuccess", (event, toState, toParams, fromState, fromParams)->
-    session.auth_user(toState, $state)
-    if session.is_valid_state($state)
-      user = session.user
-      $scope.user = user
-      $scope.data.role = current_role(user.role)
+  _on_sc_start: (event, toState, toParams, fromState, fromParams)->
+    @se.auth_state(event, toState.name)
 
-  $scope.$on "redirect", (event, data)->
+  _on_sc_ok: (event, toState, toParams, fromState, fromParams)->
+    @se.auth_user(toState.name, @st)
+    if @se.is_valid_state(@st)
+      user = @se.user
+      @$.user = user
+      @$.data.role = @_current_role(user.role)
+
+  _on_redirect: (event, data)->
     if data is "dashboard"
-      $state.go(data + "." + session.user.role.name)
+      @st.go(data + "." + @se.user.role.name)
 
-  $scope.$watch "data.role", (nv, ov)->
-    if ov.id isnt nv.id
-      session.switch_role(nv.id)
-
-  $scope.$on '$stateNotFound', (event, unfoundState, fromState, fromParams)->
-    console.log unfoundState.name
-    growl.error "未實作的功能", title: "Oops"
+  _on_no_state: (event, unfoundState, fromState, fromParams)->
+    @gw.error "未實作的功能", title: "Oops"
     event.preventDefault()
 
-  $scope.logout = ()->
-    session.logout()
+  watch:
+    "data.role": (nv, ov)->
+      if ov.id isnt nv.id
+        @se.switch_role(nv.id)
+
+  logout: ()->
+    @se.logout()

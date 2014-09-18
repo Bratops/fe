@@ -10,8 +10,8 @@ ul#nav
     a(du-smooth-scroll duration="1000" href="#target") 測驗對象
   li(du-scrollspy="contest")
     a(du-smooth-scroll duration="1000" href="#contest") 測驗方式
-  li
-    a(ng-show="loggedin()" ui-sref="dashboard.user") 測驗平台
+  li(ng-show="loggedin()")
+    a(ui-sref="dashboard.user") 測驗平台
   li
     a(ng-show="!loggedin()" ui-sref="session.login")
       | 登入

@@ -3,23 +3,24 @@
 angular.module "brasFeApp", [
   "classy",
   "ngCookies",
-  "LocalStorageModule",
   "ngResource",
   "ngAnimate",
   "ngSanitize",
+  "LocalStorageModule",
+  "ui.event",
   "ui.router",
   "ui.bootstrap",
+  "ui.tree",
   "restangular",
   "duScroll",    # click then scroll
-  "angular-growl",
   "timer",
-  "ngGrid",
-  "ui.tree",
-  "angular-loading-bar",
   "xeditable",
-  "flow",   # file upload
   "youtube-embed",
   "checklist-model",
+  "flow",   # file upload
+  "angular-growl",
+  "angular-loading-bar",
+  "ngGrid",
 ]
 
 .config (flowFactoryProvider) ->

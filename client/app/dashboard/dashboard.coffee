@@ -31,7 +31,7 @@ dash_router =
         controller: "DashMenuCtrl"
       panel:
         templateUrl: "app/dashboard/view/#{role}/base.html"
-        controller: "Dash#{capital(role)}Ctrl"
+        controller: "#{role}.baseCtrl"
   extend: (role, action)->
     url: "/#{action}"
     parent: "dashboard.#{role}"
@@ -87,12 +87,12 @@ angular.module 'brasFeApp'
   s = $stateProvider.state "dashboard", dr.dbmain
   state = (role, action, sub)->
     dr.ms s, role, action, sub
-  state "student"
-  state "user"
-  state "user", "groups"
   state "teacher"
+  state "teacher", "personal"
   state "teacher", "groups"
   state "teacher", "groups", "enrollments"
+  state "user"
+  state "user", "groups"
   state "manager"
   state "manager", "bulletin"
   state "manager", "users"

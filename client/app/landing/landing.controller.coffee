@@ -16,7 +16,8 @@ angular.module 'brasFeApp'
   $scope.dim_bg = ()->
     at_state("login") ||
     at_state("register") ||
-    at_state("reset")
+    at_state("reset") ||
+    at_state("student")
 
   $scope.loggedin = ()->
     sessionServ.is_user
