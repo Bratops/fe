@@ -1,0 +1,14 @@
+include mixin/school_typeahead.jade
+include mixin/login_alias.jade
+include mixin/password.jade
+
+- var fn = "loginform"
+form#login(name=fn novalidate)
+  +school_ta(fn, false)
+  +login_alias(fn)
+  +password(fn, false)
+
+  //- {{ form | json }}
+  button.btn(type="submit" ng-disabled="!loginable(loginform)"
+    ng-click="login(#{fn})") 登入
+  br

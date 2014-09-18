@@ -20,6 +20,11 @@ angular.module "brasFeApp"
       name: stat.n || "處理中"
       value: stat.v || "handling"
 
+  col_item = (name, value, sort=0)->
+    name: name
+    value: value
+    sort: sort
+
   update_user = (user, resp)->
     user.id = resp.user.id
     user.status = resp.user.status
@@ -142,8 +147,25 @@ angular.module "brasFeApp"
           ret.enroll(u)
         else if u.dirty
           ret.enroll_base(u, null, "enroll")
+    predicates: ()->
+      a = []
+      _.each ret.data.cols, (c)->
+        if c.sort is 1
+          a.push "+#{c.value}"
+        else if c.sort is 2
+          a.push "-#{c.value}"
+        else
+          c.value
+      a
     data:
       gid: null
       init: false
       users: []
       del_users: []
+      cols: [
+        col_item("姓名", "name")
+        col_item("性別", "gender")
+        col_item("學號", "suid")
+        col_item("座號", "seat", 1)
+        col_item("狀態", "status")
+      ]

@@ -1,26 +1,34 @@
 "use strict"
+angular.module("brasFeApp").classy.controller
+  name: "manager.UsersCtrl"
+  inject:
+    $scope: "$"
+    managerUsers: "mu"
 
-angular.module "brasFeApp"
-.controller "manager.UsersCtrl", ($scope, managerUsers) ->
-  mu = managerUsers
-  $scope.data = mu.data
+  _state_base: "dashboard.admin"
 
-  $scope.load_user = (kind)->
-    mu.load_users(kind)
+  init: ->
+    @$.data = @mu.data
 
-  $scope.user_style = (user)->
-    $scope.data.mod
+  load_user: (kind)->
+    @mu.load_users(kind)
 
-  $scope.$watch "data.pager.page", (nv, ov)->
-    if nv != ov
-      mu.load_users()
+  user_style: (user)->
+    @$.data.mod
 
-  $scope.$watch "data.pager.per_page", (nv, ov)->
-    if nv != ov and mu.data.mod isnt ""
-      mu.load_users()
+  watch:
+    "data.pager.page": (nv, ov)->
+      if nv != ov
+        mu.load_users()
+    "data.pager.per_page": (nv, ov)->
+      if nv != ov and mu.data.mod isnt ""
+        mu.load_users()
 
-  $scope.is_teacher_applicant = (u)->
+  is_teacher_applicant: (u)->
     u.role.name == "teacher_applicant"
 
-  $scope.mark_teacher = (user)->
-    mu.mark_teacher(user)
+  is_loading: ->
+    @mu.data.loading || "no data"
+
+  mark_teacher: (user)->
+    @mu.mark_teacher(user)

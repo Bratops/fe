@@ -34,6 +34,7 @@
   +box-shadow("", 0, 3px, 9px, opacify($cg, .3))
   li
     +transition(.5s ease-in-out background)
+    width: 13%
   li.active, li:hover
     +transition(.5s ease-in-out background)
     background: transparentize(lightblue, .6)
@@ -51,7 +52,7 @@
     li a
       +ext(inline_block)
       margin: 0 3px
-      padding: 8% 3px
+      padding: 8% 1%
       color: lighten($c-soil, 5)
     li.head
       a

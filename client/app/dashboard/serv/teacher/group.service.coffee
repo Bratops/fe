@@ -1,7 +1,6 @@
-'use strict'
-
-angular.module 'brasFeApp'
-.service 'dashTeacher', (sessionServ, growl)->
+"use strict"
+angular.module "brasFeApp"
+.service "teacherGroup", (sessionServ, growl)->
   klasses = [
       name: "普通班未分組"
       value: 1
@@ -91,10 +90,9 @@ angular.module 'brasFeApp'
         notify resp.msg
         if resp.msg.status is "success"
           ret.data.groups.list = _.reject(ret.data.groups.list, {id: g.id})
-    load_groups: (re=false)->
-      rest = sessionServ.rest.all("teacher/ugroups")
-      opt = _.merge({pg: 1}, if re then {t: _.now()} else {})
-      rest.getList(opt).then (resp)->
+    load_groups: (rest)->
+      rest = sessionServ.fest().all("teacher/ugroups")
+      rest.getList({pg: 1}).then (resp)->
         ret.data.groups.list = resp
     edit_group: (gp)->
       fg = _.clone(gp, true)

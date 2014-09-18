@@ -5,6 +5,7 @@ angular.module "brasFeApp"
   ret =
     init: false
     data:
+      loading: ""
       pager:
         page: 1
         per_page: 30
@@ -15,6 +16,7 @@ angular.module "brasFeApp"
       ret.init = true
     load_users: (kind)->
       #return if ret.data.mod is kind
+      ret.data.loading = "資料讀取中..."
       kind = kind || ret.data.mod
       ret.load_users_req(kind)
     load_users_req: (kind)->
@@ -24,6 +26,7 @@ angular.module "brasFeApp"
         ret.data.users = resp.users
         ret.data.pager.total = resp.total
         ret.data.mod = kind
+        ret.data.loading = null
     mark_teacher: (user)->
       role = sessionServ.user.role.name
       rest = sessionServ.fest().all("#{role}/users")

@@ -4,19 +4,20 @@ angular.module("brasFeApp").classy.controller
 
   inject:
     $scope: "$"
-    dashTeacher: "dt"
+    teacherGroup: "tg"
 
   init: ()->
-    @$.data = @dt.data
+    @$.data = @tg.data
     @$.$on "$stateChangeSuccess", @_scs
 
   _scs: (event, toState, toParams, fromState, fromParams)->
-    @dt.load_groups()
+    @tg.load()
 
 # groups
   group_new: ()->
-    ddg = @dt.data.groups.new
-    @dt.data.groups.new = !ddg
+    console.log @tg.data.groups.list.length
+    ddg = @tg.data.groups.new
+    @tg.data.groups.new = !ddg
 
   cant_add_group: (form)->
     (@$.data.groups.new_submitted or form.$invalid)
@@ -26,17 +27,17 @@ angular.module("brasFeApp").classy.controller
 
   group_update: (form)->
     @$.data.groups.edit = false
-    @dt.update_group()
+    @tg.update_group()
     form.$setPristine()
 
   group_add: (form)->
     @$.data.groups.new = false
-    @dt.add_group()
+    @tg.add_group()
     form.$setPristine()
 
   del_group: (g)->
     if(confirm("確定移除？"))
-      @dt.del_group(g)
+      @tg.del_group(g)
 
   group_new_cancel: ()->
     @$.data.groups.new_submitted = false
@@ -56,19 +57,19 @@ angular.module("brasFeApp").classy.controller
     field.$invalid && !field.$pristine
 
   reload_groups: ()->
-    @dt.load_groups(true)
+    @tg.load_groups(true)
 
   klass_str: (k)->
-    dg = @dt.find_local(k, "klasses")
+    dg = @tg.find_local(k, "klasses")
     dg.name
 
   extime_str: (k)->
-    dg = @dt.find_local(k, "time_sec")
+    dg = @tg.find_local(k, "time_sec")
     dg.name
 
   edit_group: (g)->
     dgu = @$.data.groups.edit
     @$.data.groups.edit = !dgu
     unless dgu
-      @dt.edit_group(g)
+      @tg.edit_group(g)
 

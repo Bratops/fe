@@ -15,26 +15,31 @@ ul.ops.flow(flow-init="{singleFile: true}"
     .tip 資料為*.csv格式（無表頭)，請參考
       a.template(href="http://bebras01.csie.ntnu.edu.tw:88/system/st_template.csv") 此範本
       | 填入資料上傳
+  li
+    .tip 學生預設密碼為
+      b "學號"
 
 .students
   table
     thead
       tr
-        - var cols = ["姓名", "性別", "學號", "座號", "處理狀態"]
-        - each col in cols
-          th #{col}
+        th(ng-repeat="col in data.cols")
+          i.sort.fa.fa-fw(ng-class="sort_status(col)" ng-click="sort_by(col)")
+          | {{col.name}}
         th(ng-show="data.users.length > 0")
           button.btn(ng-click="delete_checked()") 刪除
           input(type="checkbox" ng-model="check_all")
     tbody
       tr(ng-show=" data.users.length == 0 ")
-        td(colspan="#{cols.length}") 沒有資料
-      tr(ng-repeat=" sv in data.users ")
+        td(colspan="{{data.cols.length}}") 沒有資料
+      tr(ng-repeat=" sv in data.users | orderBy: precs() ")
         - var keys = ["name", "gender", "suid", "seat", "status.name"]
         - each key in keys
           td(ng-class="{error: sv.error.#{key}}")
             if key != "status.name"
-              a(href="" buttons="no" editable-text="sv.#{key}" onaftersave="make_dirty(sv)")
+              a(href="" buttons="no"
+                editable-text="sv.#{key}"
+                onaftersave="make_dirty(sv)")
                 | {{ sv.#{key} || "no name" }}
             else
               span.status(ng-class="sv.status.value")
@@ -43,5 +48,5 @@ ul.ops.flow(flow-init="{singleFile: true}"
           input(type="checkbox"
             ng-hide=" sv.status.value != 'added' "
             checklist-model="data.del_users"
-            checklist-value="sv.id")
+            checklist-value="svid(sv)")
 
