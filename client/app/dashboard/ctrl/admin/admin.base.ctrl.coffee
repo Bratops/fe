@@ -29,7 +29,7 @@ angular.module("brasFeApp").classy.controller
     @$.$on "users_loaded", @_evt_users_loaded
 
   _sc_start: (event, toState, toParams, fromState, fromParams)->
-    @session.auth_state(event, toState)
+    @session.auth_state(event, toState.name)
 
   _sc_succ: (event, toState, toParams, fromState, fromParams)->
     return unless @session.is_valid_state(@st)

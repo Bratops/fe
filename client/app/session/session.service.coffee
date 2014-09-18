@@ -118,9 +118,12 @@ angular.module "brasFeApp"
     auth_user: (tos, $state)->
       role = ret.user.role.name
       orole = tos.replace(/dashboard.(\w+).*/i, "$1")
-      if orole? and orole isnt role
-        console.log tos
-        $state.go(tos.replace(orole, role))
+      if orole isnt "landing" and orole isnt role
+        st = $state.get(tos.replace(orole, role))
+        if st?
+          $state.go(st)
+        else
+          $state.go("dashboard.#{role}")
     auth_state: (e, tos)->
       role = ret.user.role.name
       orole = tos.replace(/dashboard.(\w+).*/i, "$1")

@@ -15,7 +15,6 @@ angular.module("brasFeApp").classy.controller
 
 # groups
   group_new: ()->
-    console.log @tg.data.groups.list.length
     ddg = @tg.data.groups.new
     @tg.data.groups.new = !ddg
 

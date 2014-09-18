@@ -12,13 +12,23 @@
         - each ht in h2
           span #{ht}
     //- {{ user | json }} a
+    include view/nav.jade
     .control(ui-view="control" ng-class="{dim: dim_bg()}")
-      include view/nav.jade
     ul.msgs
       li(ng-repeat="msg in data.msgc.msgs")
         .title {{msg.title}}
         p {{ msg.body }}
   .body#body(ng-class="{dim: dim_bg()}")
     include view/intro.jade
-    footer.footer
-      | 2014 &copy; Bebras Taiwan
+    footer.footer 2014 &copy; Bebras Taiwan
+      br
+      .power Powered by
+        ul
+          li
+            a(href="http://www.ntnu.edu.tw")
+              img(src="/assets/images/ntnu_sd_bebras.png")
+              label NTNU
+          li
+            a(href="http://www.csie.ntnu.edu.tw")
+              img(src="/assets/images/ntnu_csie.png")
+              label NTNU-CSIE

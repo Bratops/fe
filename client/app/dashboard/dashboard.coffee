@@ -91,6 +91,7 @@ angular.module 'brasFeApp'
   state "teacher", "personal"
   state "teacher", "groups"
   state "teacher", "groups", "enrollments"
+  state "teacher_applicant"
   state "user"
   state "user", "groups"
   state "manager"
