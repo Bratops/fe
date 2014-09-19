@@ -16,7 +16,7 @@ angular.module "brasFeApp"
       name: "guest"
       id: 1
 
-  host =  "brasbe.dev" #"localhost:3000" #"bebras01.csie.ntnu.edu.tw:88" #
+  host =  "bebras01.csie.ntnu.edu.tw:88" #
 
   fb_auth = ()->
 

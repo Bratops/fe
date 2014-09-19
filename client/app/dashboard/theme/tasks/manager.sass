@@ -1,0 +1,12 @@
+.tasks
+  height: 100%
+  +ext(tasks_ops)
+  +ext(task_list)
+  .scroll
+    background: lightpink
+    height: 100 - $ht
+    .list, .detail
+      +ext(inline_block)
+      +ext(full_height)
+      +ext(autoflow)
+      width: 50%

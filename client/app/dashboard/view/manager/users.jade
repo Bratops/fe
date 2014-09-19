@@ -24,7 +24,7 @@
       | {{ is_loading() }}
     li(ng-repeat="u in data.users")
       .user(ng-class="user_style(u)")
-        .check(ng-show="is_teacher_applicant(u)"
+        .check(ng-show="list_mod == 'ta'"
           ng-click="mark_teacher(u)")
           i.fa.fa-fw.fa-check-circle
         .field

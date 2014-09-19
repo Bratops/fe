@@ -7,6 +7,20 @@
   &.active:hover
     +ext(no_box_shadow)
 
+%level_ratings
+  .rating
+    label
+      +ext(inline_block)
+    label
+      width: 100px
+      text-align: right
+    span i .sr-only
+      display: none
+    i.glyphicon
+      +ext(hover_pointer)
+      +ext(fa, false)
+      +ext(fa-fw, false)
+
 %tasks_new_btn
   $tc: #acd
   $bc: #ffe
@@ -24,6 +38,42 @@
       +box-shadow(inset, 0, -2px, 4px, darken($tc, 30))
       +transition(.3s all linear)
 
+%task_field_font
+  .field
+    label
+      font-size: 1.6rem
+    input
+      font-size: 1.8rem
+    textarea
+      font-size: 1.2rem
+    .rating
+      label, a, span
+        font-size: 1.3rem
+
+%task_field_base
+  .field
+    +ext(full_width)
+    &.half
+      +ext(inline_block)
+      width: 50%
+      label, input
+        width: 92%
+
+%task_field_item
+  .field
+    +ext(level_ratings)
+    label
+      color: $c-swim
+    label, input, .rating, textarea
+      +ext(_block)
+      margin: 5px auto
+      width: 96%
+    input, textarea
+      +border-radius(2px)
+      border: 3px solid lighten($c-swim, 40)
+    textarea
+      min-height: 500px
+
 .tasks ul
   +ext(inline_list)
   +ext(full_width)
@@ -31,3 +81,17 @@
   li
     width: 20%
     vertical-align: middle
+
+.tasks form
+  +ext(task_field_base)
+  +ext(task_field_item)
+  +ext(task_field_font)
+
+.tasks .btns
+  +ext(abs_inline_block)
+  bottom: 0
+  +ext(form_btn_base)
+  +form_btn_var(#cde, 2.5rem)
+  .btn
+    +ext(text_center)
+    +ext(inline_block)

@@ -5,3 +5,6 @@ angular.module("brasFeApp").classy.controller
     $scope: "$"
     managerTask: "mt"
 
+  init: ->
+    @$.data = @mt.data
+    @mt.init()

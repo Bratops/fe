@@ -1,0 +1,28 @@
+- var fn = "basic_form"
+form(name="#{fn}" ng-show="clicked('basic')")
+  .field
+    label 標題
+    input(type="text")
+  .field.half
+    label ID
+    input(type="text")
+  .field.half
+    label 作者
+    input(type="text")
+  .field
+    label 類別
+    input(type="text")
+  .field
+    label 能見度(demo, contest, teacher)
+    input(type="text" name="visibility")
+  .field
+    label 難度
+    .rating(ng-repeat="lvl in data.task.levels")
+      label {{ lvl.name }}
+      span ({{ level_text(lvl) }})
+      rating(ng-model="lvl.value" max="3"
+        state-on="'fa-star'"
+        state-off="'fa-star-o'"
+        on-hover="hovering_level(lvl)"
+        on-leave="overStar = null")
+      a.fa.fa-fw.fa-times.unset(href="" ng-click="unset_level(lvl)")

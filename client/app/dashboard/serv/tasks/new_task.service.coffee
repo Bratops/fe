@@ -18,9 +18,29 @@ angular.module "brasFeApp"
     value: "misc"
   ]
 
-  ret =
+  _default_levels = ->
+    [
+      name: "Beaver"
+      value: 0
+    ,
+      name: "Benjamin"
+      value: 0
+    ,
+      name: "Cadet"
+      value: 0
+    ,
+      name: "Senior"
+      value: 0
+    ,
+      name: "Junior"
+      value: 0
+    ]
+
+  r =
     data:
       init: false
-      part: {}
+      task:
+        levels: _default_levels()
       btns: _btns
       clicked: _btns[0]
+  r

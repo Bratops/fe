@@ -3,29 +3,12 @@ ul
     .btn(ng-click="btn_clicked(btn)" ng-class="clicked_btn(btn)")
       |{{ btn.name }}
 
-- var fn = "basic_form"
-form(name="#{fn}" ng-show="clicked('basic')")
-  .field
-    label 標題
-    input(type="text")
-  .field
-    label ID
-    input(type="text")
-  .field
-    label 類別
-    input(type="text")
-  .field
-    label 難度
-    input(type="text")
-  .field
-    label 作者
-    input(type="text")
-
+include form/basic.jade
 - var fn = "body_form"
 form(name="#{fn}" ng-show="clicked('body')")
   .field
     label 題文
-    input(type="text")
+    textarea(type="text")
 
 - var fn = "quest_form"
 form(name="#{fn}" ng-show="clicked('quest')")
@@ -50,3 +33,9 @@ form(name="#{fn}" ng-show="clicked('misc')")
   .field
     label 能見度
     input(type="text")
+
+.btns
+  .btn
+    a(ng-click="save_task()") save
+  .btn
+    a(ng-click="cancel()") cancel

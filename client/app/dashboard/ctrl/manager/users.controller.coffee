@@ -11,6 +11,7 @@ angular.module("brasFeApp").classy.controller
     @$.data = @mu.data
 
   load_user: (kind)->
+    @$.list_mod = if kind is "teacher_applicant" then "ta" else ""
     @mu.load_users(kind)
 
   user_style: (user)->
