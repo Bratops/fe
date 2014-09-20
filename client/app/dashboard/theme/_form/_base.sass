@@ -54,18 +54,18 @@
     +ext(round_it)
     +ext(cur_pointer)
     margin: 3px 3px
+    padding: 4px
 
 =form_btn_var($cr: #efd, $fs: 1.5rem)
   .btn
     font-size: $fs
     background: $cr
-    color: darken($cr, 30)
+    color: darken($cr, 40)
     border-color: darken($cr, 40)
     +transition(all .2s ease-in-out)
     &:hover
       +transition(all .3s ease-in-out)
       background: darken($cr, 10)
-      color: adjust-hue(darken($cr, 30), 20)
     &[disabled]
       cursor: not-allowed
       background: #ddd

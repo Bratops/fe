@@ -1,94 +1,103 @@
-'use strict'
+"use strict"
+angular.module("brasFeApp").classy.controller
+  name: "SessionCtrl"
+  inject:
+    $scope: "$"
+    $state: "st"
+    $stateParams: "sp"
+    $timeout: "timeout"
+    $location: "loc"
+    Config: "config"
+    sessionServ: "session"
 
-angular.module 'brasFeApp'
-.controller 'SessionCtrl', ($scope, $state, $stateParams, $timeout, $location, sessionServ) ->
-  #sessionServ.warm_up()
-  $scope.form =
-    submitted: false
-  #$scope.redirect = sessionServ.redirect
+  init: ->
+    #@session.warm_up()
+    @$.form =
+      clear_time: 90000
+      submitted: false
+    @$.$on "$stateChangeStart", @_on_state_change
+    @$.$on "$stateChangeSuccess", @_on_state_arrival
+    @$.$on "$viewContentLoaded", @_on_view_loaded
+    @$.$on "redirect", @_on_redirect
+    @$.$on "httpError", @_on_http_error
+    @$.timer = @timeout(@onTimeout, @$.form.clear_time)
 
-# core
-  $scope.onTimeout = ()->
-    $scope.form.password = ""
-    $scope.form.password_confirmation = ""
-    $scope.timer = $timeout($scope.onTimeout, 90000)
+  onTimeout: ->
+    @$.form.password = ""
+    @$.form.password_confirmation = ""
+    @$.timer = @timeout(@onTimeout, @$.form.clear_time)
 
-  $scope.timer = $timeout($scope.onTimeout, 90000)
+  stop: ->
+    @timeout.cancel(@timer)
 
-  $scope.stop = ->
-    $timeout.cancel($scope.timer)
+  _on_state_chang: (event, toState, toParams, fromState, fromParams)->
+    @$.stop()
+    @$.form.submitted = false
 
-# events
-  $scope.$on "$stateChangeStart",
-  (event, toState, toParams, fromState, fromParams)->
-    $scope.stop()
-    $scope.form.submitted = false
-
-  $scope.$on "redirect", (event, data)->
-    if data is "dashboard"
-      rn = if sessionServ.user.role then sessionServ.user.role.name else "user"
-      $state.go(data + "." + rn)
-
-  $scope.$on "httpError", (event)->
-    $scope.form.submitted = false
-
-  $scope.$on "$stateChangeSuccess", (event, toState, toParams, fromState, fromParams)->
+  _on_state_arrival: (event, toState, toParams, fromState, fromParams)->
     if toState.name is "session.auth"
-      sessionServ.auth($stateParams)
+      @session.auth(@sp)
     else if toState.name is "session.gauth"
-      sessionServ.gauth($stateParams)
+      @session.gauth(@sp)
 
-  $scope.$on "$viewContentLoaded", (event)->
+  _on_redirect: (event, data)->
+    if data is "dashboard"
+      rn = if @session.user.role then @session.user.role.name else "user"
+      @st.go(data + "." + rn)
+
+  _on_http_error: (event)->
+    @$.form.submitted = false
+
+  _on_view_loaded: (event)->
     rpt = "reset_password_token"
-    if $state.current.name is "sessionServ.reset"
-      if !(rpt of $stateParams) or !$stateParams[rpt] or $stateParams[rpt] is "true"
-        $state.go("landing")
+    if @st.current.name is "session.reset"
+      if !(rpt of @sp) or !@sp[rpt] or @sp[rpt] is "true"
+        @st.go("landing")
 
-  $scope.$watch "school", (nv, ov)->
-    if nv and (typeof nv is "object") and "moeid" of nv
-      $scope.form.moeid = nv.moeid
+  watch:
+    school: (nv, ov)->
+      if nv and (typeof nv is "object") and "moeid" of nv
+        @$.form.moeid = nv.moeid
 
-# view
-  $scope.reset = ()->
-    $scope.form.submitted = true
-    oc = _.clone $scope.form
-    obj = _.extend(oc, $stateParams)
-    sessionServ.reset_pw(obj)
+  reset: ()->
+    @$.form.submitted = true
+    oc = _.clone @$.form
+    obj = _.extend(oc, @sp)
+    @session.reset_pw(obj)
 
-  $scope.register = (form)->
-    $scope.form.submitted = true
-    sessionServ.register($scope.form)
+  register: (form)->
+    @$.form.submitted = true
+    @session.register(@$.form)
 
-  $scope.login = ()->
-    $scope.form.submitted = true
-    sessionServ.login($scope.form)
+  login: ()->
+    @$.form.submitted = true
+    @session.login(@$.form)
 
-  $scope.aquire_new_pw = ()->
-    sessionServ.request_link($scope.form)
+  aquire_new_pw: ()->
+    @session.request_link(@$.form)
 
-  $scope.moeid_not_set = ()->
-    !("moeid" of $scope.form) or !$scope.form.moeid
+  moeid_not_set: ()->
+    !("moeid" of @$.form) or !@$.form.moeid
 
-  $scope.get_school_list = (query)->
-    sessionServ.sclist(query).then (resp) ->
+  get_school_list: (query)->
+    @session.sclist(query).then (resp) ->
       resp
 
-  $scope.password_matched = (form)->
+  password_matched: (form)->
     form.password == form.password_confirm
 
-  $scope.loginable = (form)->
-    !$scope.form.submitted and (form.$valid)
+  loginable: (form)->
+    !@$.form.submitted and (form.$valid)
 
-  $scope.resetable = (form)->
-    !$scope.form.submitted and
-    (form.$valid and !$scope.password_matched(form))
+  resetable: (form)->
+    !@$.form.submitted and
+    (form.$valid and !@$.password_matched(form))
 
-  $scope.registerable = (form)->
-    !$scope.form.submitted and
-    (form.$valid and !$scope.moeid_not_set())
+  registerable: (form)->
+    !@$.form.submitted and
+    (form.$valid and !@$.moeid_not_set())
 
-  $scope.auth = (provider)->
-    $scope.form.submitted = true
-    base = "http://#{sessionServ.host}"
-    console.log "#{base}/users/auth/#{provider}"
+  auth: (provider)->
+    @$.form.submitted = true
+    base = "http://#{@config.host}"
     window.location.href = "#{base}/users/auth/#{provider}"

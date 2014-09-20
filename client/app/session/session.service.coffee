@@ -16,8 +16,6 @@ angular.module "brasFeApp"
       name: "guest"
       id: 1
 
-  host =  "bebras01.csie.ntnu.edu.tw:88" #
-
   fb_auth = ()->
 
   ret =
@@ -27,13 +25,11 @@ angular.module "brasFeApp"
       login_alias: ""
       auth_token: ""
     redirect: ""
-    host: host
-    rest: sestangular.rest(guest, {host: host}).all ""
+    rest: sestangular.rest(guest, {})
     fest: ()->
       opt =
-        host: host
         cache: false
-      sestangular.rest(ret.user, opt).all ""
+      sestangular.rest(ret.user, opt)
     validate: ()->
       if ret.is_user
         ret.rest.one("").get().then (resp)->
@@ -49,7 +45,7 @@ angular.module "brasFeApp"
       #  console.log e
       #console.log user
     update_session: (user)->
-      rest = sestangular.rest(user, {host: host})
+      rest = sestangular.rest(user, {})
       rest.one("session").get("").then (resp)->
         ret._session_base(resp)
     gauth: (data)->
@@ -69,7 +65,7 @@ angular.module "brasFeApp"
       ret.rest.all("group/publist/school").getList({query: query})
     set_user: (user)->
       ret.user = user
-      ret.rest = sestangular.rest(user, {host: host})
+      ret.rest = sestangular.rest(user, {})
       if (!!ret.user and !!ret.user.login_alias and !!ret.user.auth_token)
         ret.is_user = true
       else

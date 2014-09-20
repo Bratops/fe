@@ -9,11 +9,11 @@ angular.module("brasFeApp").classy.controller
   init: ()->
     @$.data = @nt.data
 
-  btn_clicked: (btn)->
-    @nt.data.clicked = btn
+  tab_click: (tab)->
+    @nt.data.clicked = tab
 
-  clicked_btn: (btn)->
-    if @nt.data.clicked is btn then "active" else ""
+  is_tab_clicked: (tab)->
+    if @nt.data.clicked is tab then "active" else ""
 
   clicked: (form)->
     @nt.data.clicked.value is form
@@ -22,6 +22,7 @@ angular.module("brasFeApp").classy.controller
     lvl.value = 0
 
   hovering_level: (lvl)->
+    #console.log @$.data.task
     #console.log lvl
 
   level_text: (lvl)->

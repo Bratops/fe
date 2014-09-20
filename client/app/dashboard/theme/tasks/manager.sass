@@ -1,7 +1,19 @@
+%tasks_layout
+  ul
+    min-height: 7%
+  .pad
+    +ext(_block)
+    height: 92%
+    overflow: auto
+
 .tasks
   height: 100%
   +ext(tasks_ops)
   +ext(task_list)
+  +ext(tasks_layout)
+  ul
+    +ext(panel_tab)
+  +ext(task_forms)
   .scroll
     background: lightpink
     height: 100 - $ht

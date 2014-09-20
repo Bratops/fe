@@ -1,15 +1,15 @@
 "use strict"
 angular.module "brasFeApp"
 .service "managerNewTask", (sessionServ, notify)->
-  _btns = [
+  _tabs = [
     name: "基本設定"
     value: "basic"
   ,
-    name: "題文"
+    name: "題文及問題"
     value: "body"
   ,
-    name: "問題及選項"
-    value: "quest"
+    name: "選項"
+    value: "choices"
   ,
     name: "資訊"
     value: "info"
@@ -36,11 +36,19 @@ angular.module "brasFeApp"
       value: 0
     ]
 
+  _choice = (index=0)->
+    index: index
+    content: ""
+
   r =
     data:
       init: false
       task:
         levels: _default_levels()
-      btns: _btns
-      clicked: _btns[0]
+        choices: _.map([0,1,2,3], (v)-> _choice(v))
+        keywords: []
+        klass: []
+        opens: []
+      tabs: _tabs
+      clicked: _tabs[0]
   r

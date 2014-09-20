@@ -198,7 +198,6 @@ module.exports = (grunt) ->
           /bootstrap.js/
           /json3/
           /es5-shim/
-          /ckeditor/
           /bootstrap.css/
           /font-awesome.css/
         ]
@@ -304,7 +303,7 @@ module.exports = (grunt) ->
               "blib/**/*"
               "assets/images/{,*/}*.{webp}"
               "assets/fonts/**/*"
-              "assets/js/**/*"
+              "assets/ckeditor/**/*"
               "index.html"
             ]
           }

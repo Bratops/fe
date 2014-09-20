@@ -1,41 +1,20 @@
 ul
-  li(ng-repeat="btn in data.btns")
-    .btn(ng-click="btn_clicked(btn)" ng-class="clicked_btn(btn)")
-      |{{ btn.name }}
+  li.tab(ng-repeat="tab in data.tabs" ng-class="is_tab_clicked(tab)")
+    a(ng-click="tab_click(tab)")
+      |{{ tab.name }}
 
 include form/basic.jade
-- var fn = "body_form"
-form(name="#{fn}" ng-show="clicked('body')")
-  .field
-    label 題文
-    textarea(type="text")
+.pad
+  +basic_form
+  +body_form
+  +choices_form
+  +info_form
+  +misc_form
 
-- var fn = "quest_form"
-form(name="#{fn}" ng-show="clicked('quest')")
-  .field
-    label 題問
-    input(type="text")
-  .field
-    label 選項
-    input(type="text")
+  .btns
+    .btn
+      a(ng-click="save_task()") save
+    .btn
+      a(ng-click="cancel()") cancel
 
-- var fn = "info_form"
-form(name="#{fn}" ng-show="clicked('info')")
-  .field
-    label 資訊
-    input(type="text")
-  .field
-    label 提示
-    input(type="text")
-
-- var fn = "misc_form"
-form(name="#{fn}" ng-show="clicked('misc')")
-  .field
-    label 能見度
-    input(type="text")
-
-.btns
-  .btn
-    a(ng-click="save_task()") save
-  .btn
-    a(ng-click="cancel()") cancel
+script(src="/assets/ckeditor/ckeditor.js")

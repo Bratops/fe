@@ -30,7 +30,7 @@
     "angular-youtube-mb": "~0.1.2",
     "angular-classy": "~0.4.2",
     "angular-ui-utils": "bower-event",
-    "ckeditor": "~4.4.4"
+    "ng-tags-input": "2.1.1"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

@@ -1,11 +1,30 @@
-%btn_active_style
-  &.active
-    background: #f9f9f9
-    +ext(slim_border)
-    border-bottom: none
-    border-color: transparent
-  &.active:hover
-    +ext(no_box_shadow)
+%field_item_base
+  +ext(_block)
+  margin: 5px auto
+  width: 96%
+
+%field_input_base
+  +border-radius(2px)
+  border: 3px solid lighten($c-swim, 40)
+
+%tags_input
+  tags-input .host
+    outline: none
+    +ext(field_input_base)
+    .tag-list
+      outline: none
+    .tags.focused
+      +ext(no_box_shadow)
+    .tags > input
+      border: none
+      margin: 2px
+      +ext(full_width)
+      +ext(no_padding)
+    .tags .tag-item
+      +bg-gradient(180deg, lighten($c-swim, 55), lighten($c-swim, 30))
+      width: auto
+      &.selected
+        +bg-gradient(180deg, lighten(red, 40), lighten(red, 20))
 
 %level_ratings
   .rating
@@ -21,30 +40,13 @@
       +ext(fa, false)
       +ext(fa-fw, false)
 
-%tasks_new_btn
-  $tc: #acd
-  $bc: #ffe
-  .btn
-    +ext(text_center)
-    +bg-gradient(5deg, $tc, $bc)
-    font-size: 1.5rem
-    padding: 8px
-    +ext(hover_pointer)
-    +transition(.3s all linear)
-    border-top: 1px solid transparent
-    +ext(btn_active_style)
-    &:hover
-      color: darken($bc, 75)
-      +box-shadow(inset, 0, -2px, 4px, darken($tc, 30))
-      +transition(.3s all linear)
-
 %task_field_font
   .field
     label
       font-size: 1.6rem
     input
       font-size: 1.8rem
-    textarea
+    textarea, tags-input input
       font-size: 1.2rem
     .rating
       label, a, span
@@ -52,46 +54,36 @@
 
 %task_field_base
   .field
+    vertical-align: top
     +ext(full_width)
     &.half
       +ext(inline_block)
       width: 50%
       label, input
         width: 92%
+      tags-input
+        width: 93%
 
 %task_field_item
   .field
     +ext(level_ratings)
+    +ext(tags_input)
+    label, input, .rating, textarea, tags-input
+      +ext(field_item_base)
+    input, textarea
+      +ext(field_input_base)
     label
       color: $c-swim
-    label, input, .rating, textarea
-      +ext(_block)
-      margin: 5px auto
-      width: 96%
-    input, textarea
-      +border-radius(2px)
-      border: 3px solid lighten($c-swim, 40)
-    textarea
-      min-height: 500px
 
-.tasks ul
-  +ext(inline_list)
-  +ext(full_width)
-  +ext(tasks_new_btn)
-  li
-    width: 20%
-    vertical-align: middle
-
-.tasks form
-  +ext(task_field_base)
-  +ext(task_field_item)
-  +ext(task_field_font)
-
-.tasks .btns
-  +ext(abs_inline_block)
-  bottom: 0
-  +ext(form_btn_base)
-  +form_btn_var(#cde, 2.5rem)
-  .btn
-    +ext(text_center)
-    +ext(inline_block)
+%task_forms
+  form
+    +ext(task_field_base)
+    +ext(task_field_item)
+    +ext(task_field_font)
+  .btns
+    +ext(form_btn_base)
+    padding: 0 2%
+    +form_btn_var(lighten($c-swim, 50), 2rem)
+    .btn
+      +ext(text_center)
+      +ext(inline_block)

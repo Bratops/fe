@@ -7,3 +7,4 @@ client/bower_components
 client/blib
 dist
 /server/config/local.env.js
+/client/assets/ckeditor
