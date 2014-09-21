@@ -1,6 +1,6 @@
 "use strict"
 angular.module "brasFeApp"
-.service "managerTask", (sessionServ, notify)->
+.service "managerTasks", (sessionServ, notify)->
   r =
     inited: false
     data:

@@ -27,9 +27,66 @@
     +ext(text_center)
     +ext(hover_pointer)
 
+%_right_hump
+  &:after
+    content: ""
+    border-top: 30px solid transparent
+    border-bottom: 30px solid transparent
+    border-left: 10px solid
+    +position(absolute)
+    top: 0
+    left: 100%
+
+=right_hump($cr: #cde, $h: 60px)
+  $ccr: darken($cr, 10)
+  $glow: transparentize(lighten($c-swim, 10), .3)
+  +ext(_right_hump)
+  background: $cr
+  position: relative
+  border-bottom: 1px solid $ccr
+  border-right: 1px solid $ccr
+  +transition(all .5s linear)
+  &:after
+    border-top-width: $h/2
+    border-bottom-width: $h/2
+    border-left-color: $cr
+    border-left-width: 0
+    +transition(all .4s ease-in-out)
+    transition-property: border-left-color, border-width
+  &:hover:after
+    +transition(all .2s ease-in-out)
+    transition-property: border-left-color, border-width, background
+    border-left-color: $ccr
+    border-left-width: 15px
+  &:hover
+    z-index: 200
+    +transition(all .5s linear)
+    +box-shadow("", 0, 0, 10px, $glow)
+    +ext(hover_pointer)
+    +bg-gradient(90deg, #eee, $ccr)
+
+%_list_task_item
+  .task
+    .title
+      +ext(font_bold)
+      font-size: 1.6rem
+    .date
+      vertical-align: top
+
+=list_task_item($bg: #cde, $lh: 60px, $lp: 5px)
+  +ext(_list_task_item)
+  .task
+    +right_hump($bg, $lh + $lp * 2)
+    padding: $lp
+    height: $lh
+
 %task_list
   .list
-    background: lightblue
+    +list_task_item(#f6f6f6, 60px, 5px)
+    li
+      position: relative
+      padding: 0 14px 0 0
+      +ext(_block)
 
 %panel_tab
   +ext(inline_list)

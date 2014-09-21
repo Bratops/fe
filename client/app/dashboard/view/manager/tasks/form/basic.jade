@@ -21,15 +21,15 @@ mixin basic_form()
       tags-input(type="text" ng-model="data.task.keywords")
     .field
       label 難度
-      .rating(ng-repeat="lvl in data.task.levels")
-        label {{ lvl.name }}
-        span ({{ level_text(lvl) }})
+      .rating(ng-repeat="lvl in data.task.ratings")
+        label {{ lvl.key }}
+        span ({{ rating_text(lvl) }})
         rating(ng-model="lvl.value" max="3"
           state-on="'fa-star'"
           state-off="'fa-star-o'"
-          on-hover="hovering_level(lvl)"
+          on-hover="hovering_rating(lvl)"
           on-leave="overStar = null")
-        a.fa.fa-fw.fa-times.unset(href="" ng-click="unset_level(lvl)")
+        a.fa.fa-fw.fa-times.unset(href="" ng-click="unset_rating(lvl)")
 
 mixin body_form()
   - var fn = "body_form"
@@ -45,7 +45,8 @@ mixin choices_form()
   - var fn = "choices_form"
   form(name="#{fn}" ng-show="clicked('choices')")
     .field(ng-repeat="cho in data.task.choices")
-      label 選項{{ cho.index }}
+      label.choice(ng-click="mark_answer(cho)" ng-class="{answer: cho.answer}")
+        | 選項{{ cho.index }}
       textarea(ng-model="cho.content" ckeditor="")
 
 mixin info_form()
@@ -62,4 +63,4 @@ mixin misc_form()
   - var fn = "misc_form"
   .info(name="#{fn}" ng-show="clicked('misc')")
     pre
-      {{ data.task | json }}
+      {{ json_size() }}

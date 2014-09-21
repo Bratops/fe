@@ -1,6 +1,6 @@
 "use strict"
 angular.module "brasFeApp"
-.service "managerNewTask", (sessionServ, notify)->
+.service "managerTask", ($rootScope, sessionServ, notify)->
   _tabs = [
     name: "基本設定"
     value: "basic"
@@ -20,35 +20,47 @@ angular.module "brasFeApp"
 
   _default_levels = ->
     [
-      name: "Beaver"
+      key: "beaver"
       value: 0
     ,
-      name: "Benjamin"
+      key: "benjamin"
       value: 0
     ,
-      name: "Cadet"
+      key: "cadet"
       value: 0
     ,
-      name: "Senior"
+      key: "senior"
       value: 0
     ,
-      name: "Junior"
+      key: "junior"
       value: 0
     ]
 
   _choice = (index=0)->
     index: index
     content: ""
+    answer: false
 
   r =
     data:
       init: false
       task:
-        levels: _default_levels()
+        ratings: _default_levels()
         choices: _.map([0,1,2,3], (v)-> _choice(v))
         keywords: []
         klass: []
         opens: []
       tabs: _tabs
       clicked: _tabs[0]
+  r.save = ->
+    data = _.clone(r.data.task)
+    rst = sessionServ.fest().all("manager/tasks")
+    rst.post({task: data}).then (resp)->
+      notify.g resp.msg
+      $rootScope.$broadcast "task:created", resp.task
+  r.json_size = (obj)->
+    objs = JSON.stringify(obj)
+    m = encodeURIComponent(objs).match(/%[89ABab]/g)
+    ml = if m? then m.length else 0
+    objs.length + ml
   r

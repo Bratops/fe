@@ -5,6 +5,12 @@
 
   .scroll
     ul.list
-      p list
+      li(ng-repeat="tsk in data.tasks")
+        .task
+          span.title {{ tsk.title }}
+          span.date {{ tsk.year }}
+          .klasses
+            .klass(ng-repeat="kls in tsk.klasses")
+              | {{ kls.text }}
     .detail
       p more

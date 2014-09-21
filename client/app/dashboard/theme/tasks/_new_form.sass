@@ -64,10 +64,19 @@
       tags-input
         width: 93%
 
+%ans_label
+  label.choice
+    +ext(hover_pointer)
+  label.answer
+    background: pink
+    &:after
+      content: "(答案)"
+
 %task_field_item
   .field
     +ext(level_ratings)
     +ext(tags_input)
+    +ext(ans_label)
     label, input, .rating, textarea, tags-input
       +ext(field_item_base)
     input, textarea
@@ -75,11 +84,7 @@
     label
       color: $c-swim
 
-%task_forms
-  form
-    +ext(task_field_base)
-    +ext(task_field_item)
-    +ext(task_field_font)
+%task_form_btns
   .btns
     +ext(form_btn_base)
     padding: 0 2%
@@ -87,3 +92,10 @@
     .btn
       +ext(text_center)
       +ext(inline_block)
+
+%task_forms
+  form
+    +ext(task_field_base)
+    +ext(task_field_item)
+    +ext(task_field_font)
+  +ext(task_form_btns)
