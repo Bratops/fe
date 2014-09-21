@@ -17,11 +17,28 @@ angular.module "brasFeApp", [
   "xeditable",
   "youtube-embed",
   "checklist-model",
+  "ngTagsInput",
   "flow",   # file upload
   "angular-growl",
   "angular-loading-bar",
   "ngGrid",
 ]
+
+.constant "Config",
+  host: "brasbe.dev" #"bebras01.csie.ntnu.edu.tw:88" #"localhost:3000"
+
+.config (tagsInputConfigProvider) ->
+  tagsInputConfigProvider.setDefaults("tagsInput",
+    placeholder: "新增標記"
+    addOnEnter: true
+  ).setDefaults("autoComplete",
+    maxResultsToShow: 10
+    debounceDelay: 1000
+  ).setActiveInterpolation("tagsInput",
+    placeholder: true
+    addOnEnter: true
+    removeTagSymbol: true
+  ).setTextAutosizeThreshold 40
 
 .config (flowFactoryProvider) ->
     flowFactoryProvider.defaults =

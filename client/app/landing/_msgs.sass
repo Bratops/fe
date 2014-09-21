@@ -1,16 +1,19 @@
 %msgs_base
-  $cr: lighten($c-dirt, 40)
+  $cr: lighten($c-dirt, 30)
+  +ext(f-read)
+  +border-radius(10px)
+  +ext(autoflow)
+  +box-shadow("", 0, 1px, 10px, lighten($c-dirt, 20))
+  background: transparentize($cr, .2)
+  margin: 30px auto
+  padding: 10px 1%
+  width: 70%
+  max-height: 60%
+  height: 60%
+
+%landing_msgs
   .msgs
-    +ext(f-read)
-    +border-radius(10px)
-    +ext(autoflow)
-    +box-shadow("", 0, 0, 5px, $cr)
-    background: transparentize($cr, .4)
-    margin: 30px auto
-    padding: 10px 1%
-    width: 70%
-    max-height: 60%
-    height: 60%
+    +ext(msgs_base)
     li
       border-bottom: 2px dashed lighten($c-soil, 30)
       margin-bottom: 3px

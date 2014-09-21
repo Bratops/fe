@@ -1,0 +1,66 @@
+mixin basic_form()
+  - var fn = "basic_form"
+  form(name="#{fn}" ng-show="clicked('basic')")
+    .field
+      label 標題
+      input(type="text" ng-model="data.task.title")
+    .field.half
+      label ID
+      input(type="text" ng-model="data.task.tid")
+    .field.half
+      label 作者
+      input(type="text" ng-model="data.task.author")
+    .field.half
+      label 類別
+      tags-input(type="text" ng-model="data.task.klass")
+    .field.half
+      label 能見度(demo, contest, teacher)
+      tags-input(type="text" ng-model="data.task.opens")
+    .field
+      label 關鍵字
+      tags-input(type="text" ng-model="data.task.keywords")
+    .field
+      label 難度
+      .rating(ng-repeat="lvl in data.task.ratings")
+        label {{ lvl.key }}
+        span ({{ rating_text(lvl) }})
+        rating(ng-model="lvl.value" max="3"
+          state-on="'fa-star'"
+          state-off="'fa-star-o'"
+          on-hover="hovering_rating(lvl)"
+          on-leave="overStar = null")
+        a.fa.fa-fw.fa-times.unset(href="" ng-click="unset_rating(lvl)")
+
+mixin body_form()
+  - var fn = "body_form"
+  form(name="#{fn}" ng-show="clicked('body')")
+    .field
+      label 題文
+      textarea(ng-model="data.task.body" ckeditor="")
+    .field
+      label 題問
+      textarea(ng-model="data.task.quest" ckeditor="")
+
+mixin choices_form()
+  - var fn = "choices_form"
+  form(name="#{fn}" ng-show="clicked('choices')")
+    .field(ng-repeat="cho in data.task.choices")
+      label.choice(ng-click="mark_answer(cho)" ng-class="{answer: cho.answer}")
+        | 選項{{ cho.index }}
+      textarea(ng-model="cho.content" ckeditor="")
+
+mixin info_form()
+  - var fn = "info_form"
+  form(name="#{fn}" ng-show="clicked('info')")
+    .field
+      label 說明
+      textarea(ng-model="data.task.explain" ckeditor="")
+    .field
+      label 相關資訊
+      textarea(ng-model="data.task.info" ckeditor="")
+
+mixin misc_form()
+  - var fn = "misc_form"
+  .info(name="#{fn}" ng-show="clicked('misc')")
+    pre
+      {{ json_size() }}

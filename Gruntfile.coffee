@@ -196,8 +196,8 @@ module.exports = (grunt) ->
         exclude: [
           /bootstrap-sass-official/
           /bootstrap.js/
-          "/json3/"
-          "/es5-shim/"
+          /json3/
+          /es5-shim/
           /bootstrap.css/
           /font-awesome.css/
         ]
@@ -303,6 +303,7 @@ module.exports = (grunt) ->
               "blib/**/*"
               "assets/images/{,*/}*.{webp}"
               "assets/fonts/**/*"
+              "assets/ckeditor/**/*"
               "index.html"
             ]
           }

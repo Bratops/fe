@@ -1,14 +1,14 @@
 "use strict"
 
 angular.module "brasFeApp"
-.factory "sestangular", (Restangular) ->
+.factory "sestangular", (Restangular, Config) ->
   base_url = (host)->
     "http://#{host}/"
 
   rest: (user, opt)->
     opt.cache = if opt.cache? then opt.cache else true
     Restangular.withConfig (RestangularProvider) ->
-      RestangularProvider.setBaseUrl base_url(opt.host)
+      RestangularProvider.setBaseUrl base_url(Config.host)
       RestangularProvider.setDefaultHttpFields
         cache: opt.cache,
         withCredentials: true #allow cookies, sessions

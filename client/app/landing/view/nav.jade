@@ -1,15 +1,15 @@
-ul#nav
+ul#nav(du-spy-context="" ng-hide="dim_bg()")
   li.head(du-scrollspy="ltop")
     a(du-smooth-scroll duration="1000" href="#ltop")
       img(src="/assets/images/beaver128.png")
-  li(du-scrollspy="intro")
-    a(du-smooth-scroll duration="1000" href="#intro") 測驗介紹
+  li(du-scrollspy="body")
+    a(du-smooth-scroll="" duration="1000" href="#body") 測驗介紹
   li(du-scrollspy="subject")
-    a(du-smooth-scroll duration="1000" href="#subject") 測驗目標
+    a(du-smooth-scroll="" duration="1000" href="#subject") 測驗目標
   li(du-scrollspy="target")
-    a(du-smooth-scroll duration="1000" href="#target") 測驗對象
+    a(du-smooth-scroll="" duration="1000" href="#target") 測驗對象
   li(du-scrollspy="contest")
-    a(du-smooth-scroll duration="1000" href="#contest") 測驗方式
+    a(du-smooth-scroll="" duration="1000" href="#contest") 測驗方式
   li(ng-show="loggedin()")
     a(ui-sref="dashboard.user") 測驗平台
   li

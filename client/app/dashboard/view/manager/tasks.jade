@@ -2,9 +2,17 @@
   ul.ops
     li
       .btn(ui-sref="dashboard.manager.tasks.new") 新增
+    li
+      .field
+        input(type="text" placeholder="題目年份查詢"
+          ng-model="data.query")
+    li 顯示:
+      .btn(ng-click="show('info')") 題目
+    li
+      .btn(ng-click="show('misc')") 設定
 
   .scroll
-    ul.list
-      p list
+    include tasks/list.jade
     .detail
-      p more
+      include tasks/hovered.jade
+      include tasks/clicked.jade

@@ -21,11 +21,11 @@
   z-index: 200
 
 =typeahead_dropdown_fs($fs)
-  ul.dropdown-menu
+  .dropdown-menu
     font-size: $fs*1.2
 
 =typeahead_dropdown_var($ct, $fs: 10rem)
-  ul.dropdown-menu
+  .dropdown-menu
     font-size: $fs*1.2
     li a strong
       color: darken($ct, 45%)
@@ -34,6 +34,7 @@
       color: darken($ct, 55%)
 
 %typeahead_dropdown
-  ul.dropdown-menu
+  .dropdown-menu
     +ext(_dropdown_base)
     +ext(_dropdown_item)
+

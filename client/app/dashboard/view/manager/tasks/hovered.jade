@@ -1,0 +1,21 @@
+.hovered(ng-show="data.hovered || data.show == 'misc'")
+  .klasses
+    h3 題目類別
+    .k(ng-class="{'no-data': data.task.klasses == 0}")
+    span.klass(ng-repeat="kls in data.task.klasses")
+      .fa.fa-fw.fa-bookmark
+      | {{ kls.text }}
+  table.ratings
+    caption 難度
+    thead
+      tr
+        - var keys = ["來源", "Beaver", "Benjamin", "Cadet", "Junior", "Senior"]
+        for key in keys
+          th #{key}
+    tbody
+      tr(ng-show="data.task.official_ratings.length > 0"
+        )
+        td 官方
+        td.rating(ng-repeat="rating in data.task.official_ratings"
+          ng-class="{'no-data': rating.value == 0}")
+          i.fa.fa-fw.fa-star(ng-repeat="s in range(rating.value)")

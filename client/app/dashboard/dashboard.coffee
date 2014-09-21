@@ -40,7 +40,7 @@ dash_router =
         templateUrl: "app/dashboard/view/#{role}/#{action}.html"
         #TODO generalize ctrls here
   sub: (role, sub, sub_action)->
-    url = if sub_action is "/new" then sub_action else "/:id/#{sub_action}"
+    url = if sub_action is "new" then "/#{sub_action}" else "/:id/#{sub_action}"
     url: url
     parent: "dashboard.#{role}.#{sub}"
     views:
@@ -91,6 +91,7 @@ angular.module 'brasFeApp'
   state "teacher", "personal"
   state "teacher", "groups"
   state "teacher", "groups", "enrollments"
+  state "teacher_applicant"
   state "user"
   state "user", "groups"
   state "manager"
