@@ -1,4 +1,4 @@
-ul
+ul.tabs
   li.tab(ng-repeat="tab in data.tabs" ng-class="is_tab_clicked(tab)")
     a(ng-click="tab_click(tab)")
       |{{ tab.name }}

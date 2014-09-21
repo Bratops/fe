@@ -1,0 +1,25 @@
+%_tasks_tab
+  $tc: #acd
+  $bc: #ffe
+  li.tab
+    width: 20%
+    vertical-align: middle
+    border-top: 1px solid transparent
+    +bg-gradient(5deg, $tc, $bc)
+    +transition(.3s all linear)
+    +ext(tab_active_style)
+    &:hover
+      color: darken($bc, 75)
+      +box-shadow(inset, 0, -2px, 4px, darken($tc, 30))
+      +transition(.3s all linear)
+  .tab a
+    font-size: 1.5rem
+    padding: 8px
+    +ext(_block)
+    +ext(text_center)
+    +ext(hover_pointer)
+
+%tabs
+  .tabs
+    +ext(inline_list)
+    +ext(_tasks_tab)

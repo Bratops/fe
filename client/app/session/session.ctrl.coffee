@@ -28,9 +28,9 @@ angular.module("brasFeApp").classy.controller
     @$.timer = @timeout(@onTimeout, @$.form.clear_time)
 
   stop: ->
-    @timeout.cancel(@timer)
+    @timeout.cancel(@$.timer)
 
-  _on_state_chang: (event, toState, toParams, fromState, fromParams)->
+  _on_state_change: (event, toState, toParams, fromState, fromParams)->
     @$.stop()
     @$.form.submitted = false
 

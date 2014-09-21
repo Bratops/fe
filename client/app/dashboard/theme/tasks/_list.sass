@@ -6,27 +6,6 @@
   &.active:hover
     +ext(no_box_shadow)
 
-%new_tasks_tab
-  $tc: #acd
-  $bc: #ffe
-  li.tab
-    width: 20%
-    vertical-align: middle
-    border-top: 1px solid transparent
-    +bg-gradient(5deg, $tc, $bc)
-    +transition(.3s all linear)
-    +ext(tab_active_style)
-    &:hover
-      color: darken($bc, 75)
-      +box-shadow(inset, 0, -2px, 4px, darken($tc, 30))
-      +transition(.3s all linear)
-  .tab a
-    font-size: 1.5rem
-    padding: 8px
-    +ext(_block)
-    +ext(text_center)
-    +ext(hover_pointer)
-
 %_right_hump
   &:after
     content: ""
@@ -43,8 +22,8 @@
   +ext(_right_hump)
   background: $cr
   position: relative
-  border-bottom: 1px solid $ccr
-  border-right: 1px solid $ccr
+  border: 1px solid $ccr
+  border-left: none
   +transition(all .5s linear)
   &:after
     border-top-width: $h/2
@@ -53,14 +32,14 @@
     border-left-width: 0
     +transition(all .4s ease-in-out)
     transition-property: border-left-color, border-width
-  &:hover:after
+  &:hover:after, &.clicked:after
     +transition(all .2s ease-in-out)
     transition-property: border-left-color, border-width, background
     border-left-color: $ccr
     border-left-width: 15px
-  &:hover
+  &:hover, &.clicked
+    +transition(all .2s ease-in-out)
     z-index: 200
-    +transition(all .5s linear)
     +box-shadow("", 0, 0, 10px, $glow)
     +ext(hover_pointer)
     +bg-gradient(90deg, #eee, $ccr)
@@ -80,15 +59,22 @@
     padding: $lp
     height: $lh
 
+%_list_item_ctrls
+  .ctrls
+    +ext(abs_inline_block)
+    bottom: 0
+    right: 0
+    i
+      font-size: 1.5rem
+
 %task_list
   .list
+    +panel_split(30%)
     +list_task_item(#f6f6f6, 60px, 5px)
+    +ext(_list_item_ctrls)
     li
-      position: relative
+      +ext(rel_block)
       padding: 0 14px 0 0
-      +ext(_block)
+    li:first-child
+      margin: 5px 0 0
 
-%panel_tab
-  +ext(inline_list)
-  +ext(full_width)
-  +ext(new_tasks_tab)
