@@ -3,7 +3,7 @@
   &.ng-hide-add-active, &.ng-hide-remove
     +transition(all .3s ease-in-out)
     overflow: hidden
-    display: block !important
+    display: inline-block !important
   &.ng-hide-remove
     opacity: 0
   &.ng-hide-remove-active, &.ng-hide-add
@@ -20,30 +20,48 @@
     .btn
       padding: 5px
 
+=group_ctrl_var($cr: #fec, $fs: 1.4rem)
+  .delete, .edit
+    font-size: $fs
+    &:hover
+      border-color: darken(#fec, 30)
+      background: #fec
+
+%group_controls
+  .controls
+    position: absolute
+    right: 0
+    top: 5px
+    height: 80px
+    width: 35px
+    .delete, .edit
+      +ext(group_list_btn_base)
+    .delete:hover
+      color: red
+    .edit:hover
+      color: lighten($c-swim, 15)
+    +group_ctrl_var($c-soil, 1.4rem)
+
 .new_group
-  background: lighten(#cde, 10)
-  margin: 1% 2.5%
-  padding: 10px 5px
-  +ext(form_base)
-  +form_var(#cde, 1.2rem)
-  +ext(new_group_ani_base)
-  +position(absolute)
+  $cr: lighten($c-sky, 30)
+  +position(relative)
   top: 8%
-  width: 95%
+  width: 93%
+  margin: 1% auto
+  padding: 10px 2%
+  background: $cr
+  +ext(form_base)
+  +form_var($cr, 1.2rem)
+  +ext(new_group_ani_base)
   z-index: 200
+  .controls button
+    +ext(inline_block)
   .field
     +ext(half_width)
     +ext(form_error)
   .field .date
     +ext(date_picker_base)
-    +date_picker_var(#cde, 1.7rem)
+    +date_picker_var($cr, 1.7rem)
   .field p.error
     font-size: 1rem
 
-.view
-  #groups
-    position: absolute
-    bottom: 0
-    width: 100%
-    height: 90%
-    overflow: auto

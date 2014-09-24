@@ -47,28 +47,6 @@
     +transition(.2s all ease-in-out)
     cursor: pointer
 
-=group_ctrl_var($cr: #fec, $fs: 1.4rem)
-  .delete, .edit
-    font-size: $fs
-    &:hover
-      border-color: darken(#fec, 30)
-      background: #fec
-
-%group_controls
-  .controls
-    position: absolute
-    right: 0
-    top: 5px
-    height: 80px
-    width: 35px
-    .delete, .edit
-      +ext(group_list_btn_base)
-    .delete:hover
-      color: red
-    .edit:hover
-      color: lighten($c-swim, 15)
-    +group_ctrl_var($c-soil, 1.4rem)
-
 %group_btns
   .btns
     width: auto
@@ -114,13 +92,12 @@
       padding: 0
       text-align: left
 
-#groups
-  .group
-    +ext(group_list_base)
-    +group_list_var($c-soil)
-    +ext(group_field_base)
-    +group_field_var(1.3rem)
-    +ext(group_rwd)
-    +ext(group_controls)
-    +ext(group_btns)
-    +group_btns_var(#cde, 1rem)
+#groups .group
+  +ext(group_list_base)
+  +group_list_var($c-soil)
+  +ext(group_field_base)
+  +group_field_var(1.3rem)
+  +ext(group_rwd)
+  +ext(group_controls)
+  +ext(group_btns)
+  +group_btns_var(lighten($c-sky, 20), 1rem)

@@ -14,15 +14,15 @@ include ../../com/date.jade
         span(ng-show="#{fn}.group_grade.$error.min") 值需大於1
         span(ng-show="#{fn}.group_grade.$error.max") 值需小於12
     .field
-      label(for="group_klass") 班級類別
-      select#group_klass(ng-model="data.groups.form_group.klass"
-        name="klass"
-        ng-class="{'error': form_invalid(#{fn}.klass)}"
-        ng-options="k as k.name for k in data.groups.klasses"
+      label(for="group_cluster") 班級類別
+      select#group_cluster(ng-model="data.groups.form_group.cluster"
+        name="cluster"
+        ng-class="{'error': form_invalid(#{fn}.cluster)}"
+        ng-options="k as k.name for k in data.groups.clusters"
         ng-required="true")
         option(value="") -- 請選擇班級 --
       p.error
-        span(ng-show="#{fn}.klass.$error.required && !#{fn}.klass.$pristine") 班級屬性為必選
+        span(ng-show="#{fn}.cluster.$error.required && !#{fn}.cluster.$pristine") 班級屬性為必選
     .field
       label(for="group_name") 班級名稱
       input#group_name(ng-model="data.groups.form_group.name"
@@ -47,7 +47,7 @@ include ../../com/date.jade
             i.fa.fa-fw.fa-calendar
     .field
       label(for="group_extime") 時段
-      select#group_klass(ng-model="data.groups.form_group.extime"
+      select#group_extime(ng-model="data.groups.form_group.extime"
         ng-options="k as k.name for k in data.groups.time_sec"
         ng-required="true")
     .controls

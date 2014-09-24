@@ -1,7 +1,7 @@
 mixin info()
   .info
     .grade {{ gp.grade }} 年級
-    .name {{ gp.name }} 班 ({{ klass_str(gp.klass) }})
+    .name {{ gp.name }} 班 ({{ cluster_str(gp.cluster_id) }})
     .gcode 班級代碼: {{ gp.gcode }}
     .exdate 預計施測時間: {{ gp.exdate }} {{ extime_str(gp.extime) }}
 
