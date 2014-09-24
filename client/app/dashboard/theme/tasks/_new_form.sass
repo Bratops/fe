@@ -1,9 +1,9 @@
 %field_item_base
   +ext(_block)
   margin: 5px auto
-  width: 96%
 
 %field_input_base
+  width: 98%
   +border-radius(2px)
   border: 3px solid lighten($c-swim, 40)
 
@@ -11,6 +11,7 @@
   tags-input .host
     outline: none
     +ext(field_input_base)
+    width: 100%
     .tag-list
       outline: none
     .tags.focused
@@ -54,15 +55,12 @@
 
 %task_field_base
   .field
+    padding: 0 1%
+    width: 98%
     vertical-align: top
-    +ext(full_width)
     &.half
       +ext(inline_block)
-      width: 50%
-      label, input
-        width: 92%
-      tags-input
-        width: 93%
+      width: 48%
 
 %ans_label
   label.choice

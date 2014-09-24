@@ -1,0 +1,20 @@
+ul.tabs
+  li.tab(ng-repeat="tab in data.tabs" ng-class="is_tab_clicked(tab)")
+    a(ng-click="tab_click(tab)")
+      |{{ tab.name }}
+
+include form/basic.jade
+.pad
+  +basic_form
+  +body_form
+  +choices_form
+  +info_form
+  +misc_form
+
+  .btns
+    .btn
+      a(ng-click="save_task()") save
+    .btn
+      a(ng-click="cancel()") cancel
+
+script(src="/assets/ckeditor/ckeditor.js")
