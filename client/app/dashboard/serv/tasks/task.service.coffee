@@ -44,8 +44,9 @@ angular.module "brasFeApp"
   _new_task = ()->
     ratings: _default_levels()
     choices: _.map([0,1,2,3], (v)-> _choice(v))
+    authors: []
     keywords: []
-    klass: []
+    klasses: []
     opens: []
 
   r =
@@ -55,18 +56,30 @@ angular.module "brasFeApp"
       tabs: _tabs
       clicked: _tabs[0]
 
-  r.save = ->
+  r._serve = (method, evt) ->
     data = _.clone(r.data.task)
-    rst = sessionServ.fest().all("manager/tasks")
-    rst.post({task: data}).then (resp)->
+    rst = sessionServ.fest()
+    rst = if method is "patch" then rst.one("manager/tasks", data.id) else rst.all("manager/tasks")
+    rst[method]({task: data}).then (resp)->
       notify.g resp.msg
       if resp.msg.status is "success"
         r.data.task = _new_task()
-        $rootScope.$broadcast "task:created", resp.task
+        $rootScope.$broadcast "task:#{evt}", resp.task
+
+  r.update = ->
+    r._serve("patch", "updated")
+
+  r.save = ->
+    r._serve("post", "created")
 
   r.json_size = (obj)->
     objs = JSON.stringify(obj)
     m = encodeURIComponent(objs).match(/%[89ABab]/g)
     ml = if m? then m.length else 0
     objs.length + ml
+
+  r.load_by_id = (id)->
+    rst = sessionServ.fest().one("manager/tasks", id)
+    rst.get("").then (resp)->
+      r.data.task = resp
   r

@@ -8,18 +8,16 @@ mixin basic_form()
       label ID
       input(type="text" ng-model="data.task.tid")
     .field.half
-      label 作者
-      input(type="text" ng-model="data.task.author")
-    .field.half
       label 類別
-      tags-input(type="text" ng-model="data.task.klass")
+      tags-input(type="text" ng-model="data.task.klasses")
     .field.half
-      label 能見度(demo, contest, teacher)
+      label 開放於
+      span (demo, contest, teacher, landing)
       tags-input(type="text" ng-model="data.task.opens")
-    .field
+    .field.half
       label 關鍵字
       tags-input(type="text" ng-model="data.task.keywords")
-    .field
+    .field.half
       label 難度
       .rating(ng-repeat="lvl in data.task.ratings")
         label {{ lvl.key }}

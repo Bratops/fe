@@ -65,7 +65,14 @@
     bottom: 0
     right: 0
     i
+      +ext(font_bold)
       font-size: 1.5rem
+      &:hover
+        color: darken($c-sky, 10)
+        +ext(hover_pointer)
+      &.edit
+        +position(relative)
+        top: 1px
 
 %task_list
   .list

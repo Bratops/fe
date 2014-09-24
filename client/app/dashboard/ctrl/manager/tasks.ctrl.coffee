@@ -3,11 +3,16 @@ angular.module("brasFeApp").classy.controller
   name: "manager.TasksCtrl"
   inject:
     $scope: "$"
+    $state: "st"
     $timeout: "timeout"
     managerTasks: "mt"
 
   _on_task_created: (e, d)->
     @mt.data.tasks.push d
+
+  _on_task_updated: (e, d)->
+    ti = _.findIndex(@mt.data.tasks, (t)-> t.tid == d.tid)
+    @mt.data.tasks[ti] = d
 
   _on_state_change: (event, toState, toParams, fromState, fromParams)->
     @_stop_timer()
@@ -24,6 +29,7 @@ angular.module("brasFeApp").classy.controller
     @mt.init()
     @$.$on "$stateChangeStart", @_on_state_change
     @$.$on "task:created", @_on_task_created
+    @$.$on "task:updated", @_on_task_updated
 
   hover_tsk: (tsk)->
     return unless @mt.data.hoverable
@@ -59,3 +65,6 @@ angular.module("brasFeApp").classy.controller
   remove: (tsk)->
     if(confirm("確定移除？"))
       @mt.remove(tsk)
+
+  edit: (tsk)->
+    @st.go("dashboard.manager.tasks.edit", {id: tsk.tid})
