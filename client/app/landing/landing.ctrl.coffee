@@ -22,7 +22,7 @@ angular.module("brasFeApp").classy.controller
     #console.log "landing->", toState.name
 
   _at_state: (st)->
-    @st.current.name == "session.#{st}"
+    @st.is("session.#{st}")
 
   dim_bg: ()->
     @_at_state("login") ||

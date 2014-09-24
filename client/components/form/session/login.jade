@@ -5,7 +5,7 @@ include mixin/password.jade
 - var fn = "loginform"
 form#login(name=fn novalidate)
   //+school_ta(fn, false)
-  +login_alias(fn)
+  +login_alias(fn, "Email")
   +password(fn, false)
 
   //- {{ form | json }}

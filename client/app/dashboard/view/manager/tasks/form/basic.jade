@@ -53,10 +53,10 @@ mixin info_form()
   - var fn = "info_form"
   form(name="#{fn}" ng-show="clicked('info')")
     .field
-      label 說明
+      label 詳解
       textarea(ng-model="data.task.explain" ckeditor="")
     .field
-      label 相關資訊
+      label 花在資訊學科的意義
       textarea(ng-model="data.task.info" ckeditor="")
 
 mixin misc_form()

@@ -71,7 +71,10 @@ angular.module("brasFeApp").classy.controller
 
   login: ()->
     @$.form.submitted = true
-    @session.login(@$.form)
+    data = _.clone(@$.form)
+    if data.moeid?
+      data.login_alias = "#{data.moeid}-#{data.login_alias}"
+    @session.login(data)
 
   aquire_new_pw: ()->
     @session.request_link(@$.form)

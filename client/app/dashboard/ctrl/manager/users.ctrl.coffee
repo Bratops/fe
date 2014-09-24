@@ -20,10 +20,10 @@ angular.module("brasFeApp").classy.controller
   watch:
     "data.pager.page": (nv, ov)->
       if nv != ov
-        mu.load_users()
+        @mu.load_users()
     "data.pager.per_page": (nv, ov)->
-      if nv != ov and mu.data.mod isnt ""
-        mu.load_users()
+      if nv != ov and @mu.data.mod isnt ""
+        @mu.load_users()
 
   is_teacher_applicant: (u)->
     u.role.name == "teacher_applicant"

@@ -1,6 +1,6 @@
-mixin login_alias(form)
+mixin login_alias(form, ph)
   label(for="login_alias") 帳號
-  input#login_alias(type="text" name="login_alias" placeholder="Email"
+  input#login_alias(type="text" name="login_alias" placeholder="#{ph}"
     ng-required="true" ng-model="form.login_alias"
     ng-class="{error: #{form}.login_alias.$invalid && !#{form}.login_alias.$pristine}"
     ng-minlength=5 ng-maxlength=32)

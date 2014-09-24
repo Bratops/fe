@@ -58,8 +58,8 @@ angular.module("brasFeApp").classy.controller
   reload_groups: ()->
     @tg.load_groups(true)
 
-  klass_str: (k)->
-    dg = @tg.find_local(k, "klasses")
+  cluster_str: (k)->
+    dg = @tg.find_local(k, "clusters")
     dg.name
 
   extime_str: (k)->

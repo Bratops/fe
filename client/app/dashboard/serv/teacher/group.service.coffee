@@ -1,7 +1,7 @@
 "use strict"
 angular.module "brasFeApp"
 .service "teacherGroup", (sessionServ, growl)->
-  klasses = [
+  clusters = [
       name: "普通班未分組"
       value: 1
     ,
@@ -43,7 +43,7 @@ angular.module "brasFeApp"
     notifier(msg.body, title: msg.title, ttl: 3000)
 
   _new_group = ()->
-    klass: ""
+    cluster: ""
     exdate: "2014/11/10"
     extime: time_sec[0]
     grade: 10
@@ -52,7 +52,7 @@ angular.module "brasFeApp"
 
   _group_data = (data)->
     cd = _.clone(data, true)
-    cd.klass = data.klass.value
+    cd.cluster_id = data.cluster.value
     cd.extime = data.extime.value
     cd
 
@@ -96,7 +96,7 @@ angular.module "brasFeApp"
         ret.data.groups.list = resp
     edit_group: (gp)->
       fg = _.clone(gp, true)
-      fg.klass = ret.find_local(gp.klass, "klasses")
+      fg.cluster = ret.find_local(gp.cluster_id, "clusters")
       fg.extime = ret.find_local(gp.extime, "time_sec")
       ret.data.groups.form_group = fg
     find_local: (k, key)->
@@ -125,5 +125,5 @@ angular.module "brasFeApp"
           maxDate: "'2014/11/21'"
           open: false
           startingDay: 1
-        klasses: klasses
+        clusters: clusters
         time_sec: time_sec

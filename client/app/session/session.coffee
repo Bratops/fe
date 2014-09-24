@@ -15,6 +15,12 @@ angular.module "brasFeApp"
       control:
         templateUrl: "components/form/session/login.html"
         controller: "SessionCtrl"
+  .state "session.student",
+    url: "student"
+    views:
+      control:
+        templateUrl: "components/form/session/student.html"
+        controller: "SessionCtrl"
   .state "session.register",
     url: "register"
     views:

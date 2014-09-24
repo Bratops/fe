@@ -304,6 +304,7 @@ module.exports = (grunt) ->
               "assets/images/{,*/}*.{webp}"
               "assets/fonts/**/*"
               "assets/ckeditor/**/*"
+              "!assets/ckeditor/.git"
               "index.html"
             ]
           }

@@ -82,6 +82,7 @@ angular.module "brasFeApp"
       ret.rest.one("user").post("", {user: data}).then (resp)->
         ret._session_base(resp)
     login: (user)->
+      console.log '------------>', user
       ret.rest.one("session").post("", {user: user}).then (resp)->
         ret._session_base(resp)
     reset_pw: (data)->

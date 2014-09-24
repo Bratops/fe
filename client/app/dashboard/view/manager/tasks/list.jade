@@ -7,3 +7,4 @@ ul.list(ng-class="{'no-data': data.tasks.length == 0}")
       span.date {{ tsk.year }}
       .ctrls
         i.remove.fa.fa-fw.fa-times(ng-click="remove(tsk)")
+        i.edit.fa.fa-fw.fa-edit(ng-click="edit(tsk)")
