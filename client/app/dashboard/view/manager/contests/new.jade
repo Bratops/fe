@@ -1,0 +1,30 @@
+include ../../com/date.jade
+- var fn = "new_contest"
+form.contest(name="#{fn}")
+  .field.half
+    label(for="name") 名稱
+    input#name(type="text")
+  .field.half
+    label(for="grading") 計分方式
+    select#grading(ng-model="data.contest.grading" ng-options="g.value as g.name for g in data.gradings")
+  .field.half
+    label(for="sdate") 開始日期
+    .datepicker
+      +date_picker("sdate", "data", "opt.sdate", "contest.sdate")
+      button.trigger(type="button" ng-click="open_cal($event, 'sdate')")
+        i.fa.fa-fw.fa-calendar
+  .field.half
+    label(for="edate") 結束日期
+    .datepicker
+      +date_picker("edate", "data", "opt.edate", "contest.edate")
+      button.trigger(type="button" ng-click="open_cal($event, 'edate')")
+        i.fa.fa-fw.fa-calendar
+  .field
+    label(for="target_grades") 年齡資格
+  .field
+    label(for="ugroup_ids") 班級
+  .field
+    label(for="task_ids") 題目
+
+  .field
+    pre {{ data.contest | json }}

@@ -3,7 +3,7 @@ include ../../com/date.jade
 .new_group(ng-show=" data.groups.new || data.groups.edit ")
   - var fn = "new_group"
   form(novalidate name="#{fn}")
-    .field
+    .field.half
       label(for="group_grade") 年級
       input#group_grade(ng-model="data.groups.form_group.grade"
         ng-class="{'error': form_invalid(#{fn}.group_grade)}"
@@ -13,7 +13,7 @@ include ../../com/date.jade
         span(ng-show="#{fn}.group_grade.$error.required") 不可空白
         span(ng-show="#{fn}.group_grade.$error.min") 值需大於1
         span(ng-show="#{fn}.group_grade.$error.max") 值需小於12
-    .field
+    .field.half
       label(for="group_cluster") 班級類別
       select#group_cluster(ng-model="data.groups.form_group.cluster"
         name="cluster"
@@ -23,7 +23,7 @@ include ../../com/date.jade
         option(value="") -- 請選擇班級 --
       p.error
         span(ng-show="#{fn}.cluster.$error.required && !#{fn}.cluster.$pristine") 班級屬性為必選
-    .field
+    .field.half
       label(for="group_name") 班級名稱
       input#group_name(ng-model="data.groups.form_group.name"
         name="group_name"
@@ -32,20 +32,19 @@ include ../../com/date.jade
       p.error
         span(ng-show="#{fn}.group_name.$error.required && !#{fn}.group_name.$pristine") 不可空白
         span(ng-show="#{fn}.group_name.$error.maxlength && !#{fn}.group_name.$pristine") 不可超過10個字
-    .field
+    .field.half
       label(for="group_extime") 其他註記
       input#group_note(ng-model="data.groups.form_group.note"
         placeholder="選填"
         type="text" ng-maxlength="255")
     .field.desc 預計測驗時程
-    .field
+    .field.half
       label(for="group_exdate") 日期
-      span.date
-        .mark
-          +date_picker("group_exdate", "data.groups", "exdate_opt", "form_group.exdate")
-          button.btn.date(type="button" ng-click="open_calendar($event)")
-            i.fa.fa-fw.fa-calendar
-    .field
+      .datepicker
+        +date_picker("group_exdate", "data.groups", "exdate_opt", "form_group.exdate")
+        button.trigger(type="button" ng-click="open_calendar($event)")
+          i.fa.fa-fw.fa-calendar
+    .field.half
       label(for="group_extime") 時段
       select#group_extime(ng-model="data.groups.form_group.extime"
         ng-options="k as k.name for k in data.groups.time_sec"

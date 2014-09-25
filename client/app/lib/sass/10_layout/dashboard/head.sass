@@ -7,15 +7,14 @@
 =head_color($bc: #eee)
   background: transparentize($bc, .8)
   +box-shadow(0, 4px, 3px, #777)
-  #title
-    a
-      color: darken($c-soil, 5%)
-      +text-shadow(1px, 1px, 3px, lighten($c-soil, 15%))
-      +transition(.4s linear all)
-      &:hover
-        +transition(.8s linear all)
-        color: lighten($c-soil, 5%)
-        +text-shadow(1px, 1px, 3px, lighten($c-soil, 25%))
+  #title a
+    +text-shadow(1px, 1px, 3px, lighten($c-soil, 15%))
+    +transition(.4s linear all)
+    color: darken($c-soil, 5%)
+    &:hover
+      +transition(.8s linear all)
+      +text-shadow(1px, 1px, 3px, lighten($c-soil, 25%))
+      color: lighten($c-soil, 5%)
 
 =head_height($hg)
   height: $hg
@@ -104,17 +103,22 @@
       display: none
 
 %head_base
+  +head_height(55px)
   display: table-row
   padding: 5px 5px 10px 5px
   margin-bottom: 3px
-  +head_height(55px)
   #title
     +ext(head_title)
     +ext(head_rwd)
   #title a
+    +ext(inline_block)
     width: 70%
-    display: inline-block
   #nav
     +ext(head_nav)
   .avatar
     padding: 3px
+
+.db #header
+  +ext(head_base)
+  +head_color(#bbb)
+  +head_font(1.4rem)

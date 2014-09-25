@@ -4,18 +4,16 @@ include ../com/date.jade
   form(name="#{fn}" novalidate)
     .field.top
       label(for="msg_start") 開始於
-      span.date
-        .mark
-          +date_picker("msg_start", "data", "sdate_opt", "msg.start_time")
-          button.btn.date(type="button" ng-click="open_calendar($event, 'sdate_opt')")
-            i.fa.fa-fw.fa-calendar
+      .datepicker
+        +date_picker("msg_start", "data", "sdate_opt", "msg.start_time")
+        button.trigger(type="button" ng-click="open_calendar($event, 'sdate_opt')")
+          i.fa.fa-fw.fa-calendar
     .field.top
       label(for="msg_end") 結束于
-      span.date
-        .mark
-          +date_picker("msg_end", "data", "edate_opt", "msg.end_time")
-          button.btn.date(type="button" ng-click="open_calendar($event, 'edate_opt')")
-            i.fa.fa-fw.fa-calendar
+      .datepicker
+        +date_picker("msg_end", "data", "edate_opt", "msg.end_time")
+        button.trigger(type="button" ng-click="open_calendar($event, 'edate_opt')")
+          i.fa.fa-fw.fa-calendar
     .field.full
       label(for="msg_title") 標題
       input(type="text" min="2" max="64" ng-model="data.msg.title")

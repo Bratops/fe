@@ -1,0 +1,36 @@
+%landing_nav_base
+  $cg: transparentize(#efedcf, .5)
+  +ext(f-read)
+  +ext(full_width)
+  +ext(text_center)
+  +ext(inline_list)
+  +box-shadow("", 0, 3px, 9px, opacify($cg, .3))
+  position: fixed !important
+  z-index: 300
+  top: 0
+  font-size: 1.6rem
+  background: $cg
+  li
+    +transition(.5s ease-in-out background)
+    width: 13%
+  li.active, li:hover
+    +transition(.5s ease-in-out background)
+    background: transparentize(lightblue, .6)
+  li.head
+    &.active, &:hover
+      background: transparent
+
+#landing_nav
+  +ext(landing_nav_base)
+  a
+    font-size: 100%
+    +ext(inline_block)
+    margin: 0 3px
+    padding: 8% 1%
+    color: lighten($c-soil, 5)
+  .head a
+    top: 5px
+    +position(relative)
+    display: inline
+    img
+      width: 32px

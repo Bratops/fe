@@ -100,6 +100,8 @@ angular.module 'brasFeApp'
   state "manager", "tasks"
   state "manager", "tasks", "new"
   state "manager", "tasks", "edit"
+  state "manager", "contests"
+  state "manager", "contests", "new"
   state "admin"
   state "admin", "users"
   state "admin", "tasks"

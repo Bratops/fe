@@ -1,11 +1,11 @@
 =landing_font($fs: 10em)
   +headings_fs(1, 6, $fs, .2)
   #nav
-    +font-size($fs*1.4)
+    font-size: $fs*1.4
   .intro
     +headings_fs(1, 6, $fs*.4, .1)
   .footer
-    +font-size($fs*1.3)
+    font-size: $fs*.1
 
 %landing_typo
   +headings
@@ -40,6 +40,31 @@
   h1
     padding-top: 5rem
 
+%_article
+  .article
+    +ext(full_height)
+    margin: .5% 0
+    padding: 10% 15%
+  article
+    p
+      line-height: 2.5rem
+      font-size: 1.5rem
+      text-align: justify
+    h1, h2
+      margin: 5px 0 2%
+      +ext(font_bold)
+    h1
+      +ext(_block)
+      +ext(text_center)
+    h2:nth-child(1)
+      margin-top: 0
+
+%intro
+  +ext(f-read)
+  +ext(_article)
+  +ext(full_height)
+  margin: 0
+
 %landing_body
   background: lighten($c-soil, 68%)
   +ext(inline_block)
@@ -71,7 +96,7 @@
 %landing_base
   +ext(landing_bg)
   +ext(landing_fill)
-  +landing_font(8em)
+  +landing_font(8rem)
   h2
     margin: auto
     span
@@ -130,8 +155,8 @@
   .header
     +ext(header)
     +ext(control_base)
-    +ext(landing_nav)
-    +ext(landing_msgs)
+    .msgs
+      width: 70%
   .body
     +ext(landing_body)
   .footer

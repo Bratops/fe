@@ -1,5 +1,16 @@
+%task_list
+  .list
+    +panel_split(30%)
+    +ext(hump_list_base)
+    .task
+      +hump_list_item(#f6f6f6, 60px, 5px)
+
 .tasks
-  +ext(tasks_layout)
-  +ext(task_forms)
+  +panel_t_layout(6%)
+  .ops
+    +ext(ops_fields)
+  +ext(tabs)
+  .pad
+    +ext(task_pad_btns)
   +ext(task_list)
   +ext(task_detail)

@@ -1,9 +1,8 @@
 %new_group_ani_base
   &.ng-hide-remove-active, &.ng-hide-add,
   &.ng-hide-add-active, &.ng-hide-remove
-    +transition(all .3s ease-in-out)
+    +transition(opacity .3s ease-in-out)
     overflow: hidden
-    display: inline-block !important
   &.ng-hide-remove
     opacity: 0
   &.ng-hide-remove-active, &.ng-hide-add
@@ -41,27 +40,4 @@
     .edit:hover
       color: lighten($c-swim, 15)
     +group_ctrl_var($c-soil, 1.4rem)
-
-.new_group
-  $cr: lighten($c-sky, 30)
-  +position(relative)
-  top: 8%
-  width: 93%
-  margin: 1% auto
-  padding: 10px 2%
-  background: $cr
-  +ext(form_base)
-  +form_var($cr, 1.2rem)
-  +ext(new_group_ani_base)
-  z-index: 200
-  .controls button
-    +ext(inline_block)
-  .field
-    +ext(half_width)
-    +ext(form_error)
-  .field .date
-    +ext(date_picker_base)
-    +date_picker_var($cr, 1.7rem)
-  .field p.error
-    font-size: 1rem
 

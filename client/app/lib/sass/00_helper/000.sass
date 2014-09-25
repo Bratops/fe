@@ -1,0 +1,56 @@
+=ext($name, $silent: true)
+  @if $silent == true
+    @extend %#{$name} !optional
+  @else
+    @extend .#{$name} !optional
+
+=fontface($family,$src,$weight: normal,$style: normal)
+  @font-face
+    font-family: $family
+    // IE9 compat
+    src: url('#{$src}.otf'), url('#{$src}.eot')
+    // IE8 // standard // safari, android, ios,// legacy iOS
+    src: url('#{$src}.eot?#iefix') format('embedded-opentype'), url('#{$src}.woff') format('woff'), url('#{$src}.ttf') format('truetype'), url('#{$src}.svg##{$family}') format('svg')
+    font-style: $style
+    font-weight: $weight
+
+=transition($args...)
+  -webkit-transition: $args
+  -moz-transition: $args
+  -ms-transition: $args
+  -o-transition: $args
+  transition: $args
+
+%clearfix
+  *zoom: 1
+  &:before, &:after
+    content: " "
+    display: table
+  &:after
+    clear: both
+
+%visuallyhidden
+  margin: -1px
+  padding: 0
+  width: 1px
+  height: 1px
+  overflow: hidden
+  clip: rect(0 0 0 0)
+  clip: rect(0, 0, 0, 0)
+  position: absolute
+
+%cur_pointer
+  cursor: pointer
+
+%hover_pointer
+  &:hover
+    +ext(cur_pointer)
+
+%autoflow
+  overflow: auto
+
+.browsehappy
+  margin: 0.2em 0
+  background: #ccc
+  color: #000
+  padding: 0.2em 0

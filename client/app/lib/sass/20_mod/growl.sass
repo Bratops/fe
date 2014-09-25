@@ -1,4 +1,6 @@
 $gwbase: 30%
+$btn_size: 13px
+
 %growl_width
   min-width: $gwbase
   max-width: $gwbase
@@ -15,7 +17,6 @@ $gwbase: 30%
   -o-transition: $time linear all
   transition: $time linear all
 
-$btn_size: 13px
 %growl_container
   +ext(f-read)
   &.growl-fixed.top-right
@@ -32,7 +33,7 @@ $btn_size: 13px
       margin: 0
     button.close
       +border-radius($btn_size/2)
-      +font-size($btn_size*.4)
+      font-size: $btn_size*.4
       border: none
       float: right
       font-weight: bold
@@ -45,7 +46,7 @@ $btn_size: 13px
     button.close.ng-binding
       background: none
       margin: 0
-      +font-size(12)
+      font-size: 1rem
       width: auto
       height: auto
       position: relative
@@ -53,11 +54,11 @@ $btn_size: 13px
       bottom: -1em
     .growl-title
       font-weight: bold
-      +font-size(12)
+      font-size: 1.2rem
     .growl-message
       margin-top: 5px
       min-height: 20px
-      +font-size(10)
+      font-size: 1rem
     .ng-enter
       opacity: 1
     .ng-leave

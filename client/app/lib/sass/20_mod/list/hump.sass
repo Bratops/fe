@@ -44,22 +44,20 @@
     +ext(hover_pointer)
     +bg-gradient(90deg, #eee, $ccr)
 
-%_list_task_item
-  .task
-    .title
-      +ext(font_bold)
-      font-size: 1.6rem
-    .date
-      vertical-align: top
+%_hump_list_item
+  .title
+    +ext(font_bold)
+    font-size: 1.6rem
+  .date
+    vertical-align: top
 
-=list_task_item($bg: #cde, $lh: 60px, $lp: 5px)
-  +ext(_list_task_item)
-  .task
-    +right_hump($bg, $lh + $lp * 2)
-    padding: $lp
-    height: $lh
+=hump_list_item($bg: #cde, $lh: 60px, $lp: 5px)
+  +ext(_hump_list_item)
+  +right_hump($bg, $lh + $lp * 2)
+  padding: $lp
+  height: $lh
 
-%_list_item_ctrls
+%hump_list_ctrls
   .ctrls
     +ext(abs_inline_block)
     bottom: 0
@@ -74,14 +72,11 @@
         +position(relative)
         top: 1px
 
-%task_list
-  .list
-    +panel_split(30%)
-    +list_task_item(#f6f6f6, 60px, 5px)
-    +ext(_list_item_ctrls)
-    li
-      +ext(rel_block)
-      padding: 0 14px 0 0
-    li:first-child
-      margin: 5px 0 0
+%hump_list_base
+  +ext(hump_list_ctrls)
+  li
+    +ext(rel_block)
+    padding: 0 14px 0 0
+  li:first-child
+    margin: 5px 0 0
 

@@ -1,0 +1,21 @@
+%half_width
+  width: 50%
+
+%full_width
+  width: 100%
+
+%full_height
+  height: 100%
+
+%full_browser
+  +ext(full_width)
+  +ext(full_height)
+
+=size($w: auto, $h: auth)
+  width: $w
+  height: $h
+
+=lock_height($h)
+  min-height: $h
+  max-height: $h
+  height: $h

@@ -1,0 +1,124 @@
+%_trigger
+  .trigger
+    +ext(abs_inline_block)
+    +ext(no_bg)
+    right: -6px
+    top: 6px
+    z-index: 100
+    +ext(hover_pointer)
+    color: darken($c-sky, 20)
+    &:hover
+      color: darken($c-sky, 20)
+
+=_dp_fonts($fs: 1.3rem)
+  .trigger
+    font-size: $fs
+    +ext(font_bold)
+
+=order_color($ele)
+  &:nth-child(7), &:nth-child(8)
+    #{$ele}
+      +ext(font_bold)
+      color: red
+
+%_weekend_color
+  table[ng-switch-when="day"]
+    th
+      +order_color(small)
+    td
+      +order_color(button)
+    td:first-child
+      color: #555
+
+%_drop_date_base
+  +ext(full_width)
+  +ext(no_border)
+  +ext(no_outline)
+  display: inline-table //firefox
+  tr
+    +ext(text_center)
+  th
+    +ext(font_bold)
+    vertical-align: middle
+    width: 0 + 100% / 8
+    .btn
+      +ext(no_padding)
+      width: 100%
+      border: 1px solid #aaa
+      margin: 4px 1px
+    &:first-child .btn
+      +border-radius-separate(5px, 0, 5px, 0)
+      border-right: none
+    &:last-child .btn
+      +border-radius-separate(0, 5px, 0, 5px)
+    .btn i:before
+      +ext(fa, false)
+      +ext(fa-fw, false)
+    i.glyphicon-chevron-left:before
+      content: "\f060"
+    i.glyphicon-chevron-right:before
+      content: "\f061"
+  td
+    padding: 1px
+
+%_drop_date_btn_base
+  button
+    +ext(cur_pointer)
+    +size(25px, 25px)
+    strong
+      +ext(font_bold)
+  td button
+    +ext(no_padding)
+    +border-radius(3px)
+    border: 1px solid #ccc
+    margin: 0 1px
+
+=_drop_date_var($cr: #eee, $fs: 1rem)
+  $hc: adjust-hue($cr, 10)
+  background: $cr
+  th
+    font-size: $fs * .9
+    .btn i:before
+      font-size: $fs
+  button
+    +transition(all .2s linear)
+    background: lighten($cr, 10)
+    span
+      font-size: $fs * .9
+    strong
+      font-size: $fs * 1.2
+    &:hover, &.active
+      +transition(all .2s linear)
+      color: darken($hc, 50)
+      background: saturate(darken($hc, 10), 10)
+  button[disabled], button[disabled]:hover
+    cursor: not-allowed
+    color: #888
+    background: #ccc
+
+%_calendar
+  table
+    +ext(_drop_date_base)
+    +ext(_drop_date_btn_base)
+    +_drop_date_var(lighten($c-sky, 40), 1rem)
+
+%_date_drop
+  +ext(_calendar)
+  +ext(_weekend_color)
+  .dropdown-menu
+    +ext(abs_inline_block)
+    +ext(full_width)
+    top: 0
+    border: 1px solid lighten($c-sky, 20)
+    z-index: 200
+
+%datepicker_base
+  .datepicker
+    +ext(rel_inline_block)
+    +ext(full_width)
+    +ext(_trigger)
+    +ext(_date_drop)
+
+=date_picker($fs: 1.3rem)
+  .datepicker
+    +_dp_fonts($fs)

@@ -1,37 +1,40 @@
+%field_item_base
+  +ext(_block)
+  margin: 5px auto
+
+%field_input_outline
+  width: 98%
+  border: 3px solid lighten($c-swim, 40)
+
 %form_field_radius
-  > input, > select, > textarea
-    border: 1px solid grey
+  input, > select, > textarea
     +border-radius(5px)
 
+%form_fields
+  input, > select, > textarea
+    +ext(field_input_outline)
+
 %form_field_base
-  $gfw: 30%
   $mar: 3px
-  margin: $mar 0
   +ext(rel_inline_block)
+  +ext(form_fields)
+  +ext(form_field_radius)
+  margin: $mar 0
   vertical-align: top
   &.desc
-    display: block
+    +ext(_block)
+    +ext(font_bold)
     padding: 3px
-    font-weight: bold
   label
     +ext(inline_block)
     margin: 0 2px
-    max-width: $gfw
-  > input, > select
-    position: absolute
-    width: 95 - $gfw
-    right: 10px
-    top: -1 * $mar
-  > select
-    width: 96 - $gfw
-  +ext(form_field_radius)
 
 %form_error
   input, textarea, select
     &.error, &.error:focus
       border-color: red
   p.error
-    font-size: 60%
+    font-size: 90%
     color: red
 
 =form_input_theme($cr: #ccc, $fs: 1.8rem)
@@ -71,15 +74,17 @@
       background: #ddd
       color: #889
 
-%form_base
+%form_decorate
   +border-radius(4px)
   +box-shadow("", 1px, 2px, 5px, rgba(0,0,0,0.15))
+
+%form_base
   +ext(form_btn_base)
   .field
     +ext(form_field_base)
-    display: inline-block
 
 =form_var($cr: #cde, $fs: 1.2rem)
   .field
     +form_field_var(darken($cr, 30), $fs * 1.5)
-  +form_btn_var($cr, $fs)
+  .controls, .btns
+    +form_btn_var($cr, $fs)
