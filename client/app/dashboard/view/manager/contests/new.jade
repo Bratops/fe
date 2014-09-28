@@ -3,7 +3,7 @@ include ../../com/date.jade
 form.contest(name="#{fn}")
   .field.half
     label(for="name") 名稱
-    input#name(type="text")
+    input#name(type="text" ng-model="data.contest.name")
   .field.half
     label(for="grading") 計分方式
     select#grading(ng-model="data.grading" ng-options="g as g.name for g in data.gradings")
@@ -39,5 +39,5 @@ form.contest(name="#{fn}")
               input(type="checkbox")
   .field
     .btns
-      button.btn.add(ng-click="create()") 儲存
+      button.btn.save(ng-click="save()") 儲存
       button.btn.cancel(ng-click="cancel()") 取消

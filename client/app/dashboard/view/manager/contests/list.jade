@@ -1,4 +1,10 @@
 ul.humplist
-  li
+  li(ng-repeat="cn in data.contests")
     .item
-      span.title contest
+      span.title {{ cn.name }}
+      .info
+        span {{ cn.grading_str }}
+        span {{ cn.sdate }} ~ {{ cn.edate}}
+      .ctrls
+        i.remove.fa.fa-fw.fa-times(ng-click="remove(cn)")
+        i.edit.fa.fa-fw.fa-edit(ng-click="edit(cn)")

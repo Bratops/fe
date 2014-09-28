@@ -1,22 +1,22 @@
-.tasks
-  li:nth-child(2n+1)
-    background: lighten($c-sky, 25)
-  .task
-    +ext(font_bold)
-    +ext(hover_pointer)
-    padding: .4rem 0
-    width: 95%
-    color: darkblue
-    input[type="checkbox"]
-      display: none
-    .info
-      +ext(_block)
-      color: darkgrey
-      font-weight: normal
-
-.selected .tasks
-  li:nth-child(2n+1)
-    background: lighten($c-dirt, 50)
+.task_list
+  .tasks
+    li:nth-child(2n+1)
+      background: lighten($c-sky, 25)
+    .task
+      +ext(font_bold)
+      +ext(hover_pointer)
+      padding: .4rem 0
+      width: 95%
+      color: darkblue
+      input[type="checkbox"]
+        display: none
+      .info
+        +ext(_block)
+        color: darkgrey
+        font-weight: normal
+  .selected .tasks
+    li:nth-child(2n+1)
+      background: lighten($c-dirt, 50)
 
 .task_list
   +ext(full_width)

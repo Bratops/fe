@@ -1,10 +1,15 @@
 "use strict"
 angular.module("brasFeApp").classy.controller
-  name: "manager.contests.NewCtrl"
+  name: "manager.contests.EditCtrl"
   inject:
     $scope: "$"
     $state: "st"
+    $stateParams: "stp"
     managerContest: "mc"
+
+  init: ->
+    @mc.load(@stp.id)
+    @$.data = @mc.data
 
   _cal_disable: (d, m)->
     dv = d.getDay()
@@ -15,10 +20,6 @@ angular.module("brasFeApp").classy.controller
 
   edate_cal_disable: (d, m)->
     @_cal_disable(d, m)
-
-  init: ->
-    @mc.reset()
-    @$.data = @mc.data
 
   open_cal: (e, name)->
     e.preventDefault()
@@ -54,4 +55,4 @@ angular.module("brasFeApp").classy.controller
     @st.go("^")
 
   save: ()->
-    @mc.create()
+    @mc.update()
