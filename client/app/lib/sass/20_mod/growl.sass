@@ -1,0 +1,91 @@
+$gwbase: 30%
+$btn_size: 13px
+
+%growl_width
+  min-width: $gwbase
+  max-width: $gwbase
+  +tablet-only
+    min-width: $gwbase*1.4
+    max-width: $gwbase*1.4
+  +mobile-only
+    min-width: $gwbase*1.9
+    max-width: $gwbase*1.9
+
+=linear_transition($time: 1s)
+  -webkit-transition: $time linear all
+  -moz-transition: $time linear all
+  -o-transition: $time linear all
+  transition: $time linear all
+
+%growl_container
+  +ext(f-read)
+  &.growl-fixed.top-right
+    top: 60px
+  .alert
+    +border-radius(5px)
+    background: #eee
+  &.growl-fixed
+    +ext(growl_width)
+  .growl-item
+    padding: 5px 20px 5px 5px
+    margin: 5px 0 0
+    &:first-child
+      margin: 0
+    button.close
+      +border-radius($btn_size/2)
+      font-size: $btn_size*.4
+      border: none
+      float: right
+      font-weight: bold
+      width: $btn_size*1.5
+      height: $btn_size
+      background: #eee
+      margin-right: -15px
+      cursor: pointer
+      text-align: center
+    button.close.ng-binding
+      background: none
+      margin: 0
+      font-size: 1rem
+      width: auto
+      height: auto
+      position: relative
+      right: -1.2em
+      bottom: -1em
+    .growl-title
+      font-weight: bold
+      font-size: 1.2rem
+    .growl-message
+      margin-top: 5px
+      min-height: 20px
+      font-size: 1rem
+    .ng-enter
+      opacity: 1
+    .ng-leave
+      opacity: 0
+    .ng-enter, .ng-leave
+      +linear_transition(1s)
+
+=alert-color($bc)
+  background: $bc
+  border: 1px solid darken($bc, 40%)
+  button.close
+    color: transparent
+    background: darken($bc, 35%)
+    &:hover
+      background: darken($bc, 22%)
+  button.close.ng-binding
+    color: transparent
+    &:hover
+      background: none
+
+.growl-container
+  +ext(growl_container)
+  .alert-info
+    +alert-color(rgba(195, 242, 253, 0.73))
+  .alert-success
+    +alert-color(rgba(220, 248, 205, 0.73))
+  .alert-error
+    +alert-color(rgba(243, 194, 182, 0.76))
+  .alert-warning
+    +alert-color(rgba(252, 224, 167, 0.76))

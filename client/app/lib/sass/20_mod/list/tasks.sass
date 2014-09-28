@@ -1,0 +1,33 @@
+.task_list
+  .tasks
+    li:nth-child(2n+1)
+      background: lighten($c-sky, 25)
+    .task
+      +ext(font_bold)
+      +ext(hover_pointer)
+      padding: .4rem 0
+      width: 95%
+      color: darkblue
+      input[type="checkbox"]
+        display: none
+      .info
+        +ext(_block)
+        color: darkgrey
+        font-weight: normal
+  .selected .tasks
+    li:nth-child(2n+1)
+      background: lighten($c-dirt, 50)
+
+.task_list
+  +ext(full_width)
+  .selected, .database
+    +ext(half_width)
+    +ext(rel_inline_block)
+    +ext(align_top)
+    .tasks_info
+      font-size: 1.6rem
+      padding: 2px
+      margin: 9px 3px
+  ul.tasks
+    +ext(autoflow)
+    height: 350px

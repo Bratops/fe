@@ -1,0 +1,75 @@
+// color
+=box-shadow-i($inset, $x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4))
+  @if ($inset != "")
+    -webkit-box-shadow: $inset $x $y $blur $color
+    -moz-box-shadow:    $inset $x $y $blur $color
+    box-shadow:         $inset $x $y $blur $color
+  @else
+    -webkit-box-shadow: $x $y $blur $color
+    -moz-box-shadow:    $x $y $blur $color
+    box-shadow:         $x $y $blur $color
+
+=bg-gradient($deg: 90deg, $startColor: #3C3C3C, $endColor: #999999)
+  background-color: $startColor
+  background-image: -webkit-gradient(linear, left top, left bottom, from($startColor), to($endColor))
+  background-image: -webkit-linear-gradient($deg, $startColor, $endColor)
+  background-image:    -moz-linear-gradient($deg, $startColor, $endColor)
+  background-image:     -ms-linear-gradient($deg, $startColor, $endColor)
+  background-image:      -o-linear-gradient($deg, $startColor, $endColor)
+  background-image:         linear-gradient($deg, $startColor, $endColor)
+  filter:            progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$startColor}', endColorStr='#{$endColor}')
+
+=opacity($opacity)
+  opacity: $opacity
+  $opacity-ie: $opacity * 100
+  //IE8
+  filter: alpha(opacity=$opacity-ie)
+
+=mix_bg($t1: yellow, $t2: limegreen, $t3: skyblue, $t4: coral)
+  $tt: transparent
+  $a1: transparentize($t1, .8)
+  $a2: transparentize($t2, .8)
+  $a3: transparentize($t3, .8)
+  $a4: transparentize($t4, .8)
+  height: 100%
+  background: linear-gradient(0, $t1, $a2), linear-gradient(90deg, $t2, $a3), linear-gradient(180deg, $t3, $a4), linear-gradient(270deg, $t4, $a1)
+  background-blend-mode: screen
+
+// no ...
+%no_bg
+  background: transparent
+
+%no_color
+  color: transparent
+
+%no_box_shadow
+  box-shadow: none
+
+%no_outline
+  outline: none
+
+%no_border
+  border: none
+
+// align
+%text_center
+  text-align: center
+
+%align_top
+  vertical-align: top
+
+=headings($from: 1, $to: 6)
+  @for $i from $from through $to
+    h#{$i}
+      @content
+
+// fonts
+%font_bold
+  font-weight: bold
+
+=headings_fs($from: 1, $to: 6, $fs: 4em, $fsb: 0.2)
+  @for $i from $from through $to
+    h#{$i}
+      font-size: $fs - $fsb*$i*$i*$fs
+      @content
+

@@ -1,0 +1,43 @@
+include ../../com/date.jade
+- var fn = "new_contest"
+form.contest(name="#{fn}")
+  .field.half
+    label(for="name") 名稱
+    input#name(type="text" ng-model="data.contest.name")
+  .field.half
+    label(for="grading") 計分方式
+    select#grading(ng-model="data.grading" ng-options="g as g.name for g in data.gradings")
+  .field.half
+    label(for="sdate") 開始日期
+    .datepicker
+      +date_picker("sdate", "data", "opt.sdate", "contest.sdate")
+      button.trigger(type="button" ng-click="open_cal($event, 'sdate')")
+        i.fa.fa-fw.fa-calendar
+  .field.half
+    label(for="edate") 結束日期
+    .datepicker
+      +date_picker("edate", "data", "opt.edate", "contest.edate")
+      button.trigger(type="button" ng-click="open_cal($event, 'edate')")
+        i.fa.fa-fw.fa-calendar
+  .field
+    label(for="task_ids") 題目
+    .task_list
+      .selected
+        .tasks_info {{ctask_info()}}
+        ul.tasks
+          li(ng-repeat="tsk in data.ctasks | orderBy:'rating'")
+            label.task(ng-click="remove_ctask(tsk)") {{ tsk.title }}
+              span.info {{ tsk.tid }}({{ rats(tsk.rating) }})
+              input(type="checkbox")
+      .database
+        .filter
+          input(ng-model="data.query.$" type="text" placeholder="anything")
+        ul.tasks
+          li(ng-repeat="tsk in data.tasks | filter:data.query | orderBy:'rating'")
+            label.task(ng-click="add_ctask(tsk)") {{ tsk.title }}
+              span.info {{ tsk.tid }}({{ rats(tsk.rating) }})
+              input(type="checkbox")
+  .field
+    .btns
+      button.btn.save(ng-click="save()") 儲存
+      button.btn.cancel(ng-click="cancel()") 取消

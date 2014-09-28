@@ -1,46 +1,24 @@
 "use strict"
 angular.module "brasFeApp"
-.service "teacherGroup", (sessionServ, growl)->
+.service "teacherGroup", (sessionServ, notify)->
+  nv = (n, v)->
+    { name: n, value: v }
   clusters = [
-      name: "普通班未分組"
-      value: 1
-    ,
-      name: "自然組"
-      value: 2
-    ,
-      name: "社會組"
-      value: 3
-    ,
-      name: "人文社會資優班"
-      value: 4
-    ,
-      name: "數理資優班"
-      value: 5
-    ,
-      name: "資訊相關科別"
-      value: 6
-    ,
-      name: "其他技職科別"
-      value: 7
-    ,
-      name: "其他(請註記)"
-      value: 0
+    nv("普通班未分組", 1),
+    nv("自然組", 2),
+    nv("社會組", 3),
+    nv("人文社會資優班", 4),
+    nv("數理資優班", 5),
+    nv("資訊相關科別", 6),
+    nv("其他技職科別", 7),
+    nv("其他(請註記)", 0),
   ]
 
   time_sec = [
-      name: "上午(0730~1230)"
-      value: 0
-    ,
-      name: "下午(1300~1800)"
-      value: 1
-    ,
-      name: "晚上(1800~2200)"
-      value: 2
+    nv("上午(0730~1230)", 0),
+    nv("下午(1300~1800)", 1),
+    nv("晚上(1800~2200)", 2),
   ]
-
-  notify = (msg)->
-    notifier = growl[msg.status]
-    notifier(msg.body, title: msg.title, ttl: 3000)
 
   _new_group = ()->
     cluster: ""
@@ -56,59 +34,7 @@ angular.module "brasFeApp"
     cd.extime = data.extime.value
     cd
 
-  ret =
-    notify_proc: ()->
-      notify
-        status: "info"
-        title: "處理中"
-        body: "請稍後"
-    add_group: ()->
-      ret.notify_proc()
-      rest = sessionServ.rest
-      data = _group_data(ret.data.groups.form_group)
-      rest.one("teacher").post("ugroups", {grp: data}).then (resp)->
-        notify resp.msg
-        if resp.msg.status is "success"
-          ret.data.groups.list.push resp.data
-      ret.data.groups.form_group = _new_group()
-    update_group: ()->
-      ret.notify_proc()
-      rest = sessionServ.rest
-      data = _group_data(ret.data.groups.form_group)
-      rest.one("teacher/ugroups", data.id).patch({grp: data}).then (resp)->
-        notify resp.msg
-        if resp.msg.status is "success"
-          gi = _.findIndex(ret.data.groups.list, (item)->
-            item.id == data.id
-          )
-          ret.data.groups.list[gi] = resp.data
-      ret.data.groups.form_group = _new_group()
-    del_group: (g)->
-      ret.notify_proc()
-      rest = sessionServ.rest
-      rest.one("teacher/ugroups", g.id).remove().then (resp)->
-        notify resp.msg
-        if resp.msg.status is "success"
-          ret.data.groups.list = _.reject(ret.data.groups.list, {id: g.id})
-    load_groups: (rest)->
-      rest = sessionServ.fest().all("teacher/ugroups")
-      rest.getList({pg: 1}).then (resp)->
-        ret.data.groups.list = resp
-    edit_group: (gp)->
-      fg = _.clone(gp, true)
-      fg.cluster = ret.find_local(gp.cluster_id, "clusters")
-      fg.extime = ret.find_local(gp.extime, "time_sec")
-      ret.data.groups.form_group = fg
-    find_local: (k, key)->
-      dg = ret.data.groups[key]
-      dv = _.findIndex(dg, (item)->
-        item.value == k
-      )
-      dg[dv]
-    load: ()->
-      return if ret.data.init
-      ret.data.init = true
-      ret.load_groups()
+  r =
     data:
       init: false
       groups:
@@ -127,3 +53,65 @@ angular.module "brasFeApp"
           startingDay: 1
         clusters: clusters
         time_sec: time_sec
+
+  r.notify_proc = ->
+    notify.g
+      status: "info"
+      title: "處理中"
+      body: "請稍後"
+
+  r.add_group = ->
+    r.notify_proc()
+    rest = sessionServ.rest
+    data = _group_data(r.data.groups.form_group)
+    rest.one("teacher").post("ugroups", {grp: data}).then (resp)->
+      notify.g resp.msg
+      if resp.msg.status is "success"
+        r.data.groups.list.push resp.data
+    r.data.groups.form_group = _new_group()
+
+  r.update_group = ->
+    r.notify_proc()
+    rest = sessionServ.rest
+    data = _group_data(r.data.groups.form_group)
+    rest.one("teacher/ugroups", data.id).patch({grp: data}).then (resp)->
+      notify.g resp.msg
+      if resp.msg.status is "success"
+        gi = _.findIndex(r.data.groups.list, (item)->
+          item.id == data.id
+        )
+        r.data.groups.list[gi] = resp.data
+    r.data.groups.form_group = _new_group()
+
+  r.del_group = (g)->
+    r.notify_proc()
+    rest = sessionServ.rest
+    rest.one("teacher/ugroups", g.id).remove().then (resp)->
+      notify.g resp.msg
+      if resp.msg.status is "success"
+        r.data.groups.list = _.reject(r.data.groups.list, {id: g.id})
+
+  r.load_groups = (rest)->
+    rest = sessionServ.fest().all("teacher/ugroups")
+    rest.getList({pg: 1}).then (resp)->
+      r.data.groups.list = resp
+
+  r.edit_group = (gp)->
+    fg = _.clone(gp, true)
+    fg.cluster = r.find_local(gp.cluster_id, "clusters")
+    fg.extime = r.find_local(gp.extime, "time_sec")
+    r.data.groups.form_group = fg
+
+  r.find_local = (k, key)->
+    dg = r.data.groups[key]
+    dv = _.findIndex(dg, (item)->
+      item.value == k
+    )
+    dg[dv]
+
+  r.load = ->
+    return if r.data.init
+    r.data.init = true
+    r.load_groups()
+
+  r

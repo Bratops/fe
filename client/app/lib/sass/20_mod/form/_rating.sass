@@ -1,0 +1,23 @@
+%_rating_star
+  .rating
+    +ext(field_item_base)
+    label
+      +ext(inline_block)
+    label
+      width: 100px
+      text-align: right
+    span i .sr-only
+      display: none
+    i.glyphicon
+      +ext(hover_pointer)
+      +ext(fa, false)
+      +ext(fa-fw, false)
+
+=_rating_fs($fs: 1.3rem)
+  .rating
+    label, a, span
+      font-size: $fs
+
+=rating_field($fs: 1.3rem)
+  +ext(_rating_star)
+  +_rating_fs($fs)

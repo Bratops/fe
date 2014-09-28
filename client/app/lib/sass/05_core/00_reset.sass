@@ -1,0 +1,37 @@
++global-reset()
+
+a
+  text-decoration: none
+
+.ng-isolate-scope, button, input, select, textarea
+  +ext(no_margin)
+  +ext(no_outline)
+  +ext(no_border)
+
+html, body,
+  +ext(full_height)
+  min-height: 100%
+  min-width: 320px
+
+body > .ng-scope
+  +ext(full_height)
+
+@font-face
+  font-family: "HoboStd"
+  // IE9 compat
+  src: url('/assets/fonts/HoboStd.otf')
+
+.row
+  margin-bottom: relative(20px)
+  height: 100%
+  padding: 10px
+  .col
+    float: left
+    display: inline
+    position: relative
+    padding: 10px
+    &.la
+      margin-left: 0
+    &.ra
+      margin-right: 0
+

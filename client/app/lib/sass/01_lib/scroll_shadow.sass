@@ -1,0 +1,14 @@
+//bg(white) background color
+//sInt(.2) intensity
+//sc(black) shadow color
+//cs(40px) cover size
+//ss(14px) shadow size
+=scrolling-shadows($bg: rgb(255, 255, 255), $sInt: 0.2, $sc: rgb(0,0,0), $cs: 40px, $ss: 14px)
+  background: linear-gradient($bg 30%, rgba($bg,0)), linear-gradient(rgba($bg,0), $bg 70%) 0 100%, radial-gradient(50% 0, farthest-side, rgba($sc,$sInt), rgba($sc,0)), radial-gradient(50% 100%,farthest-side, rgba($sc,$sInt), rgba($sc,0)) 0 100%
+  background: linear-gradient($bg 30%, rgba($bg,0)), linear-gradient(rgba($bg,0), $bg 70%) 0 100%, radial-gradient(farthest-side at 50% 0, rgba($sc,$sInt), rgba($sc,0)), radial-gradient(farthest-side at 50% 100%, rgba($sc,$sInt), rgba($sc,0)) 0 100%
+  background-repeat: no-repeat
+  background-color: $bg
+  background-size: 100% $cs, 100% $cs, 100% $ss, 100% $ss
+  // Opera doesn't support this in the shorthand
+  background-attachment: local, local, scroll, scroll
+

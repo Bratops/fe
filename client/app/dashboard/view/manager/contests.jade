@@ -1,0 +1,12 @@
+.contests
+  ul.ops
+    li
+      .btn(ui-sref="dashboard.manager.contests.new") 新測驗
+    li 顯示:
+      .btn(ng-click="show('info')") 題目
+    li
+      .btn(ng-click="show('misc')") 設定
+
+  .scroll
+    include contests/list.jade
+    .detail(ui-view="scroll") detail

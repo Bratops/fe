@@ -1,0 +1,60 @@
+=_menu_hover($bg: #ecc)
+  &:hover
+    +transition(.8s linear all)
+    background: transparentize($bg, .7)
+    border-color: lighten($c-soil, 20)
+    a
+      color: lighten($c-soil, 10)
+    &.clicked
+      background: transparentize(lighten($c-soil, 20), .3)
+      a
+        color: lighten($c-soil, 0)
+
+=_widget_color($bc: #eee)
+  background: transparentize($bc, .8)
+
+=_widget_font($ft: 2em)
+  li
+    height: $ft*1.2
+    line-height: $ft*1.2
+    a
+      font-size: $ft
+
+%_widget_base
+  +ext(full_height)
+  display: inline-table //firefox
+  float: left
+  width: 20%
+  max-height: 100%
+
+%_menu
+  .menu
+    +ext(no_padding)
+    +_widget_font(1.5rem)
+    margin-bottom: 3px
+    li
+      border-bottom: 3px solid
+      height: auto
+    li a
+      +ext(_block)
+      padding: 5px 0
+      vertical-align: middle
+      text-align: right
+    li.clicked
+      background: transparentize(lighten($c-soil, 40), .3)
+      border-color: lighten($c-soil, 20)
+      a
+        color: lighten($c-soil, 10)
+
+=_menu_color($bc: #ccc)
+  .menu li
+    border-color: $bc
+    +_menu_hover(darken($bc, 30%))
+    a
+      color: darken(mix($bc, $c-sky, 30%), 30%)
+
+.wg
+  +ext(_widget_base)
+  +_widget_color(#bbb)
+  +ext(_menu)
+  +_menu_color(#bbb)

@@ -1,0 +1,40 @@
+%_panel_base_view
+  .base
+    height: 0
+    display: none
+  .view
+    +ext(inline_block)
+    +size(100%, 100%)
+
+%_panel_base
+  +ext(_panel_base_view)
+  +ext(_block)
+  +ext(full_height)
+  overflow-y: auto
+  background: #f9f9f9
+  //+scrolling_shadows(transparent, .1, black, 60px, 7px)
+
+%_panel_split
+  +ext(inline_block)
+  +ext(full_height)
+  +ext(autoflow)
+  +ext(align_top)
+
+=panel_split($w: 50%)
+  +ext(_panel_split)
+  width: $w
+
+=panel_t_layout($h: 6%)
+  +ext(no_data)
+  +ext(full_height)
+  .ops, .scroll
+    +ext(no_margin)
+    +ext(no_padding)
+  .ops
+    +lock_height($h)
+  .scroll
+    +ext(autoflow)
+    +lock_height(100 - $h)
+
+.db .pan
+  +ext(_panel_base)

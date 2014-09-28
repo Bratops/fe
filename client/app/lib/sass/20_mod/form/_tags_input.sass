@@ -1,0 +1,22 @@
+%tags_input
+  tags-input .host
+    +ext(no_outline)
+    +ext(full_width)
+    +ext(field_outline)
+    +border-radius(5px)
+    width: 100%
+    .tag-list
+      +ext(no_outline)
+    .tags.focused
+      +ext(no_box_shadow)
+    .tags > input
+      +ext(no_border)
+      +ext(full_width)
+      +ext(no_padding)
+      margin: 2px
+    .tags .tag-item
+      +bg-gradient(180deg, lighten($c-swim, 55), lighten($c-swim, 30))
+      width: auto
+      &.selected
+        +bg-gradient(180deg, lighten(red, 40), lighten(red, 20))
+

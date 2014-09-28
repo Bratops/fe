@@ -1,0 +1,55 @@
+%ans_label
+  label.choice
+    +ext(hover_pointer)
+  label.answer
+    background: pink
+    &:after
+      content: "(答案)"
+
+%inline_ctrls
+  .controls, .btns
+    margin: 10px 0 0
+    > .btn
+      +ext(inline_block)
+
+form
+  +ext(form_btn_base)
+  +ext(form_fields)
+  .field
+    +ext(tags_input)
+    +ext(datepicker_base)
+    +date_picker(1.6rem)
+
+.join_group
+  +box-shadow("", 0, 2px, 8px, rgba(80,123,123,0.35))
+  +ext(inline_ctrls)
+  +ext(typeahead_dropdown)
+  +typeahead_dropdown_var(#cde, 1.5rem)
+  +form_var(lighten($c-sky, 30), 1.2rem)
+
+.new_group
+  $cr: desaturate(lighten($c-sky, 30), 30)
+  +ext(new_group_ani_base)
+  +position(relative)
+  top: 8%
+  width: 93%
+  margin: 1% auto
+  padding: 10px 2%
+  background: $cr
+  z-index: 200
+  +border-radius(4px)
+  +box-shadow("", 1px, 2px, 5px, rgba(0,0,0,0.15))
+  +ext(inline_ctrls)
+  +date_picker(1.5rem)
+  form
+    +form_var($cr, 1.2rem)
+
+.pad form
+  +ext(ans_label)
+  +rating_field(1.3rem)
+
+.contest
+  +form_btn_var(lighten($c-sky, 30), 1.3rem)
+  .btn
+    +ext(inline_block)
+

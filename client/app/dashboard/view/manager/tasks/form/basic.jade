@@ -1,6 +1,6 @@
 mixin basic_form()
   - var fn = "basic_form"
-  form(name="#{fn}" ng-show="clicked('basic')")
+  form.task(name="#{fn}" ng-show="clicked('basic')")
     .field
       label 標題
       input(type="text" ng-model="data.task.title")
@@ -31,7 +31,7 @@ mixin basic_form()
 
 mixin body_form()
   - var fn = "body_form"
-  form(name="#{fn}" ng-show="clicked('body')")
+  form.task(name="#{fn}" ng-show="clicked('body')")
     .field
       label 題文
       textarea(ng-model="data.task.body" ckeditor="")
@@ -41,7 +41,7 @@ mixin body_form()
 
 mixin choices_form()
   - var fn = "choices_form"
-  form(name="#{fn}" ng-show="clicked('choices')")
+  form.task(name="#{fn}" ng-show="clicked('choices')")
     .field(ng-repeat="cho in data.task.choices")
       label.choice(ng-click="mark_answer(cho)" ng-class="{answer: cho.answer}")
         | 選項{{ cho.index }}
@@ -49,7 +49,7 @@ mixin choices_form()
 
 mixin info_form()
   - var fn = "info_form"
-  form(name="#{fn}" ng-show="clicked('info')")
+  form.task(name="#{fn}" ng-show="clicked('info')")
     .field
       label 詳解
       textarea(ng-model="data.task.explain" ckeditor="")

@@ -1,6 +1,6 @@
-ul.list(ng-class="{'no-data': data.tasks.length == 0}")
+ul.humplist(ng-class="{'no-data': data.tasks.length == 0}")
   li(ng-repeat="tsk in data.tasks")
-    .task(ng-mouseenter="hover_tsk(tsk)"
+    .item(ng-mouseenter="hover_tsk(tsk)"
       ng-class="clicked_tsk(tsk)"
       ng-click="click_tsk(tsk)")
       span.title {{ tsk.title }}

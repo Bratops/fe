@@ -6,55 +6,58 @@ $fa-font-path: "/blib/font-awesome/fonts"
 @import skeleton-sass/skeleton/themes/sphenoid/marrow/public
 @import sass-css3-mixins/css3-mixins.sass
 
-/**
- * App-wide Styles
-
-.browsehappy
-  margin: 0.2em 0
-  background: #ccc
-  color: #000
-  padding: 0.2em 0
-
 // Component styles are injected through grunt
 // injector
-@import lib/sass/_base/0_nsn.sass
-@import lib/sass/_base/10_block.sass
-@import lib/sass/_base/rwd.sass
-@import lib/sass/cloud_btn.sass
-@import lib/sass/drop_down.sass
-@import lib/sass/growl.sass
-@import form/session/theme.sass
-@import appbase.sass
-@import dashboard/theme/_base.sass
-@import dashboard/theme/_form/_base.sass
-@import dashboard/theme/_form/_date.sass
-@import dashboard/theme/_form/join_group.sass
-@import dashboard/theme/_head.sass
-@import dashboard/theme/_panel.sass
-@import dashboard/theme/_rwd.sass
-@import dashboard/theme/_widget.sass
+@import lib/sass/00_helper/000.sass
+@import lib/sass/00_helper/005_posing.sass
+@import lib/sass/00_helper/010_sizing.sass
+@import lib/sass/00_helper/020_shaping.sass
+@import lib/sass/00_helper/030_typing.sass
+@import lib/sass/00_helper/050_listing.sass
+@import lib/sass/00_helper/100_rwd.sass
+@import lib/sass/01_lib/cloud_btn.sass
+@import lib/sass/01_lib/drop_down.sass
+@import lib/sass/01_lib/rwd.sass
+@import lib/sass/01_lib/scroll_shadow.sass
+@import lib/sass/05_core/00_reset.sass
+@import lib/sass/05_core/01_var.sass
+@import lib/sass/05_core/10_common.sass
+@import lib/sass/10_layout/dashboard/base.sass
+@import lib/sass/10_layout/dashboard/head.sass
+@import lib/sass/10_layout/dashboard/panel.sass
+@import lib/sass/10_layout/dashboard/widget.sass
+@import lib/sass/10_layout/landing.sass
+@import lib/sass/10_layout/task.sass
+@import lib/sass/20_mod/form/_base.sass
+@import lib/sass/20_mod/form/_datepicker.sass
+@import lib/sass/20_mod/form/_helper.sass
+@import lib/sass/20_mod/form/_rating.sass
+@import lib/sass/20_mod/form/_tags_input.sass
+@import lib/sass/20_mod/form/m_form.sass
+@import lib/sass/20_mod/form/session.sass
+@import lib/sass/20_mod/growl.sass
+@import lib/sass/20_mod/list/hump.sass
+@import lib/sass/20_mod/list/ops_list.sass
+@import lib/sass/20_mod/list/tasks.sass
+@import lib/sass/20_mod/msgs.sass
+@import lib/sass/20_mod/nav/landing.sass
+@import lib/sass/20_mod/youtube.sass
 @import dashboard/theme/bulletin/msg_form.sass
 @import dashboard/theme/bulletin/msg_list.sass
 @import dashboard/theme/bulletin/roles.sass
+@import dashboard/theme/contests/main.sass
 @import dashboard/theme/enrollments/_base.sass
 @import dashboard/theme/group/_base.sass
 @import dashboard/theme/group/group_list.sass
 @import dashboard/theme/group/teacher.sass
-@import dashboard/theme/main.sass
 @import dashboard/theme/menu/menu.sass
-@import dashboard/theme/tasks/_base.sass
 @import dashboard/theme/tasks/_base_table.sass
 @import dashboard/theme/tasks/_base_tabs.sass
 @import dashboard/theme/tasks/_detail.sass
-@import dashboard/theme/tasks/_list.sass
 @import dashboard/theme/tasks/_new_form.sass
 @import dashboard/theme/tasks/manager.sass
 @import dashboard/theme/users/_pager.sass
 @import dashboard/theme/users/base.sass
 @import dashboard/theme/users/manager.sass
-@import landing/_intro_nav.sass
-@import landing/_msgs.sass
-@import landing/landing.sass
-@import task/task.sass
 // endinjector
 

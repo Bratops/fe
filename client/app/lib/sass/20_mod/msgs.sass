@@ -1,0 +1,23 @@
+%msgs_base
+  $cr: lighten($c-dirt, 30)
+  +ext(f-read)
+  +border-radius(10px)
+  +ext(autoflow)
+  +box-shadow("", 0, 1px, 10px, lighten($c-dirt, 20))
+  background: transparentize($cr, .2)
+  margin: 30px auto
+  padding: 10px 1%
+
+.msgs
+  +ext(msgs_base)
+  li
+    border-bottom: 2px dashed lighten($c-soil, 30)
+    margin-bottom: 3px
+    padding: 4px 1px
+  li .title
+    font-weight: bold
+    font-size: 1.2rem
+    margin-bottom: 3px
+  li p
+    line-height: 1.2rem
+

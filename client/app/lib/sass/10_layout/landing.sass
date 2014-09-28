@@ -1,0 +1,163 @@
+=landing_font($fs: 10em)
+  +headings_fs(1, 6, $fs, .2)
+  #nav
+    font-size: $fs*1.4
+  .intro
+    +headings_fs(1, 6, $fs*.4, .1)
+  .footer
+    font-size: $fs*.1
+
+%landing_typo
+  +headings
+    width: 340px
+    +ext(f-hobo)
+    +ext(font_bold)
+    +ext(text_center)
+    color: $c-soil
+    margin: auto
+
+%landing_bg
+  background-color: lighten($c-dirt, 65%)
+  background-image: url("/assets/images/2014tw_bebras.png")
+  background-repeat: no-repeat
+  background-clip: content-box
+  background-position: center 100%
+  background-size: 100%
+
+%landing_fill
+  +ext(full_browser)
+  +float(left)
+
+=landing_nav_var($cr: #cde, $cc: #eda)
+  ul li
+    +cloud-btn(lighten($c-soil, 10%), $c-sky, $cr, $cc)
+
+%header
+  +ext(full_height)
+  +ext(landing_typo)
+  .power
+    width: auto
+  h1
+    padding-top: 5rem
+
+%_article
+  .article
+    +ext(full_height)
+    margin: .5% 0
+    padding: 10% 15%
+  article
+    p
+      line-height: 2.5rem
+      font-size: 1.5rem
+      text-align: justify
+    h1, h2
+      margin: 5px 0 2%
+      +ext(font_bold)
+    h1
+      +ext(_block)
+      +ext(text_center)
+    h2:nth-child(1)
+      margin-top: 0
+
+%intro
+  +ext(f-read)
+  +ext(_article)
+  +ext(full_height)
+  margin: 0
+
+%landing_body
+  background: lighten($c-soil, 68%)
+  +ext(inline_block)
+  &.dim
+    display: none
+  h1
+    +ext(f-hobo)
+  .intro
+    +ext(intro)
+
+%footer
+  +ext(text_center)
+  +ext(f-read)
+  +ext(font_bold)
+  padding: 1rem
+  background-color: lighten($c-soil, 5%)
+  color: lighten($c-soil, 30)
+  ul li
+    +ext(inline_block)
+    margin: 0 20px
+  a
+    color: lighten($c-soil, 30)
+  a label, a img
+    margin: 3px 0
+    +ext(_block)
+  img
+    width: 90px
+
+%landing_base
+  +ext(landing_bg)
+  +ext(landing_fill)
+  +landing_font(8rem)
+  h2
+    margin: auto
+    span
+      +ext(inline_block)
+      width: 10%
+
+%dimmer
+  +position(absolute)
+  +ext(full_browser)
+  top: 0
+  background: rgba(50, 50, 50, .8)
+
+%control_base
+  .control
+    &.dim
+      +ext(dimmer)
+
+%landing_rwd
+  +tablet-portrait-only
+    .intro .article
+      padding: 20px 5% 20px
+  +tablet-landscape-only
+    .intro .article
+      padding: 40px 10% 40px
+  +mobile-landscape-only
+    +landing_font(5rem)
+    +headings
+      width: 170px !important
+    h1
+      padding-top: 20px !important
+    .body .intro .article
+      padding: 30px
+      +columns(1, 10)
+    background-size: 130% 35%
+    background-position: 55% 100%
+  +mobile-portrait-only
+    .body .intro .article
+      padding: 30px
+      +columns(1, 10)
+    +landing_font(4rem)
+    +headings
+      width: 210px !important
+    .control
+      ul li
+        margin-top: 5%
+        display: block
+    background-size: 200% 30%
+    background-position: 55% 100%
+
+.root
+  display: inline
+
+.landing
+  +ext(landing_base)
+  +ext(landing_rwd)
+  .header
+    +ext(header)
+    +ext(control_base)
+    .msgs
+      width: 70%
+  .body
+    +ext(landing_body)
+  .footer
+    +ext(footer)

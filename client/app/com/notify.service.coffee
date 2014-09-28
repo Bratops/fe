@@ -1,7 +1,6 @@
 "use strict"
 
-angular.module "brasFeApp"
-.service "notify", (growl) ->
+angular.module("brasFeApp").service "notify", (growl) ->
   ret =
     ttl: 3000
     g: (msg)->
