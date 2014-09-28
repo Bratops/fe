@@ -13,8 +13,9 @@
       +ext(inline_block)
 
 form
-  +ext(form_btn_base)
   +ext(form_fields)
+  +ext(form_btn_base)
+  +form_btn_var(lighten($c-sky, 30), 1.3rem)
   .field
     +ext(tags_input)
     +ext(datepicker_base)
@@ -47,9 +48,4 @@ form
 .pad form
   +ext(ans_label)
   +rating_field(1.3rem)
-
-.contest
-  +form_btn_var(lighten($c-sky, 30), 1.3rem)
-  .btn
-    +ext(inline_block)
 

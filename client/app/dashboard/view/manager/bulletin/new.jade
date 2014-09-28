@@ -1,0 +1,27 @@
+include ../../com/date.jade
+- var fn = "msg_form"
+form.new_bull(name="#{fn}" novalidate ng-show=" msg_editor_visible() ")
+  .field.half
+    label(for="msg_start") 開始於
+    .datepicker
+      +date_picker("msg_start", "data", "sdate_opt", "msg.start_time")
+      button.trigger(type="button" ng-click="open_calendar($event, 'sdate_opt')")
+        i.fa.fa-fw.fa-calendar
+  .field.half
+    label(for="msg_end") 結束于
+    .datepicker
+      +date_picker("msg_end", "data", "edate_opt", "msg.end_time")
+      button.trigger(type="button" ng-click="open_calendar($event, 'edate_opt')")
+        i.fa.fa-fw.fa-calendar
+  .field.full
+    label(for="msg_title") 標題
+    input(type="text" min="2" max="64" ng-model="data.msg.title")
+  .field.full
+    label(for="msg_title") 內文
+    textarea(ng-model="data.msg.body" ckeditor="")
+  .btns
+    button.btn(ng-click="add_msg()" ng-show=" data.new ") 新
+    button.btn(ng-click="update_msg()" ng-show=" data.edit ") 改
+    button.btn(ng-click="cancel_editor()") 取消
+
+script(src="/assets/ckeditor/ckeditor.js")

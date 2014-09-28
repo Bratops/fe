@@ -1,11 +1,6 @@
-'use strict'
-
-angular.module 'brasFeApp'
-.service 'bulletin', (sessionServ, growl) ->
-  notify = (msg)->
-    notifier = growl[msg.status]
-    notifier(msg.body, title: msg.title, ttl: 3000)
-
+"use strict"
+angular.module "brasFeApp"
+.service "bulletin", (sessionServ, notify) ->
   _add_day = (base_day, day)->
     dt = base_day || new Date()
     dt.setDate(dt.getDate() + day)
@@ -14,8 +9,8 @@ angular.module 'brasFeApp'
   _new_msg = ()->
     start_time: new Date
     end_time: _add_day(new Date(), 1)
-    title: "a"
-    body: "b"
+    title: ""
+    body: ""
 
   _date_opt = ()->
     minDate: new Date()
@@ -33,18 +28,18 @@ angular.module 'brasFeApp'
       data = _.clone(ret.data.msg)
       rest = sessionServ.rest
       rest.one("manager", "msgs").post("", {msg: data}).then (resp)->
-        notify resp.msg
+        notify.g resp.msg
         ret.data.msgs.push resp.data
         ret.data.msg = _new_msg()
     update_msg: ()->
       data = _.clone(ret.data.msg)
       rest = sessionServ.rest
       rest.one("manager/msgs", data.id).patch({msg: data}).then (resp)->
-        notify resp.msg
+        notify.g resp.msg
     del_msg: (msg)->
       rest = sessionServ.rest
       rest.one("manager/msgs", msg.id).remove().then (resp)->
-        notify resp.msg
+        notify.g resp.msg
         if resp.msg.status is "success"
           ret.data.new = ret.data.edit = false
           ret.data.msgs = _.reject(ret.data.msgs, {id: resp.id})
@@ -69,7 +64,7 @@ angular.module 'brasFeApp'
       ret.data.msg = ms
     data:
       msgs: []
-      new: false
+      new: true
       edit: false
       msg: _new_msg()
       sdate_opt: _date_opt()

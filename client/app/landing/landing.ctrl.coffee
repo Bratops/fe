@@ -2,6 +2,7 @@
 angular.module("brasFeApp").classy.controller
   name: "LandingCtrl"
   inject:
+    $sce: "sce"
     $scope: "$"
     $state: "st"
     sessionServ: "session"
@@ -47,3 +48,5 @@ angular.module("brasFeApp").classy.controller
       else
         @menu.data.tube.player.stopVideo()
 
+  trust: (html)->
+    @sce.trustAsHtml html
