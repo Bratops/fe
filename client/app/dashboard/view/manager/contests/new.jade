@@ -6,7 +6,7 @@ form.contest(name="#{fn}")
     input#name(type="text")
   .field.half
     label(for="grading") 計分方式
-    select#grading(ng-model="data.contest.grading" ng-options="g.value as g.name for g in data.gradings")
+    select#grading(ng-model="data.grading" ng-options="g as g.name for g in data.gradings")
   .field.half
     label(for="sdate") 開始日期
     .datepicker
@@ -20,11 +20,24 @@ form.contest(name="#{fn}")
       button.trigger(type="button" ng-click="open_cal($event, 'edate')")
         i.fa.fa-fw.fa-calendar
   .field
-    label(for="target_grades") 年齡資格
-  .field
-    label(for="ugroup_ids") 班級
-  .field
     label(for="task_ids") 題目
-
+    .task_list
+      .selected
+        .tasks_info {{ctask_info()}}
+        ul.tasks
+          li(ng-repeat="tsk in data.ctasks | orderBy:'rating'")
+            label.task(ng-click="remove_ctask(tsk)") {{ tsk.title }}
+              span.info {{ tsk.tid }}({{ rats(tsk.rating) }})
+              input(type="checkbox")
+      .database
+        .filter
+          input(ng-model="data.query.$" type="text" placeholder="anything")
+        ul.tasks
+          li(ng-repeat="tsk in data.tasks | filter:data.query | orderBy:'rating'")
+            label.task(ng-click="add_ctask(tsk)") {{ tsk.title }}
+              span.info {{ tsk.tid }}({{ rats(tsk.rating) }})
+              input(type="checkbox")
   .field
-    pre {{ data.contest | json }}
+    .btns
+      button.btn.add(ng-click="create()") 儲存
+      button.btn.cancel(ng-click="cancel()") 取消
