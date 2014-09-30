@@ -1,0 +1,46 @@
+.panel.files(flow-object="data.flow" flow-init=""
+  flow-file-success="file_success($file, $message)"
+  )
+
+  ul.ops
+    li
+      .btn(flow-btn="" flow-attrs="{accept:'*/*'}") 加入檔案
+    li
+      .btn(ng-click="data.flow.upload()") 上傳
+    li
+      span (jpg jpeg gif png doc docx pdf)
+
+  .scroll
+    .detail
+      table(ng-show="data.flow.files.length > 0")
+        thead
+          tr
+            th 檔名
+            th 大小
+            th 進度
+        tbody(flow-transfers="")
+          tr(ng-repeat='file in data.flow.files')
+            td {{  file.name  }}
+            td {{  file.size | bytes }}
+            td {{  file.progress()*100 | number: 2 }} %
+
+      .link(ng-show="data.link != ''") {{ data.link }}
+      .nodata(ng-show="data.files.length == 0") No files
+      table(ng-show="data.files.length > 0")
+        thead
+          tr
+            th 檔名
+            th 鏈結
+            th 大小
+            th 下載次數
+            th
+        tbody
+          tr(ng-repeat='file in data.files')
+            td
+              a(target="_self" href="{{file.url}}" download="{{file.name}}") {{ file.name }}
+            td 
+              a(href="" ng-click="show_link(file)") 顯示鏈結
+            td {{  file.size | bytes:2 }}
+            td {{  file.down_count }}
+            td.btns
+              i.fa.fa-fw.fa-times.remove(ng-click="remove(file)")

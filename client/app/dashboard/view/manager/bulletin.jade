@@ -1,13 +1,15 @@
-ul.ops.bulletin
-  li
-    .btn(ng-click="new_msg()") 新公告
+.panel.bulletin
+  ul.ops
+    li
+      .btn(ng-click="new_msg()") 新公告
 
-.scroll.bulletin
-  include msg_form.jade
-  ul.msgs
-    li(ng-repeat="msg in data.msgs")
-      .msg
-        .title
-          .delete.fa.fa-fw.fa-times(ng-click="del_msg(msg)")
-          span(ng-click="edit_msg(msg)") {{ msg.title }}
-        .body {{ msg.body }}
+  .scroll
+    ul.humplist
+      li(ng-repeat="msg in data.msgs")
+        .item
+          span.title {{ msg.title }}
+          .ctrls
+            i.remove.fa.fa-fw.fa-times(ng-click="del_msg(msg)")
+            i.edit.fa.fa-fw.fa-edit(ng-click="edit_msg(msg)")
+    .detail
+      include bulletin/new.jade
