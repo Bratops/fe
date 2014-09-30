@@ -1,0 +1,40 @@
+%_info_shape
+  .left, .mid, .right
+    +ext(inline_block)
+    background: lighten($c-soil, 60)
+    border-top: 1px solid #cce
+    padding: 3px
+    cursor: help
+  .mid, .right
+    border-left: 1px solid #cce
+
+%_info_span
+  span
+    width: 30%
+
+%_info
+  .info
+    +ext(inline_block)
+    +border-radius(5px)
+    margin: 10px
+    font-size: 2rem
+    border: 3px solid transparent
+    background: lighten($c-soil, 40)
+    &:hover
+      border: 3px solid lighten($c-soil, 20)
+
+ul.contests
+  +ext(_info)
+  .name, .more_info
+    margin: 5px 0 0
+  .name
+    padding: 0 3px
+    font-weight: bold
+    a
+      color: $c-soil
+      width: 100%
+      display: block
+  .more_info
+    font-size: 80%
+    +ext(_info_shape)
+    +ext(_info_span)

@@ -70,8 +70,8 @@ angular.module "brasFeApp"
 
   r.update = ()->
     data = r.contest_obj()
-    rst = sessionServ.fest().one("manager/contests")
-    rst.post("", {contest: data}).then (rsp)->
+    rst = sessionServ.fest().one("manager/contests", data.id)
+    rst.patch({contest: data}).then (rsp)->
       notify.g rsp.msg
       if rsp.msg.status is "success"
         $rootScope.$broadcast "contest:updated", rsp.data

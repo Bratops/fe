@@ -50,3 +50,4 @@ angular.module("brasFeApp").classy.controller
 
   logout: ()->
     @se.logout()
+
