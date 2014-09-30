@@ -72,6 +72,10 @@
   label
     font-size: $fs
 
+%form_decorate
+  +border-radius(4px)
+  +box-shadow("", 1px, 2px, 5px, rgba(0,0,0,0.15))
+
 %form_btn_base
   .btn
     +ext(border_block)
@@ -95,10 +99,6 @@
       cursor: not-allowed
       background: #ddd
       color: #889
-
-%form_decorate
-  +border-radius(4px)
-  +box-shadow("", 1px, 2px, 5px, rgba(0,0,0,0.15))
 
 =form_var($cr: #cde, $fs: 1.2rem)
   .field

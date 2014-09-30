@@ -25,7 +25,7 @@ angular.module "brasFeApp", [
 ]
 
 .constant "Config",
-  host: "brasbe.dev" #"bebras01.csie.ntnu.edu.tw:88" #"localhost:3000"
+  host: "bebras01.csie.ntnu.edu.tw:88" #"localhost:3000"
 
 .config (tagsInputConfigProvider) ->
   tagsInputConfigProvider.setDefaults("tagsInput",
@@ -43,14 +43,15 @@ angular.module "brasFeApp", [
 .config (flowFactoryProvider) ->
     flowFactoryProvider.defaults =
       target: ""
+      simultaneousUploads: 4
       permanentErrors: [
         404
         500
         501
       ]
     flowFactoryProvider.on "catchAll", (event) ->
-      # You can also set default events:
       ""
+      # You can also set default events:
 
 # Can be used with different implementations of Flow.js
 # flowFactoryProvider.factory = fustyFlowFactory;

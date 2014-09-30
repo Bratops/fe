@@ -1,0 +1,16 @@
+table
+  margin: 2% auto
+  width: 96%
+  th, td
+    +ext(text_center)
+    padding: 5px
+  thead
+    border-bottom: 2px solid grey
+  tbody tr:nth-child(2n)
+    background: lighten($c-swim, 55)
+    &:hover
+      background: lighten($c-swim, 45)
+  tr:hover
+    background: #eee
+  td.btns i
+    +ext(hover_pointer)

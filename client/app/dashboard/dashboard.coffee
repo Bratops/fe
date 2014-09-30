@@ -97,6 +97,7 @@ angular.module 'brasFeApp'
   state "manager"
   state "manager", "bulletin"
   state "manager", "users"
+  state "manager", "files"
   state "manager", "tasks"
   state "manager", "tasks", "new"
   state "manager", "tasks", "edit"
