@@ -44,3 +44,8 @@
 # class way
 - [logger](http://www.spectrumcoding.com/tutorials/angularjs/2014/01/08/class-based-angular.html)
 - [service](http://benhollis.net/blog/2014/01/17/cleanly-declaring-angularjs-services-with-coffeescript/)
+
+# css
+- [round tab](http://css-tricks.com/better-tabs-with-round-out-borders/)
+- [shapes](http://css-tricks.com/examples/ShapesOfCSS/)
+- [ceaser](http://matthewlein.com/ceaser/)

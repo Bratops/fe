@@ -5,7 +5,8 @@ angular.module "brasFeApp"
   r =
     inited: false
     data:
-      title: {}
+      title:
+        name: ""
       clicked: {}
       menu: {} # load_menu
       raw: {} # get_menu_list

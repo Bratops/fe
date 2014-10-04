@@ -1,0 +1,105 @@
+%_ctrl
+  .ctrl
+    +ext(abs_inline_block)
+    +rating_field(120%)
+    +ext(rating_label_left)
+    +ext(rating_gold_star)
+    width: 40%
+    bottom: 0
+    .info, .rating, .btns
+      +ext(full_width)
+      +ext(border_box)
+      padding: 0 20px 5px
+  .ctrl .btn
+    +ext(hover_pointer)
+    +ext(inline_block)
+    +transition(all .3s linear)
+    width: 32%
+    margin: 0 2% 0 0
+    background: lighten($c-soil, 40)
+    border: 1px solid desaturate(lighten($c-soil, 30), 30)
+    color: lighten($c-soil, 5)
+    font-weight: bold
+    font-size: 1.5rem
+    &:last-child
+      margin: 0
+    &:disabled, &:disabled:hover
+      cursor: not-allowed
+      color: #888
+      background: #cecece
+    &:hover
+      +transition(all .3s linear)
+      background: lighten($c-soil, 30)
+  .ctrl .timer
+    +ext(hover_pointer)
+
+
+%_choices
+  .choices
+    +ext(full_width)
+    li
+      +ext(hover_pointer)
+      //list-style: decimal inside
+      padding: 5px 0
+      color: desaturate(lighten($c-soil, 30), 30)
+      &:before
+        +ext(fa, false)
+        +ext(fa-fw, false)
+        +ext(fa-thumb-tack, false)
+        +fa-icon-rotate(-90deg, 1)
+        +transition(transform .5s linear)
+      &.clicked
+        color: darken($c-sky, 10)
+      &.clicked:before
+        +fa-icon-rotate(-45deg, 2)
+        +transition(transform .5s linear)
+      &.clicked .choice
+        +box-shadow("", 2px, 1px, 5px, $c-sky)
+        border: 3px solid lighten($c-sky, 0)
+    .choice
+      +border-radius(6px)
+      color: initial
+      padding: 5px
+      border: 3px solid desaturate(lighten($c-soil, 30), 30)
+
+%_misc
+  .misc
+    +ext(border_box)
+    +box-shadow(inset, 3px, 0, 6px, lighten($c-soil, 50))
+    padding: 0 0 100px
+    width: 40%
+    background: desaturate(lighten($c-soil, 68), 30)
+  .misc .task_op
+    +ext(full_height)
+    +ext(autoflow)
+    +ext(border_box)
+    padding: 20px 20px 0
+
+.contest
+  +ext(full_height)
+  +ext(_choices)
+  +ext(_ctrl)
+  +ext(_misc)
+  .part
+    +ext(inline_block)
+    +ext(full_height)
+    +ext(autoflow)
+    +ext(align_top)
+  .content
+    width: 60%
+    .bg
+      height: 100%
+      +bg-gradient(15deg, transparentize(#fafeff, .6), lighten($c-soil, 65))
+    .title
+      padding: 20px 20px 0
+    .info
+      margin: 10px 10px 10px
+      padding: 0 10px
+  .gf
+    background-image: url("/assets/images/pat/greyfloral.png")
+  .cp
+    background-image: url("/assets/images/pat/cp.png")
+  .re
+    background-image: url("/assets/images/pat/re.png")
+  .sc
+    background-image: url("/assets/images/pat/sc.png")

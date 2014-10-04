@@ -1,14 +1,9 @@
 "use strict"
 angular.module "brasFeApp"
-.service "bulletin", (sessionServ, notify) ->
-  _add_day = (base_day, day)->
-    dt = base_day || new Date()
-    dt.setDate(dt.getDate() + day)
-    dt
-
+.service "bulletin", (sessionServ, notify, datagen) ->
   _new_msg = ()->
     start_time: new Date
-    end_time: _add_day(new Date(), 1)
+    end_time: datagen.add_day(new Date(), 1)
     title: ""
     body: ""
 
@@ -21,7 +16,7 @@ angular.module "brasFeApp"
     init: false
     ensure_end: (date)->
       if date > ret.data.msg.end_time
-        ret.data.msg.end_time = _add_day(date, 1)
+        ret.data.msg.end_time = datagen.add_day(date, 1)
     cancel_edit: ()->
       ret.data.msg = _new_msg()
     add_msg: ()->

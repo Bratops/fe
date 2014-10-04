@@ -25,8 +25,8 @@ angular.module "brasFeApp"
       ctasks: []
       query: {}
       opt:
-        sdate: datagen.date_opt()
-        edate: datagen.date_opt()
+        sdate: datagen.date_opt(min=new Date())
+        edate: datagen.date_opt(min="2014/10/01")
       contest: _contest()
 
   r.reset = ()->
@@ -66,7 +66,8 @@ angular.module "brasFeApp"
       if rsp.status is "success"
         r.data.contest = rsp.data
         r.data.ctasks = rsp.data.tasks
-        r.update_grading({name: rsp.data.grading_str}, false)
+        r.data.grading = _gradings[rsp.data.grading]
+        #r.update_grading({name: rsp.data.grading_str}, false)
 
   r.update = ()->
     data = r.contest_obj()

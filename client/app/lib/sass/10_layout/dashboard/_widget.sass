@@ -22,10 +22,12 @@
 
 %_widget_base
   +ext(full_height)
-  display: inline-table //firefox
+  //display: inline-table //firefox
   float: left
   width: 20%
   max-height: 100%
+  &.hide
+    display: none
 
 %_menu
   .menu

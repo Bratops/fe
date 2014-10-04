@@ -1,7 +1,7 @@
 %_rating_star
   .rating
     +ext(field_item_base)
-    label
+    label, span
       +ext(inline_block)
     label
       width: 100px
@@ -12,6 +12,17 @@
       +ext(hover_pointer)
       +ext(fa, false)
       +ext(fa-fw, false)
+
+%rating_label_left
+  .rating label
+    text-align: left
+    width: auto
+
+%rating_gold_star
+  .rating i
+    &:hover, &.fa-star
+      color: goldenrod
+      text-shadow: 0 0 5px gold
 
 =_rating_fs($fs: 1.3rem)
   .rating

@@ -7,6 +7,7 @@ angular.module("brasFeApp").classy.controller
     menu: "menu"
     growl: "gw"
     sessionServ: "se"
+    userContests: "ucs"
 
   init: ->
     @se.warm_up()
@@ -34,6 +35,8 @@ angular.module("brasFeApp").classy.controller
       user = @se.user
       @$.user = user
       @$.data.role = @_current_role(user.role)
+      if user.role.name is "user" and @ucs.testing()
+        @st.go("dashboard.user.contest")
 
   _on_redirect: (event, data)->
     if data is "dashboard"
@@ -51,3 +54,17 @@ angular.module("brasFeApp").classy.controller
   logout: ()->
     @se.logout()
 
+  menu_hide: ->
+    @menu.data.hide
+
+  head_title: ->
+    if @menu.data.title?
+      @menu.data.title.name
+
+  user_avatar: ->
+    roles = ["admin", "manager", "teacher"]
+    rn = @se.user.role.name
+    if _.findIndex(roles, (r)-> r is rn) >= 0
+      return @se.user.role.name
+    return "male" if @se.user.gender is 1
+    "female"

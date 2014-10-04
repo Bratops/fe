@@ -10,8 +10,13 @@ angular.module("brasFeApp").classy.controller
   init: ()->
     @$.data = @ucs.data
     @ucs.init()
+    @$.$on "contest:ready", @_on_contest_ready
+
+  _on_contest_ready: ->
+    @st.go("^.contest")
 
   do_contest: (cn)->
     if confirm("確定後,開始計時")
       @ucs.data.contest = cn
-      @st.go("^.contest")
+      @ucs.load_one()
+

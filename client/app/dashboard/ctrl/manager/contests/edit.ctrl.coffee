@@ -10,11 +10,13 @@ angular.module("brasFeApp").classy.controller
   init: ->
     @mc.load(@stp.id)
     @$.data = @mc.data
+    @$.inited = false
 
   watch:
     "data.grading": (nv, ov)->
       return if nv is ov
-      @mc.update_grading(nv)
+      @mc.update_grading(nv, @$.inited)
+      @$.inited = true
 
   save: ()->
     @mc.update()

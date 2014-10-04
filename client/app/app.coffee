@@ -17,6 +17,7 @@ angular.module "brasFeApp", [
   "xeditable",
   "youtube-embed",
   "checklist-model",
+  #"ngFitText",
   "ngTagsInput",
   "flow",   # file upload
   "angular-growl",
