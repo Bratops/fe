@@ -20,5 +20,5 @@ angular.module("brasFeApp").classy.controller
     @mf.remove(f)
 
   show_link: (f)->
-    console.log @mf.data.flow
     @mf.data.link = f.url
+

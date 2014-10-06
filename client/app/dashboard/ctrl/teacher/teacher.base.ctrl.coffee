@@ -14,6 +14,6 @@ angular.module("brasFeApp").classy.controller
     #@se.auth_state(event, toState)
 
   _sc_succ: (event, toState, toParams, fromState, fromParams)->
-    if @st.is("dashboard.teacher")
-      @st.go("dashboard.teacher.groups")
+    dbu = "dashboard.teacher"
+    @st.go("#{dbu}.groups") if @st.is(dbu)
     #return unless @se.is_valid_state(@st)

@@ -4,6 +4,6 @@
   .wrap
     include header.jade
     .drow
-      .wg(ui-view="menu")
+      .wg(ui-view="menu" ng-hide="menu_hide()")
       .pan(ui-view="panel")
         .data

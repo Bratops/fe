@@ -1,0 +1,16 @@
+.title
+  h1 開放中測驗
+
+ul.contests
+  li.info(ng-repeat="cn in data.contests")
+    .name
+      a(ng-click="do_contest(cn)" href="") {{ cn.name }}
+    .more_info
+      .left
+        span.fa.fa-fw.fa-lemon-o(title="題數: {{ cn.task_count }}")
+          | {{ cn.task_count }}
+      .mid
+        span.fa.fa-fw.fa-clock-o(title="測驗時間{{ cn.task_count * 3 }}分鐘")
+          | {{ cn.task_count * 3 }}
+      .right
+        span.fa.fa-fw.fa-paw(title="滿分: {{ cn.score }}") {{ cn.score }}

@@ -1,0 +1,32 @@
+.contest
+  .content.part(ng-class="random_bg()")
+    .bg
+      .title
+        h1 {{ data.cur_task.title }}
+      .info
+        .task_body(ng-bind-html="trust(data.cur_task.body)")
+        //- | {{ data.sublist }}
+  .misc.part
+    .task_op
+      .quest(ng-bind-html="trust(data.cur_task.quest)")
+      ul.choices
+        li(ng-repeat="sid in seeds()"
+          ng-click="click(sid)"
+          ng-class="clicked(sid)")
+          .choice(ng-bind-html="trust_choice(sid)")
+    .ctrl
+      .info.hide
+        //- | debug info: {{ task_info() }}
+        timer {{ mminutes }}:{{ sseconds }}
+      .rating
+        label 我覺得這題的難度(必選):
+        rating(ng-model="data.cur_task.rating" max="5"
+          state-on="'fa-star'"
+          state-off="'fa-star-o'"
+          on-hover="hover_rating(value)"
+          on-leave="leave_rating()")
+        label {{ rating_text() }}
+      .btns
+        button.btn(ng-click="next()") 暫時略過
+        button.btn(ng-disabled="submittable()" ng-click="submit()") 送出答案
+        button.btn(ng-disabled="no_rating()" ng-click="skip()") 放棄本題

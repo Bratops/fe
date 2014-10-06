@@ -26,7 +26,7 @@
 
 =panel_t_layout($h: 6%)
   +ext(no_data)
-  +ext(full_height)
+  width: 99.7%
   .ops, .scroll
     +ext(no_margin)
     +ext(no_padding)
@@ -36,8 +36,9 @@
     +ext(autoflow)
     +lock_height(100 - $h)
 
-.db .pan
+.pan
   +ext(_panel_base)
+  +ext(full_height)
 
 .view .panel
   +panel_t_layout(6%)

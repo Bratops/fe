@@ -1,0 +1,12 @@
+table
+  caption 歷次測驗成績
+  thead
+    tr
+      - var th = ["年度", "班級", "分數"]
+      each h in th
+        th #{h}
+  tbody
+    tr(ng-repeat="sc in data.scores")
+      td {{ sc.year }}
+      td {{ sc.class_name }}
+      td {{ sc.score }}

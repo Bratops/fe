@@ -44,3 +44,4 @@ angular.module("brasFeApp").classy.controller
 
   json_size: ()->
     @nt.json_size(@nt.data.task)
+

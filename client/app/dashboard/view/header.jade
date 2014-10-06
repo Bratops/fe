@@ -1,28 +1,22 @@
 header#header
-  #title
-    .beaver.avatar
-      img(src="/assets/images/beaver128.png")
-    h1
-      a(ui-sref="landing")
-        span Bebras&nbsp;
-        span.full Contest
-    h2
-      a(ui-sref="landing")
-        span 國際運算思維能力測驗
-  ul#nav
+  #title.ib
+    img.beaver(src="/assets/images/beaver128.png")
+    .titles
+      a
+        h1.en(ui-sref="landing") Bebras Contest
+        h1.zh(ui-sref="landing") 國際運算思維能力測驗
+  ul#nav.ib
     li.state
-      h1
-        | {{ data.menu.clicked.name }}
+      h1.bf.ib {{ head_title() }}
         //- i.fa.fa-fw.fa-youtube-play.tube(ng-click="toggle_menu_video()" ng-show="menu_clicked()")
         //- i.fa.fa-fw.fa-question-circle.info(ng-click="play_menu_video()" ng-show="menu_clicked()")
-      h2 {{ data.menu.clicked.desc }}
+      h2.bf.ib {{ data.menu.title.desc }}
     li.user
       .name
         a(href="#") {{ user.name || "新海貍" }}
-      ul.switches
-        li
-          a.logout(href="#" ng-click="logout()") 登出
-        li.roles(ng-show=" user.roles.length > 1")
+      .switches
+        .roles.ib(ng-show=" user.roles.length > 1")
           select(ng-model="data.role" ng-options="role.name for role in user.roles")
-    li.avatar
-      img(src="/assets/images/user_nil.png")
+        a(href="#" ng-click="logout()") 登出
+    li.avatar(ng-class="user_avatar()")
+      //- img(src="/assets/images/user_nil.png")

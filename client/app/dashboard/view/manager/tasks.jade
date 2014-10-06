@@ -1,12 +1,12 @@
 .panel.tasks(ui-view="scroll")
   ul.ops
     li
-      .btn(ui-sref="dashboard.manager.tasks.new") 新增
-    li
       .field
-        input(type="text" placeholder="題目年份查詢"
+        input(type="text" placeholder="題目查詢"
           ng-model="data.query")
-    li 顯示:
+    li
+      .btn(ui-sref="dashboard.manager.tasks.new") 新增題目
+    li 顯示方式:
       .btn(ng-click="show('info')") 題目
     li
       .btn(ng-click="show('misc')") 設定

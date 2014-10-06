@@ -1,0 +1,137 @@
+=_head_color($bc: #eee)
+  +box-shadow(0, 4px, 3px, #777)
+  background: transparentize($bc, .8)
+
+%_avatars
+  .avatar
+    +ext(fa, false)
+    +ext(fa-fw, false)
+    font-size: 2rem
+    padding: 1px 0
+  .admin, .manager
+    +ext(fa-leaf, false)
+    color: green
+  .teacher
+    +ext(fa-magic, false)
+    color: $c-swim
+  .male
+    +ext(fa-child, false)
+    color: darken($c-sky, 10)
+  .female
+    +ext(fa-female, false)
+    color: pink
+
+%_head_layout
+  #title
+    width: 20%
+  #nav
+    +ext(border_box)
+    width: 80%
+    vertical-align: top
+    padding: 3px 0 1px
+
+%_head_title
+  #title
+    height: 40px
+    .beaver
+      +ext(inline_block)
+      +position(absolute)
+      left: 0
+      width: 34px
+      padding: 3px
+    .titles
+      +ext(inline_block)
+      width: 100%
+      padding: 5px 0 0 40px
+      +ext(border_box)
+    h1
+      +ext(font_bold)
+      +ext(hover_pointer)
+      vertical-align: top
+    .en
+      +ext(f-hobo)
+
+=_head_title_font($fs)
+  .zh
+    font-size: $fs*.91
+  .en
+    font-size: $fs
+    letter-spacing: $fs*.03
+
+=_head_title($fs: 1rem, $cs: #cde)
+  +ext(_head_title)
+  +_head_title_font($fs)
+  a
+    color: $cs
+    &:hover
+      color: lighten($cs, 10)
+
+%_head_nav
+  #nav
+    +ext(inline_list)
+    +ext(_avatars)
+    .user, .avatar
+      +position(absolute)
+    .user
+      right: 2.2rem
+      padding: 1px 0
+      text-align: right
+      .switches
+        select
+          margin: 0 2px
+    .avatar
+      right: 0
+      width: 2rem
+
+=_head_nav($fs, $cs)
+  +ext(_head_nav)
+  #nav
+    h1, h2
+      padding: 0 5px 0 0
+    h1
+      color: $cs
+      font-size: $fs * 2
+    h2
+      color: darken($cs, 5)
+      font-size: $fs
+    select
+      font-size: $fs*.8
+
+%_head_rwd
+  +tablet-landscape-only
+    #title
+      +_head_title_font(.8rem)
+      .en
+        padding: 2px 0 0
+      h1.zh
+        padding: 0
+  +tablet-portrait-only
+    #title
+      +_head_title_font(.6rem)
+  +tablet-portrait-and-below
+    #title
+      .en
+        display: none
+      .zh
+        font-size: .8rem
+  +mobile-landscape-only
+    #title
+      .zh
+        padding: 0
+        font-size: .7rem
+  +mobile-portrait-and-below
+    #title
+      .zh
+        font-size: .5rem
+
+%db_header
+  #header
+    +ext(_head_layout)
+    +ext(_head_rwd)
+    +_head_color(#bbb)
+    +_head_title(1rem, $c-soil)
+    +_head_nav(1rem, $c-swim)
+    overflow: hidden
+    position: relative
+    border-bottom: 1px solid lightgrey
+    z-index: 1

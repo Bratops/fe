@@ -68,3 +68,8 @@ angular.module("brasFeApp").classy.controller
 
   edit: (tsk)->
     @st.go("dashboard.manager.tasks.edit", {id: tsk.tid})
+
+  re_index: (inx)->
+    ra = ["A", "B", "C", "D"]
+    ra[inx]
+

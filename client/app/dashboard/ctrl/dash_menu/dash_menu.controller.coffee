@@ -1,21 +1,26 @@
-'use strict'
+"use strict"
+angular.module("brasFeApp").classy.controller
+  name: "DashMenuCtrl"
 
-angular.module 'brasFeApp'
-.controller 'DashMenuCtrl', ($scope, $state, menu) ->
+  inject:
+    $scope: "$"
+    $state: "st"
+    menu: "menu"
 
-  $scope.data = menu.data
+  init: ->
+    @$.data = @menu.data
+    @$.$on "$stateChangeSuccess", @_on_state_changed
+    @$.$on "role_switched", @_on_role_changed
 
-  $scope.$on "$stateChangeSuccess", (event, toState, toParams, fromState, fromParams)->
-    if $state.includes("dashboard.**")
-      menu.load()
-      $scope.data = menu.data
+  _on_state_changed: (event, toState, toParams, fromState, fromParams)->
+    if @st.includes("dashboard.**")
+      @menu.load(@st.current.name.substr(10).split(".")[1])
 
-  $scope.$on "role_switched", ()->
-    menu.reload()
+  _on_role_changed: ->
+    @menu.reload()
 
-  $scope.menu_click = (item)->
-    $scope.clicked = item
-    menu.data.clicked = item
-    state = "dashboard.#{menu.role()}.#{item.link}"
-    $state.transitionTo(state)
+  menu_click: (item)->
+    @menu.click(item)
+    state = "dashboard.#{@menu.role()}.#{item.link}"
+    @st.transitionTo(state)
 

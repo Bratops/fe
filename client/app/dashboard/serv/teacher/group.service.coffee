@@ -1,6 +1,6 @@
 "use strict"
 angular.module "brasFeApp"
-.service "teacherGroup", (sessionServ, notify)->
+.service "teacherGroup", (sessionServ, notify, datagen)->
   nv = (n, v)->
     { name: n, value: v }
   clusters = [
@@ -46,11 +46,7 @@ angular.module "brasFeApp"
           page: 1
         list: []
         form_group: _new_group()
-        exdate_opt:
-          minDate: "'2014/11/10'"  #new Date()
-          maxDate: "'2014/11/21'"
-          open: false
-          startingDay: 1
+        exdate_opt: datagen.date_opt("2014/11/10")
         clusters: clusters
         time_sec: time_sec
 
