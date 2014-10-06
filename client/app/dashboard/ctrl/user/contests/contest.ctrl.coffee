@@ -10,17 +10,27 @@ angular.module("brasFeApp").classy.controller
     userContests: "ucs"
 
   init: ->
-    @ucs.load_one()
+    @ucs.init()
     @$.data = @ucs.data
     @$.$on "$stateChangeStart", @_on_state_change
     @$.$on "contest:not_found", @_on_contest_not_found
-    @$.$on "contest:finished", @_on_contest_finished
     @$.$on "timer-stopped", @_on_timer_stopped
+    @$.$on "contest:finished", @_on_contest_finished
     old = window.onbeforeunload
     @$.$on "$destroy", ->
       window.onbeforeunload = old
     window.onbeforeunload = (e)->
-      #"尚未完成測驗，確定離開？"
+      "尚未完成測驗，確定離開？"
+
+  _on_contest_finished: ->
+    console.log 'as'
+    dbc = "dashboard.user.contest"
+    @ucs.reset()
+    @st.go("#{dbc}s", {}, {reload: true}) if @st.is(dbc)
+
+  _on_contest_not_found: ->
+    dbc = "dashboard.user.contest"
+    @st.go("#{dbc}s", {}, {reload: true}) if @st.is(dbc)
 
   _on_state_change: (event, toState, toParams, fromState, fromParams)->
     if toState.name.indexOf("contest") < 0
@@ -43,12 +53,6 @@ angular.module("brasFeApp").classy.controller
   skip: ->
     @ucs.data.cur_task.submit = "drop"
     @$.$broadcast('timer-stop')
-
-  _on_contest_not_found: ->
-    @st.go("^.contests")
-
-  _on_contest_finished: ->
-    @st.go("^.contests")
 
   trust: (html)->
     @sce.trustAsHtml html
@@ -96,4 +100,7 @@ angular.module("brasFeApp").classy.controller
     if @ucs.data.cur_task.seed?
       se = @ucs.data.cur_task.seed[0]
       rba[se]
+
+  seeds: ->
+    return @ucs.data.cur_task.seed if @ucs.data.cur_task?
 

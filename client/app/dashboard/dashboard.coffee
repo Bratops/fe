@@ -96,6 +96,7 @@ angular.module 'brasFeApp'
   #state "user", "groups"
   state "user", "contest"
   state "user", "contests"
+  state "user", "scores"
   state "manager"
   state "manager", "bulletin"
   state "manager", "users"

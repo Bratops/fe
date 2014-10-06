@@ -7,10 +7,10 @@ header#header
         h1.zh(ui-sref="landing") 國際運算思維能力測驗
   ul#nav.ib
     li.state
-      h1.bf {{ head_title() }}
+      h1.bf.ib {{ head_title() }}
         //- i.fa.fa-fw.fa-youtube-play.tube(ng-click="toggle_menu_video()" ng-show="menu_clicked()")
         //- i.fa.fa-fw.fa-question-circle.info(ng-click="play_menu_video()" ng-show="menu_clicked()")
-      h2.bf {{ data.menu.title.desc }}
+      h2.bf.ib {{ data.menu.title.desc }}
     li.user
       .name
         a(href="#") {{ user.name || "新海貍" }}

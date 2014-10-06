@@ -33,10 +33,10 @@ mixin body_form()
   - var fn = "body_form"
   form.task(name="#{fn}" ng-show="clicked('body')")
     .field
-      label 題文
+      label 內文
       textarea(ng-model="data.task.body" ckeditor="")
     .field
-      label 題問
+      label 題目
       textarea(ng-model="data.task.quest" ckeditor="")
 
 mixin choices_form()
@@ -44,7 +44,8 @@ mixin choices_form()
   form.task(name="#{fn}" ng-show="clicked('choices')")
     .field(ng-repeat="cho in data.task.choices")
       label.choice(ng-click="mark_answer(cho)" ng-class="{answer: cho.answer}")
-        | 選項{{ cho.index }}
+        | 選項 {{ re_index(cho.index) }}
+        i.fa.fa-fw.fa-check-circle
       textarea(ng-model="cho.content" ckeditor="")
 
 mixin info_form()
@@ -54,7 +55,7 @@ mixin info_form()
       label 詳解
       textarea(ng-model="data.task.explain" ckeditor="")
     .field
-      label 花在資訊學科的意義
+      label 這是資訊學！
       textarea(ng-model="data.task.info" ckeditor="")
 
 mixin misc_form()

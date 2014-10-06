@@ -10,7 +10,7 @@
     .task_op
       .quest(ng-bind-html="trust(data.cur_task.quest)")
       ul.choices
-        li(ng-repeat="sid in data.cur_task.seed"
+        li(ng-repeat="sid in seeds()"
           ng-click="click(sid)"
           ng-class="clicked(sid)")
           .choice(ng-bind-html="trust_choice(sid)")
