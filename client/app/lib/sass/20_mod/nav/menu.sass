@@ -1,0 +1,27 @@
+body  // ui-tree append draggable items at the end of body
+  li.dragging
+    +ext(f-read)
+    color: lighten(red, 10)
+
+=menu_tree_color($bc: #cce)
+  ol li
+    &:hover
+      background: transparentize($bc, .2)
+    &.node-selected
+      +text-shadow(2px, 2px, 5px, #e77)
+    border: 2px solid darken($bc, 20)
+
+.menu_tree
+  +menu_tree_color(#3dF)
+  overflow: auto
+  color: red
+  ol li
+    +ext(cur_pointer)
+    margin: 1px 2px
+    .fa-times, .fa-arrows
+      z-index: 100
+    &.destroy
+      color: #a9a
+    &.node-selected a
+      +ext(font_bold)
+
