@@ -1,0 +1,133 @@
+%_tree_base
+  a._btn
+    display: inline
+    padding: 4px
+  a span
+    color: $c-swim
+
+%_disabled
+  color: #aaa
+
+%_quest_li_style
+  position: absolute
+  top: 16px
+  left: 0
+  color: lighten($c-swim, 5)
+  z-index: 100
+
+%_btn_toggle
+  ._toggle
+    +ext(fa-chevron-right, false)
+    +ext(_disabled)
+    +ext(_quest_li_style)
+    &._on
+      +ext(fa-chevron-down, false)
+      color: pink
+
+%_btn_add
+  ._add
+    +ext(fa-plus, false)
+    color: limegreen
+
+%_btn_more
+  ._more
+    +ext(fa-pencil-square, false)
+    +ext(_disabled)
+    &:hover
+      color: lighten($c-swim, 20)
+    &._on
+      +text-shadow(0, 0, 1px, lighten($c-swim, 10))
+      color: lighten($c-swim, 20)
+      &:hover
+        +ext(_disabled)
+%_btn_remove
+  ._remove
+    +ext(fa-times, false)
+    +ext(_disabled)
+    &:hover
+      color: red
+%_btn_updn
+  .field:hover, .reordering
+    ._mup
+      +ext(_disabled)
+      +ext(fa-caret-square-o-up, false)
+      &:hover
+        color: gold
+    ._mdn
+      +ext(_disabled)
+      +ext(fa-caret-square-o-down, false)
+      &:hover
+        color: gold
+
+%_btn_expd_set
+  ._expd
+    +ext(fa-indent, false)
+    &:before
+      content: "\f03c 展開"
+    color: $c-dirt
+  ._clap
+    +ext(fa-list, false)
+    &:before
+      content: "\f03a 合併"
+    color: $c-dirt
+
+%_btn_qtypes
+  ._qsingle
+    +ext(_disabled)
+    +ext(fa-circle-o, false)
+    color: $c-sky
+  ._qmulti
+    +ext(_disabled)
+    +ext(fa-bullseye, false)
+    color: $c-swim
+
+%_btn_misc
+  ._reorder
+    +ext(fa-reorder, false)
+    color: darken(skyblue, 20)
+    &._on
+      color: skyblue
+  ._handle
+    +ext(fa-arrows, false)
+    +ext(_quest_li_style)
+
+%_tree_btns
+  .btns
+    position: absolute
+    top: 10px
+    right: 5px
+  ._btn
+    +ext(fa, false)
+    +ext(fa-fw, false)
+    +ext(hover_pointer)
+    font-size: 120%
+    &._btn_lg
+      font-size: 180%
+      width: 30px
+  +ext(_btn_add)
+  +ext(_btn_more)
+  +ext(_btn_misc)
+  +ext(_btn_updn)
+  +ext(_btn_remove)
+  +ext(_btn_toggle)
+  +ext(_btn_qtypes)
+  +ext(_btn_expd_set)
+
+.tree
+  +ext(_tree_base)
+  +ext(_tree_btns)
+  ._quest
+    position: relative
+  .field
+    +ext(border_box)
+    width: 100%
+    padding: 0 0 0 25px
+  input
+    +transition(all linear .3s)
+  input:focus
+    +transition(all linear .3s)
+    +box-shadow(inset, 0, 0, 3px, darken($c-sky, 10))
+
+.survey.tree
+  width: 98%
+  margin: 0 auto

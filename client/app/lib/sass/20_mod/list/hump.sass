@@ -8,11 +8,11 @@
 
 %_right_hump
   &:after
+    +position(absolute)
     content: ""
     border-top: 30px solid transparent
     border-bottom: 30px solid transparent
     border-left: 10px solid
-    +position(absolute)
     top: 0
     left: 100%
 
@@ -66,9 +66,12 @@
       +ext(font_bold)
       font-size: 1.5rem
       &:hover
-        color: darken($c-sky, 10)
         +ext(hover_pointer)
-      &.edit
+        color: darken($c-sky, 10)
+      &._edit, &.edit
+        +position(relative)
+        top: 1px
+      &._remove
         +position(relative)
         top: 1px
 

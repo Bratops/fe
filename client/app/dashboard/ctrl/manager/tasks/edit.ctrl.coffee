@@ -11,7 +11,7 @@ angular.module("brasFeApp").classy.controller
     @st.go("^")
 
   _on_state_changed: (event, toState, toParams, fromState, fromParams)->
-    @nt.load_by_id(@stp.id)
+    #@nt.load_by_id(@stp.id)
 
   init: ()->
     @$.data = @nt.data

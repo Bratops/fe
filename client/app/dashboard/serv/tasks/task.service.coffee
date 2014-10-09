@@ -82,4 +82,6 @@ angular.module "brasFeApp"
     rst = sessionServ.fest().one("manager/tasks", id)
     rst.get("").then (resp)->
       r.data.task = resp
+      $rootScope.$broadcast "task:loaded", id
+
   r

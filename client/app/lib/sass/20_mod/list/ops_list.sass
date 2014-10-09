@@ -8,3 +8,23 @@
     +border-radius(0)
   .btn
     padding: 5px
+
+.ops
+  .ck
+    +ext(fa, false)
+    +ext(hover_pointer)
+    font-size: 1.2rem
+  ._preview
+    +ext(fa-eye-slash, false)
+    color: $c-soil
+    &._on
+      +ext(fa-eye, false)
+  ._new
+    +ext(fa-plus, false)
+    color: limegreen
+  li
+    +ext(inline_block)
+    +ext(form_btn_base)
+    +form_btn_var(lighten($c-sky, 25), 1.2rem)
+    padding: 5px
+
