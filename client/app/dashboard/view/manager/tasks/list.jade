@@ -1,10 +1,17 @@
-ul.humplist(ng-class="{'no-data': data.tasks.length == 0}")
-  li(ng-repeat="tsk in data.tasks")
-    .item(ng-mouseenter="hover_tsk(tsk)"
-      ng-class="clicked_tsk(tsk)"
+ul.ib.lgt-stack(ng-class="{'no-data': data.tasks.length == 0}")
+  form.query
+    fieldset.field.half
+      input(type="text" placeholder="年份查詢"
+        ng-model="data.year_query")
+    fieldset.field.half
+      select(ng-model="data.ft" ng-options="ft as ft.name for ft in data.fts")
+    fieldset.field
+      input(type="text" placeholder="其他查詢" ng-model="data.query[data.ft.value]")
+
+  li(ng-repeat="tsk in data.tasks | filter:data.query ")
+    ._item(ng-mouseenter="hover_tsk(tsk)" ng-class="clicked_tsk(tsk)"
       ng-click="click_tsk(tsk)")
-      span.title {{ tsk.title }}
-      span.date {{ tsk.year }}
-      .ctrls
-        i.remove.fa.fa-fw.fa-times(ng-click="remove(tsk)")
-        i.edit.fa.fa-fw.fa-edit(ng-click="edit(tsk)")
+      .ib._title {{ tsk.title }}
+      span._ctrls
+        i._edit(ng-click="edit(tsk)")
+        i._remove(ng-click="remove(tsk)")

@@ -1,0 +1,36 @@
+%_task_preview
+  .field
+    font-weight: bold
+  .answer .content
+    background: lightpink
+  .content
+    +border-radius(2px)
+    font-weight: normal
+    border: 1px solid $c-soil
+    width: 95%
+    margin: 1% auto
+    padding: 10px 1%
+  ol
+    list-style: upper-alpha inside none
+
+%_task_klasses
+  .klasses
+    margin: 5px auto
+    font-size: 1.5rem
+    h3
+      +ext(font_bold)
+      margin: 5px 0
+    .klass
+      border: 2px solid lighten($c-sky, 20)
+      background: $c-sky
+      margin: 3px 5px 0 0
+
+.tasks
+  +ext(_task_preview)
+  +ext(_task_klasses)
+  +ext(tabs)
+  +ext(full_height)
+  .ops
+    +ext(ops_fields)
+  .pad
+    +ext(task_pad_btns)

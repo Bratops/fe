@@ -1,6 +1,10 @@
 "use strict"
 angular.module("brasFeApp").service "datagen", ()->
   r = {}
+
+  r.kvp = (n, v)->
+    {key: n, value: v}
+
   r.nvp = (n, v)->
     {name: n, value: v}
 

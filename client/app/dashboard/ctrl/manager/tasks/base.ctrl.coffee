@@ -26,14 +26,13 @@ angular.module("brasFeApp").classy.controller
     @mt.data.hoverable = true
 
   _on_task_loaded: (e, d)->
-    console.log d
-    @st.go("dashboard.manager.tasks.edit", {id: d.id})
+    @st.go("dashboard.manager.tasks.edit", {id: d})
 
   init: ->
     @$.data = @mt.data
     @mt.init()
     @$.$on "$stateChangeStart", @_on_state_change
-    @$.$on "task:loaded", @_on_task_loaded
+    @$.$on "task:edit:loaded", @_on_task_loaded
     @$.$on "task:created", @_on_task_created
     @$.$on "task:updated", @_on_task_updated
 
@@ -62,11 +61,16 @@ angular.module("brasFeApp").classy.controller
     _.range(0, v)
 
   watch:
-    "data.query": (nv, ov)->
+    "data.year_query": (nv, ov)->
       @mt.reload_tasks()
+    "data.ft": (nv, ov)->
+      @mt.data.query = ""
 
   show: (typ)->
     @mt.data.show = typ
+
+  is_show: (typ)->
+    return "_on" if @mt.data.show is typ
 
   remove: (tsk)->
     if(confirm("確定移除？"))

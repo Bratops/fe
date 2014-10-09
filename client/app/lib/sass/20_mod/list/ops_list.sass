@@ -9,7 +9,7 @@
   .btn
     padding: 5px
 
-.ops
+%_ck_btns
   .ck
     +ext(fa, false)
     +ext(hover_pointer)
@@ -22,9 +22,25 @@
   ._new
     +ext(fa-plus, false)
     color: limegreen
+  ._file
+    +ext(fa-file, false)
+    color: $c-swim
+    &._on
+      color: lighten($c-swim, 20)
+  ._stats
+    +ext(fa-bar-chart-o, false)
+    color: purple
+    &._on
+      color: lighten(purple, 20)
+
+.ops
+  +ext(_ck_btns)
   li
     +ext(inline_block)
     +ext(form_btn_base)
     +form_btn_var(lighten($c-sky, 25), 1.2rem)
-    padding: 5px
+    padding: 5px 5px 5px 0
+  li.left
+    +ext(border_box)
+    width: 30%
 

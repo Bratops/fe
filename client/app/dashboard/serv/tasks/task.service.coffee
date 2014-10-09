@@ -1,39 +1,21 @@
 "use strict"
 angular.module "brasFeApp"
-.service "managerTask", ($rootScope, sessionServ, notify)->
+.service "managerTask", ($rootScope, sessionServ, notify, datagen)->
   _tabs = [
-    name: "基本設定"
-    value: "basic"
-  ,
-    name: "題文及問題"
-    value: "body"
-  ,
-    name: "選項"
-    value: "choices"
-  ,
-    name: "資訊"
-    value: "info"
-  ,
-    name: "其他"
-    value: "misc"
+    datagen.nvp("基本設定", "basic"),
+    datagen.nvp("題文及問題", "body"),
+    datagen.nvp("選項", "choices"),
+    datagen.nvp("資訊", "info"),
+    datagen.nvp("其他", "misc")
   ]
 
   _default_levels = ->
     [
-      key: "beaver"
-      value: 0
-    ,
-      key: "benjamin"
-      value: 0
-    ,
-      key: "cadet"
-      value: 0
-    ,
-      key: "senior"
-      value: 0
-    ,
-      key: "junior"
-      value: 0
+      datagen.kvp("beaver", 0),
+      datagen.kvp("benjamin", 0),
+      datagen.kvp("cadet", 0),
+      datagen.kvp("senior", 0),
+      datagen.kvp("junior", 0)
     ]
 
   _choice = (index=0)->
@@ -55,6 +37,13 @@ angular.module "brasFeApp"
       task: _new_task()
       tabs: _tabs
       clicked: _tabs[0]
+
+  r.edit = ->
+    r.data.clicked = _tabs[0]
+
+  r.new = ->
+    r.data.task = _new_task()
+    r.data.clicked = _tabs[0]
 
   r._serve = (method, evt) ->
     data = _.clone(r.data.task)
@@ -82,6 +71,6 @@ angular.module "brasFeApp"
     rst = sessionServ.fest().one("manager/tasks", id)
     rst.get("").then (resp)->
       r.data.task = resp
-      $rootScope.$broadcast "task:loaded", id
+      $rootScope.$broadcast "task:edit:loaded", id
 
   r

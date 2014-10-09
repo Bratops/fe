@@ -1,15 +1,11 @@
-.panel.tasks(ui-view="scroll")
+.tasks(ui-view="scroll")
   ul.ops
+    li.left
+      .ck._new(ui-sref="dashboard.manager.tasks.new") 新增題目
+    li 顯示方式: 
+      .ck._file(ng-click="show('info')" ng-class="{'_on': is_show('info')}") 題目
     li
-      .field
-        input(type="text" placeholder="題目查詢"
-          ng-model="data.query")
-    li
-      .btn(ui-sref="dashboard.manager.tasks.new") 新增題目
-    li 顯示方式:
-      .btn(ng-click="show('info')") 題目
-    li
-      .btn(ng-click="show('misc')") 設定
+      .ck._stats(ng-click="show('misc')" ng-class="{'_on': is_show('misc')}") 小統計
 
   .scroll
     include tasks/list.jade

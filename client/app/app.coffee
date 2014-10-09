@@ -26,7 +26,7 @@ angular.module "brasFeApp", [
 ]
 
 .constant "Config",
-  host: "bebras01.csie.ntnu.edu.tw:88" #"localhost:3000"
+  host: "brasbe.dev" #"bebras01.csie.ntnu.edu.tw:88" #"localhost:3000"
 
 .config (tagsInputConfigProvider) ->
   tagsInputConfigProvider.setDefaults("tagsInput",

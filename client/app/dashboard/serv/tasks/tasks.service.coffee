@@ -1,6 +1,14 @@
 "use strict"
 angular.module "brasFeApp"
-.service "managerTasks", (sessionServ, notify)->
+.service "managerTasks", (sessionServ, notify, datagen)->
+  _fts = [
+    datagen.nvp("全部", "$"),
+    datagen.nvp("標題", "title"),
+    datagen.nvp("關鍵字", "keywords"),
+    datagen.nvp("類別", "klasses"),
+    datagen.nvp("ID", "tid"),
+  ]
+
   r =
     inited: false
     data:
@@ -9,12 +17,15 @@ angular.module "brasFeApp"
       hovered: false
       hoverable: true
       clicked: false
-      query: ""
+      year_query: ""
+      query: {}
+      fts: _fts
+      ft: _fts[0]
       show: "info"
 
   r.load_tasks = ->
     rest = sessionServ.fest().all("manager/tasks")
-    rest.getList({query: _.parseInt(r.data.query)}).then (resp)->
+    rest.getList({query: _.parseInt(r.data.year_query)}).then (resp)->
       r.data.tasks = resp
 
   r.init = ()->
