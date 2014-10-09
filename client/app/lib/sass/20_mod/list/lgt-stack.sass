@@ -1,0 +1,89 @@
+=_tri_borders($t, $r, $b, $l)
+  border-top-width: $t
+  border-right-width: $r
+  border-bottom-width: $b
+  border-left-width: $l
+
+=_lgt_trans
+  +transition(color .5s linear)
+  transition-property: border-left-color, background
+
+=_lgt_base($w, $h)
+  &:after
+    +ext(_lgt_trans)
+    +position(absolute)
+    +_tri_borders($h/2, 0, 0, $w/2)
+    border-style: solid
+    border-color: transparent
+    content: ""
+    top: 0
+    left: 100%
+
+=_lgt_base_hover($w, $h, $ccr, $glow)
+  &:hover:after, &.clicked:after
+    +ext(_lgt_trans)
+    +_tri_borders($h/2, $w/2, $h/2, $w/2)
+    border-left-color: $ccr
+  &:hover, &.clicked
+    +ext(_lgt_trans)
+    +ext(hover_pointer)
+    +bg-gradient(90deg, #eee, $ccr)
+    +box-shadow("", 0, 0, 5px, $glow)
+    z-index: 200
+
+=_lgt($cr, $th, $w)
+  $h: $th * 2 + 2
+  $ccr: darken($cr, 10)
+  $glow: transparentize(lighten($c-swim, 10), .3)
+  +ext(_lgt_trans)
+  +_lgt_base($w, $h)
+  +_lgt_base_hover($w, $h, $ccr, $glow)
+  position: relative
+  background: $cr
+  border-left: none
+  border: 1px solid $ccr
+  ._title
+    +ext(border_box)
+    vertical-align: middle
+    padding: $th/2 0 0 0
+    height: $th*2
+    width: 80%
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+
+%_lgt_item_base
+  +ext(border_box)
+  ._title
+    +ext(font_bold)
+    font-size: 140%
+  &:hover ._ctrls
+    display: inline
+  ._ctrls
+    +position(absolute)
+    display: none
+    right: 0
+
+%_lgt_ctrls
+  i
+    +ext(fa, false)
+    +ext(font_bold)
+    padding: 5px 2px
+    font-size: 140%
+    color: #999
+  ._remove
+    +ext(fa-times, false)
+    &:hover
+      color: red
+  ._edit
+    +ext(fa-pencil, false)
+    &:hover
+      color: $c-swim
+
+.lgt-stack
+  +ext(border_box)
+  padding: 5px 10px 5px 0
+  ._item
+    +ext(_lgt_item_base)
+    +ext(_lgt_ctrls)
+    +_lgt(#eee, 20px, 15px)

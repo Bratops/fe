@@ -34,13 +34,11 @@ ul.menu.ops
 
 script(type="text/ng-template" id="menu_item")
   i.fa.fa-fw.fa-times(ng-click="menu_mark_as_remove(this)")
-  i.fa.fa-fw.fa-arrows(ui-tree-handle=""
-    ng-class="{dragging: this.is_dragging }")
+  i.fa.fa-fw.fa-arrows(ui-tree-handle="" ng-class="{dragging: this.is_dragging }")
   i(class="fa fa-fw fa-{{node.icon}}")
   span {{node.name}}
   ol(ui-tree-nodes="" ng-model='node.nodes')
-    li(ng-repeat='node in node.nodes'
-      ui-tree-node='' ng-include="'menu_item'")
+    li(ng-repeat='node in node.nodes' ui-tree-node='' ng-include="'menu_item'")
 
 .half.menu_tree(ui-tree="data.menuTree")
   ol#tree-root(ui-tree-nodes=""

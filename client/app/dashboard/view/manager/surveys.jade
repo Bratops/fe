@@ -1,0 +1,24 @@
+ul.ops
+  li
+    .ck._new(ng-click="new_survey()") 新
+  li
+    .ck._preview(ng-click="toggle_preview()" ng-class="{'_on': data.preview}") 預覽
+
+.scroll
+  include surveys/list.jade
+
+  .detail.ib(ui-view="scroll")
+
+    .survey-brief(ng-show="show_brief()")
+      section._header
+        h1._title {{ data.survey.name }}
+        ._info {{ data.survey.info }}
+      section._body
+        ol._quests
+          li._qc(ng-repeat="q in data.survey.quests | orderBy: 'order'"
+            ng-class="quest_class(q)")
+            | {{ q.content }}
+            ol._choices
+              li(ng-repeat="ch in q.choices | orderBy: 'order'")
+                span(ng-class="{'_cmt': ch.commentable}") {{ ch.content }}
+

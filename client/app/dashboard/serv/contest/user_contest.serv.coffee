@@ -23,6 +23,7 @@ angular.module "brasFeApp"
     r.data = _data()
 
   r.init = ->
+    return if sessionServ.user.role.name isnt "user"
     return if r.inited
     r.inited = true
     r.load_one()

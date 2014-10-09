@@ -1,15 +1,15 @@
 %pager_item_base
-  text-align: center
-  float: left
   +ext(slim_border)
+  +ext(text_center)
+  float: left
   border-right: none
   margin: 2px auto
   padding: 2px
   &:first-child
     +border-radius-separate(5px, 0, 5px, 0)
   &:last-child
-    border-right: 1px solid
     +border-radius-separate(0, 5px, 0, 5px)
+    border-right: 1px solid
   a
     +ext(rel_block)
   &.disabled
@@ -20,13 +20,13 @@
 
 %pager_base
   ul
-    display: inline-block
+    +ext(inline_block)
   ul li
     +ext(pager_item_base)
   .per
-    margin: 3px 10px
-    vertical-align: top
     +ext(rel_inline_block)
+    vertical-align: top
+    margin: 3px 10px
     select
       background: lightblue
 

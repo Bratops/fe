@@ -1,0 +1,44 @@
+mixin quest_btn_set()
+  ._btn._toggle(ng-click="this.toggle()" ng-class="{'_on': this.collapsed}")
+  .btns(ng-class="{'reordering': data.reorder}")
+    ._btn._btn_lg._mup(ng-click="cu_up(this, data.survey.quests)")
+    ._btn._btn_lg._mdn(ng-click="cu_dn(this, data.survey.quests)")
+    ._btn._btn_lg._remove(ng-click="cu_remove_item(data.survey.id, this, 'x_quest')")
+    ._btn._btn_lg(ng-class="quest_class(this.$modelValue)" ng-click="toggle_type(this)")
+
+mixin choice_btn_set()
+  .btns(ng-class="{'reordering': data.reorder}")
+    ._btn._btn_lg._mup(ng-click="cu_up(this, q.choices)")
+    ._btn._btn_lg._mdn(ng-click="cu_dn(this, q.choices)")
+    ._btn._btn_lg._remove(ng-click="cu_remove_item(q.id, this, 'x_choice')")
+    ._btn._btn_lg._more(ng-class="cu_is_commentable(this)"
+      ng-click="toggle_commentable(this)")
+
+mixin add_btn(label, fn, cla)
+  a(ng-click="#{fn}" href="" class="_btn #{cla}")
+    span #{label}
+
+mixin choices_tree()
+  ol._quest-choices(ui-tree-nodes="" ng-model="q.choices" ng-hide="this.collapsed")
+    span {{ quest_text(this.$parent) }}
+    +add_btn("選項", "cu_add_choice(this, q.choices.length)", "_add")
+    li._quest-choice(ng-repeat="c in q.choices | orderBy: 'order'" ui-tree-node="")
+      //- ._btn._handle(ui-tree-handle="")
+      fieldset.field
+        input._info(ng-model="c.content" placeholder="問題選項")
+        +choice_btn_set()
+
+mixin quest_tree()
+  ol.sv-quests(ui-tree-nodes="" ng-model="data.survey.quests" data-max-depth="1")
+    +add_btn("問題", "cu_add_quest(this)", "_add")
+    a._btn(ng-click="toggle_all(this)" href="" ng-class="toggle_class()")
+    a._btn._reorder(ng-click="toggle_order()" href="" ng-class="{'_on': data.reorder}") 調序
+    li._quest(ng-repeat="q in data.survey.quests | orderBy: 'order'" ui-tree-node="")
+      //- ._btn._handle(ui-tree-handle="")
+      fieldset.field
+        input._info(ng-model="q.content" placeholder="問題題目")
+        +quest_btn_set()
+      +choices_tree()
+
+.survey.tree(ui-tree="data.survey.tree" data-drag-enabled="false")
+  +quest_tree()

@@ -5,6 +5,7 @@ angular.module("brasFeApp").classy.controller
     $scope: "$"
     $state: "st"
     $timeout: "timeout"
+    managerTask: "nt"
     managerTasks: "mt"
 
   _on_task_created: (e, d)->
@@ -24,10 +25,15 @@ angular.module("brasFeApp").classy.controller
     @timeout.cancel(@$.timer)
     @mt.data.hoverable = true
 
+  _on_task_loaded: (e, d)->
+    console.log d
+    @st.go("dashboard.manager.tasks.edit", {id: d.id})
+
   init: ->
     @$.data = @mt.data
     @mt.init()
     @$.$on "$stateChangeStart", @_on_state_change
+    @$.$on "task:loaded", @_on_task_loaded
     @$.$on "task:created", @_on_task_created
     @$.$on "task:updated", @_on_task_updated
 
@@ -67,7 +73,7 @@ angular.module("brasFeApp").classy.controller
       @mt.remove(tsk)
 
   edit: (tsk)->
-    @st.go("dashboard.manager.tasks.edit", {id: tsk.tid})
+    @nt.load_by_id(tsk.tid)
 
   re_index: (inx)->
     ra = ["A", "B", "C", "D"]

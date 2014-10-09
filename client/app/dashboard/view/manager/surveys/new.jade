@@ -1,0 +1,17 @@
+- var fn = "survey_form"
+form(name="#{fn}")
+  fieldset.field
+    label(for="name") 名稱
+    input#name(type="text" ng-model="data.survey.name")
+  fieldset.field
+    label(for="info") 資訊
+    textarea#info(type="text" ng-model="data.survey.info")
+  //pre {{ data.survey | json }}
+  include sv_tree.jade
+
+  .btns
+    button.btn(ng-click="submit()")
+      span(ng-hide="is_edit()") 建立
+      span(ng-show="is_edit()") 更新
+    button.btn(ng-click="cancel()") 取消
+
