@@ -10,7 +10,8 @@ angular.module("brasFeApp").classy.controller
   _on_task_created: (e, d)->
     @st.go("^")
 
-  init: ()->
+  init: ->
+    @nt.new()
     @$.data = @nt.data
     @$.$on "task:created", @_on_task_created
 

@@ -40,8 +40,8 @@
   +_lgt_base_hover($w, $h, $ccr, $glow)
   position: relative
   background: $cr
-  border-left: none
   border: 1px solid $ccr
+  border-left: none
   ._title
     +ext(border_box)
     vertical-align: middle
@@ -53,7 +53,6 @@
     text-overflow: ellipsis
 
 %_lgt_item_base
-  +ext(border_box)
   ._title
     +ext(font_bold)
     font-size: 140%
@@ -82,7 +81,12 @@
 
 .lgt-stack
   +ext(border_box)
-  padding: 5px 10px 5px 0
+  +ext(autoflow)
+  padding: 5px 5px 5px 0
+  li
+    +ext(border_box)
+    padding-right: 8px
+    width: 100%
   ._item
     +ext(_lgt_item_base)
     +ext(_lgt_ctrls)

@@ -43,13 +43,21 @@ angular.module "brasFeApp"
         t.id == s
       )
 
+  r._check_survey = ->
+    $rootScope.$broadcast "contest:survey", ''
+
   r.setup_contest = (rsp)->
     return r.load_all() if rsp.status is "free"
+    console.log rsp.status
     if rsp.status is "testing"
       r.data.contest_raw = rsp.contest
       r._reject_done rsp.done_ans
       $rootScope.$broadcast "contest:ready", ''
       r.setup()
+    else if rsp.status is "survey"
+      r._check_survey()
+    else if rsp.status is "finished"
+      r._contest_finished()
     else
       $rootScope.$broadcast "contest:not_found", ''
 
@@ -96,9 +104,14 @@ angular.module "brasFeApp"
     if rc.tasks.length > 1
       rc.tasks = _.reject(rc.tasks, (t)-> t.id is r.data.cur_task.id)
       r._switch_to(0)
+    else if rc.check_survey
+      r._check_survey()
     else
-      $rootScope.$broadcast "contest:finished"
-      menu.data.hide = false
+      r._contest_finished()
+
+  r._contest_finished = ->
+    menu.data.hide = false
+    $rootScope.$broadcast "contest:finished"
 
   r._switch_to = (rinx)->
     tl = r.data.contest_raw.tasks.length
@@ -113,8 +126,7 @@ angular.module "brasFeApp"
   r._send = (data)->
     rst = sessionServ.fest().all("user/contests")
     rst.one("current", "submit").post("", {ans: data}).then (rsp)->
-      if rsp.status is "error"
-        r._send(data)
+      r._send(data) if rsp.status is "error"
 
   r._submit = ()->
     skip = r._is_tsk("drop")

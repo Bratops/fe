@@ -16,14 +16,19 @@ angular.module("brasFeApp").classy.controller
     @$.$on "contest:not_found", @_on_contest_not_found
     @$.$on "timer-stopped", @_on_timer_stopped
     @$.$on "contest:finished", @_on_contest_finished
+    @$.$on "contest:survey", @_on_contest_survey
     old = window.onbeforeunload
     @$.$on "$destroy", ->
       window.onbeforeunload = old
     window.onbeforeunload = (e)->
       "尚未完成測驗，確定離開？"
 
+  _on_contest_survey: ->
+    dbc = "dashboard.user.survey"
+    @ucs.reset()
+    @st.go(dbc)
+
   _on_contest_finished: ->
-    console.log 'as'
     dbc = "dashboard.user.contest"
     @ucs.reset()
     @st.go("#{dbc}s", {}, {reload: true}) if @st.is(dbc)

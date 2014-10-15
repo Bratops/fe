@@ -31,7 +31,7 @@ form.contest(name="#{fn}")
               input(type="checkbox")
       .database
         .filter
-          input(ng-model="data.query.$" type="text" placeholder="anything")
+          input(ng-model="data.query.$" type="text" placeholder="Filter")
         ul.tasks
           li(ng-repeat="tsk in data.tasks | filter:data.query | orderBy:'rating'")
             label.task(ng-click="add_ctask(tsk)") {{ tsk.title }}

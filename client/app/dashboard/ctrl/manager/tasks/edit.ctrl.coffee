@@ -14,6 +14,7 @@ angular.module("brasFeApp").classy.controller
     #@nt.load_by_id(@stp.id)
 
   init: ()->
+    @nt.edit()
     @$.data = @nt.data
     @$.$on "task:updated", @_on_task_updated
     @$.$on "$stateChangeSuccess", @_on_state_changed
