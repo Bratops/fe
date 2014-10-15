@@ -1,0 +1,8 @@
+.survey
+  ._title
+    h1._name {{ data.survey.name }}
+    span._info {{ data.survey.info }}
+
+  include surveys/quests_form.jade
+  +quests_form()
+

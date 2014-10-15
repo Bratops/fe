@@ -1,0 +1,32 @@
+mixin _multi_selection()
+  ._multi.ib(ng-show="is_multi_choice(q)")
+    input(type="checkbox" checklist-value="ch.id"
+      checklist-model="data.form[q.id].values" id="q_{{q.id}}_c_{{ch.id}}"
+      name="q_{{q.id}}" ng-show="is_multi_choice(q)")
+    label(for="q_{{q.id}}_c_{{ch.id}}") {{ ch.content }}
+
+mixin _single_selection()
+  ._single.ib(ng-show="is_single_choice(q)")
+    input(type="radio"
+      ng-model="data.form[q.id].values"
+      name="q_{{q.id}}" value="{{ch.id}}" id="cq_{{q.id}}_c_{{ch.id}}")
+    label(for="cq_{{q.id}}_c_{{ch.id}}") {{ ch.content }}
+
+mixin _choices()
+  ol._choices
+    li(ng-repeat="ch in q.choices | orderBy: 'order'")
+      fieldset.subfield
+        +_single_selection()
+        +_multi_selection()
+        input(ng-model="data.form[q.id].text[ch.id]" type="text" ng-show="ch.commentable")
+
+mixin quests_form()
+  form._quests
+    ol
+      li.field._qc(ng-repeat="q in data.survey.quests | orderBy: 'order'"
+        ng-class="quest_class(q)")
+        label(for="q_{{q.id}}") {{ q.content }} {{ qtype_text(q.qtype)}}
+        +_choices()
+    br
+    button.btn(ng-click="submit()") 完成
+

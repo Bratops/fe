@@ -55,3 +55,18 @@ form > .btns
   .btn
     margin: 5px 5px 5px 0
 
+.survey form
+  padding: 0 1%
+  .field
+    padding: 0
+  input
+    +ext(inline_block)
+    width: auto
+  ._choices
+    +ext(inline_list)
+    border-bottom: dotted 1px grey
+    li
+      margin-right: 10px
+    label, input
+      font-size: 120%
+      color: darken($c-swim, 10)
