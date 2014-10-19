@@ -1,0 +1,26 @@
+.header
+  include nav.jade
+  .control(ui-view="control" ng-class="{dim: dim_bg()}")
+  ul._hero
+    li.hide(ng-show="")
+      | Powered By
+      | National Taiwan Normal University
+      | Department of Computer Science and Information Engineering
+    li._login.tar
+      a(ng-show="!loggedin()" ui-sref="session.login")
+        img(src="/assets/images/landing/tea_bra.png")
+        .box 教師登入
+    li._title
+      h1 Bebras
+      h2
+        - var h2 = "國際運算思維能力測驗"
+        - each ht in h2
+          span #{ht}
+    li._login.tal
+      a(ng-show="!loggedin()" ui-sref="session.student")
+        img(src="/assets/images/landing/stu_bra.png")
+        .box 學生登入
+  ul.msgs
+    li(ng-repeat="msg in data.msgc.msgs")
+      .title {{msg.title}}
+      p(ng-bind-html="trust(msg.body)")

@@ -1,23 +1,6 @@
 //- div(ng-include='"components/navbar/navbar.html"')
 .landing#ltop
-  .header
-    .power
-      .hide(ng-show="")
-        | Powered By
-        | National Taiwan Normal University
-        | Department of Computer Science and Information Engineering
-      h1 Bebras
-      h2
-        - var h2 = "國際運算思維能力測驗"
-        - each ht in h2
-          span #{ht}
-    //- {{ user | json }} a
-    include view/nav.jade
-    .control(ui-view="control" ng-class="{dim: dim_bg()}")
-    ul.msgs
-      li(ng-repeat="msg in data.msgc.msgs")
-        .title {{msg.title}}
-        p(ng-bind-html="trust(msg.body)")
+  include view/header.jade
   .body#body(ng-class="{dim: dim_bg()}")
     include view/intro.jade
     footer.footer 2014 &copy; Bebras Taiwan

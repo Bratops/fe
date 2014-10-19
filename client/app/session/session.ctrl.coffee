@@ -56,8 +56,8 @@ angular.module("brasFeApp").classy.controller
 
   watch:
     school: (nv, ov)->
-      if nv and (typeof nv is "object") and "moeid" of nv
-        @$.form.moeid = nv.moeid
+      valid = nv? and (typeof nv is "object") and ("moeid" of nv)
+      @$.form.moeid = if valid then nv.moeid else null
 
   reset: ()->
     @$.form.submitted = true

@@ -1,13 +1,13 @@
 include mixin/password.jade
 
 - var fn = "resetform"
-form#reset(name=fn)
+form.sform#reset(name=fn)
   +password(fn, false)
   +password(fn, true)
 
-  button.btn(type="submit" ng-disabled="!resetable(#{fn})"
+  button.btn.login(type="submit" ng-disabled="!resetable(#{fn})"
     ng-click="reset()") 更新密碼
-  ul
+  ul.links
     li
       a(ui-sref="landing") 返回
     li
