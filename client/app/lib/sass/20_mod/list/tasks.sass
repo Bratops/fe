@@ -1,7 +1,12 @@
-.task_list
+%_tasks
   .tasks
+    +ext(autoflow)
+    height: 300px
+    background: #ccc
     li:nth-child(2n+1)
       background: lighten($c-sky, 25)
+    li
+      background: #eee
     .task
       +ext(font_bold)
       +ext(hover_pointer)
@@ -20,14 +25,17 @@
 
 .task_list
   +ext(full_width)
+  +ext(_tasks)
   .selected, .database
     +ext(half_width)
+    +ext(border_box)
     +ext(rel_inline_block)
     +ext(align_top)
     .tasks_info
       font-size: 1.6rem
       padding: 2px
       margin: 9px 3px
-  ul.tasks
-    +ext(autoflow)
-    height: 350px
+  .selected
+    padding: 0 0 0 1%
+  .database
+    padding: 0 1% 0 0

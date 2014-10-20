@@ -70,3 +70,15 @@ form > .btns
     label, input
       font-size: 120%
       color: darken($c-swim, 10)
+
+form.contest
+  +ext(typeahead_dropdown)
+  +typeahead_dropdown_var(#cde, 100%)
+  .checks
+    padding: 10px 0 0
+    input
+      display: inline
+      width: auto
+    label
+      font-size: 120%
+      color: black

@@ -1,10 +1,8 @@
-ul.humplist
+ul.ib.lgt-stack
   li(ng-repeat="cn in data.contests")
-    .item
-      span.title {{ cn.name }}
-      .info
-        span {{ cn.grading_str }}
-        span {{ cn.sdate }} ~ {{ cn.edate}}
-      .ctrls
-        i.remove.fa.fa-fw.fa-times(ng-click="remove(cn)")
-        i.edit.fa.fa-fw.fa-edit(ng-click="edit(cn)")
+    ._item
+      .ib._title
+        | {{ cn.name }}
+      .ib._ctrls
+        i._edit(ng-click="edit(cn)")
+        i._remove(ng-click="remove(cn)")

@@ -53,8 +53,7 @@ angular.module("brasFeApp").classy.controller
 
   watch:
     "data.edit_role": (nv, ov)->
-      if nv
-        @menu.get_menu_list nv
+      @menu.get_menu_list nv if nv
 
   not_in_base: ()->
     return false unless @$.user?

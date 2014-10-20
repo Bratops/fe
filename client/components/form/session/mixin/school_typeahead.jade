@@ -7,7 +7,7 @@ mixin school_ta(form, req)
     typeahead-persistent="0"
     typeahead-loading="loadingSclist"
     typeahead-on-select="set_moeid($item, $model, $label)"
-    typeahead-wait-ms="10"
+    typeahead-wait-ms="800"
     placeholder="選擇學校"
     ng-required=req
     ng-class="{error: moeid_not_set() && !#{form}.moeid.$pristine}"

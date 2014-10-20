@@ -1,0 +1,24 @@
+mixin _selected_tasks()
+  .selected
+    .tasks_info {{ctask_info()}}
+    ul.tasks
+      li(ng-repeat="tsk in data.ctasks | orderBy:'rating'")
+        label.task(ng-click="remove_ctask(tsk)") {{ tsk.title }}
+          span.info {{ tsk.tid }}({{ rats(tsk.rating) }})
+          input(type="checkbox")
+
+mixin _db_tasks()
+  .database
+    .filter
+      input(ng-model="data.query.$" type="text" placeholder="Filter")
+    ul.tasks
+      li(ng-repeat="tsk in data.tasks | filter:data.query | orderBy:'rating'")
+        label.task(ng-click="add_ctask(tsk)") {{ tsk.title }}
+          span.info {{ tsk.tid }}({{ rats(tsk.rating) }})
+          input(type="checkbox")
+
+fieldset.field
+  label(for="task_ids") 選取題目
+  .task_list
+    +_db_tasks
+    +_selected_tasks

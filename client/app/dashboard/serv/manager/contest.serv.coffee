@@ -67,9 +67,8 @@ angular.module "brasFeApp"
         r.data.contest = rsp.data
         r.data.ctasks = rsp.data.tasks
         r.data.grading = _gradings[rsp.data.grading]
-        #r.update_grading({name: rsp.data.grading_str}, false)
 
-  r.update = ()->
+  r.update = ->
     data = r.contest_obj()
     rst = sessionServ.fest().one("manager/contests", data.id)
     rst.patch({contest: data}).then (rsp)->
@@ -77,4 +76,9 @@ angular.module "brasFeApp"
       if rsp.msg.status is "success"
         $rootScope.$broadcast "contest:updated", rsp.data
 
+  r.survey_list = (q)->
+    rst = sessionServ.fest().all("manager/surveys/list")
+    rst.get("", {query: q})
+
   r
+

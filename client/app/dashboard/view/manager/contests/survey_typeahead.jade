@@ -1,0 +1,13 @@
+fieldset.field.half
+  label(for="survey")
+    | 問卷 {{ data.contest.survey_id }}
+  input#survey(type="text" name="survey"
+    typeahead="sc as sc.name for sc in get_survey_list($viewValue)"
+    typeahead-persistent="0"
+    typeahead-loading="loadingSclist"
+    typeahead-on-select="set_survey($item, $model, $label)"
+    typeahead-wait-ms="100"
+    placeholder="選擇問卷(選填)"
+    ng-model="data.survey"
+    ng-required=false)
+

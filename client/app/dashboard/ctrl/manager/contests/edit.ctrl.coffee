@@ -13,6 +13,9 @@ angular.module("brasFeApp").classy.controller
     @$.inited = false
 
   watch:
+    "data.survey": (nv, ov)->
+      return if nv? and nv.id?
+      @mc.data.contest.survey_id = null
     "data.grading": (nv, ov)->
       return if nv is ov
       @mc.update_grading(nv, @$.inited)

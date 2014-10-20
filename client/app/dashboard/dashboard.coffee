@@ -100,6 +100,7 @@ angular.module 'brasFeApp'
   state "user", "scores"
   state "manager"
   state "manager", "bulletin"
+  state "manager", "edus"
   state "manager", "users"
   state "manager", "files"
   state "manager", "tasks"

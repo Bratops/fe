@@ -1,9 +1,9 @@
 .clicked(ng-show="data.clicked && data.show == 'info'")
   .field.tbody 題文
-    .content(ng-bind-html="data.task.body")
+    .content(ng-bind-html="trust(data.task.body)")
   .field.quest 題問
-    .content(ng-bind-html="data.task.quest")
+    .content(ng-bind-html="trust(data.task.quest)")
   ol.field.choices 參考選項
     li.choice(ng-repeat="cho in data.task.choices"
       ng-class="{answer: cho.answer}")
-      .content(ng-bind-html="cho.content")
+      .content(ng-bind-html="trust(cho.content)")
