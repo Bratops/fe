@@ -1,7 +1,11 @@
 ul.ib.lgt-stack
-  li(ng-repeat="cn in data.surveys")
+  form(name="list_query_form")
+    fieldset.field
+      input(ng-model="data.query" type="text" placeholder="名稱查詢")
+  li(ng-repeat="cn in data.list")
     ._item(ng-mouseover="set_by_hover(cn)" ng-class="clicked(cn)")
-      .ib._title(ng-click="set_by_click(cn)") {{ cn.name }} ({{ cn.quests_count }})
+      .ib._title(ng-click="set_by_click(cn)") {{ cn.name }}
       .ib._ctrls
-        i._edit(ng-click="edit_survey(cn)")
-        i._remove(ng-click="remove_survey(cn)")
+        i._edit(ng-click="edit(cn)")
+        //- i._remove(ng-click="remove(cn)")
+
