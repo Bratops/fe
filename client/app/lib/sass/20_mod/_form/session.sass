@@ -38,28 +38,12 @@
     &:before
       color: #555
 
-%inline_center_list
-  +ext(center_block)
-  +ext(center_child)
-  bottom: 0
-  li
-    margin: 2px 10px
-    display: inline-block
-    list-style-type: none
-
-%center_submit_button
+%_half_btn
+  +ext(border_box)
   +border-radius(5px)
-  display: block
-  cursor: pointer
-  margin: .2em auto
-  width: 90%
-  padding: .3em 0
-  text-align: center
-  a
-    display: inline
   &:disabled, &:disabled:hover
-    cursor: not-allowed
     +text-shadow(2px, 2px, 2px, #777)
+    cursor: not-allowed
     color: #888 !important
     background: #aaa !important
 
@@ -68,10 +52,10 @@
   font-weight: bold
 
 %center_input_collection
-  width: 80%
-  font-weight: bold
   +ext(center_block)
-  +ext(center_child)
+  +ext(padding_child)
+  +ext(font_bold)
+  width: 90%
   &:focus
     outline: none
   &.error
@@ -88,24 +72,23 @@
     +transition(all, .6s)
 
 %heading_cap
-  +ext(center_block)
-  padding: 10px 5px
-  margin-top: 0
   +border-radius-separate(10px, 10px, 0, 0)
-
-%center_block
+  +ext(center_text)
+  +ext(no_margin)
   display: block
-  text-align: center
+  padding: 10px 5px
 
-%center_child
+%padding_child
   padding: 2px 5%
   margin: 5px auto
 
-%center_box
-  +ext(center_block)
-  +ext(center_child)
+%_sf_field
+  +ext(border_box)
+  display: block
+  width: 90%
+  margin: 10px auto
 
-%login_form
+%_sfbase
   +ext(f-read)
   +center_absolute(30%)
   +border-radius-separate(10px, 10px, 5px, 5px)
@@ -113,40 +96,61 @@
   a
     +ext(plain_bold)
     +ext(anchor_base)
-  ul
-    +ext(inline_center_list)
-  .btn
-    +ext(clear_button)
-    +ext(center_submit_button)
   input
+    +ext(_sf_field)
     +ext(center_input_collection)
-    +border-radius(10px)
+    +ext(text_center)
+    +border-radius(3px)
   p.error
+    +ext(_block)
+    +ext(text_center)
     color: red
-    +ext(center_box)
   &:before
     +ext(heading_cap)
+    +ext(text_center)
   label
+    +ext(text_center)
+    +ext(_block)
     +ext(plain_bold)
-    +ext(center_box)
-  ul.login
-    padding: 0 5%
-    display: block
-    position: relative
+    margin: 5px 0
+  .links
+    +ext(text_center)
+    width: auto
+    margin: 5px auto
     li
+      display: inline-block
+      margin: 0 10px
+  .btns
+    +ext(_sf_field)
+    padding: 0
+    li
+      +ext(border_box)
+      display: inline-block
       width: 50%
-      margin: 2px 0
-      button
-        width: 98%
+      padding: 0 1%
+  .btn
+    +ext(clear_button)
+    +ext(_half_btn)
+    &.login
+      +ext(_sf_field)
   label i
+    +transition(.5s linear all)
     position: relative
     width: 0
     right: 1%
     float: right
-    +transition(.5s linear all)
+  ._back
+    +ext(fa, false)
+    +ext(fa-fw, false)
+    +ext(fa-arrow-circle-left, false)
+    position: absolute
+    top: 5px
+    font-size: 2.5rem
+    color: lighten($c-sky, 10)
+    &:hover
+      color: lighten($c-sky, 20)
 
 =form_fonts($fs: 10rem)
-  +typeahead_dropdown_fs($fs)
   input
     font-size: $fs
     &[type=email]
@@ -156,43 +160,42 @@
   &:before
     font-size: $fs*1.2
 
-=form_color($ct: rgba(188, 194, 194, 0.9))
-  +box-shadow-i("", 2px, 2px, 40px, darken($ct, 15%))
+=_color($ct: rgba(188, 194, 194, 0.9))
+  +box-shadow-i("", 2px, 2px, 40px, darken($ct, 15))
   background: $ct
-  border-color: lighten($ct, 5%)
+  border-color: lighten($ct, 5)
   input:focus
-    border-color: darken($ct, 40%)
+    border-color: darken($ct, 40)
   &:before
     color: $ct
-    background: darken($ct, 50%)
+    background: darken($ct, 50)
   .btn
-    color: darken($ct, 7%)
-    a
-      color: darken($ct, 7%)
-    +bg-gradient(180deg, darken($ct, 35%), darken($ct, 50%))
+    +bg-gradient(180deg, darken($ct, 35), darken($ct, 50))
     +transition(all .5s linear)
+    color: darken($ct, 7)
+    a
+      color: darken($ct, 7)
     &:hover
-      color: lighten($ct, 5%)
-      a
-        color: lighten($ct, 5%)
       +transition(all .5s linear)
-      +bg-gradient(0deg, darken($ct, 35%), darken($ct, 50%))
+      +bg-gradient(0deg, darken($ct, 35), darken($ct, 50))
+      color: lighten($ct, 5)
+      a
+        color: lighten($ct, 5)
     &.facebook
       background: rgb(71, 99, 161)
       &:hover
-        background: lighten(rgb(71, 99, 161), 10%)
+        background: lighten(rgb(71, 99, 161), 10)
     &.gplus
       background: rgb(217, 59, 43)
       &:hover
-        background: lighten(rgb(217, 59, 43), 10%)
+        background: lighten(rgb(217, 59, 43), 10)
   ul li a:hover
-    background: darken($ct, 15%)
-  +typeahead_dropdown_var($ct)
+    background: darken($ct, 15)
 
 =session_form($title: "Login", $ct: rgba(188, 194, 194, 0.9))
-  +ext(login_form)
-  +form_color($ct)
+  +_color($ct)
   +form_fonts(2.2rem)
+  +typeahead_dropdown_var($ct, 140%)
   &:before
     content: $title
 
@@ -204,7 +207,7 @@
     width: 50%
     display: inline-block
 
-%rwd_form
+%_rwd
   $fs: 2rem
   +tablet-portrait-only
     +rwd_mock($fs, 10%, 22%)
@@ -219,8 +222,10 @@
 
 .header
   +ext(typeahead_dropdown)
-  #reset, #login, #reg
-    +ext(rwd_form)
+  .sform
+    +ext(_sfbase)
+    +ext(_rwd)
+
 #login
   +session_form("登入", rgba(198, 232, 245, 0.9))
 #reg

@@ -13,9 +13,9 @@ ul#landing_nav(du-spy-context="" ng-hide="dim_bg()")
   li(ng-show="loggedin()")
     a(ui-sref="dashboard.user") 測驗平台
   li
-    a(ng-show="!loggedin()" ui-sref="session.login")
-      | 登入
-      i.fa.fa-flash
     a(ng-show="loggedin()" ng-click="logout()" href="#")
       | 登出
       i.fa.fa-coffee
+    //- a(ng-show="!loggedin()" ui-sref="session.login")
+    //-   | 登入
+    //-   i.fa.fa-flash

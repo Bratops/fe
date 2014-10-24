@@ -2,6 +2,7 @@
 angular.module("brasFeApp").classy.controller
   name: "manager.TasksCtrl"
   inject:
+    $sce: "sce"
     $scope: "$"
     $state: "st"
     $timeout: "timeout"
@@ -82,4 +83,7 @@ angular.module("brasFeApp").classy.controller
   re_index: (inx)->
     ra = ["A", "B", "C", "D"]
     ra[inx]
+
+  trust: (html)->
+    @sce.trustAsHtml html
 

@@ -2,12 +2,12 @@
   li
     +ext(no_margin_block)
     +ext(full_width)
-    height: 1.1em
     a
       +ext(full_width)
       +ext(_block)
+      +ext(border_box)
       background: #eee
-      padding: 3px
+      padding: 10px 0
     a strong
       font-weight: bold
   li.active
@@ -18,11 +18,10 @@
   +position(absolute)
   +ext(no_gap)
   list-style-type: initial
+  width: 90%
+  height: 70%
   z-index: 200
-
-=typeahead_dropdown_fs($fs)
-  .dropdown-menu
-    font-size: $fs*1.2
+  overflow: auto
 
 =typeahead_dropdown_var($ct, $fs: 10rem)
   .dropdown-menu

@@ -70,3 +70,10 @@ angular.module("brasFeApp").classy.controller
   edate_cal_disable: (d, m)->
     @_cal_disable(d, m)
 
+  get_survey_list: (query)->
+    @mc.survey_list(query).then (rsp)->
+      rsp
+
+  set_survey: (item, model, label)->
+    @mc.data.contest.survey_id = item.id
+

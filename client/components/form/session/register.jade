@@ -4,7 +4,7 @@ include mixin/email.jade
 include mixin/phone.jade
 
 - var fn = "regform"
-form#reg(name=fn novalidate)
+form.sform#reg(name=fn novalidate)
   +school_ta(fn, true)
   +email(fn)
   .half
@@ -18,10 +18,9 @@ form#reg(name=fn novalidate)
   //- {{ school | json }}
   //- {{ form | json }}
   //- {{ registerable(regform) | json }}
-  button.btn(type="submit" ng-disabled="!registerable(regform)"
+  a._back(ui-sref="landing")
+  button.btn.login(type="submit" ng-disabled="!registerable(regform)"
     ng-click="register(regform)") 註冊
-  ul
+  ul.links
     li
       a(ui-sref="session.login") 登入
-    li
-      a(ui-sref="landing") 返回
