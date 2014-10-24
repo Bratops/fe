@@ -18,10 +18,9 @@ form.sform#reg(name=fn novalidate)
   //- {{ school | json }}
   //- {{ form | json }}
   //- {{ registerable(regform) | json }}
+  a._back(ui-sref="landing")
   button.btn.login(type="submit" ng-disabled="!registerable(regform)"
     ng-click="register(regform)") 註冊
   ul.links
     li
       a(ui-sref="session.login") 登入
-    li
-      a(ui-sref="landing") 返回

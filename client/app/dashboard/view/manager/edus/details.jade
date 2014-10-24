@@ -1,0 +1,7 @@
+.edus-details
+  h1._title {{ data.detail.name }}
+  ul._items(ng-show="data.detail.items.length > 0")
+    li.item(ng-repeat="it in data.detail.items")
+      ._title {{ it.name }}
+      ._teacher 教師：{{ it.teacher }} 先生
+      ._enrolls 學生: {{ it.enrollments_count }} 人

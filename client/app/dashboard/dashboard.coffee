@@ -38,7 +38,7 @@ dash_router =
     views:
       box:
         templateUrl: "app/dashboard/view/#{role}/#{action}.html"
-        #TODO generalize ctrls here
+        controller: class_ctrl_form(role, action)
   sub: (role, sub, sub_action)->
     url = if sub_action is "new" then "/#{sub_action}" else "/:id/#{sub_action}"
     url: url
@@ -47,39 +47,36 @@ dash_router =
       scroll:
         templateUrl: "app/dashboard/view/#{role}/#{sub}/#{sub_action}.html"
         controller: subclass_ctrl_form(role, sub, sub_action)
-  magic: (role, action, _ctrl_form)->
-    unless action?
-      dash_router.base(role)
-    else
-      st = dash_router.extend(role, action)
-      roles = ["manager", "teacher", "user"]
-      #TODO remove after refactor
-      if _.include(roles, role)
-        ctrl = _ctrl_form(role, action)
-        st.views.box.controller = ctrl
-      st
-  m: (r, a)->  #TODO remove after refactor
-    dash_router.magic(r, a, class_ctrl_form)
-  mk_route: (role, action, sub)->
-    rt = "dashboard.#{role}"
-    rt += if action? then ".#{action}" else ""
-    rt += if sub? then ".#{sub}" else ""
-    rt
-  gt_state: (role, action, sub)->
-    if sub?
-      dash_router.sub(role, action, sub)
-    else if action?
-      dash_router.m(role, action)
-    else
-      dash_router.base(role)
-  mk_state: (stp, role, action, sub)->
-    route = dash_router.mk_route(role, action, sub)
-    state = dash_router.gt_state(role, action, sub)
-    stp.state route, state
-  ms: (stp, role, action, sub)->
-    dash_router.mk_state(stp, role, action, sub)
 
 dr = dash_router
+
+dr.action = (role, action)->
+  unless action?
+    dr.base(role)
+  else
+    dr.extend(role, action)
+
+dr.mk_route = (role, action, sub)->
+  rt = "dashboard.#{role}"
+  rt += if action? then ".#{action}" else ""
+  rt += if sub? then ".#{sub}" else ""
+  rt
+
+dr.gt_state = (role, action, sub)->
+  if sub?
+    dr.sub(role, action, sub)
+  else if action?
+    dr.action(role, action)
+  else
+    dr.base(role)
+
+dr.mk_state = (stp, role, action, sub)->
+  route = dr.mk_route(role, action, sub)
+  state = dr.gt_state(role, action, sub)
+  stp.state route, state
+
+dr.ms = (stp, role, action, sub)->
+  dr.mk_state(stp, role, action, sub)
 
 # order is important
 angular.module 'brasFeApp'
@@ -101,6 +98,7 @@ angular.module 'brasFeApp'
   state "manager"
   state "manager", "bulletin"
   state "manager", "edus"
+  state "manager", "edus", "details"
   state "manager", "users"
   state "manager", "files"
   state "manager", "tasks"
