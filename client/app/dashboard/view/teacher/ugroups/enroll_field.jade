@@ -1,0 +1,54 @@
+mixin enroll
+  li.enroll(ng-repeat="en in data.form.enrolls" ng-hide="en._destroy")
+    - var ifn = "enroll"
+    ng-form(name="#{ifn}" novalidate)
+      .ib._del(ng-click="remove_enroll($index)")
+      .ib._name
+        input(type="text" name="en_name" ng-model="en.name"
+          placeholder="名字" ng-required="true"
+          ng-class="{'error': validate(#{ifn}, 'en_name')}"
+          ng-minlength="2" ng-maxlength="10")
+        p.error
+      .ib._gender
+        select(type="text" name="en_gender" ng-model="en.gender"
+          ng-class="{'error': validate(#{ifn}, 'en_gender')}"
+          ng-required="true"
+          ng-options="k.value as k.name for k in data.option.genders")
+          option(value="") - 性別 -
+        p.error
+      .ib._sid
+        input(type="text" name="en_suid" ng-model="en.suid"
+          placeholder="學號" ng-required="true"
+          ng-class="{'error': validate(#{ifn}, 'en_suid')}"
+          ng-minlength="1" ng-maxlength="16")
+      .ib._seat
+        input(type="text" name="en_seat" ng-model="en.seat"
+          placeholder="座號"
+          ng-class="{'error': validate(#{ifn}, 'en_seat')}"
+          ng-minlength="0" ng-maxlength="16")
+
+mixin enroll_columns
+  li.enroll
+    .ib._emp &nbsp;
+    .ib._name 名字
+    .ib._gender 性別
+    .ib._sid 學號
+    .ib._seat 座號
+
+mixin enrolls
+  ul.enrollments
+    +enroll_columns
+    +enroll
+
+mixin enroll_head
+  label 學生資料 ({{ enrolls_count() }})
+  ul.enroll_op(flow-init="{singleFile: true}"
+    flow-file-added="file_added($file, $event)")
+    li
+      .ck._add(ng-click="new_enroll()") 單筆新增
+    li
+      .ck._upload(flow-btn="" flow-attrs="{accept:'.csv,application/csv,text/csv'}") 匯入學生資料
+
+fieldset.field
+  +enroll_head
+  +enrolls
