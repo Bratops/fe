@@ -3,20 +3,20 @@ angular.module "brasFeApp"
 .service "teacherUgroup", ($rootScope, $q, sessionServ, notify, datagen)->
   nv = datagen.nvp
 
-  _genders = [
-    nv("女", 0),
-    nv("男", 1),
-  ]
-
   time_sec = [
     nv("上午(0730~1230)", 0),
     nv("下午(1300~1800)", 1),
     nv("晚上(1800~2200)", 2),
   ]
 
+  _genders = [
+    nv("女", 0),
+    nv("男", 1),
+  ]
+
   _gc =
-    女: 0
-    男: 1
+    "女": 0
+    "男": 1
 
   _make_user = (ary)->
     name: ary[0].trim()
@@ -87,12 +87,6 @@ angular.module "brasFeApp"
     else
       rf.enrolls.splice(ix, 1)
 
-  r.remove = (id)->
-    rt = sessionServ.fest().one("teacher/ugroups", id)
-    rt.remove("").then (rp)->
-      notify.g rp.msg
-      r.load_ugroups()
-
   r.clear = ->
     r.new()
 
@@ -124,18 +118,26 @@ angular.module "brasFeApp"
     delete d.enrolls
     d
 
+  r._notify = (msg, evt)->
+    notify.g msg
+    r.load_ugroups()
+    $rootScope.$broadcast evt if evt?
+
+  r.remove = (id)->
+    rt = sessionServ.fest().one("teacher/ugroups", id)
+    rt.remove("").then (rp)->
+      r._notify(rp.msg)
+
   r.update = ->
     data = {ugroup: r._group_data()}
     rt = sessionServ.fest().one("teacher/ugroups", r.data.form.id)
     rt.patch(data).then (rp)->
-      notify.g rp.msg
-      $rootScope.$broadcast "teacher:ugroup:updated"
+      r._notify(rp.msg, "teacher:ugroup:updated")
 
   r.create = ->
     data = {ugroup: r._group_data()}
     rt = sessionServ.fest().one("teacher/ugroups")
     rt.post("", data).then (rp)->
-      notify.g rp.msg
-      $rootScope.$broadcast "teacher:ugroup:created"
+      r._notify(rp.msg, "teacher:ugroup:created")
 
   r

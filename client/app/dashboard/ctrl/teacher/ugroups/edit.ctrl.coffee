@@ -21,6 +21,7 @@ angular.module("brasFeApp").classy.controller
     @$.$on "teacher:ugroup:updated", @_teacher_ugroup_updated
 
   update: (form)->
+    console.log "aa"
     @m.update() if form.$valid
 
   is_edit: ->
