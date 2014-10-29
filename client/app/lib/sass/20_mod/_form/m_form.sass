@@ -82,3 +82,29 @@ form.contest
     label
       font-size: 120%
       color: black
+
+form.top
+  width: 100%
+  .field
+    +ext(border_box)
+    width: 20%
+    &.ty
+      +ext(typeahead_dropdown)
+      +typeahead_dropdown_var(#cde, 1rem)
+      .dropdown-menu
+        height: 300px
+        li a
+          padding: 4px 0
+    &#btns, &#mod
+      width: 10%
+    .btn
+      display: block
+      font-size: 1rem
+    label, input, select
+      font-size: 1rem
+    input#contest[disabled]
+      border-color: #aaa
+    .datepicker i
+      font-size: 1rem
+    .datepicker button
+      top: -2px
