@@ -28,6 +28,10 @@ angular.module "brasFeApp"
   r.role = ->
     sessionServ.user.role.name
 
+  r.click_by_order = (ord)->
+    item = r.data.menu[ord]
+    r.click(item)
+
   r.click = (item)->
     r.data.clicked = item
     r.data.title = item

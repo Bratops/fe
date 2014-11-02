@@ -11,8 +11,8 @@ angular.module "brasFeApp"
 
   _actions = [
     nv("新增", 0),
-    nv("查詢", 1),
-    nv("更新", 2),
+    nv("更新", 1),
+    nv("查詢", 2),
   ]
 
   _new_reg = ->
@@ -42,43 +42,60 @@ angular.module "brasFeApp"
     r._time_txt()
     r.load_conregs()
 
-  r.load_conregs = ->
+  r.load_conregs = (q={})->
     rt = sessionServ.fest().all("teacher/conregs")
-    rt.get("").then (rp)->
+    rt.get("", q).then (rp)->
       r.data.list = rp
+
+  r._refresh = (mgs)->
+    r.load_conregs()
+    notify.g msg
 
   r._create = ->
     data = {conreg: r.data.regform}
     rt = sessionServ.fest().all("teacher/conregs")
-    rt.post(data).then (rp)->
-      r.load_conregs()
-      notify.g rp.msg
+    rt.post(data).then (rp)-> r._refresh(rp.msg)
+
+  r._update = ->
+    data = {conreg: r.data.regform}
+    rt = sessionServ.fest().one("teacher/conregs", r.data.regform.id)
+    rt.put("", data).then (rp)-> r._refresh(rp.msg)
 
   r._search = ->
-    ""
+    r.load_conregs(r.data.qryform)
 
   r.submit = ->
-    if r.data.action == 0
-      r._create()
-    else
-      r._search()
+    subs = ["_create", "_update", "_search"]
+    r[subs[r.data.action]]()
 
   r.notify = (msg)->
     notify.g msg
 
-  r.contest_list = (q)->
-    q = if q is "$empty$" then "" else q
+  r._query_contest = (data)->
     rst = sessionServ.fest().all("teacher/contests/list")
-    rst.get("", {q: q, gcode: r.data.regform.gcode})
+    rst.get("", data)
+
+  r.contest_list = (q, use_code)->
+    q = if q is "$empty$" then "" else q
+    data = {q: q}
+    data.gcode = r.data.regform.gcode if use_code
+    r._query_contest(data)
 
   r._map_reg = (reg)->
+    id: reg.id
     contest_id: reg.contest.id
     gcode: reg.ugroup.gcode
     exdate: reg.exdate
     extime: reg.extime
 
   r.update = (reg)->
-    r.data.action = _actions[2].value
+    r.data.action = _actions[1].value
     r.data.regform = r._map_reg(reg)
+
+  r.set_query = (gcode)->
+    r.data.qryform.gcode = gcode
+
+  r.set_gcode = (gcode)->
+    r.data.regform.gcode = gcode
 
   r

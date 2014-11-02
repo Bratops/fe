@@ -8,9 +8,9 @@ angular.module("brasFeApp").service "datagen", ()->
   r.nvp = (n, v)->
     {name: n, value: v}
 
-  r.date_opt = (min="2014/11/10")->
+  r.date_opt = (min="2014/1/1")->
     minDate: min
-    maxDate: "'2014/11/21'"
+    maxDate: "2014/1/1"
     open: false
     startingDay: 1
 

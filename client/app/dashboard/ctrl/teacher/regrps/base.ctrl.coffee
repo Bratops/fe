@@ -32,8 +32,8 @@ angular.module("brasFeApp").classy.controller
 
   submit: -> @m.submit()
 
-  get_contest_list: (q)->
-    @m.contest_list(q).then (r)=>
+  get_contest_list: (q, use_code=true)->
+    @m.contest_list(q, use_code).then (r)=>
       @m.notify(r.msg) if r.msg.status is "error"
       r.data
 
@@ -41,8 +41,11 @@ angular.module("brasFeApp").classy.controller
 
   set_contest: (item, model, label)->
     @m.data.regform.contest_id = item.id
-    @m.data.option.exdate.minDate = item.sdate
-    @m.data.option.exdate.maxDate = item.edate
+    @$.data.option.exdate.minDate = "'#{item.sdate}'"
+    @$.data.option.exdate.maxDate = "'#{item.edate}'"
+
+  set_qry_contest: (i, m, l)->
+    @m.data.qryform.contest_id = i.id
 
   gcode_valid: ->
     !(@$.data.regform.gcode? && @$.data.regform.gcode.length == 6)
@@ -56,5 +59,8 @@ angular.module("brasFeApp").classy.controller
   time_map: (v)->
     @m.data.option.time_txt[v]
 
-  update: (reg)->
-    @m.update(reg)
+  click_reg: (reg)->
+    if @m.data.action != 2
+      @m.update(reg)
+    else
+      @m.set_query(reg.ugroup.gcode)

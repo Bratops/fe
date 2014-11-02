@@ -1,11 +1,13 @@
 include form/regrp_form.jade
+include form/regrp_query.jade
 
 .scroll#conreg
   .detail
     ul.regs
       li(ng-repeat="reg in data.list")
-        .reg(ng-click="update(reg)")
-          .ib._title._group {{reg.ugroup.name }}
+        .reg
+          .ib._title._group
+            a(href="" ng-click="click_reg(reg)") {{ reg.ugroup.name }}
           .ib._title._contest {{ reg.contest.name }}
           .ib._exdate {{ reg.exdate }}
           .ib._extime {{ time_map(reg.extime) }}

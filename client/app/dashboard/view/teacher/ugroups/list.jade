@@ -1,8 +1,9 @@
 ul.ib.lgt-stack
   li(ng-repeat="cn in data.ugroups")
     ._item
-      .ib._title {{ cn.cyear }}年 {{ cn.name }}班
+      .ib._title(ng-click="reg(cn)") {{ cn.cyear }}年 {{ cn.name }}班
       .ib._ctrls
         i._edit(ng-click="edit(cn)")
         i._remove(ng-click="remove(cn)" ng-show="cn.removable")
       .gcode(style="{font-size: .5rem}") 班級代碼: {{ cn.gcode }}
+

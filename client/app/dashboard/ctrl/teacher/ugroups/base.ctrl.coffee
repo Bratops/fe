@@ -5,6 +5,8 @@ angular.module("brasFeApp").classy.controller
   inject:
     $scope: "$"
     $state: "st"
+    menu: "menu"
+    teacherRegrp: "r"
     teacherUgroup: "m"
 
   _on_teacher_ugroup_loaded: (e, d)->
@@ -58,3 +60,8 @@ angular.module("brasFeApp").classy.controller
   remove: (group)->
     if confirm("確定移除班級?")
       @m.remove(group.id)
+
+  reg: (group)->
+    @r.set_gcode(group.gcode)
+    @menu.click_by_order(1)
+    @st.go("dashboard.teacher.regrps")

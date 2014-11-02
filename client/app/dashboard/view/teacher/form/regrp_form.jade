@@ -26,8 +26,7 @@ mixin _field_contest
       typeahead="sc as sc.name for sc in get_contest_list($viewValue)"
       typeahead-loading="loadingContests"
       typeahead-on-select="set_contest($item, $model, $label)"
-      typeahead-wait-ms="500"
-      typeahead-watch-changes=""
+      typeahead-wait-ms="300"
       ng-trim="false"
       empty-typeahead=""
       ng-focus="focus_contest($event)"
@@ -53,7 +52,7 @@ mixin _field_extime
       ng-required="true"
       ng-class="{ 'error': field_invalid(#{fn}.extime) }"
       ng-options="a.value as a.name for a in data.option.times")
-      option(value="") -- 請選擇班級 --
+      option(value="") -- 請選擇時段 --
 
 mixin _btns
   fieldset.field#btns
@@ -61,8 +60,10 @@ mixin _btns
     button.btn(ng-click="submit()") 送出
 
 - var fn = "rgf"
-form.top(name="#{fn}")
+form.topleft
   +_select_action
+
+form.top(ng-show="data.action != 2" name="#{fn}")
   +_field_gcode
   +_field_contest
   +_field_exdate

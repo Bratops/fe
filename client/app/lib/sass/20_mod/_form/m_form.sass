@@ -83,11 +83,21 @@ form.contest
       font-size: 120%
       color: black
 
+form.topleft
+  +ext(inline_block)
+  width: 10%
+  label, input, select
+    font-size: 1rem
+
 form.top
-  width: 100%
+  +ext(inline_block)
+  +ext(border_box)
+  position: relative
+  top: 0
+  width: 90%
   .field
     +ext(border_box)
-    width: 20%
+    width: 22.2%
     &.ty
       +ext(typeahead_dropdown)
       +typeahead_dropdown_var(#cde, 1rem)
@@ -96,7 +106,7 @@ form.top
         li a
           padding: 4px 0
     &#btns, &#mod
-      width: 10%
+      width: 11.1%
     .btn
       display: block
       font-size: 1rem
