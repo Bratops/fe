@@ -1,0 +1,48 @@
+include ../../com/date.jade
+
+- var fn = "new_group"
+p 下列資料為研究蒐集使用，請協助填寫，如有問題請來電或於註記欄位註明
+form.ugroups(novalidate name="#{fn}")
+  fieldset.field.half
+    label(for="name") 班級名稱
+    input#group_name(ng-model="data.form.name"
+      name="name" type="text"
+      ng-class="{'error': validate(#{fn}, 'name')}"
+      ng-required="true" ng-maxlength="20")
+    p.error
+      span(ng-show="#{fn}.name.$error.required && !#{fn}.name.$pristine") 不可空白
+      span(ng-show="#{fn}.name.$error.maxlength && !#{fn}.name.$pristine") 不可超過20個字
+
+  fieldset.field.half
+    label(for="grade") 年級
+    input#grade(ng-model="data.form.grade"
+      name="grade" ng-required="true"
+      ng-class="{'error': validate(#{fn}, 'grade')}"
+      type="number" min="1" max="16")
+    p.error
+      span(ng-show="#{fn}.grade.$error.required") 不可空白
+      span(ng-show="#{fn}.grade.$error.min") 值需大於1
+      span(ng-show="#{fn}.grade.$error.max") 值需小於16
+
+  fieldset.field.half
+    label(for="cluster") 班級類別
+    select#cluster(ng-model="data.form.cluster_id"
+      name="cluster" ng-required="true"
+      ng-class="{'error': validate(#{fn}, 'cluster')}"
+      ng-options="k.id as k.name for k in data.option.clusters"
+      )
+      option(value="") -- 請選擇班級 --
+    p.error
+      span(ng-show="#{fn}.cluster.$error.required && !#{fn}.cluster.$pristine") 班級屬性為必選
+
+  fieldset.field.half
+    label(for="notes") 其他註記
+    textarea#notes(ng-model="data.form.note" placeholder="其他說明、問題註記"
+      type="text" ng-maxlength="255")
+
+  include enroll_field.jade
+
+  fieldset.field
+    button.btn(ng-show="is_edit()" ng-click="update(new_group)" ng-disabled="new_group.$invalid") 更新
+    button.btn(ng-hide="is_edit()" ng-click="create(new_group)" ng-disabled="new_group.$invalid") 建立
+    button.btn(ng-click="cancel()") 取消

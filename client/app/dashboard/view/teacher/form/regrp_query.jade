@@ -1,0 +1,51 @@
+include ../../com/date.jade
+
+- var fv = "data.qryform"
+mixin _field_gcode
+  fieldset.field
+    label(for="gcode") 班級代碼
+    input#gcode(type="text" name="gcode"
+      placeholder="請輸入6位數班級代碼"
+      ng-model="#{fv}.gcode")
+
+mixin _field_contest
+  fieldset.field.ty
+    label(for="contest") 選擇測驗
+    input#contest(type="text" name="contest"
+      typeahead="sc as sc.name for sc in get_contest_list($viewValue, false)"
+      typeahead-loading="loadingContests"
+      typeahead-on-select="set_qry_contest($item, $model, $label)"
+      typeahead-wait-ms="300"
+      ng-trim="false"
+      empty-typeahead=""
+      ng-focus="focus_contest($event)"
+      placeholder="查詢測驗"
+      ng-model="data.contest")
+
+mixin _field_exdate
+  fieldset.field
+    label(for="exdate") 測驗日期
+    .datepicker
+      +date_picker("exdate", "data", "option.exdate", "qryform.exdate")
+      button.trigger(type="button" ng-click="open_calendar($event)")
+        i.fa.fa-fw.fa-calendar
+
+mixin _field_extime
+  fieldset.field
+    label(for="extime") 測驗時間
+    select#extime(type="text" name="extime" ng-model="#{fv}.extime"
+      ng-options="a.value as a.name for a in data.option.times")
+      option(value="") 不限
+
+mixin _btns
+  fieldset.field#btns
+    label(for="") &nbsp;
+    button.btn(ng-click="submit()") 送出
+
+- var fn = "rgf"
+form.top(ng-show="data.action == 2" name="#{fn}")
+  +_field_gcode
+  +_field_contest
+  //+_field_exdate
+  +_field_extime
+  +_btns

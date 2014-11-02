@@ -1,0 +1,50 @@
+.enroll_op
+  +ext(inline_list)
+  width: 100%
+  .ck
+    +ext(fa, false)
+    font-size: 1.4rem
+    margin: 5px 5px 5px 0
+    cursor: pointer
+    &._add
+      +ext(fa-plus, false)
+      color: #394
+    &._upload
+      +ext(fa-upload, false)
+      color: #46a
+      input
+        width: 0
+
+%_enroll
+  .enroll
+    +bg-gradient(0, #cde, #fff)
+    width: 100%
+    input, select
+      +ext(border_box)
+      width: 96%
+      margin: 5px auto
+      font-size: 1rem
+    select
+      border: 3px solid lighten($c-swim, 40)
+      &.error
+        border-color: red
+    ._del
+      +ext(fa, false)
+      +ext(fa-times, false)
+      text-align: center
+      font-size: 1.3rem
+      cursor: pointer
+      color: #ddd
+      &:hover
+        color: red
+
+.enrollments
+  +ext(inline_list)
+  +ext(border_box)
+  +ext(_enroll)
+  width: 100%
+  padding: 1% 15px
+  .ib
+    width: 22.5%
+  ._del, ._emp
+    width: 10%

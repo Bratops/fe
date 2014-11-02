@@ -2,6 +2,7 @@
 mixin date_picker(id, data_ref, date_opt, data_name)
   input(type="text"
     id="#{id}"
+    ng-model="#{data_ref}.#{data_name}"
     date-disabled="#{id}_cal_disable(date, mode)"
     year-range="1"
     format-day-title="'MM yyyy'"
@@ -9,10 +10,10 @@ mixin date_picker(id, data_ref, date_opt, data_name)
     format-month="MMM"
     datepicker-mode="day"
     datepicker-popup="yyyy/MM/dd"
-    ng-model="#{data_ref}.#{data_name}"
     datepicker-options="#{data_ref}.#{date_opt}"
-    is-open="#{data_ref}.#{date_opt}.open"
     min-date="#{data_ref}.#{date_opt}.minDate"
+    max-date="#{data_ref}.#{date_opt}.maxDate"
+    is-open="#{data_ref}.#{date_opt}.open"
     show-button-bar="false"
     disabled=""
     ng-required="true" )

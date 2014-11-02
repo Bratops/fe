@@ -1,0 +1,11 @@
+ul.ops
+  li
+    .field
+      input(type="text" placeholder="班級查詢" ng-model="data.query.ugroup")
+  li
+    a.ck._new(ng-click="new()") 新增
+
+.scroll
+  include ugroups/list.jade
+
+  .detail(ui-view="scroll")
