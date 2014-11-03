@@ -116,6 +116,7 @@ angular.module 'brasFeApp'
   state "manager", "surveys"
   state "manager", "surveys", "new"
   state "manager", "surveys", "edit"
+  state "manager", "regs"
   state "admin"
   state "admin", "users"
   state "admin", "tasks"

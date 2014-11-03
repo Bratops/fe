@@ -23,7 +23,7 @@ mixin _field_contest
     label(for="contest") 2.選擇測驗
     input#contest(type="text" name="contest"
       ng-class="{ 'error': invalid_contest(#{fn}.contest) }"
-      typeahead="sc as sc.name for sc in get_contest_list($viewValue)"
+      typeahead="sc as sc.name for sc in get_contest_list($viewValue, true)"
       typeahead-loading="loadingContests"
       typeahead-on-select="set_contest($item, $model, $label)"
       typeahead-wait-ms="300"
@@ -57,12 +57,12 @@ mixin _field_extime
 mixin _btns
   fieldset.field#btns
     label(for="") &nbsp;
-    button.btn(ng-click="submit()") 送出
+    button.btn(ng-click="submit(rgf)" ng-disabled="invalid_form(#{fn})") 送出
 
-- var fn = "rgf"
-form.topleft
+form.topleft(name="sqf")
   +_select_action
 
+- var fn = "rgf"
 form.top(ng-show="data.action != 2" name="#{fn}")
   +_field_gcode
   +_field_contest

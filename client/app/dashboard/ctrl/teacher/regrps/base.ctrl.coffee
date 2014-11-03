@@ -30,7 +30,8 @@ angular.module("brasFeApp").classy.controller
     dv = date.getDay()
     ((mode is "day") and ( dv is 0 || dv is 6 ))
 
-  submit: -> @m.submit()
+  submit: (form)->
+    @m.submit() if form.$valid
 
   get_contest_list: (q, use_code=true)->
     @m.contest_list(q, use_code).then (r)=>
@@ -41,8 +42,8 @@ angular.module("brasFeApp").classy.controller
 
   set_contest: (item, model, label)->
     @m.data.regform.contest_id = item.id
-    @$.data.option.exdate.minDate = "'#{item.sdate}'"
-    @$.data.option.exdate.maxDate = "'#{item.edate}'"
+    @$.data.option.exdate.minDate = "#{item.sdate}"
+    @$.data.option.exdate.maxDate = "#{item.edate}"
 
   set_qry_contest: (i, m, l)->
     @m.data.qryform.contest_id = i.id
@@ -64,3 +65,10 @@ angular.module("brasFeApp").classy.controller
       @m.update(reg)
     else
       @m.set_query(reg.ugroup.gcode)
+
+  remove: (reg)->
+    @m.remove(reg)
+
+  invalid_form: (form)->
+    (@m.data.regform.contest_id < 0) or form.$invalid
+

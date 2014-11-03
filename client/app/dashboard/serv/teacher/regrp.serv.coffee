@@ -47,7 +47,7 @@ angular.module "brasFeApp"
     rt.get("", q).then (rp)->
       r.data.list = rp
 
-  r._refresh = (mgs)->
+  r._refresh = (msg)->
     r.load_conregs()
     notify.g msg
 
@@ -59,7 +59,7 @@ angular.module "brasFeApp"
   r._update = ->
     data = {conreg: r.data.regform}
     rt = sessionServ.fest().one("teacher/conregs", r.data.regform.id)
-    rt.put("", data).then (rp)-> r._refresh(rp.msg)
+    rt.patch(data).then (rp)-> r._refresh(rp.msg)
 
   r._search = ->
     r.load_conregs(r.data.qryform)
@@ -97,5 +97,11 @@ angular.module "brasFeApp"
 
   r.set_gcode = (gcode)->
     r.data.regform.gcode = gcode
+
+  r.remove = (reg)->
+    rt = sessionServ.fest().one("teacher/conregs", reg.id)
+    rt.remove("").then (rp)->
+      console.log rp
+      r._refresh(rp.msg)
 
   r

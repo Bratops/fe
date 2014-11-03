@@ -8,9 +8,9 @@ angular.module("brasFeApp").service "datagen", ()->
   r.nvp = (n, v)->
     {name: n, value: v}
 
-  r.date_opt = (min="2014/1/1")->
+  r.date_opt = (min="2014/1/1", max="2014/1/1")->
     minDate: min
-    maxDate: "2014/1/1"
+    maxDate: max
     open: false
     startingDay: 1
 
@@ -18,6 +18,9 @@ angular.module("brasFeApp").service "datagen", ()->
     dt = base_day || new Date()
     dt.setDate(dt.getDate() + day)
     dt
+
+  r.days = (day)->
+    r.add_day(new Date(), day)
 
   r.CSVToArray = (strData, strDelimiter) ->
     # Check to see if the delimiter is defined. If not,

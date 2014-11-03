@@ -1,0 +1,11 @@
+ul.ops
+  li
+    .ck._summary(ng-click="summary()") 報名人數總結
+  li
+    .ck._local(ng-click="local()") 區域統計
+
+.scroll
+  //- include surveys/list.jade
+
+  .detail.ib(ui-view="scroll")
+

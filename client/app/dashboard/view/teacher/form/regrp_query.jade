@@ -40,9 +40,9 @@ mixin _field_extime
 mixin _btns
   fieldset.field#btns
     label(for="") &nbsp;
-    button.btn(ng-click="submit()") 送出
+    button.btn(ng-click="submit(qgf)") 送出
 
-- var fn = "rgf"
+- var fn = "qgf"
 form.top(ng-show="data.action == 2" name="#{fn}")
   +_field_gcode
   +_field_contest

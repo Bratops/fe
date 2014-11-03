@@ -25,8 +25,8 @@ angular.module "brasFeApp"
       ctasks: []
       query: {}
       opt:
-        sdate: datagen.date_opt(min=new Date())
-        edate: datagen.date_opt(min="2014/10/01")
+        sdate: datagen.date_opt(min=new Date(), max=datagen.days(60))
+        edate: datagen.date_opt(min=new Date(), max=datagen.days(60))
       contest: _contest()
 
   r.reset = ()->

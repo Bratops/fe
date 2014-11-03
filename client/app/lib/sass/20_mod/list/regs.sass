@@ -4,16 +4,17 @@
 
 .regs
   +ext(border_box)
-  padding: 1% 10%
+  padding: 1% 0 1% 10%
 
 .reg
+  +ext(border_box)
   width: 100%
   border: 2px solid #c2e3e2
   position: relative
   .ib
     +ext(border_box)
     padding: 5px 10px
-    width: 25%
+    width: 22%
     text-align: center
     font-size: 1.4rem
     vertical-align: middle
@@ -21,3 +22,11 @@
     font-weight: bold
   ._extime
     font-size: 1.2rem
+  ._remove
+    +ext(fa, false)
+    +ext(fa-times, false)
+    display: inline-block
+    width: 11%
+    &:hover
+      cursor: pointer
+      color: red
