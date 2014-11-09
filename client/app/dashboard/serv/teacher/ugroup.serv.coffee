@@ -19,10 +19,12 @@ angular.module "brasFeApp"
     "男": 1
 
   _make_user = (ary)->
-    name: ary[0].trim()
-    gender: _gc[ary[1].trim()]
-    suid: ary[2].trim()
-    seat: ary[3].trim()
+    console.log ary
+    r =
+      name: ary[0].trim()
+      gender: _gc[ary[1].trim()]
+      suid: ary[2].trim()
+      seat: ary[3].trim()
 
   _new_group = ->
     cluster_id: ""
@@ -93,9 +95,11 @@ angular.module "brasFeApp"
   r._parse_file = (d, file)->
     reader = new FileReader()
     reader.onload = (event) ->
-      users = _.map(datagen.CSVToArray(event.target.result), _make_user)
+      data = _.filter(datagen.CSVToArray(event.target.result), (a)-> a.length > 2)
+      console.log data
+      users = _.map(data, _make_user)
       d.resolve users
-    reader.readAsText file
+    reader.readAsText file, "big5"
 
   r._nodata = (d, info)->
     d.resolve []
@@ -139,5 +143,10 @@ angular.module "brasFeApp"
     rt = sessionServ.fest().one("teacher/ugroups")
     rt.post("", data).then (rp)->
       r._notify(rp.msg, "teacher:ugroup:created")
+
+  r.reset_pass = ->
+    rt = sessionServ.fest().one("teacher/ugroups", r.data.form.id)
+    rt.one("reset_passwords").get().then (rp)->
+      notify.g(rp.msg)
 
   r

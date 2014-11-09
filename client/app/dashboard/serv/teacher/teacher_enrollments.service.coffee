@@ -11,14 +11,15 @@ angular.module "brasFeApp"
       return -1
 
   make_user = (ary, stat)->
-    id: null
-    name: ary[0].trim()
-    gender: ary[1].trim()
-    suid: ary[2].trim()
-    seat: ary[3].trim()
-    status:
-      name: stat.n || "處理中"
-      value: stat.v || "handling"
+    r =
+      id: null
+      name: ary[0].trim()
+      gender: ary[1].trim()
+      suid: ary[2].trim()
+      seat: ary[3].trim()
+      status:
+        name: stat.n || "處理中"
+        value: stat.v || "handling"
 
   col_item = (name, value, sort=0)->
     name: name
