@@ -15,6 +15,7 @@ angular.module "brasFeApp", [
   "duScroll",    # click then scroll
   "timer",
   "xeditable",
+  "FBAngular",
   "youtube-embed",
   "checklist-model",
   #"ngFitText",
@@ -26,7 +27,7 @@ angular.module "brasFeApp", [
 ]
 
 .constant "Config",
-  host: "brasbe.dev" #"bebras01.csie.ntnu.edu.tw:88" #"localhost:3000"
+  host: "bebras01.csie.ntnu.edu.tw:88" #"localhost:3000"
 
 .config (tagsInputConfigProvider) ->
   tagsInputConfigProvider.setDefaults("tagsInput",

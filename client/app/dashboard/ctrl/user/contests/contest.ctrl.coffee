@@ -7,6 +7,7 @@ angular.module("brasFeApp").classy.controller
     $scope: "$"
     $state: "st"
     $window: "wnd"
+    Fullscreen: "fs"
     userContests: "ucs"
 
   init: ->
@@ -31,6 +32,7 @@ angular.module("brasFeApp").classy.controller
   _on_contest_finished: ->
     dbc = "dashboard.user.contest"
     @ucs.reset()
+    @ucs.load_all()
     @st.go("#{dbc}s", {}, {reload: true}) if @st.is(dbc)
 
   _on_contest_not_found: ->
@@ -109,3 +111,8 @@ angular.module("brasFeApp").classy.controller
   seeds: ->
     return @ucs.data.cur_task.seed if @ucs.data.cur_task?
 
+  full: ->
+    if @fs.isEnabled()
+      @fs.cancel()
+    else
+      @fs.all()

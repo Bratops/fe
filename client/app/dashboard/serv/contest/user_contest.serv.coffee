@@ -1,6 +1,6 @@
 "use strict"
 angular.module "brasFeApp"
-.service "userContests", ($rootScope, sessionServ, menu, notify)->
+.service "userContests", ($rootScope, sessionServ, menu, notify, Fullscreen)->
   _curtask = ->
     seed: []
 
@@ -22,11 +22,12 @@ angular.module "brasFeApp"
   r.reset = ->
     r.data = _data()
 
-  r.init = ->
+  r.init = (list=false)->
     return if sessionServ.user.role.name isnt "user"
     return if r.inited
     r.inited = true
     r.load_one()
+    r.load_all() if list
 
   r.load_all = ->
     rst = sessionServ.fest().all("user/contests")
@@ -48,7 +49,6 @@ angular.module "brasFeApp"
 
   r.setup_contest = (rsp)->
     return r.load_all() if rsp.status is "free"
-    console.log rsp.status
     if rsp.status is "testing"
       r.data.contest_raw = rsp.contest
       r._reject_done rsp.done_ans

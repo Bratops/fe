@@ -5,11 +5,12 @@ angular.module("brasFeApp").classy.controller
   inject:
     $scope: "$"
     $state: "st"
+    Fullscreen: "fs"
     userContests: "ucs"
 
   init: ()->
     @$.data = @ucs.data
-    @ucs.init()
+    @ucs.init(true)
     @$.$on "contest:ready", @_on_contest_ready
     @$.$on "contest:survey", @_on_contest_survey
 
@@ -23,6 +24,7 @@ angular.module("brasFeApp").classy.controller
 
   do_contest: (cn)->
     if confirm("確定後,開始計時")
+      @fs.all()
       @ucs.data.contest = cn
       @ucs.load_one()
 
